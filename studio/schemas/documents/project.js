@@ -1,8 +1,8 @@
 import {format} from 'date-fns'
 
 export default {
-  name: 'sampleProject',
-  title: 'Sample project',
+  name: 'project',
+  title: 'Project',
   type: 'document',
   fields: [
     {
@@ -27,13 +27,19 @@ export default {
       type: 'datetime'
     },
     {
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'simplePortableText'
+      name: 'featured',
+      title: 'Featured Project',
+      description: 'Use this to display project on featured section',
+      type: 'boolean'
+    },
+    {
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string'
     },
     {
       name: 'members',
-      title: 'Members',
+      title: 'Collaborators',
       type: 'array',
       of: [{type: 'projectMember'}]
     },
@@ -59,16 +65,27 @@ export default {
       of: [{type: 'reference', to: {type: 'category'}}]
     },
     {
-      name: 'body',
-      title: 'Body',
+      name: 'projectBrief',
+      title: 'Project Brief',
+      type: 'projectPortableText'
+    },
+    {
+      name: 'projectBreakdown',
+      title: 'Breakdown',
       type: 'projectPortableText'
     },
     {
       name: 'relatedProjects',
       title: 'Related projects',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'sampleProject'}}]
-    }
+      of: [{type: 'reference', to: {type: 'project'}}]
+    },
+    {
+      name: 'accolades',
+      title: 'Accolades',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'accolade'}}]
+    },
   ],
   preview: {
     select: {

@@ -1,14 +1,26 @@
 :root {
   --font-family-sans: -apple-system, BlinkMacSystemFont, sans-serif;
-
-  --color-black: #202123;
+ 
+  --color-white: #fff;
+  --color-black: #020426;
   --color-dark-gray: #32373e;
   --color-gray: #697a90;
   --color-light-gray: #b4bcc7;
   --color-very-light-gray: #e7ebed;
-  --color-white: #fff;
-  --color-accent: #156dff;
 
+  --color-deep-red: #8c071f;
+  --color-maroon: #40032b;
+  --color-green: #05a696; 
+  --color-light-green: #9ddfd8; 
+  --color-orange: #f27507;
+  --color-red: #f21f0c;
+
+  --color-accent: var(--color-orange);
+  --color-background:var(--color-black);
+  --color-nav-text: var(--color-green);
+  --color-emp-text:var(--color-orange);  
+  --color-body-text:var(--color-light-green);  
+  --color-border:var(--color-orange);  
   /* Typography */
   --unit: 16;
   --font-micro-size: calc(10 / var(--unit) * 1rem); /* 10px */

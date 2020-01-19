@@ -2,11 +2,14 @@
 
 .root {
   box-sizing: border-box;
-  max-width: 960px;
+  max-width: 1200px;
   padding: 1.5em;
   margin: 0 auto;
 
   @media (--media-min-small) {
     padding: 2em;
+  }
+  @media (--media-min-x-large) {
+    max-width: 2000px;
   }
 }

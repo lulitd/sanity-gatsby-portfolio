@@ -8,9 +8,11 @@ html {
 
 body {
   -webkit-font-smoothing: antialiased;
-  background: var(--color-white);
-  color: var(--color-black);
+  background: var(--color-background);
+  color:var(--color-body-text);
   margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 html,
@@ -18,4 +20,12 @@ body,
 body > div,
 body > div > div {
   height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+  color:var(--color-emp-text);
+}
+
+p{
+  color:var(--color-light-green);
 }

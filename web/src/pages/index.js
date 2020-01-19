@@ -1,5 +1,5 @@
 import React from 'react'
-import {graphql} from 'gatsby'
+import {graphql,Link} from 'gatsby'
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
@@ -10,6 +10,9 @@ import GraphQLErrorList from '../components/graphql-error-list'
 import ProjectPreviewGrid from '../components/project-preview-grid'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
+import {responsiveTitle2} from '../components/typography.module.css'
+
+import styles from './index.module.css'; 
 
 export const query = graphql`
   query IndexPageQuery {
@@ -17,8 +20,11 @@ export const query = graphql`
       title
       description
       keywords
+      jumboName
+      jumboDescription
+      jumboTag
     }
-    projects: allSanitySampleProject(
+    projects: allSanityProject(
       limit: 6
       sort: {fields: [publishedAt], order: DESC}
       filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
@@ -49,7 +55,7 @@ export const query = graphql`
             alt
           }
           title
-          _rawExcerpt
+          subtitle
           slug {
             current
           }
@@ -87,10 +93,15 @@ const IndexPage = props => {
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
-        <h1 hidden>Welcome to {site.title}</h1>
+        <div className={styles.jumbotron}>
+  <h1 className={styles.jumboGreeting}>Hi my name is<br/><span className={styles.myName}>{site.jumboName}.</span></h1>
+        <h2 className={styles.myTagline}>{site.jumboTag} </h2>
+  <p className={styles.myDescription}>{site.jumboDescription}</p>
+        <Link className={styles.CTA} to='/contact'>Get In Touch</Link>
+        </div>
+        <h2 className={responsiveTitle2}>Featured Projects</h2>
         {projectNodes && (
           <ProjectPreviewGrid
-            title='Latest projects'
             nodes={projectNodes}
             browseMoreHref='/archive/'
           />

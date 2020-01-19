@@ -24,9 +24,11 @@
 }
 
 .title {
+  color: var(--color-nav-text); 
   @media (hover: hover) {
     @nest .root:hover & {
       text-decoration: underline;
+      color: var(--color-accent);
     }
   }
 }

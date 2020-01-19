@@ -5,6 +5,13 @@ export default {
   type: 'document',
   title: 'Person',
   icon: MdPerson,
+  fieldsets: [
+    {
+     name: 'social', 
+     title: 'Social media handles',
+     options: {collapsible: true, collapsed: false}
+    }
+  ],
   fields: [
     {
       name: 'name',
@@ -24,12 +31,44 @@ export default {
     {
       name: 'image',
       title: 'Image',
-      type: 'figure'
+      type: 'figure',
+      options: {collapsible: true, collapsed: false}
     },
     {
       name: 'bio',
       title: 'Bio',
-      type: 'bioPortableText'
+      type: 'bioPortableText',
+      options: {collapsible: true, collapsed: false}
+    },
+    {
+      title: 'Website',
+      name: 'website',
+      type: 'string',
+      fieldset: 'social'
+    },
+    {
+        title: 'Twitter',
+        name: 'twitter',
+        type: 'string',
+        fieldset: 'social'
+    },
+    {
+        title: 'Instagram',
+        name: 'instagram',
+        type: 'string',
+        fieldset: 'social'
+    },
+    {
+        title: 'Linkedin',
+        name: 'linkedin',
+        type: 'string',
+        fieldset: 'social'
+    },
+    {
+      title: 'Github',
+      name: 'github',
+      type: 'string',
+      fieldset: 'social'
     }
   ],
   preview: {
