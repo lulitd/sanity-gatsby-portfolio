@@ -6,7 +6,9 @@
 .title {
   composes: responsiveTitle1 from './typography.module.css';
 }
-
+.relatedProjectsTitle {
+  composes: responsiveTitle2 from './typography.module.css';
+}
 .header {
   composes: responsiveTitle3 from './typography.module.css';
 }

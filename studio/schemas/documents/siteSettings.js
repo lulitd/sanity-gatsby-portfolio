@@ -13,6 +13,11 @@ export default {
      name: 'jumbotron', 
      title: 'Jumbotron Settings',
      options: {collapsible: true, collapsed: false}
+    },
+    {
+      name: 'contact', 
+      title: 'Contact Settings',
+      options: {collapsible: true, collapsed: false}
     }
   ],
   fields: [
@@ -53,6 +58,17 @@ export default {
       description: 'This is the tag that appears in the jumbotron of index page.',
       fieldset:'jumbotron'
     },
+    { name: 'contactEmail',
+    type: 'text',
+    title: 'email',
+    description: 'This is the email that people can contact you at',
+    fieldset:'contact'},
+    { name: 'contactor',
+    type: 'reference',
+    title: 'contactor',
+    to: [{type: 'person'}],
+    description: 'This is will display the social icons of the contactor',
+    fieldset:'contact'},
     {
       name: 'keywords',
       type: 'array',

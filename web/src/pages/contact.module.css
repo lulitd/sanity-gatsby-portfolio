@@ -1,0 +1,47 @@
+@import "../styles/custom-properties.css";
+
+.emailBtn {
+  text-decoration: none;
+  background-color: transparent;
+  border: solid 1px currentColor;
+  color: var(--color-body-text);
+  padding: 0.75em 1em;
+  display: inline-block;
+  box-shadow: none;
+  border-radius: 0px;
+  composes: responsiveTitle4 from "../components/typography.module.css";
+
+  &:hover {
+    border: solid 1px var(--color-body-text);
+    background-color: var(--color-body-text);
+    color: var(--color-background);
+  }
+}
+
+.socialContainer {
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+
+.socialIcon {
+  background-color: transparent;
+  color: var(--color-body-text);
+  border: 1px solid currentColor;
+  display: inline-block;
+  padding: 0.3rem;
+  font-size: 1.5rem;
+  margin: 0rem 0.5rem 0 0rem;
+  text-decoration: none;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-background);
+      background-color: var(--color-body-text);
+      border-color: var(--color-body-text);
+    }
+  }
+  @nest & svg {
+    display: block;
+    margin: auto;
+  }
+}

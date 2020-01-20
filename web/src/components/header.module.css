@@ -76,6 +76,9 @@
 .nav {
   display: none;
 
+  font-weight: normal;
+  text-transform: uppercase;
+
   @nest & ul {
     margin: 0;
     padding: 0;

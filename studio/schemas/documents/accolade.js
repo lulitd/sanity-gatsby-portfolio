@@ -30,7 +30,14 @@ export default {
         name: 'linkTo',
         title: 'URL',
         type: 'url',
-      }
+      },
+      {
+        name: 'projects',
+        title: 'Projects',
+        type: 'array',
+        of: [{type: 'reference', to: {type: 'project'}}]
+      },
+
     ],
     orderings: [
       {
@@ -52,8 +59,7 @@ export default {
         const {title,date,event='',address=''} = selection; 
         return {
           title: `${date.split('-')[0]}: ${title}`,
-          subtitle: event,
-          description: address,
+          subtitle: `${event} ${address}`,
         }
       }
     }

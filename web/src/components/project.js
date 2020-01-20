@@ -19,11 +19,20 @@ function Project(props) {
     members,
     accolades,
     mainImage,
-    relatedProjects
+    relatedProjects,
+    awards
   } = props;
 
   const collaborators = members.filter(member => !member.person.name.includes("Lalaine"));
 
+  let merged = [...accolades,...awards];
+
+    const allIds = merged.map( el => el["_id"]); 
+    const uniqueAccolades=merged.filter( (obj, index) => {
+    return allIds.indexOf(obj["_id"]) === index;
+    }); // removing all duplicates
+
+    uniqueAccolades.sort((a, b) => (a.date) - (b.date)).reverse();
   return (
     <article className={styles.root}>
       <Container>
@@ -72,11 +81,11 @@ function Project(props) {
               </div>
             )}
 
-            {accolades && accolades.length > 0 && (
+            {uniqueAccolades && uniqueAccolades.length > 0 && (
               <div className={styles.accolades}>
                 <h3 className={styles.accoladesHeadline}>Exhibitions & Awards</h3>
                 <ul>
-                  {accolades.map(accolade => {
+                  {uniqueAccolades.map(accolade => {
                     let label = "";
                     label += `${accolade.date.split("-")[0]}: `;
                     label += accolade.title;
@@ -97,6 +106,8 @@ function Project(props) {
 
         {relatedProjects && relatedProjects.length > 0 && (
           <div className={styles.relatedProjects}>
+             <h2 className={styles.relatedProjectsTitle}>Featured Projects</h2>
+
             <ProjectPreviewGrid nodes={relatedProjects} />
           </div>
         )}
