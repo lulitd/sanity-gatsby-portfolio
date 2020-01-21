@@ -36,10 +36,13 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-column-gap: 2em;
-
-  @media (--media-min-medium) {
+  @media (--media-max-small) {
+    grid-template-columns: 1fr;
+    grid-column-gap: 1em;
+  }
+  @media (--media-min-large) {
     grid-template-columns: 4fr 2fr;
-    grid-column-gap: 3em;
+    grid-column-gap: 2em;
   }
 }
 

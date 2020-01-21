@@ -1,12 +1,12 @@
 import Figure from './figure'
 import React from 'react'
-import ReactPlayer from 'react-player'
+import EmbedVideo from './embed-video'
 const serializers = {
   types: {
     figure: Figure,
     video: ({node}) => {
       const { url } = node
-      return (<ReactPlayer url={url} />)
+      return (<EmbedVideo url={url}/>)
     }
   }
 }

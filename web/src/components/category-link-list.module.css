@@ -1,0 +1,39 @@
+@import "../styles/custom-media.css";
+@import "../styles/custom-properties.css";
+
+.categoryList {
+  @nest & ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @nest & ul li {
+    margin: 0 0.5rem 1rem 0;
+    display: inline-block;
+  }
+  @nest & ul li a {
+    padding: 0.5rem 0.75rem;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  @media (hover: hover) {
+    @nest & ul li a:hover {
+      border: solid 1px var(--color-body-text);
+      background: var(--color-body-text);
+      color: var(--color-background);
+    }
+  }
+}
+
+.defaultBtn{
+    border: solid 1px currentColor;
+    color: var(--color-body-text);
+    background: transparent;
+}
+
+.currentBtn{
+    border: solid 1px var(--color-emp-text);
+    color: var(--color-background);
+    background: var(--color-emp-text);
+}
