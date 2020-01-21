@@ -13,14 +13,15 @@
   --color-green: #05a696; 
   --color-light-green: #9ddfd8; 
   --color-orange: #f27507;
-  --color-red: #f21f0c;
+  --color-red: #f02348;
 
-  --color-accent: var(--color-orange);
+  --color-accent: var(--color-red);
   --color-background:var(--color-black);
+  --color-sub-text:var(--color-green);
   --color-nav-text: var(--color-green);
-  --color-emp-text:var(--color-orange);  
+  --color-emp-text:var(--color-red);  
   --color-body-text:var(--color-light-green);  
-  --color-border:var(--color-orange);  
+  --color-border:var(--color-red);  
   /* Typography */
   --unit: 16;
   --font-micro-size: calc(10 / var(--unit) * 1rem); /* 10px */

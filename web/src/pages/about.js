@@ -5,11 +5,11 @@ import GraphQLErrorList from "../components/graphql-error-list";
 import SEO from "../components/seo";
 import Layout from "../containers/layout";
 import BlockContent from "../components/block-content";
-import { responsiveTitle1 } from "../components/typography.module.css";
-import Icon from "../components/icon";
+import { responsiveTitle1,small} from "../components/typography.module.css";
 import styles from "./about.module.css";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
+import SocialsFromBio from "../components/socials-from-bio";
 
 export const query = graphql`
   query AboutQuery {
@@ -72,36 +72,13 @@ const AboutPage = props => {
     );
   }
 
-  let socials = [];
-
-  if (author) {
-    if (author.twitter) socials.push({ name: "twitter", link: author.twitter });
-    if (author.instagram) socials.push({ name: "instagram", link: author.instagram });
-    if (author.linkedin) socials.push({ name: "linkedin", link: author.linkedin });
-    if (author.github) socials.push({ name: "github", link: author.github });
-  }
-
-  const socialIcons = socials.map(social => {
-    return (
-      <a
-        className={styles.socialIcon}
-        href={social.link}
-        key={social.name}
-        target="_blank"
-        rel="nofollow noopener noreferrer"
-      >
-        <Icon symbol={social.name} />
-      </a>
-    );
-  });
-
   const profileImage= author.image; 
   return (
     <Layout>
       <SEO title="About" />
       <Container>
         <h1 className={responsiveTitle1}>About</h1>
-
+        
         <div className={styles.grid}>
           <div className={styles.mainContent}>
             {author._rawBio && (
@@ -123,8 +100,8 @@ const AboutPage = props => {
                 />
               </div>
             )}
-            <div className={styles.socialContainer}>{socialIcons}</div>
-          </aside>
+            <SocialsFromBio bio={author}/>
+            </aside>
         </div>
       </Container>
     </Layout>

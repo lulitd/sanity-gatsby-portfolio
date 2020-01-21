@@ -31,7 +31,7 @@ function RoleList ({items, title}) {
                 <strong>{(item.person && item.person.name) || <em>Missing name</em>}</strong>
               </div>
               {item.roles && (
-                <div>
+                <div className={styles.roles}>
                   {item.roles.map((role, idx) => {
                     switch (true) {
                       case idx === 0:

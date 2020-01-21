@@ -6,6 +6,13 @@ const query = graphql`
   query SiteTitleQuery {
     site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {
       title
+      author {
+        github
+        instagram
+        twitter
+        linkedin
+        name
+      }
     }
   }
 `
@@ -34,6 +41,7 @@ function LayoutContainer (props) {
             siteTitle={data.site.title}
             onHideNav={handleHideNav}
             onShowNav={handleShowNav}
+            author={data.site.author}
           />
         )
       }}

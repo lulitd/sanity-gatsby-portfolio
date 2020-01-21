@@ -14,12 +14,6 @@ export const query = graphql`
   query ContactQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       contactEmail
-      contactor {
-        twitter
-        instagram
-        linkedin
-        github
-      }
     }
   }
 `;
@@ -42,31 +36,6 @@ const ContactPage = props => {
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     );
   }
-
-  const { contactor } = site;
-  let socials = [];
-
-  if (contactor) {
-    if (contactor.twitter) socials.push({ name: "twitter", link: contactor.twitter });
-    if (contactor.instagram) socials.push({ name: "instagram", link: contactor.instagram });
-    if (contactor.linkedin) socials.push({ name: "linkedin", link: contactor.linkedin });
-    if (contactor.github) socials.push({ name: "github", link: contactor.github });
-
-    
-  }
-  console.log(socials);
-
-  const socialIcons = socials.map(social => {
-    return <a
-      className={styles.socialIcon}
-      href={social.link}
-      key={social.name}
-      target="_blank"
-      rel="nofollow noopener noreferrer"
-    >
-      <Icon symbol={social.name} />
-    </a>;
-  });
   return (
     <Layout>
       <SEO title="About" />
@@ -85,8 +54,7 @@ const ContactPage = props => {
         >
           Get In Touch
         </a>
-        <div className={styles.socialContainer}>{socialIcons}</div>
-      </Container>
+        </Container>
     </Layout>
   );
 };

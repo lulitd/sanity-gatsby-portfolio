@@ -8,10 +8,14 @@
   composes: responsiveTitle1 from './typography.module.css';
 }
 
+.excerpt {
+  composes: small from './typography.module.css';
+}
+
 .leadMediaThumb {
   position: relative;
   padding-bottom: 66.666%;
-  background: #eee;
+  background: var(--color-dark-gray);
 
   @nest & img {
     position: absolute;
@@ -24,10 +28,15 @@
 }
 
 .title {
-  color: var(--color-nav-text); 
+  text-align:center;
+  color: var(--color-body-text); 
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.025rem;
+  margin-bottom: 0
+  ;
   @media (hover: hover) {
     @nest .root:hover & {
-      text-decoration: underline;
       color: var(--color-accent);
     }
   }
@@ -35,7 +44,9 @@
 
 .excerpt {
   @nest & p {
-    margin: 0.5em 0;
+    text-align:center;
+    color: var(--color-sub-text); 
+    margin: 0;
   }
 
   @nest & strong {

@@ -1,7 +1,7 @@
 @import '../styles/custom-media.css';
 @import '../styles/custom-properties.css';
 
-.root {}
+
 
 .title {
   composes: responsiveTitle1 from './typography.module.css';
@@ -59,12 +59,11 @@
 .metaContent {
 }
 
-.projectBrief{
+.projectBrief, .projectBreakdown{
+  margin: 0 0 3rem 0; 
+  line-height: 1.5rem;
 }
 
-.projectBreakdown{
- 
-}
 
 .publishedAt {
   composes: small from './typography.module.css';
@@ -74,8 +73,7 @@
 
 .categories {
   border-top: 1px solid var(--color-border);
-  margin: 2rem 0 3rem;
-
+  margin: 2rem 0 2rem;
   @nest & ul {
     list-style: none;
     margin: 0.75rem 0;
@@ -83,6 +81,7 @@
   }
 
   @nest & ul li {
+    color: var(--color-sub-text);
     padding: 0.25rem 0;
   }
 }
@@ -114,7 +113,7 @@
 }
 .accoladeAddress {
   composes: small from './typography.module.css';
-  color: var(--color-green);
+  color: var(--color-sub-text);
   margin: 0;
   padding: 0;
 }

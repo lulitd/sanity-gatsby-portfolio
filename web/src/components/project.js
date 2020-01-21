@@ -23,7 +23,7 @@ function Project(props) {
     awards
   } = props;
 
-  const collaborators = members.filter(member => !member.person.name.includes("Lalaine"));
+  const collaborators = members;
 
   let merged = [...accolades,...awards];
 
@@ -68,7 +68,7 @@ function Project(props) {
           </div>
           <aside className={styles.metaContent}>
             {collaborators && collaborators.length > 0 && (
-              <RoleList items={collaborators} title="Collaborators" />
+              <RoleList items={collaborators} title="Team" />
             )}
             {categories && categories.length > 0 && (
               <div className={styles.categories}>

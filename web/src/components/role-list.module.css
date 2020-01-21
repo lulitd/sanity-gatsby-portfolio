@@ -44,3 +44,8 @@
     object-fit: cover;
   }
 }
+
+
+.roles{
+  color: var(--color-green);
+}

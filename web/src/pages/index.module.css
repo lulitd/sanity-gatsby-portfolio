@@ -42,7 +42,7 @@
     composes: responsiveTitle4 from '../components/typography.module.css';
 
     &:hover{
-        background-color: var(--color-green);
+        background-color: var(--color-nav-text);
         color: var(--color-white);
     }
 }

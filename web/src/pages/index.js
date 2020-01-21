@@ -24,11 +24,7 @@ export const query = graphql`
       jumboDescription
       jumboTag
     }
-    projects: allSanityProject(
-      limit: 6
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-    ) {
+    projects: allSanityProject(limit: 6, sort: {fields: [endedAt], order: DESC}, filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}, featured: {eq: true}}) {
       edges {
         node {
           id
@@ -105,7 +101,7 @@ const IndexPage = props => {
             Get In Touch
           </Link>
         </div>
-        {projectNodes && (
+        {projectNodes && projectNodes.length>0 && (
           <div>
             <h2 className={responsiveTitle2}>Featured Projects</h2>
             <ProjectPreviewGrid nodes={projectNodes} browseMoreHref="/archive/" />

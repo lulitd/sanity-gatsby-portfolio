@@ -17,14 +17,15 @@
 
 .mainContent {
   padding-right: 3rem;
-  @nest & a {
-    color: var(--color-accent);
 
-    @media (hover: hover) {
-      @nest &:hover {
-        color: inherit;
-      }
-    }
+  @nest & a{ 
+    text-decoration: none;
+    color: var(--color-emp-text);
+  }
+
+  /* mouse over link */
+  @nest & a:hover {
+    color: var(--color-nav-text);
   }
 }
 

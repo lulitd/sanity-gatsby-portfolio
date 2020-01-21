@@ -32,8 +32,7 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'figure',
-      options: {collapsible: true, collapsed: false}
-    },
+      },
     {
       name: 'bio',
       title: 'Bio',
