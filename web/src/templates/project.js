@@ -25,6 +25,7 @@ export const query = graphql`
       }
       relatedProjects {
         title
+        publishedAt
         mainImage {
           crop {
             _key
@@ -83,6 +84,11 @@ export const query = graphql`
       members {
         _key
         person {
+          website
+          twitter
+          linkedin
+          github
+          instagram
           image {
             crop {
               _key

@@ -14,7 +14,13 @@ export const query = graphql`
       id
       title
     }
-    projects: allSanityProject(filter: { categories: { elemMatch: { id: { eq: $id } } } }) {
+    allProjects: allSanityProject(
+      sort: { fields: [publishedAt], order: DESC }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+    ) {
+      totalCount
+    }
+    projects: allSanityProject(filter: { categories: { elemMatch: { id: { eq: $id } } }, publishedAt: { ne: null } }) {
       edges {
         node {
           id
@@ -48,6 +54,15 @@ export const query = graphql`
         }
       }
     }
+    usedCategories: allSanityProject(
+      sort: { fields: [publishedAt], order: DESC }
+     filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+   ) {
+     group(field: categories___title) {
+       totalCount
+       fieldValue
+     }
+   }
     categories: allSanityCategory(
       filter: { projectFilter: { eq: true } }
       sort: { fields: title, order: ASC }
@@ -74,6 +89,9 @@ const CategoryTemplate = props => {
   const projectNodes =
     data && data.projects && mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
 
+  const usedCategories = data && data.usedCategories;
+  const totalCount = data && data.allProjects && data.allProjects.totalCount;
+
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
@@ -88,7 +106,13 @@ const CategoryTemplate = props => {
       <SEO title={`Archive: ${category.title}`} />
       <Container>
         <h1 className={responsiveTitle1}>{`Projects #${category.title}`}</h1>
-        <CategoryLinkList categories={categoryNodes} currentCategory={category} all={true} />
+        <CategoryLinkList
+          categories={categoryNodes}
+          currentCategory={category}
+          all={true}
+          used={usedCategories}
+          total = {totalCount}
+        />
         {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>
     </Layout>

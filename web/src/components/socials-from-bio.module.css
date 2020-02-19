@@ -18,8 +18,8 @@
   @media (hover: hover) {
     &:hover {
       color: var(--color-background);
-      background-color: var(--color-body-text);
-      border-color: var(--color-body-text);
+      background-color: var(--color-emp-text);
+      border-color: var(--color-emp-text);
       @nest & svg {
         color:var( --color-background);
       }

@@ -33,6 +33,9 @@ function Project(props) {
     }); // removing all duplicates
 
     uniqueAccolades.sort((a, b) => (a.date) - (b.date)).reverse();
+
+
+    const filteredProjects = relatedProjects.filter(item=> {return item && item.publishedAt});
   return (
     <article className={styles.root}>
       <Container>
@@ -104,13 +107,14 @@ function Project(props) {
           </aside>
         </div>
 
-        {relatedProjects && relatedProjects.length > 0 && (
+        {filteredProjects && filteredProjects.length > 0 && (
           <div className={styles.relatedProjects}>
              <h2 className={styles.relatedProjectsTitle}>Featured Projects</h2>
 
-            <ProjectPreviewGrid nodes={relatedProjects} />
+            <ProjectPreviewGrid nodes={filteredProjects} />
           </div>
         )}
+        
       </Container>
     </article>
   );

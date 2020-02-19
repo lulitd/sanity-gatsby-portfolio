@@ -16,6 +16,7 @@ export const query = graphql`
       sort: { fields: [publishedAt], order: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
     ) {
+      totalCount
       edges {
         node {
           id
@@ -33,6 +34,16 @@ export const query = graphql`
         }
       }
     }
+
+    usedCategories: allSanityProject(
+      sort: { fields: [publishedAt], order: DESC }
+     filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+   ) {
+     group(field: categories___title) {
+       totalCount
+       fieldValue
+     }
+   }
     categories: allSanityCategory(
       filter: { projectFilter: { eq: true } }
       sort: { fields: title, order: ASC }
@@ -61,17 +72,23 @@ const ArchivePage = props => {
   }
   const projectNodes =
     data && data.projects && mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
+  
+    const totalCount = data && data.projects && data.projects.totalCount;
 
   const categoryNodes = data && data.categories && mapEdgesToNodes(data.categories);
+
+  const usedCategories = data && data.usedCategories;
   return (
     <Layout>
       <SEO title="Archive" />
       <Container>
-        <h1 className={responsiveTitle1}>Projects</h1>
+  <h1 className={responsiveTitle1}>Projects #All</h1>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={{ title: "All" }}
           all={true}
+          total = {totalCount}
+          used={usedCategories}
         />
         {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>
