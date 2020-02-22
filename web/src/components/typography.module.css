@@ -18,6 +18,8 @@
   --font-title2-line-height: calc(36 / 32);
   --font-title1-size: calc(44 / var(--base-unit) * 1rem);
   --font-title1-line-height: calc(56 / 44);
+  --font-title15-size: calc(38 / var(--base-unit) * 1rem);
+  --font-title15-line-height: calc(56 / 38);
 }
 
 
@@ -154,3 +156,22 @@
     line-height: var(--font-large-line-height);
   }
 }
+
+.responsiveTitle5 {
+  font-weight: 700;
+  font-size: var(--font-title3-size);
+  line-height: var(--font-title3-line-height);
+  margin: 1rem 0 2rem;
+
+  @media (--media-min-small) {
+    font-size: var(--font-title2-size);
+    line-height: var(--font-title2-line-height);
+  }
+
+  @media (--media-min-medium) {
+    font-size: var(--font-title15-size);
+    line-height: var(--font-title15-line-height);
+  }
+}
+
+

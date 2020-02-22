@@ -7,7 +7,6 @@
 
 .socialIcon {
   background-color: transparent;
-  color: var(--color-body-text);
   border: 1px solid currentColor;
   display: inline-block;
   padding: 0.3rem;

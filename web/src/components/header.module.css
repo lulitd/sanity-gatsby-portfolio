@@ -90,6 +90,7 @@
   @nest & ul li a {
     display: block;
     color: inherit;
+    font-weight: normal; 
     text-decoration: none;
   }
 

@@ -1,5 +1,100 @@
 @import "../styles/custom-properties.css";
 
+.formContainer{
+
+}
+.contactForm{
+  padding: 0.75em 1em; 
+  max-width: 550px;
+}
+
+
+
+.greetings{
+}
+
+.controls{
+  
+}
+
+.formGroup{
+  padding: 1em 0;
+}
+
+.formLabel{
+  padding-right: 0.75em;
+  font-weight: bold;
+  color: var(--color-nav-text);
+}
+
+.required{
+  &:after{
+    content: " *";
+    color: red; 
+  }
+}
+
+
+
+input[type=text]:focus,
+input[type=email]:focus,
+textarea:focus {
+  background   : var(--color-light-gray);
+  color  : var(--color-black);
+}
+
+textarea {
+  display : block;
+  overflow: auto;
+  resize: none;
+}
+
+textarea::-webkit-scrollbar {
+  width: 12px;
+  right: -12px;
+  background-color: var(--color-gray);}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+}
+
+.oneLine{
+
+  display: flex;
+
+  & :not(:last-child){
+    padding-right: 1rem;
+  }
+  & .formControl {
+    display: inline;
+   }
+}
+
+
+.formControl{
+  composes: paragraph from '../components/typography.module.css';
+    width: 100%;
+    padding: 1rem 0.5rem;
+    margin: 0.25rem 0;
+    display: inline-block;
+    border: 0.5px dashed var(--color-border);
+    background-color: transparent;
+    box-sizing: border-box;
+    color: var(--color-body-text);
+
+    &::-webkit-input-placeholder { /* Edge */
+      color: var(--color-gray);
+    }
+    
+    &:-ms-input-placeholder { /* Internet Explorer */
+      color:  var(--color-gray);
+    }
+    
+    &::placeholder {
+      color: var(--color-gray);
+    }
+}
+
 .emailBtn {
   text-decoration: none;
   background-color: transparent;
@@ -16,6 +111,11 @@
     background-color: var(--color-body-text);
     color: var(--color-background);
   }
+}
+
+.fineprint{
+  composes: small from "../components/typography.module.css";
+color: var(--color-sub-text);
 }
 
 .socialContainer {

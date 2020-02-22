@@ -2,6 +2,7 @@
 @import '../styles/custom-properties.css';
 
 .content {
+  composes: paragraph from './typography.module.css';
   background: var(--color-background);
   color: var(--color-body-text);
   min-height: calc(100% - 73px - 120px);

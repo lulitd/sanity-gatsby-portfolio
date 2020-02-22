@@ -49,13 +49,7 @@
 .mainContent {
   padding-right: 3rem;
   @nest & a {
-    color: var(--color-accent);
-
-    @media (hover: hover) {
-      @nest &:hover {
-        color: inherit;
-      }
-    }
+    font-weight: normal; 
   }
 }
 

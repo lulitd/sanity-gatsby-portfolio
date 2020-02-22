@@ -3,7 +3,7 @@
 
 .footer {
   @nest & a {
-    color: inherit;
+    color: var(--color-nav-text);
     text-decoration: none;
 
     @media (hover: hover) {
