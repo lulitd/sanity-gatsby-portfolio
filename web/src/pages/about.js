@@ -94,7 +94,7 @@ const AboutPage = props => {
                   src={imageUrlFor(buildImageObj(profileImage))
                     .width(300)
                     .height(300)
-                    .fit("crop")
+                    .fit("clip")
                     .url()}
                   alt={profileImage.alt}
                 />

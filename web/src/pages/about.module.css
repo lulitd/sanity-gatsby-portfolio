@@ -32,10 +32,10 @@
 }
 
 .profile {
+  text-align: center;
 }
 .profileImage {
   position: relative;
-  background: #eee;
   padding-bottom: calc(1 * 100%);
 
   @nest & img {
@@ -45,7 +45,7 @@
     width: 100%;
     height: 100%;
     vertical-align: top;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   @media (--media-max-small) {
