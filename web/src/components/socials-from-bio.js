@@ -1,8 +1,11 @@
 import React from "react";
 import Icon from "./icon";
-import styles from "./socials-from-bio.module.css";
+import {Box,Button} from 'rebass';
+import {jsx} from 'theme-ui';
 
-function SocialsFromBio({ bio }) {
+//@jsx jsx
+
+function SocialsFromBio({ bio, ...rest}) {
   let socials = [];
 
   if (!bio) return null;
@@ -14,19 +17,20 @@ function SocialsFromBio({ bio }) {
 
   const socialIcons = socials.map(social => {
     return (
-      <a
-        className={styles.socialIcon}
+      <Button
+        as='a'
         href={social.link}
         key={social.name}
         target="_blank"
         rel="nofollow noopener noreferrer"
+        variant='socialBtn'
       >
         <Icon symbol={social.name} />
-      </a>
+      </Button>
     );
   });
 
-return <div className={styles.socialContainer}>{socialIcons}</div>
+return <Box {...rest} my={2}>{socialIcons}</Box>
 }
 
 export default SocialsFromBio;

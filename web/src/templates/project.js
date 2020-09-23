@@ -14,6 +14,10 @@ export const query = graphql`
       categories {
         _id
         title
+        projectFilter
+        slug {
+          current
+        }
       }
       accolades {
         _id
@@ -108,6 +112,17 @@ export const query = graphql`
             }
             asset {
               _id
+              mimeType
+              metadata {
+                isOpaque
+                palette {
+                  dominant {
+                    background
+                    foreground
+                    title
+                  }
+                }
+              }
             }
           }
           name

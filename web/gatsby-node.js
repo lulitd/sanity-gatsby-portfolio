@@ -20,6 +20,17 @@ async function createProjectPages (graphql, actions, reporter) {
         }
       }
     }
+    posts: allSanityPost(filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}) {
+      edges {
+        node {
+          id
+          publishedAt
+          slug {
+            current
+          }
+        }
+      }
+    }
     categories: allSanityCategory(filter:{projectFilter:{eq:true}}) {
       edges {
         node {
@@ -50,6 +61,24 @@ async function createProjectPages (graphql, actions, reporter) {
       createPage({
         path,
         component: require.resolve('./src/templates/project.js'),
+        context: {id}
+      })
+    });
+  
+    const postEdges = (result.data.posts || {}).edges || []
+
+  postEdges
+    .filter(edge => !isFuture(edge.node.publishedAt))
+    .forEach(edge => {
+      const id = edge.node.id
+      const slug = edge.node.slug.current
+      const path = `/post/${slug}/`
+
+      reporter.info(`Creating post: ${path}`)
+
+      createPage({
+        path,
+        component: require.resolve('./src/templates/post.js'),
         context: {id}
       })
     });

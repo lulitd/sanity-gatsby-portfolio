@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "gatsby";
-import Styles from "./category-link-list.module.css";
-import { cn } from "../lib/helpers";
+import ThemedLink from "./ThemedLink";
+import { Styled, jsx } from "theme-ui";
+import { Box } from "rebass";
+
+//@jsx jsx
 function CategoryLinkList({ categories, currentCategory, all, used, total }) {
   if (!categories) return null;
 
@@ -34,20 +37,25 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
     }
     const count = cat.title === "All" ? (total ? `(${total})` : "") : totalCount;
     return (
-      <li key={cat.id}>
-        <Link
-          className={cn(Styles.defaultBtn, isCurrent && Styles.currentBtn)}
+      <Styled.li sx={{display:'inline-block', pr:'2'}} key={cat.id}>
+        <ThemedLink
           to={`/archive/${cat.slug.current}`}
+          variant={isCurrent?'semiOutlineBtn':'outlineBtn'}
         >
           {cat.title} {count}
-        </Link>
-      </li>
+        </ThemedLink>
+      </Styled.li>
     );
   });
   return (
-    <div className={Styles.categoryList}>
-      <ul>{list}</ul>
-    </div>
+    <Box pb={[4]}
+    >
+      <Styled.ul sx={{
+        listStyle:'none',
+        margin:0,
+        p:0, 
+      }}>{list}</Styled.ul>
+    </Box>
   );
 }
 

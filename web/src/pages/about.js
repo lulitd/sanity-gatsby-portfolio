@@ -5,11 +5,11 @@ import GraphQLErrorList from "../components/graphql-error-list";
 import SEO from "../components/seo";
 import Layout from "../containers/layout";
 import BlockContent from "../components/block-content";
-import { responsiveTitle1,small} from "../components/typography.module.css";
-import styles from "./about.module.css";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import SocialsFromBio from "../components/socials-from-bio";
+import { Styled } from 'theme-ui'
+import { Box, Flex, Image } from 'rebass'
 
 export const query = graphql`
   query AboutQuery {
@@ -72,37 +72,45 @@ const AboutPage = props => {
     );
   }
 
-  const profileImage= author.image; 
+  const profileImage = author.image;
   return (
     <Layout>
       <SEO title="About" />
       <Container>
-        <h1 className={responsiveTitle1}>About</h1>
-        
-        <div className={styles.grid}>
-          <div className={styles.mainContent}>
+        <Styled.h1 >About</Styled.h1>
+        <Flex>
+          <Box flex='2' minWidth={['fit-content', 0]} pr={[0, 4]}>
             {author._rawBio && (
               <div>
                 <BlockContent blocks={author._rawBio || []} />
               </div>
             )}
-          </div>
-          <aside className={styles.profile}>
+          </Box>
+          <Box flex='1' as='aside' px='2'
+            sx={{
+              display: ['flex'],
+              flexDirection: "column",
+              alignItems: "center"
+            }} >
             {author.image && profileImage.asset && (
-              <div className={styles.profileImage}>
-                <img
+              <Box width='100%' sx={{
+                display: ['none', 'block'],
+                maxHeight:365
+              }}>
+                <Image
                   src={imageUrlFor(buildImageObj(profileImage))
-                    .width(300)
-                    .height(300)
                     .fit("clip")
                     .url()}
+                  sx={{
+                    minHeight:0,
+                    maxHeight:"100%"
+                  }}
                   alt={profileImage.alt}
                 />
-              </div>
+              </Box>
             )}
-            <SocialsFromBio bio={author}/>
-            </aside>
-        </div>
+          </Box>
+        </Flex>
       </Container>
     </Layout>
   );

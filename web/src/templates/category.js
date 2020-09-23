@@ -3,11 +3,10 @@ import Layout from "../containers/layout";
 import SEO from "../components/seo";
 import { graphql } from "gatsby";
 import Container from "../components/container";
-import { responsiveTitle1 } from "../components/typography.module.css";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import ProjectPreviewGrid from "../components/project-preview-grid";
-
+import {Styled} from 'theme-ui';
 export const query = graphql`
   query CategoryTemplateQuery($id: String!) {
     category: sanityCategory(id: { eq: $id }) {
@@ -105,7 +104,7 @@ const CategoryTemplate = props => {
 
       <SEO title={`Archive: ${category.title}`} />
       <Container>
-        <h1 className={responsiveTitle1}>{`Projects #${category.title}`}</h1>
+        <Styled.h1 >{`Projects #${category.title}`}</Styled.h1>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={category}

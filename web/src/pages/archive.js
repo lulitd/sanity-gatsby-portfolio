@@ -7,9 +7,9 @@ import SEO from "../components/seo";
 import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
+import { Styled, jsx } from "theme-ui"
 
-import { responsiveTitle1 } from "../components/typography.module.css";
-
+//@jsx jsx
 export const query = graphql`
   query ArchivePageQuery {
     projects: allSanityProject(
@@ -72,8 +72,8 @@ const ArchivePage = props => {
   }
   const projectNodes =
     data && data.projects && mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
-  
-    const totalCount = data && data.projects && data.projects.totalCount;
+
+  const totalCount = data && data.projects && data.projects.totalCount;
 
   const categoryNodes = data && data.categories && mapEdgesToNodes(data.categories);
 
@@ -82,12 +82,12 @@ const ArchivePage = props => {
     <Layout>
       <SEO title="Archive" />
       <Container>
-  <h1 className={responsiveTitle1}>Projects #All</h1>
+        <Styled.h1 sx={{ py:1 }}>Projects #All</Styled.h1>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={{ title: "All" }}
           all={true}
-          total = {totalCount}
+          total={totalCount}
           used={usedCategories}
         />
         {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}

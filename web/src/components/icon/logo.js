@@ -2,13 +2,14 @@ import React from "react";
 
 const strokeStyle = { vectorEffect: "non-scaling-stroke" };
 
-const LogoIcon = () => (
+const LogoIcon = (props) => (
   <svg
     viewBox="0 0 288 288"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid"
     width="2em"
     height="2em"
+    {...props}
   >
     <path
       stroke="currentColor"

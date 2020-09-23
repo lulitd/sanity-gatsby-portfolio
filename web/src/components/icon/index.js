@@ -7,22 +7,22 @@ import { AiOutlineTwitter,AiFillInstagram,AiFillGithub } from "react-icons/ai";
 function Icon(props) {
   switch (props.symbol) {
     case "hamburger":
-      return <HamburgerIcon />;
+      return <HamburgerIcon {...props}/>;
     case "logo":
-      return <LogoIcon />;
+      return <LogoIcon {...props} />;
     case "facebook":
-      return <FaFacebookF />;
+      return <FaFacebookF  {...props}/>;
 
     case "twitter":
-      return <AiOutlineTwitter />;
+      return <AiOutlineTwitter {...props} />;
     case "instagram":
-      return <AiFillInstagram />;
+      return <AiFillInstagram  {...props}/>;
     case "github":
-      return <AiFillGithub />;
+      return <AiFillGithub {...props}/>;
     case "linkedin":
-      return <FaLinkedinIn />;
+      return <FaLinkedinIn {...props} />;
     default:
-      return <FaExternalLinkAlt />;
+      return <FaExternalLinkAlt {...props}/>;
   }
 }
 

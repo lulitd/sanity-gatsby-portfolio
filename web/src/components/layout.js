@@ -1,15 +1,21 @@
 import React from 'react'
 import Header from './header'
 import Footer from './footer'
-import '../styles/layout.css'
-import styles from './layout.module.css'
+import { Flex, Box } from 'rebass'
 
-const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle,author}) => (
-  <>
+const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle, author, mainStyle,...rest}) => (
+  <Flex flexDirection='column' minHeight='100vh'{...rest}
+
+  sx={{
+    paddingLeft:[0,null,'calc(100vw - 100%)']
+  }}
+  >
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
-    <div className={styles.content}>{children}</div>
-   <Footer author={author}/>
-  </>
+    <Box sx={{ width: '100%', flex: '1 1 auto', ...mainStyle}} as='main'>
+      {children}
+    </Box>
+    <Footer author={author} />
+  </Flex >
 )
 
 export default Layout

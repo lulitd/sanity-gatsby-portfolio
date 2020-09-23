@@ -2,11 +2,11 @@ import React from 'react'
 import ProjectPreview from './project-preview'
 import {Styled,Grid,Box,jsx} from  "theme-ui"
 import ThemedLink from './ThemedLink'
+import PostPreview from './post-preview'
 
 //@jsx jsx
 
-function ProjectPreviewGrid (props) {
-
+function PostPreviewGrid (props) {
 
   return (
     <Box>
@@ -20,12 +20,12 @@ function ProjectPreviewGrid (props) {
          flexDirection: 'column',
          m:0,
          px:0,
-         pb:3,
+         pb:4,
        }}>
         {props.nodes &&
           props.nodes.map(node => (
-            <Styled.li key={node.id}>
-              <ProjectPreview {...node} />
+            <Styled.li key={node.id} sx={{height:'100%'}}>
+              <PostPreview {...node} />
             </Styled.li>
           ))}
       </Grid>
@@ -38,11 +38,11 @@ function ProjectPreviewGrid (props) {
   )
 }
 
-ProjectPreviewGrid.defaultProps = {
+PostPreviewGrid.defaultProps = {
   title: '',
   nodes: [],
   browseMoreHref: '',
   columns:[1,2,null],
 }
 
-export default ProjectPreviewGrid
+export default PostPreviewGrid

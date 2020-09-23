@@ -2,13 +2,17 @@ import React from 'react'
 import Layout from '../containers/layout'
 import SEO from '../components/seo'
 import Container from "../components/container";
+import {Styled} from "theme-ui"
+import ThemedLink from '../components/ThemedLink'
 
 const NotFoundPage = () => (
   <Layout>
-    <SEO title='404: Not found' />
+    <SEO title='Whoops!' />
     <Container>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    <Styled.h1>Oh no! Something went wrong!</Styled.h1>
+    <Styled.p>We can't find the page that you're looking for...</Styled.p>
+
+    <ThemedLink my={2} to="/" variant='outlineBtn' fontSize={2}>Back Home</ThemedLink>
     </Container>
   </Layout>
 )

@@ -2,17 +2,29 @@ import React from "react";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import { ucfirst } from "../lib/string-utils";
-
-import styles from "./role-list.module.css";
-
+import { Box } from "rebass"
+import { Styled, Image,Grid, jsx } from "theme-ui"
+import { FaHandMiddleFinger } from "react-icons/fa";
+//@jsx jsx
 const ConditionalWrapper = ({ condition, wrapper, children }) =>
   condition ? wrapper(children) : children;
 
+
+function ConditionalIcon(asset) {
+  if (!asset) return null;
+  return !asset.metadata.isOpaque;
+};
 function RoleList({ items, title }) {
   return (
-    <div className={styles.root}>
-      <h2 className={styles.headline}>{title}</h2>
-      <ul className={styles.list}>
+    <div >
+      <Styled.h2>{title}</Styled.h2>
+      <Grid as="ul"
+      columns={[2,3]}
+      sx={{
+        listStylePosition:"inside",
+        listStyle:'none',
+      }}
+      >
         {items.map(item => {
           let link =
             item.person.website ||
@@ -20,34 +32,53 @@ function RoleList({ items, title }) {
             item.person.github ||
             item.person.twitter ||
             item.person.instagram;
-          
-            if (item.person.name==="Lalaine Ulit-Destajo") link="";
+
+          if (item.person.name === "Lalaine Ulit-Destajo") link = "";
+
+          const profile = item.person && item.person.image && item.person.image.asset;
+          const isIcon = ConditionalIcon(profile);
+          let width = isIcon ? "80%" : "120%";
           return (
-            <li key={item._key} className={styles.listItem}>
+            <Styled.li key={item._key} >
               <ConditionalWrapper
                 condition={link}
-                wrapper={children => <a href={link}>{children}</a>}
+                wrapper={children => <Styled.a href={link} target='_blank' rel="noopener noreferrer">{children}</Styled.a>}
               >
-                <div>
-                  <div className={styles.avatar}>
-                    {item.person && item.person.image && item.person.image.asset && (
-                      <img
-                        src={imageUrlFor(buildImageObj(item.person.image))
-                          .width(100)
-                          .height(100)
-                          .fit("crop")
-                          .url()}
-                        alt=""
-                      />
-                    )}
-                  </div>
-                </div>
-                <div>
+                <Box width="100px" height="100px"
+                  sx={{
+                    borderColor: "muted",
+                    borderStyle: "solid",
+                    borderRadius: 9999,
+                    overflow: "hidden",
+                    borderWidth: 2,
+                    position: "relative",
+                    mx:"auto",
+                  }}
+                >
+                  <Image
+                    src={item.person.image ? imageUrlFor(buildImageObj(item.person.image))
+                      .width(100)
+                      .height(100)
+                      .fit("crop")
+                      .url() : ""}
+                    sx={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      width: width,
+                      height: width,
+                      maxWidth: width,
+                    }}
+                    alt=""
+                  />
+                </Box>
+                <Box textAlign="center">
                   <div>
                     <strong>{(item.person && item.person.name) || <em>Missing name</em>}</strong>
                   </div>
                   {item.roles && (
-                    <div className={styles.roles}>
+                    <div >
                       {item.roles.map((role, idx) => {
                         switch (true) {
                           case idx === 0:
@@ -60,12 +91,12 @@ function RoleList({ items, title }) {
                       })}
                     </div>
                   )}
-                </div>
+                </Box>
               </ConditionalWrapper>
-            </li>
+            </Styled.li>
           );
         })}
-      </ul>
+      </Grid>
     </div>
   );
 }

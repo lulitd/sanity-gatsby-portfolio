@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactPlayer from 'react-player'
-// import getYouTubeId from 'get-youtube-id'
-// import YouTube from 'react-youtube'
 
 const Preview = ({value}) => {
 	const { url } = value
