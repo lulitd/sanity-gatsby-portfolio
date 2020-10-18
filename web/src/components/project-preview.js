@@ -6,6 +6,9 @@ import BlockText from './block-text'
 import { Styled, Grid, jsx, Card } from "theme-ui"
 import { lighten, alpha } from "@theme-ui/color"
 import { Heading } from "rebass";
+import ThemedLink from './ThemedLink';
+
+import { useThemeUI } from 'theme-ui'
 //@jsx jsx
 function ProjectPreview(props) {
 
@@ -20,14 +23,20 @@ function ProjectPreview(props) {
       .url();
   }
 
+  const context = useThemeUI()
+  const { colors } = context.theme;
+
   return (
-    <Link to={`/project/${props.slug.current}`}
+    <ThemedLink to={`/project/${props.slug.current}`}
+    transitionColor={colors.primary}
       sx={{
         textDecoration: 'none',
       }} >
       <Card sx={
         {
           borderRadius: 'default',
+          borderTopLeftRadius: 0,
+          borderBottomRightRadius: 0,
           borderWidth: 2,
           borderStyle: 'solid',
           color: 'primary',
@@ -42,40 +51,45 @@ function ProjectPreview(props) {
           minHeight: '200px',
           background: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.3)), url(${bgURL})`,
           backgroundSize: 'cover',
-          opacity:'0.6',
+          opacity: '0.6',
           transition: '0.5s',
-          // '& h2,h3':{
-          //   color: 'primary'
-          // },
+          '& h2,h3': {
+            opacity: 1,
+          },
           ":hover": {
             color: "background",
-            borderRadius: 'default',
+            borderRadius: '0',
+            borderTopLeftRadius: 'default',
+            borderBottomRightRadius: 'default',
             borderWidth: 2,
             borderStyle: 'solid',
             borderColor: 'secondary',
-            background: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.75)), url(${bgURL})`,
+            background: `linear-gradient(rgba(0.5,0.5,0.5,0.5),rgba(0.5,0.5,0.5,0.75)), url(${bgURL})`,
             bg: "background",
-            opacity:'1',
+            opacity: 1,
             backgroundSize: 'cover',
-            '& h2,h3':{
-              color: 'secondary'
+
+            '& h2,h3': {
+              color: 'secondary',
+              opacity: 1,
             },
           }
         }
       } py={2} px={4}>
         <Heading sx={{
           color: lighten('primary', 0.1),
-          textTransform:'uppercase',
+          textTransform: 'uppercase',
         }} fontSize={[4, 5]}>{props.title}</Heading>
         {props.subtitle && (
-          <Heading sx={{ color: 'primary' ,
-          textTransform:'captialize',
-          letterSpacing:'0.1rem'
-         }} fontSize={[3, 4]} fontWeight='400'>{props.subtitle}</Heading>
+          <Heading sx={{
+            color: 'primary',
+            textTransform: 'captialize',
+            letterSpacing: '0.1rem'
+          }} fontSize={[3, 4]} fontWeight='400'>{props.subtitle}</Heading>
         )}
       </Card>
 
-    </Link>
+    </ThemedLink>
   )
 }
 

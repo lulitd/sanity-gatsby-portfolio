@@ -7,7 +7,6 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle, author, ma
   <Flex flexDirection='column' minHeight='100vh'{...rest}
 
   sx={{
-    paddingLeft:[0,null,'calc(100vw - 100%)']
   }}
   >
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />

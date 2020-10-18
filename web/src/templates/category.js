@@ -104,7 +104,7 @@ const CategoryTemplate = props => {
 
       <SEO title={`Archive: ${category.title}`} />
       <Container>
-        <Styled.h1 >{`Projects #${category.title}`}</Styled.h1>
+        <Styled.h1 sx={{ py:1 }} >{`Projects #${category.title}`}</Styled.h1>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={category}

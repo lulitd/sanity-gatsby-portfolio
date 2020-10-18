@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+
 import React from "react";
 import Icon from "./icon";
 import { jsx } from 'theme-ui'
@@ -38,8 +38,8 @@ const ToggleButton = ({ showNav, onHideNav, onShowNav }) => (
   </Button>);
 
 const NavLink = ({ to, children }) => (
-  <ThemedLink to={to} variant='nav' 
-  
+  <ThemedLink to={to} variant='nav'
+  transitionColor="" 
   sx={{
     // color: 'inherit',
     // textDecoration: 'none',
@@ -50,7 +50,7 @@ const NavLink = ({ to, children }) => (
     // '&:hover': {
     //   color: 'secondary'
     // },
-    // paddingLeft: [1, 3],
+    paddingLeft: [1, 3],
     // paddingY: [2,0],
   }}
   >{children}</ThemedLink>

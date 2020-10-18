@@ -1,4 +1,4 @@
-import { alpha } from "@theme-ui/color"
+import { alpha,lighten} from "@theme-ui/color"
 const theme = {
   sizes: {
     container: 1200,
@@ -35,9 +35,20 @@ const theme = {
   ],
   radii: {
     small: 2,
-    default: 5,
+    default: 16,
     pill: 9999
   },
+  borderWidths:[
+    0,
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128
+  ],
   fontSizes: [
     12,
     14,
@@ -104,19 +115,25 @@ const theme = {
     outlineBtn: {
       textDecoration: 'none',
       backgroundColor: 'transparent',
-      border: 'solid 1.5px currentColor',
+      border: 'solid currentColor',
+      borderWidth: '2',
+      borderBottomWidth: '3',
+      borderTopWidth: '3',
+      borderRadius: '0',
+      borderTopRightRadius: 'default',
+      borderBottomLeftRadius: 'default',
       color: 'text',
       fontFamily: 'nav',
       letterSpacing: [1],
       px: 3,
       py: 2,
       textTransform: 'uppercase',
-      borderRadius: 'default',
+      transition: '0.33s',
       ":hover": {
-        backgroundColor: alpha('secondary', 0.1),
-        borderColor: 'secondary',
-        color: 'secondary',
-        textTransform: 'uppercase',
+        color: lighten('secondary',0.05),
+        borderRadius: 'default',
+        borderTopRightRadius: '0',
+        borderBottomLeftRadius: '0',
       }
     },
     semiOutlineBtn: {
@@ -124,13 +141,20 @@ const theme = {
       color: 'background',
       backgroundColor:'secondary',
       borderColor:'secondary',
+      ":hover": {
+        color: lighten('secondary',0.05),
+        backgroundColor:'background',
+        borderRadius: 'default',
+        borderTopRightRadius: '0',
+        borderBottomLeftRadius: '0',
+      }
     },
     socialBtn: {
       variant: 'buttons.outlineBtn',
       px: 2,
       py: 2,
       lineHeight: 1,
-      mr: 1,
+      mr:2,      
     }
   },
   forms: {
@@ -149,9 +173,9 @@ const theme = {
     input: {
       borderColor: 'secondary',
       borderStyle: 'dashed',
-      borderWidth: [1],
+      borderWidth: 1,
       borderRadius: 0,
-      marginBottom: [3],
+      marginBottom: 3,
       fontFamily: 'body',
       '&:focus': {
         borderColor: 'primary',
@@ -161,7 +185,7 @@ const theme = {
     select: {
       borderColor: 'secondary',
       borderStyle: 'dashed',
-      borderWidth: [1],
+      borderWidth: 1,
       borderRadius: 0,
       '&:focus': {
         borderColor: 'primary',
