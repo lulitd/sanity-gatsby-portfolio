@@ -4,21 +4,22 @@ import SocialsFromBio from "./socials-from-bio";
 import { Flex,Text } from 'rebass';
 import {jsx} from 'theme-ui';
 import Container from "./container"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+//import AniLink from "gatsby-plugin-transition-link/AniLink"
+import BlockLink from  './transition/blockTransition'
 // @jsx jsx
 import { useThemeUI } from 'theme-ui'
 
 const CleanLink=({to,children})=>{
   const context = useThemeUI()
   const { colors } = context.theme;
-  return (<AniLink paintDrip hex={colors.secondary} to={to} sx={{
+  return (<BlockLink  hex={colors.secondary} to={to} sx={{
     color: 'muted',
     textDecoration: 'none',
     '&:hover': {
       color: 'secondary',
       textDecoration: 'underline'
     },
-  }}>{children}</AniLink>);
+  }}>{children}</BlockLink>);
 };
 
 const Footer = ({ author }) => (

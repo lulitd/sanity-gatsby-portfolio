@@ -30,7 +30,7 @@ export const query = graphql`
     projects: allSanityProject(limit: 6, sort: {fields: [endedAt], order: DESC}, filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}, featured: {eq: false}}) {
       edges {
         node {
-          id
+          _id
           mainImage {
             crop {
               _key
@@ -136,14 +136,14 @@ const IndexPage = props => {
   return (
     <Layout mainStyle={{ display: "flex", flexDirection: 'column' }} >
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <Container my={2} px={4,3} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', minHeight: '100vh' }}>
+      <Container my={2} px={4,3} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', minHeight:['calc(100vh - 81px)','calc(100vh - 92px)'] }}>
         <Heading pb={0} variant='subheading' fontWeight='body' fontSize={[2, 3]}>Hi my name is
             <Text as='span' display="block" variant='title'>{site.jumboName}.</Text>
         </Heading>
         <Heading fontWeight='600' fontSize={[4, 6]}>{site.jumboTag} </Heading>
         <Text py={4} fontSize={[1, 2, 3]} width={[1, 0.75, 0.6]}>{site.jumboDescription}</Text>
-        <Box>
-          <ThemedLink my={3} to="/contact" variant='outlineBtn' fontSize={2}>Get In Touch</ThemedLink></Box>
+    
+    <Box pt={4}><ThemedLink my={3} to="/contact" variant='outlineBtn' fontSize={2}>Get In Touch</ThemedLink></Box>
       </Container>
       {projectNodes && projectNodes.length > 0 && (
         <Container mb={5} px={4,3} sx={{

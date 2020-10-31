@@ -20,7 +20,7 @@ export const query = graphql`
       totalCount
       edges {
         node {
-          id
+          _id
           mainImage {
             asset {
               _id

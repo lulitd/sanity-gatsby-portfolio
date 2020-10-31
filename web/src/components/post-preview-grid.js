@@ -19,12 +19,13 @@ function PostPreviewGrid (props) {
          color:'inherit',
          flexDirection: 'column',
          m:0,
+         mb:[2,null,3],
          px:0,
          pb:4,
        }}>
         {props.nodes &&
           props.nodes.map(node => (
-            <Styled.li key={node.id} sx={{height:'100%'}}>
+            <Styled.li key={node._id} sx={{height:'100%'}}>
               <PostPreview {...node} />
             </Styled.li>
           ))}

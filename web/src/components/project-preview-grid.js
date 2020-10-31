@@ -19,20 +19,21 @@ function ProjectPreviewGrid (props) {
          color:'inherit',
          flexDirection: 'column',
          m:0,
+         mb:[2,null,3],
          px:0,
          pb:3,
        }}>
         {props.nodes &&
           props.nodes.map(node => (
-            <Styled.li key={node.id}>
+            <Styled.li key={node._id}>
               <ProjectPreview {...node} />
             </Styled.li>
           ))}
       </Grid>
       {props.browseMoreHref && (
-        <div>
+        <Box>
           <ThemedLink variant="outlineBtn" to={props.browseMoreHref}>Browse More</ThemedLink>
-        </div>
+        </Box>
       )}
     </Box>
   )
