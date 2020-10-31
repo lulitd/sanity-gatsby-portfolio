@@ -81,7 +81,7 @@ function PostPreview(props) {
                 }}
                 >
 
-                    <Image src={bgURL}  sx={{
+                    <Image src={bgURL} alt={props.mainImage.alt} sx={{
                         width:'250px',
                         height:'100%',
                         width:'100%',

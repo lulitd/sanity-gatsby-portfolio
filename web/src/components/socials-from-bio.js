@@ -24,6 +24,7 @@ function SocialsFromBio({ bio, ...rest}) {
         target="_blank"
         rel="nofollow noopener noreferrer"
         variant='socialBtn'
+        aria-label={social.name}
       >
         <Icon symbol={social.name} />
       </Button>
