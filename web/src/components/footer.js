@@ -24,7 +24,7 @@ const CleanLink=({to,children})=>{
 
 const Footer = ({ author }) => (
   <Flex as='footer' sx={{alignItems: 'center',width:'100%' }}>
-    <Container sx={{borderTop:'1px solid currentColor'}}>
+    <Container px={4,null,3} py={2} sx={{borderTop:'1px solid currentColor'}}>
       <Text py={2}>
         Designed & Built by <CleanLink to="/">{author.name}</CleanLink>
       </Text>

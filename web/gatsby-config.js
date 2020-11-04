@@ -14,6 +14,15 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     `gatsby-plugin-transition-link`,
     {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        typekit: {
+           id: process.env.TYPEKIT_ID,
+         // id: 'cmt3fws',
+        },
+      },
+    },
+    {
       resolve: 'gatsby-source-sanity',
       options: {
         ...clientConfig.sanity,

@@ -10,7 +10,7 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle, author, ma
   }}
   >
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
-    <Box sx={{ width: '100%', flex: '1 1 auto', ...mainStyle}} as='main'>
+    <Box sx={{ width: '100%', flex: '1 1 auto', px:[3,2,1], ...mainStyle}} as='main'>
       {children}
     </Box>
     <Footer author={author} />

@@ -27,7 +27,7 @@ function ProjectPreview(props) {
   const { colors } = context.theme;
 
   return (
-    <ThemedLink to={`/project/${props.slug.current}`}
+    <ThemedLink block to={`/project/${props.slug.current}`}
     transitionColor={colors.primary}
       sx={{
         textDecoration: 'none',

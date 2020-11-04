@@ -104,7 +104,7 @@ function Project(props) {
                   if (cat.projectFilter) {
                     const el =
                       <Styled.li sx={{ display: 'inline-block', pr: '2' }}>
-                        <ThemedLink
+                        <ThemedLink block='true'
                           to={`/archive/${cat.slug.current}`}
                           variant='outlineBtn'
                           key={cat._id}

@@ -32,7 +32,7 @@ function PostPreviewGrid (props) {
       </Grid>
       {props.browseMoreHref && (
         <div>
-          <ThemedLink variant="outlineBtn" to={props.browseMoreHref}>Browse More</ThemedLink>
+          <ThemedLink block variant="outlineBtn" to={props.browseMoreHref}>Browse More</ThemedLink>
         </div>
       )}
     </Box>

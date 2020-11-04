@@ -12,7 +12,7 @@ const NotFoundPage = () => (
     <Styled.h1>Oh no! Something went wrong!</Styled.h1>
     <Styled.p>We can't find the page that you're looking for...</Styled.p>
 
-    <ThemedLink my={2} to="/" variant='outlineBtn' fontSize={2}>Back Home</ThemedLink>
+    <ThemedLink block='true' my={2} to="/" variant='outlineBtn' fontSize={2}>Back Home</ThemedLink>
     </Container>
   </Layout>
 )

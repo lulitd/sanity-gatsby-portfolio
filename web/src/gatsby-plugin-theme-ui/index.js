@@ -13,12 +13,27 @@ const theme = {
     muted: '#94d1cb',
     darkest: '#020426',
     lightest: '#ffffff',
+    // modes:{
+    //   light:{
+    //     text: '#020426',
+    //     body: '#020426',
+    //     heading: '#f02348',
+    //     background: '#94d1cb',
+    //     primary: '#12076d',
+    //     secondary: '#f02348',
+    //     muted: '#020426',
+    //     darkest: '#020426',
+    //     lightest: '#ffffff',
+    //   }
+    // }
   },
   fonts: {
     body: 'Inter,"Helvetica Neue", sans-serif',
-    heading: 'Inter, sans-serif',
-    nav: '"Space Mono",sans-serif',
-    monospace: 'Space Mono, monospace'
+    heading: 'orbitron,"Inter", sans-serif',
+    button:'"changeling-neo","Inter",sans-serif',
+    nav: '"changeling-neo","Inter",sans-serif',
+    monospace: 'monospace'
+
   },
   space: [
     0,
@@ -63,7 +78,7 @@ const theme = {
   ],
   fontWeights: {
     body: 400,
-    heading: 800,
+    heading: 600,
     bold: 600,
   },
   lineHeights: {
@@ -83,11 +98,11 @@ const theme = {
       fontSize: [5, 6, 7],
       p:0,
       pb:'0.66rem',
+      // textTransform:'Uppercase'
     },
     title: {
       variant: 'text.heading',
       fontSize: [6,7],
-      fontWeight:800,
      },
     subheading: {
       color: 'muted',
@@ -113,6 +128,7 @@ const theme = {
       }
     },
     outlineBtn: {
+      fontSize:[1,2],
       textDecoration: 'none',
       backgroundColor: 'transparent',
       border: 'solid currentColor',
@@ -123,7 +139,7 @@ const theme = {
       borderTopRightRadius: 'default',
       borderBottomLeftRadius: 'default',
       color: 'text',
-      fontFamily: 'nav',
+      fontFamily: 'button',
       letterSpacing: [1],
       px: 3,
       py: 2,

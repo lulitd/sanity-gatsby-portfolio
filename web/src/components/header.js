@@ -6,10 +6,14 @@ import { Flex, Box, Button } from 'rebass';
 import Container from "./container";
 import ThemedLink from './ThemedLink';
 import {lighten } from "@theme-ui/color"
+import { useColorMode } from 'theme-ui'
 ///@jsx jsx
 const Branding = (props) => (
   <Box flex='1'>
     <ThemedLink to="/"
+      cover
+      direction='down'
+      duration={1.5}
       variant='nav' sx={{
         color:'primary',
       }}>
@@ -39,7 +43,9 @@ const ToggleButton = ({ showNav, onHideNav, onShowNav }) => (
 
 const NavLink = ({ to, children }) => (
   <ThemedLink to={to} variant='nav'
-  transitionColor="" 
+  cover
+  direction='down'
+  duration={1.5}
   sx={{
     // color: 'inherit',
     // textDecoration: 'none',
@@ -80,9 +86,9 @@ const Nav = ({ showNav }) => (
       <li>
         <NavLink to="/archive/">Projects</NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink to="/posts/">Blog</NavLink>
-      </li>
+      </li> */}
       <li>
         <NavLink to="/contact/">Contact</NavLink>
       </li>
@@ -91,7 +97,9 @@ const Nav = ({ showNav }) => (
 );
 
 
-const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
+const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
+  const [colorMode, setColorMode] = useColorMode();
+  return(
   <Flex sx={{ position: 'relative', zIndex: 100, width: '100%', alignItems: 'center' }} as="header">
     <Container px={[2]} py={[2,3]} sx={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid',
     borderColor:'secondary'
@@ -99,8 +107,15 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
       <Branding />
       <ToggleButton showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
       <Nav showNav={showNav} />
+      {/* <Button
+        onClick={e => {
+          setColorMode(colorMode === 'default' ? 'light' : 'default')
+        }}>
+        Toggle {colorMode === 'default' ? 'dark' : 'light'}
+      </Button> */}
     </Container>
   </Flex>
 );
+      }
 
 export default Header;

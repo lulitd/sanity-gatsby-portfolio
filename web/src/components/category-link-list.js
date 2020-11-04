@@ -41,6 +41,9 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
         <ThemedLink
           to={`/archive/${cat.slug.current}`}
           variant={isCurrent?'semiOutlineBtn':'outlineBtn'}
+          cover
+          direction="top"
+          duration={2}
         >
           {cat.title} {count}
         </ThemedLink>

@@ -1,10 +1,9 @@
-import MdPerson from 'react-icons/lib/md/person'
+//import {MdPerson} from 'react-icons/md'
 
 export default {
   name: 'person',
   type: 'document',
   title: 'Person',
-  icon: MdPerson,
   fieldsets: [
     {
      name: 'social', 

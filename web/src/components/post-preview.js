@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import { cn, buildImageObj } from '../lib/helpers'
+import { format, isThisYear, isAfter, isSameDay } from "date-fns";
 import { imageUrlFor } from '../lib/image-url'
 import BlockText from './block-text'
 import { Styled, Grid, jsx, Card, Image } from "theme-ui"
@@ -14,6 +15,15 @@ import ThemedLink from './ThemedLink';
 
 import { useThemeUI } from 'theme-ui'
 //@jsx jsx
+function getLatestUpdate(publishedAt, _updatedAt) {
+
+    // use the latest date
+    const useUpdateDate = isAfter(_updatedAt, publishedAt);
+    const date = useUpdateDate ? _updatedAt : publishedAt;
+    const prefix = isSameDay(_updatedAt, publishedAt) ? 'Published on' : (useUpdateDate ? 'Updated on' : 'Published on');
+    const formatter = isThisYear(date) ? 'MMMM Do' : 'MMMM Do, YYYY';
+    return `${prefix} ${format(date, formatter)}`;
+}
 
 function PostPreview(props) {
     const hasBG = props.mainImage && props.mainImage.asset;
@@ -29,7 +39,7 @@ function PostPreview(props) {
     const context = useThemeUI()
     const { colors } = context.theme;
     return (
-        <ThemedLink to={`/post/${props.slug.current}`}
+        <ThemedLink block to={`/post/${props.slug.current}`}
             transitionColor={colors.primary}
             sx={{
                 textDecoration: 'none',
@@ -92,10 +102,22 @@ function PostPreview(props) {
                         flexDirection:'column',
                         height:'100%',
                     }}>
+                        <Flex flexDirection='column'>
                         <Heading sx={{
                             color: lighten('primary', 0.1),
                             textTransform: 'uppercase',
-                        }} fontSize={[4, 5]}>{props.title}</Heading>
+                            pb:1,
+                        }} fontSize={[4, 6]}>{props.title}</Heading>
+                          {props.publishedAt && (
+                            <Styled.p sx={{
+                                color: 'muted',
+                                letterSpacing: 'normal',
+                                fontSize:'1',
+                                p:0,
+                                m:0,
+                            }} >{getLatestUpdate(props.publishedAt, props._updatedAt)}</Styled.p>
+                        )}
+                        </Flex>
                         {props.subtitle && (
                             <Styled.p sx={{
                                 color: 'muted',
@@ -103,7 +125,7 @@ function PostPreview(props) {
                                 flex:'1 1 auto',
                             }} >{props.subtitle}</Styled.p>
                         )}
-                        <Styled.p sx={{color:'primary',opacity:0.7, fontSize:1}}>Read More...</Styled.p>
+                        <Styled.p sx={{color:'muted', fontSize:1}}>Read More...</Styled.p>
                     </Flex>
                 </Grid>
             </Card>

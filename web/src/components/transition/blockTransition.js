@@ -57,7 +57,7 @@ export default class BlockWindow extends Component{
                 .to(
                     ripple,
                     { 
-                        height: fullHeight,
+                        width:fullWidth,
                         ease: "power1.easeIn",
                         duration: seconds - (seconds*0.5),
                     },
@@ -66,7 +66,7 @@ export default class BlockWindow extends Component{
                 .to(
                     ripple,
                     { 
-                        width: fullWidth,
+                        height: fullHeight,
                         ease: "power1.easeIn",
                         duration: seconds-(seconds*0.5),
                     }
@@ -75,7 +75,7 @@ export default class BlockWindow extends Component{
                 .to(
                     canvas,
                     { 
-                        x: '100%',
+                        y: '100%',
                         ease: "power1.easeIn",
                         duration: seconds - (seconds*0.75),
                     },
@@ -142,7 +142,7 @@ export default class BlockWindow extends Component{
                 entry: removedEntry,
                 paintDrip: removedProp,
                 duration,
-                direction = 'left',
+                direction = 'top',
                 ...props
             } = this.props
             const aniLength = duration || 1
