@@ -6,7 +6,7 @@ import Container from "../components/container";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import ProjectPreviewGrid from "../components/project-preview-grid";
-import {Styled} from 'theme-ui';
+import { Styled } from "theme-ui";
 export const query = graphql`
   query CategoryTemplateQuery($id: String!) {
     category: sanityCategory(id: { eq: $id }) {
@@ -19,7 +19,9 @@ export const query = graphql`
     ) {
       totalCount
     }
-    projects: allSanityProject(filter: { categories: { elemMatch: { id: { eq: $id } } }, publishedAt: { ne: null } }) {
+    projects: allSanityProject(
+      filter: { categories: { elemMatch: { id: { eq: $id } } }, publishedAt: { ne: null } }
+    ) {
       edges {
         node {
           id
@@ -55,13 +57,13 @@ export const query = graphql`
     }
     usedCategories: allSanityProject(
       sort: { fields: [publishedAt], order: DESC }
-     filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-   ) {
-     group(field: categories___title) {
-       totalCount
-       fieldValue
-     }
-   }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+    ) {
+      group(field: categories___title) {
+        totalCount
+        fieldValue
+      }
+    }
     categories: allSanityCategory(
       filter: { projectFilter: { eq: true } }
       sort: { fields: title, order: ASC }
@@ -79,7 +81,7 @@ export const query = graphql`
   }
 `;
 
-const CategoryTemplate = props => {
+const CategoryTemplate = (props) => {
   const { data, errors } = props;
   const category = data && data.category;
 
@@ -104,13 +106,13 @@ const CategoryTemplate = props => {
 
       <SEO title={`Archive: ${category.title}`} />
       <Container>
-        <Styled.h1 sx={{ py:1 }} >{`Projects #${category.title}`}</Styled.h1>
+        <Styled.h1 sx={{ py: 1 }}>{`Projects #${category.title}`}</Styled.h1>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={category}
           all={true}
           used={usedCategories}
-          total = {totalCount}
+          total={totalCount}
         />
         {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>

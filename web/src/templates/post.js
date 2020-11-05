@@ -8,8 +8,8 @@ import Layout from "../containers/layout";
 import Post from "../components/post";
 
 export const query = graphql`
-query PostTemplateQuery($id: String!) {
-    post: sanityPost(id: {eq: $id}) {
+  query PostTemplateQuery($id: String!) {
+    post: sanityPost(id: { eq: $id }) {
       id
       title
       subtitle
@@ -45,23 +45,23 @@ query PostTemplateQuery($id: String!) {
   }
 `;
 
-const PostTemplate = props => {
-    const { data, errors } = props;
-    const post = data && data.post;
+const PostTemplate = (props) => {
+  const { data, errors } = props;
+  const post = data && data.post;
 
-    return (
-        <Layout>
-            {errors && <SEO title="GraphQL Error" />}
-            {post && <SEO title={post.title || "Untitled"} />}
+  return (
+    <Layout>
+      {errors && <SEO title="GraphQL Error" />}
+      {post && <SEO title={post.title || "Untitled"} />}
 
-            {errors && (
-                <Container>
-                    <GraphQLErrorList errors={errors} />
-                </Container>
-            )}
-            {post && <Post {...post} />}
-        </Layout>
-    );
+      {errors && (
+        <Container>
+          <GraphQLErrorList errors={errors} />
+        </Container>
+      )}
+      {post && <Post {...post} />}
+    </Layout>
+  );
 };
 
 export default PostTemplate;

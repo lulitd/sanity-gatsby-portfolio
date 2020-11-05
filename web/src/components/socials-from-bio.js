@@ -1,11 +1,11 @@
 import React from "react";
 import Icon from "./icon";
-import {Box,Button} from 'rebass';
-import {jsx} from 'theme-ui';
+import { Box, Button } from "rebass";
+import { jsx } from "theme-ui";
 
 //@jsx jsx
 
-function SocialsFromBio({ bio, ...rest}) {
+function SocialsFromBio({ bio, ...rest }) {
   let socials = [];
 
   if (!bio) return null;
@@ -15,15 +15,15 @@ function SocialsFromBio({ bio, ...rest}) {
   if (bio.linkedin) socials.push({ name: "linkedin", link: bio.linkedin });
   if (bio.github) socials.push({ name: "github", link: bio.github });
 
-  const socialIcons = socials.map(social => {
+  const socialIcons = socials.map((social) => {
     return (
       <Button
-        as='a'
+        as="a"
         href={social.link}
         key={social.name}
         target="_blank"
         rel="nofollow noopener noreferrer"
-        variant='socialBtn'
+        variant="socialBtn"
         aria-label={social.name}
       >
         <Icon symbol={social.name} />
@@ -31,7 +31,11 @@ function SocialsFromBio({ bio, ...rest}) {
     );
   });
 
-return <Box {...rest} my={2}>{socialIcons}</Box>
+  return (
+    <Box {...rest} my={2}>
+      {socialIcons}
+    </Box>
+  );
 }
 
 export default SocialsFromBio;

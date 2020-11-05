@@ -10,11 +10,11 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
 
   if (used) {
     const { group } = used;
-    const usedCategoryTitles = group.map(function(cat) {
+    const usedCategoryTitles = group.map(function (cat) {
       return cat["fieldValue"];
     });
 
-    categories = categories.filter(function(cat) {
+    categories = categories.filter(function (cat) {
       return usedCategoryTitles.includes(cat.title);
     });
   }
@@ -24,23 +24,23 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
   }
 
   const currentCat = currentCategory ? currentCategory.title : "";
-  let list = categories.map(cat => {
+  let list = categories.map((cat) => {
     const isCurrent = currentCat === cat.title;
 
-    let totalCount="";
-    if (used){
-      const index= used.group.findIndex(x => x.fieldValue === cat.title);
-      
-      if (index>-1){
-        totalCount = `(${used.group[index].totalCount})`; 
+    let totalCount = "";
+    if (used) {
+      const index = used.group.findIndex((x) => x.fieldValue === cat.title);
+
+      if (index > -1) {
+        totalCount = `(${used.group[index].totalCount})`;
       }
     }
     const count = cat.title === "All" ? (total ? `(${total})` : "") : totalCount;
     return (
-      <Styled.li sx={{display:'inline-block', pr:'2'}} key={cat.id}>
+      <Styled.li sx={{ display: "inline-block", pr: "2" }} key={cat.id}>
         <ThemedLink
           to={`/archive/${cat.slug.current}`}
-          variant={isCurrent?'semiOutlineBtn':'outlineBtn'}
+          variant={isCurrent ? "semiOutlineBtn" : "outlineBtn"}
           cover
           direction="top"
           duration={2}
@@ -51,13 +51,16 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
     );
   });
   return (
-    <Box pb={[4]}
-    >
-      <Styled.ul sx={{
-        listStyle:'none',
-        margin:0,
-        p:0, 
-      }}>{list}</Styled.ul>
+    <Box pb={[4]}>
+      <Styled.ul
+        sx={{
+          listStyle: "none",
+          margin: 0,
+          p: 0,
+        }}
+      >
+        {list}
+      </Styled.ul>
     </Box>
   );
 }

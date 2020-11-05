@@ -1,20 +1,25 @@
-import React from 'react'
-import Header from './header'
-import Footer from './footer'
-import { Flex, Box } from 'rebass'
+import React from "react";
+import Header from "./header";
+import Footer from "./footer";
+import { Flex, Box } from "rebass";
 
-const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle, author, mainStyle,...rest}) => (
-  <Flex flexDirection='column' minHeight='100vh'{...rest}
-
-  sx={{
-  }}
-  >
+const Layout = ({
+  children,
+  onHideNav,
+  onShowNav,
+  showNav,
+  siteTitle,
+  author,
+  mainStyle,
+  ...rest
+}) => (
+  <Flex flexDirection="column" minHeight="100vh" {...rest} sx={{}}>
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
-    <Box sx={{ width: '100%', flex: '1 1 auto', px:[3,2,1], ...mainStyle}} as='main'>
+    <Box sx={{ width: "100%", flex: "1 1 auto", px: [3, 2, 1], ...mainStyle }} as="main">
       {children}
     </Box>
     <Footer author={author} />
-  </Flex >
-)
+  </Flex>
+);
 
-export default Layout
+export default Layout;

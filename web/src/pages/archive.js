@@ -7,7 +7,7 @@ import SEO from "../components/seo";
 import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { Styled, jsx } from "theme-ui"
+import { Styled, jsx } from "theme-ui";
 
 //@jsx jsx
 export const query = graphql`
@@ -37,13 +37,13 @@ export const query = graphql`
 
     usedCategories: allSanityProject(
       sort: { fields: [publishedAt], order: DESC }
-     filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-   ) {
-     group(field: categories___title) {
-       totalCount
-       fieldValue
-     }
-   }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+    ) {
+      group(field: categories___title) {
+        totalCount
+        fieldValue
+      }
+    }
     categories: allSanityCategory(
       filter: { projectFilter: { eq: true } }
       sort: { fields: title, order: ASC }
@@ -61,7 +61,7 @@ export const query = graphql`
   }
 `;
 
-const ArchivePage = props => {
+const ArchivePage = (props) => {
   const { data, errors } = props;
   if (errors) {
     return (
@@ -82,7 +82,7 @@ const ArchivePage = props => {
     <Layout>
       <SEO title="Archive" />
       <Container>
-        <Styled.h1 sx={{ py:1 }}>Projects #All</Styled.h1>
+        <Styled.h1 sx={{ py: 1 }}>Projects #All</Styled.h1>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={{ title: "All" }}

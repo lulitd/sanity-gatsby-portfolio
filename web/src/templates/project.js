@@ -130,7 +130,7 @@ export const query = graphql`
         roles
       }
     }
-    awards: allSanityAccolade(filter: {projects: {elemMatch: {id: {eq: $id}}}}) {
+    awards: allSanityAccolade(filter: { projects: { elemMatch: { id: { eq: $id } } } }) {
       edges {
         node {
           _id
@@ -145,16 +145,15 @@ export const query = graphql`
   }
 `;
 
-const ProjectTemplate = props => {
+const ProjectTemplate = (props) => {
   const { data, errors } = props;
   const project = data && data.project;
-  
 
-  let awards = []; 
+  let awards = [];
 
-  data.awards.edges.forEach(function(obj) { 
+  data.awards.edges.forEach(function (obj) {
     awards.push(obj.node);
- });
+  });
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}

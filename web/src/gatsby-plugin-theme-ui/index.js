@@ -1,18 +1,18 @@
-import { alpha,lighten} from "@theme-ui/color"
+import { alpha, lighten } from "@theme-ui/color";
 const theme = {
   sizes: {
     container: 1200,
   },
   colors: {
-    text: '#05a696',
-    body: '#94d1cb',
-    heading: '#f02348',
-    background: '#020426',
-    primary: '#05a696',
-    secondary: '#f02348',
-    muted: '#94d1cb',
-    darkest: '#020426',
-    lightest: '#ffffff',
+    text: "#05a696",
+    body: "#94d1cb",
+    heading: "#f02348",
+    background: "#020426",
+    primary: "#05a696",
+    secondary: "#f02348",
+    muted: "#94d1cb",
+    darkest: "#020426",
+    lightest: "#ffffff",
     // modes:{
     //   light:{
     //     text: '#020426',
@@ -29,53 +29,19 @@ const theme = {
   },
   fonts: {
     body: 'Inter,"Helvetica Neue", sans-serif',
-    heading: 'orbitron,"Inter", sans-serif',
-    button:'"changeling-neo","Inter",sans-serif',
-    nav: '"changeling-neo","Inter",sans-serif',
-    monospace: 'monospace'
-
+    heading: 'Nasalization,"Inter", sans-serif',
+    button: '"Nasalization","Inter",sans-serif',
+    nav: '"Nasalization","Inter",sans-serif',
+    monospace: "monospace",
   },
-  space: [
-    0,
-    4,
-    8,
-    16,
-    32,
-    64,
-    128,
-    256,
-    512,
-    1024,
-    2048
-  ],
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048],
   radii: {
     small: 2,
     default: 16,
-    pill: 9999
+    pill: 9999,
   },
-  borderWidths:[
-    0,
-    1,
-    2,
-    4,
-    8,
-    16,
-    32,
-    64,
-    128
-  ],
-  fontSizes: [
-    12,
-    14,
-    16,
-    18,
-    20,
-    24,
-    32,
-    48,
-    64,
-    96
-  ],
+  borderWidths: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  fontSizes: [12, 14, 16, 18, 20, 24, 32, 48, 64, 96],
   fontWeights: {
     body: 400,
     heading: 600,
@@ -83,240 +49,241 @@ const theme = {
   },
   lineHeights: {
     body: 1.5,
-    heading: 1.25
+    heading: 1.25,
   },
   text: {
-    color: 'body',
-    fontFamily: 'body',
-    fontWeight: 'body',
-    lineHeight: 'body',
+    color: "body",
+    fontFamily: "body",
+    fontWeight: "body",
+    lineHeight: "body",
     heading: {
-      color: 'heading',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
+      color: "heading",
+      fontFamily: "heading",
+      lineHeight: "heading",
+      fontWeight: "heading",
       fontSize: [5, 6, 7],
-      p:0,
-      pb:'0.66rem',
+      p: 0,
+      pb: "0.66rem",
       // textTransform:'Uppercase'
     },
     title: {
-      variant: 'text.heading',
-      fontSize: [6,7],
-     },
+      variant: "text.heading",
+      fontSize: [6, 7],
+    },
     subheading: {
-      color: 'muted',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
+      color: "muted",
+      fontFamily: "heading",
+      lineHeight: "heading",
+      fontWeight: "heading",
       fontSize: [3, 4, 5],
-      p:0,
-      pb: '0.66rem',
-    }
+      p: 0,
+      pb: "0.66rem",
+    },
   },
   buttons: {
     nav: {
-      backgroundColor: 'transparent',
-      color: 'inherit',
-      display: 'inline-block',
-      textDecoration: 'none',
-      fontFamily: 'nav',
-      textTransform: 'uppercase',
+      backgroundColor: "transparent",
+      color: "inherit",
+      display: "inline-block",
+      textDecoration: "none",
+      fontFamily: "nav",
+      textTransform: "uppercase",
       letterSpacing: [1],
-      '&:hover': {
-        color: 'secondary',
-      }
+      "&:hover": {
+        color: "secondary",
+      },
     },
     outlineBtn: {
-      fontSize:[1,2],
-      textDecoration: 'none',
-      backgroundColor: 'transparent',
-      border: 'solid currentColor',
-      borderWidth: '2',
-      borderBottomWidth: '3',
-      borderTopWidth: '3',
-      borderRadius: '0',
-      borderTopRightRadius: 'default',
-      borderBottomLeftRadius: 'default',
-      color: 'text',
-      fontFamily: 'button',
+      fontSize: [1, 2],
+      textDecoration: "none",
+      backgroundColor: "transparent",
+      border: "solid currentColor",
+      borderWidth: "2",
+      borderBottomWidth: "3",
+      borderTopWidth: "3",
+      borderRadius: "0",
+      borderTopRightRadius: "default",
+      borderBottomLeftRadius: "default",
+      color: "text",
+      fontFamily: "button",
       letterSpacing: [1],
       px: 3,
       py: 2,
-      textTransform: 'uppercase',
-      transition: '0.33s',
+      textTransform: "uppercase",
+      transition: "0.33s",
       ":hover": {
-        color: lighten('secondary',0.05),
-        borderRadius: 'default',
-        borderTopRightRadius: '0',
-        borderBottomLeftRadius: '0',
-      }
+        color: lighten("secondary", 0.05),
+        borderRadius: "default",
+        borderTopRightRadius: "0",
+        borderBottomLeftRadius: "0",
+      },
     },
     semiOutlineBtn: {
-      variant: 'buttons.outlineBtn',
-      color: 'background',
-      backgroundColor:'secondary',
-      borderColor:'secondary',
+      variant: "buttons.outlineBtn",
+      color: "background",
+      backgroundColor: "secondary",
+      borderColor: "secondary",
+      fontWeight: "600",
       ":hover": {
-        color: lighten('secondary',0.05),
-        backgroundColor:'background',
-        borderRadius: 'default',
-        borderTopRightRadius: '0',
-        borderBottomLeftRadius: '0',
-      }
+        color: lighten("secondary", 0.05),
+        backgroundColor: "background",
+        borderRadius: "default",
+        borderTopRightRadius: "0",
+        borderBottomLeftRadius: "0",
+      },
     },
     socialBtn: {
-      variant: 'buttons.outlineBtn',
+      variant: "buttons.outlineBtn",
       px: 2,
       py: 2,
       lineHeight: 1,
-      mr:2,      
-    }
+      mr: 2,
+    },
   },
   forms: {
     label: {
       fontSize: 2,
-      fontWeight: 'bold',
+      fontWeight: "bold",
       pb: 1,
     },
     labelRequired: {
-      variant: 'forms.label',
-      '&:after': {
+      variant: "forms.label",
+      "&:after": {
         content: '"*"',
-        color: 'secondary',
-      }
+        color: "secondary",
+      },
     },
     input: {
-      borderColor: 'secondary',
-      borderStyle: 'dashed',
+      borderColor: "secondary",
+      borderStyle: "dashed",
       borderWidth: 1,
       borderRadius: 0,
       marginBottom: 3,
-      fontFamily: 'body',
-      '&:focus': {
-        borderColor: 'primary',
-        outline: 'none',
+      fontFamily: "body",
+      "&:focus": {
+        borderColor: "primary",
+        outline: "none",
       },
     },
     select: {
-      borderColor: 'secondary',
-      borderStyle: 'dashed',
+      borderColor: "secondary",
+      borderStyle: "dashed",
       borderWidth: 1,
       borderRadius: 0,
-      '&:focus': {
-        borderColor: 'primary',
-        outline: 'none',
+      "&:focus": {
+        borderColor: "primary",
+        outline: "none",
       },
     },
     textarea: {
-      variant: 'forms.input'
+      variant: "forms.input",
     },
   },
   styles: {
     root: {
-      color: 'body',
-      fontFamily: 'body',
-      lineHeight: 'body',
-      fontWeight: 'body'
+      color: "body",
+      fontFamily: "body",
+      lineHeight: "body",
+      fontWeight: "body",
     },
     h1: {
-      color: 'heading',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 7
+      color: "heading",
+      fontFamily: "heading",
+      lineHeight: "heading",
+      fontWeight: "heading",
+      fontSize: 7,
     },
     h2: {
-      color: 'heading',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 6
+      color: "heading",
+      fontFamily: "heading",
+      lineHeight: "heading",
+      fontWeight: "heading",
+      fontSize: 6,
     },
     h3: {
-      color: 'heading',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 5
+      color: "heading",
+      fontFamily: "heading",
+      lineHeight: "heading",
+      fontWeight: "heading",
+      fontSize: 5,
     },
     h4: {
-      color: 'heading',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 4
+      color: "heading",
+      fontFamily: "heading",
+      lineHeight: "heading",
+      fontWeight: "heading",
+      fontSize: 4,
     },
     h5: {
-      color: 'heading',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 3
+      color: "heading",
+      fontFamily: "heading",
+      lineHeight: "heading",
+      fontWeight: "heading",
+      fontSize: 3,
     },
     h6: {
-      color: 'heading',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 2
+      color: "heading",
+      fontFamily: "heading",
+      lineHeight: "heading",
+      fontWeight: "heading",
+      fontSize: 2,
     },
     p: {
-      color: 'body',
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body'
+      color: "body",
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
     },
     a: {
-      color: 'secondary',
-      textDecoration: 'none',
+      color: "secondary",
+      textDecoration: "none",
       ":hover": {
         textDecoration: "underline",
-      }
+      },
     },
     pre: {
-      fontFamily: 'monospace',
-      overflowX: 'auto',
+      fontFamily: "monospace",
+      overflowX: "auto",
       code: {
-        color: 'inherit'
-      }
+        color: "inherit",
+      },
     },
     code: {
-      fontFamily: 'monospace',
-      fontSize: 'inherit'
+      fontFamily: "monospace",
+      fontSize: "inherit",
     },
     table: {
-      width: '100%',
-      borderCollapse: 'separate',
-      borderSpacing: 0
+      width: "100%",
+      borderCollapse: "separate",
+      borderSpacing: 0,
     },
     th: {
-      textAlign: 'left',
-      borderBottomStyle: 'solid'
+      textAlign: "left",
+      borderBottomStyle: "solid",
     },
     td: {
-      textAlign: 'left',
-      borderBottomStyle: 'solid'
+      textAlign: "left",
+      borderBottomStyle: "solid",
     },
     img: {
-      maxWidth: '100%'
+      maxWidth: "100%",
     },
     ol: {
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body'
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
     },
     ul: {
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body'
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
     },
     li: {
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body'
-    }
-  }
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
+    },
+  },
 };
 
 export default theme;

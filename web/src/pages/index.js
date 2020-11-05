@@ -3,17 +3,17 @@ import { graphql, Link } from "gatsby";
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
-  filterOutDocsPublishedInTheFuture
+  filterOutDocsPublishedInTheFuture,
 } from "../lib/helpers";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import SEO from "../components/seo";
 import Layout from "../containers/layout";
-import { Heading, Text, Flex, Box } from 'rebass';
-import { Styled, jsx, Image, AspectRatio } from 'theme-ui';
-import ThemedLink from '../components/ThemedLink';
-import { lighten } from "@theme-ui/color"
+import { Heading, Text, Flex, Box } from "rebass";
+import { Styled, jsx, Image, AspectImage } from "theme-ui";
+import ThemedLink from "../components/ThemedLink";
+import { lighten, alpha } from "@theme-ui/color";
 import PostPreviewGrid from "../components/post-preview-grid";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
@@ -29,7 +29,7 @@ export const query = graphql`
       jumboName
       jumboDescription
       jumboTag
-      author{
+      author {
         name
         image {
           crop {
@@ -55,7 +55,15 @@ export const query = graphql`
         }
       }
     }
-    projects: allSanityProject(limit: 6, sort: {fields: [endedAt], order: DESC}, filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}, featured: {eq: false}}) {
+    projects: allSanityProject(
+      limit: 6
+      sort: { fields: [endedAt], order: DESC }
+      filter: {
+        slug: { current: { ne: null } }
+        publishedAt: { ne: null }
+        featured: { eq: false }
+      }
+    ) {
       edges {
         node {
           _id
@@ -89,44 +97,44 @@ export const query = graphql`
         }
       }
     }
-    posts: allSanityPost(limit: 4, sort: {fields: [publishedAt], order: DESC}) {
-      edges{
-        node{
+    posts: allSanityPost(limit: 4, sort: { fields: [publishedAt], order: DESC }) {
+      edges {
+        node {
           _id
           title
           subtitle
           publishedAt
           _updatedAt
-          slug{
+          slug {
             current
           }
-          author{
+          author {
             name
           }
-          categories{
+          categories {
             title
           }
-          mainImage{
-              crop {
-                _key
-                _type
-                top
-                bottom
-                left
-                right
-              }
-              hotspot {
-                _key
-                _type
-                x
-                y
-                height
-                width
-              }
-              asset {
-                _id
-              }
-              alt
+          mainImage {
+            crop {
+              _key
+              _type
+              top
+              bottom
+              left
+              right
+            }
+            hotspot {
+              _key
+              _type
+              x
+              y
+              height
+              width
+            }
+            asset {
+              _id
+            }
+            alt
           }
         }
       }
@@ -134,7 +142,7 @@ export const query = graphql`
   }
 `;
 
-const IndexPage = props => {
+const IndexPage = (props) => {
   const { data, errors } = props;
 
   if (errors) {
@@ -148,13 +156,14 @@ const IndexPage = props => {
   const site = (data || {}).site;
   const projectNodes = (data || {}).projects
     ? mapEdgesToNodes(data.projects)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterOutDocsPublishedInTheFuture)
+        .filter(filterOutDocsWithoutSlugs)
+        .filter(filterOutDocsPublishedInTheFuture)
     : [];
 
-  const postNodes = (data || {}).posts ? mapEdgesToNodes(data.posts)
-    .filter(filterOutDocsWithoutSlugs)
-    .filter(filterOutDocsPublishedInTheFuture)
+  const postNodes = (data || {}).posts
+    ? mapEdgesToNodes(data.posts)
+        .filter(filterOutDocsWithoutSlugs)
+        .filter(filterOutDocsPublishedInTheFuture)
     : [];
 
   if (!site) {
@@ -171,67 +180,157 @@ const IndexPage = props => {
   }
 
   const profileImage = author.image;
-
+  const imgurl = imageUrlFor(buildImageObj(profileImage))
+    .fit("fill")
+    .width(225)
+    .invert(true)
+    .height(400)
+    .url();
   return (
-    <Layout mainStyle={{ display: "flex", flexDirection: 'column' }} >
+    <Layout mainStyle={{ display: "flex", flexDirection: "column" }}>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <Container my={2} px={4, 3} sx={{ display: 'flex', justifyContent: 'center', minHeight: ['calc(100vh - 81px)', 'calc(100vh - 92px)'] }}>
-        <Flex flexDirection={'column'} justifyContent='center'>
-          <Heading pb={0} variant='subheading' fontWeight='body' fontSize={[2, 3]}>Hi my name is
-            <Text as='span' display="block" variant='title'>{site.jumboName}.</Text>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          position: "relative",
+          minHeight: ["calc(100vh - 81px)"],
+          px: [4, 4, 4],
+          backgroundImage: (t) => `
+            linear-gradient(
+              to bottom,
+              ${alpha("primary", 0.2)(t)},
+              ${alpha("background", 0.1)(t)},
+              ${alpha("secondary", 0.1)(t)},
+              ${alpha("background", 1)(t)}
+            )
+          `,
+          "::before": {
+            content: '""',
+            display: "block",
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+            opacity: 0.075,
+
+            backgroundImage: `url(${imgurl})`,
+          },
+        }}
+      >
+        <Flex
+          flexDirection={"column"}
+          justifyContent="center"
+          position="relative"
+          sx={{
+            zIndex: 2,
+          }}
+        >
+          <Heading pb={0} variant="subheading" fontWeight="body" fontSize={[2, 3]}>
+            Hi my name is
+            <Text as="span" display="block" pb={0} variant="title">
+              {site.jumboName}.
+            </Text>
           </Heading>
-          <Heading fontWeight='600' fontSize={[4, 6]}>{site.jumboTag} </Heading>
-          <Text pt={3} pb={4} fontSize={[1, 2, 3]} width={[1, 0.75, 0.6]}>{site.jumboDescription}</Text>
-          <Box pt={4} sx={{
-            '& a': {
-              mr: 2,
-              mb: 2,
-              display: 'inline-block'
-            }
-          }}>
-            <ThemedLink block='true' to="/archive" variant='semiOutlineBtn' fontSize={2}>
+          <Heading fontWeight="400" fontSize={[3, 5]}>
+            {site.jumboTag}
+          </Heading>
+
+          <Text pt={4} pb={2} fontSize={[1, 2, 3]} width={[1, 0.75, 0.6]}>
+            {site.jumboDescription}
+          </Text>
+          <Box
+            pt={4}
+            sx={{
+              "& a": {
+                mr: 2,
+                mb: 2,
+                display: "inline-block",
+              },
+            }}
+          >
+            <ThemedLink block="true" to="/archive" variant="semiOutlineBtn" fontSize={2}>
               View Projects
-      </ThemedLink>
-            <ThemedLink block='true' to="/about" variant='outlineBtn' fontSize={2}>
+            </ThemedLink>
+            <ThemedLink block="true" to="/about" variant="outlineBtn" fontSize={2}>
               Get To Know Me
-      </ThemedLink>
+            </ThemedLink>
           </Box>
         </Flex>
-        {/* <Flex width={'100%'} flexDirection={'column'} justifyContent='center' p={0}>
-          <AspectRatio ratio={1}>
-            <Image
-              src={imageUrlFor(buildImageObj(profileImage))
-                .fit("fill")
-                .width(450)
-                .height(450)
-                .url()}
-              sx={{
-                maxWidth: '100%',
-                borderRadius: 'pill',
-                opacity: '33%'
-              }}
-              alt={profileImage.alt}
-            />
-          </AspectRatio>
-
+        {/* <Flex
+          width={"100%"}
+          flexDirection={"column"}
+          justifyContent="center"
+          p={0}
+          sx={{
+            position: "relative",
+          }}
+        >
+          <Box
+            sx={{
+              width: 100,
+              height: 400,
+              backgroundColor: "primary",
+              opacity: 0.5,
+              position: "absolute",
+              left: "0",
+              top: "0",
+            }}
+          ></Box>
+          <AspectImage
+            src={imageUrlFor(buildImageObj(profileImage)).fit("fill").width(225).height(400).url()}
+            sx={{
+              maxWidth: "100%",
+              opacity: "30%",
+              backgroundColor: "background",
+              position: "absolute",
+              left: "8%",
+            }}
+            alt={profileImage.alt}
+          />
+          <Box
+            sx={{
+              width: 225,
+              height: 400,
+              backgroundColor: "secondary",
+              opacity: 0.5,
+              position: "absolute",
+              right: "16%",
+              top: "16%",
+            }}
+          ></Box>
         </Flex> */}
       </Container>
       {projectNodes && projectNodes.length > 0 && (
-        <Container mb={5} px={4, 3} sx={{
-          borderTop: '1px solid',
-          borderColor: 'secondary'
-        }}>
-          <Styled.h2 >Featured Projects</Styled.h2>
-          <ProjectPreviewGrid columns={[1, 2, null]} nodes={projectNodes} browseMoreHref="/archive/" />
+        <Container
+          mb={5}
+          px={(4, 3)}
+          sx={{
+            borderTop: "1px solid",
+            borderColor: "secondary",
+          }}
+        >
+          <Styled.h2>Featured Projects</Styled.h2>
+          <ProjectPreviewGrid
+            columns={[1, 2, null]}
+            nodes={projectNodes}
+            browseMoreHref="/archive/"
+          />
         </Container>
       )}
 
       {postNodes && postNodes.length > 0 && (
-        <Container mb={5} px={4, 3} sx={{
-          borderTop: '1px solid',
-          borderColor: 'secondary'
-        }}>
-          <Styled.h2 >Latest Posts</Styled.h2>
+        <Container
+          mb={5}
+          px={(4, 3)}
+          sx={{
+            borderTop: "1px solid",
+            borderColor: "secondary",
+          }}
+        >
+          <Styled.h2>Latest Posts</Styled.h2>
           <PostPreviewGrid columns={[1, 2, 1]} nodes={postNodes} browseMoreHref="/posts/" />
         </Container>
       )}

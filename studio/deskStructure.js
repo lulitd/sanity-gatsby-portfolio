@@ -2,7 +2,7 @@ import S from '@sanity/desk-tool/structure-builder'
 // import {MdSettings} from 'react-icons/md'
 
 const hiddenDocTypes = listItem =>
-  !['category', 'person','post','project','accolade', 'siteSettings'].includes(listItem.getId())
+  !['category', 'person', 'post', 'project', 'accolade', 'siteSettings'].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -16,15 +16,15 @@ export default () =>
             .schemaType('siteSettings')
             .documentId('siteSettings')
         ),
-        // .icon(MdSettings),
+      // .icon(MdSettings),
       S.listItem()
-      .title('Projects')
-      .schemaType('project')
-      .child(S.documentTypeList('project').title('Projects')),
+        .title('Projects')
+        .schemaType('project')
+        .child(S.documentTypeList('project').title('Projects')),
       S.listItem()
-      .title('Posts')
-      .schemaType('post')
-      .child(S.documentTypeList('post').title('Posts')),
+        .title('Posts')
+        .schemaType('post')
+        .child(S.documentTypeList('post').title('Posts')),
       S.listItem()
         .title('People')
         .schemaType('person')
@@ -33,7 +33,7 @@ export default () =>
         .title('Categories')
         .schemaType('category')
         .child(S.documentTypeList('category').title('Categories')),
-        S.listItem()
+      S.listItem()
         .title('Accolades')
         .schemaType('accolade')
         .child(S.documentTypeList('accolade').title('Accolades')),

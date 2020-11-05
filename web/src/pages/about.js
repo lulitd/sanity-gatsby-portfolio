@@ -8,10 +8,10 @@ import BlockContent from "../components/block-content";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import SocialsFromBio from "../components/socials-from-bio";
-import { Label, Styled } from 'theme-ui'
-import {alpha} from '@theme-ui/color'
-import { Box, Flex, Image } from 'rebass'
-import gsap from 'gsap';
+import { Label, Styled } from "theme-ui";
+import { alpha } from "@theme-ui/color";
+import { Box, Flex, Image } from "rebass";
+import gsap from "gsap";
 
 export const query = graphql`
   query AboutQuery {
@@ -69,17 +69,18 @@ const AboutImageRef = React.createRef();
 const LabelRef = React.createRef();
 
 const Animate = () => {
-
-  const tl = gsap.timeline(
-    {repeat:-1,yoyo:true,defaults:{duration:5}});
-  tl.fromTo(AboutImageRef.current, { rotateY: 10 }, { rotateY: -10})
-    .fromTo(LabelRef.current, { rotateY: -5,translateX:'5%',translateY:'25%',translateZ: 50 }, { rotateY: 5, translateZ: 150, translateX:'12.5%',translateY:'100%'}, 0);
-}
-const AboutPage = props => {
+  const tl = gsap.timeline({ repeat: -1, yoyo: true, defaults: { duration: 5 } });
+  tl.fromTo(AboutImageRef.current, { rotateY: 10 }, { rotateY: -10 }).fromTo(
+    LabelRef.current,
+    { rotateY: -5, translateX: "5%", translateY: "25%", translateZ: 50 },
+    { rotateY: 5, translateZ: 150, translateX: "12.5%", translateY: "100%" },
+    0
+  );
+};
+const AboutPage = (props) => {
   const { data, errors } = props;
 
   useEffect(Animate, [AboutImageRef, LabelRef]);
-
 
   if (errors) {
     return (
@@ -106,36 +107,40 @@ const AboutPage = props => {
 
   const profileImage = author.image;
   return (
-    <Layout mainStyle={{ perspective: '1000px' }}>
+    <Layout mainStyle={{ perspective: "1000px" }}>
       <SEO title="About" />
-      <Container >
-        <Styled.h1 >About</Styled.h1>
+      <Container>
+        <Styled.h1>About</Styled.h1>
         <Flex>
-          <Box flex='2' minWidth={['fit-content', 0]} pr={[0, 4]}>
+          <Box flex="2" minWidth={["fit-content", 0]} pr={[0, 4]}>
             {author._rawBio && (
               <div>
                 <BlockContent blocks={author._rawBio || []} />
               </div>
             )}
           </Box>
-          <Box flex='1' as='aside' p='5'
-
+          <Box
+            flex="1"
+            as="aside"
+            p="5"
             sx={{
-              display: ['flex'],
+              display: ["flex"],
               flexDirection: "column",
               alignItems: "center",
               // bg: 'red'
-            }} >
+            }}
+          >
             {author.image && profileImage.asset && (
-              <Box width='100%'
+              <Box
+                width="100%"
                 ref={AboutImageRef}
                 sx={{
-                  display: ['none', 'block'],
+                  display: ["none", "block"],
                   maxHeight: 450,
-                  position: 'relative',
-                  transformStyle: 'preserve-3d'
-
-                }}>
+                  position: "relative",
+                  transformStyle: "preserve-3d",
+                }}
+              >
                 <Image
                   src={imageUrlFor(buildImageObj(profileImage))
                     .fit("clip")
@@ -145,37 +150,39 @@ const AboutPage = props => {
                   sx={{
                     minHeight: 0,
                     maxHeight: "100%",
-                    backgroundColor: 'transparent',
-                    border: 'solid currentColor',
-                    borderWidth: '2',
-                    borderRadius: 'default',
-                    color: 'muted',
+                    backgroundColor: "transparent",
+                    border: "solid currentColor",
+                    borderWidth: "2",
+                    borderRadius: "default",
+                    color: "muted",
                   }}
                   alt={profileImage.alt}
                 />
-                <Box id='profile-label-container'
+                <Box
+                  id="profile-label-container"
                   ref={LabelRef}
                   sx={{
-                    border: '0.125rem solid white',
-                    borderColor: 'background',
+                    border: "0.125rem solid white",
+                    borderColor: "background",
                     p: 1,
-                    textAlign: 'center',
-                    position: 'absolute',
+                    textAlign: "center",
+                    position: "absolute",
                     zIndex: 50,
-                    bottom: '0%',
-                    right: '0%',
-                    backgroundColor: alpha('secondary',0.95),
-                 
+                    bottom: "0%",
+                    right: "0%",
+                    backgroundColor: alpha("secondary", 0.95),
+
                     fontSize: [1, 2, 3],
-                    fontFamily: 'nav',
-                    textTransform: 'uppercase',
-                    color: 'background',
+                    fontFamily: "nav",
+                    textTransform: "uppercase",
+                    color: "background",
                     letterSpacing: 0.5,
                     wordSpacing: 3,
-                    borderTopLeftRadius: 'default',
-                    borderBottomRightRadius: 'default',
-                    width: ['16ch']
-                  }}>
+                    borderTopLeftRadius: "default",
+                    borderBottomRightRadius: "default",
+                    width: ["16ch"],
+                  }}
+                >
                   {/* <span>Maker </span>
                   <span>Developer </span> */}
                   <span>Creative Coder </span>

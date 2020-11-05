@@ -6,9 +6,9 @@ export default {
   title: 'Person',
   fieldsets: [
     {
-     name: 'social', 
-     title: 'Social media handles',
-     options: {collapsible: true, collapsed: false}
+      name: 'social',
+      title: 'Social media handles',
+      options: { collapsible: true, collapsed: false }
     }
   ],
   fields: [
@@ -31,12 +31,12 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'figure',
-      },
+    },
     {
       name: 'bio',
       title: 'Bio',
       type: 'bioPortableText',
-      options: {collapsible: true, collapsed: false}
+      options: { collapsible: true, collapsed: false }
     },
     {
       title: 'Website',
@@ -45,22 +45,22 @@ export default {
       fieldset: 'social'
     },
     {
-        title: 'Twitter',
-        name: 'twitter',
-        type: 'string',
-        fieldset: 'social'
+      title: 'Twitter',
+      name: 'twitter',
+      type: 'string',
+      fieldset: 'social'
     },
     {
-        title: 'Instagram',
-        name: 'instagram',
-        type: 'string',
-        fieldset: 'social'
+      title: 'Instagram',
+      name: 'instagram',
+      type: 'string',
+      fieldset: 'social'
     },
     {
-        title: 'Linkedin',
-        name: 'linkedin',
-        type: 'string',
-        fieldset: 'social'
+      title: 'Linkedin',
+      name: 'linkedin',
+      type: 'string',
+      fieldset: 'social'
     },
     {
       title: 'Github',
