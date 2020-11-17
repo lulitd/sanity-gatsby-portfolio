@@ -86,6 +86,7 @@ const Nav = ({ showNav }) => (
       left: 0,
       right: 0,
       top: 5,
+      pt: 2,
       backgroundColor: [lighten("background", 0.05), "transparent"],
     }}
   >
@@ -130,19 +131,25 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
         sx={{
           display: "flex",
           alignItems: "center",
-          borderBottom: "1px solid",
-          borderColor: "secondary",
+          position: "relative",
+          "&:before": {
+            content: "''",
+            float: "left",
+            backgroundColor: "primary",
+            width: "100%",
+            height: "2px",
+            borderRadius: "1px",
+            marginTop: "1px",
+            position: "absolute",
+            display: "block",
+            bottom: 0,
+            left: 0,
+          },
         }}
       >
         <Branding />
         <ToggleButton showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
         <Nav showNav={showNav} />
-        {/* <Button
-        onClick={e => {
-          setColorMode(colorMode === 'default' ? 'light' : 'default')
-        }}>
-        Toggle {colorMode === 'default' ? 'dark' : 'light'}
-      </Button> */}
       </Container>
     </Flex>
   );

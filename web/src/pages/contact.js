@@ -7,7 +7,8 @@ import Layout from "../containers/layout";
 import AnimHello from "../animIcons/animHello";
 import { Styled, Label, Input, Textarea } from "theme-ui";
 import { Box, Flex, Button } from "rebass";
-
+import { jsx } from "theme-ui";
+/*@jsx jsx*/
 export const query = graphql`
   query ContactQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {

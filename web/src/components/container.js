@@ -5,10 +5,10 @@ import { jsx } from "theme-ui";
 const Container = ({ sx, ...props }) => {
   return (
     <UiContainer
-      mx="auto"
-      px={[2, 4, 6]}
-      py={2}
       sx={{
+        mx: "auto",
+        px: [2, 4],
+        py: [2],
         ...sx,
       }}
       {...props}

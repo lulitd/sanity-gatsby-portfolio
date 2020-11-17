@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "lerna": "^3.22.1"
+  },
+  "dependencies": {
+    "css-doodle": "^0.8.5"
   }
 }
