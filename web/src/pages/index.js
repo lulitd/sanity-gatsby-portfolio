@@ -190,6 +190,7 @@ const IndexPage = (props) => {
 
   const context = useThemeUI();
   const { colors } = context.theme;
+
   return (
     <Layout mainStyle={{ display: "flex", flexDirection: "column" }}>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />

@@ -19,6 +19,9 @@ module.exports = {
         typekit: {
           id: process.env.TYPEKIT_ID,
         },
+        google: {
+          families: ["Space Mono:400,700:latin", "Inter:300,600,800,900:latin"],
+        },
       },
     },
     {
@@ -36,23 +39,6 @@ module.exports = {
         rule: {
           include: /assets/, // Where the animated svgs are.
         },
-      },
-    },
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Space Mono`,
-            variants: [`400`, `700`],
-            subsets: [`latin`],
-          },
-          {
-            family: `Inter`,
-            variants: ["300", `400`, "600", "800", `900`],
-            subsets: [`latin`],
-          },
-        ],
       },
     },
   ],
