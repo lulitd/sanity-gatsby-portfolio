@@ -59,7 +59,9 @@ function SEO({ description, lang, meta, keywords, title }) {
                   : []
               )
               .concat(meta)}
-          />
+          >
+            <script src="https://unpkg.com/css-doodle@0.9.1/css-doodle.min.js"></script>
+          </Helmet>
         );
       }}
     />
