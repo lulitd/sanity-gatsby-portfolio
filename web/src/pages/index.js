@@ -11,7 +11,7 @@ import ProjectPreviewGrid from "../components/project-preview-grid";
 import SEO from "../components/seo";
 import Layout from "../containers/layout";
 import { Heading, Text, Flex, Box } from "rebass";
-import { Styled, jsx, Image, AspectImage, Grid } from "theme-ui";
+import { Styled, jsx, Image, AspectImage, Grid, Button } from "theme-ui";
 import ThemedLink from "../components/ThemedLink";
 import { lighten, alpha } from "@theme-ui/color";
 import PostPreviewGrid from "../components/post-preview-grid";
@@ -144,79 +144,32 @@ export const query = graphql`
 `;
 
 const createHeroBG = (colors) => {
+  return <Doodles colors={colors} />;
+};
+
+const createTriangle = (colors) => {
   return (
-    <Doodles colors={colors} />
-    //     <>
-    //       <css-doodle>
-    //         {`
-    //       :doodle {
-    //         @grid: 24/1200;
-    //         width: 100%; height:calc(100vh - 81px);
-    //         z-index: -2;
-    //         position: absolute;
-    //         left:0;
-    //         top:0;
-    //         grid-gap: 0.125em;
-    //       }
-    //       border-radius:50%;
-    //       border: 2px solid;
-    //       opacity:0.4;
-    //       width:1rem;
-    //       height:1rem;
-    //       animation: color-change-3x 2s linear infinite alternate both;
-    //       animation-delay: @rand(1000ms);
-
-    //       @keyframes color-change-3x {
-    //         0% {
-    //           border-color: @pick(${colors.primary},${colors.primary},${colors.secondary},${colors.background},${colors.muted});
-    //         }
-    //         50% {
-    //           border-color: @pick(${colors.background},${colors.primary},${colors.secondary},${colors.muted});
-    //         }
-    //         100% {
-    //           border-color: @pick(${colors.primary},${colors.secondary},${colors.secondary},${colors.background},${colors.muted});
-    //         }
-    //       }
-    // `}
-    //       </css-doodle>
-    //       <css-doodle>
-    //         {`
-    //         :doodle {
-    //           @grid: 1x6 / 100%;
-    //           position: absolute;
-    //           left: 50%;
-    //           top: 50%;
-    //           transform: translate(-50%,-50%);
-    //           @size:1500px;
-    //           opacity:1;
-    //           z-index: -1;
-    //         }
-
-    //         @place-cell: center;
-    //         @size: calc(10% + @i * 7.5%);
-
-    //         border-radius: 100%;
-    //         border-style: dashed;
-    //         border-width: 2px;
-
-    //         border-color:
-    //           hsla(
-    //             174, @r(40%,50%), @r(70%, 82%), @r(50%, 90%)
-    //           )
-    //           transparent
-    //         ;
-
-    //         background-color: ${alpha(colors.primary, 0.5)};
-    //         will-change: transform;
-    //         animation: myanimation @r(4s, 15s) linear alternate infinite;
-
-    //         @keyframes myanimation {
-    //           from { transform: rotate(@r(360deg)) }
-    //           to { transform: rotate(@r(360deg)) }
-    //         }
-    //     `}
-    //       </css-doodle>
-    //     </>
+    <Box
+      sx={{
+        width: [33],
+        height: [33],
+        borderStyle: "solid",
+        backgroundColor: "transparent",
+        borderColor: colors.primary,
+        borderLeftColor: "transparent",
+        borderTopColor: "transparent",
+        borderWidth: "0.15rem",
+        marginX: "auto",
+        position: "absolute",
+        transform: "translate(-50%, -50%) rotate(45deg)",
+        left: "50%",
+        bottom: "10%",
+        transitionDuration: "0.33s",
+        "&:hover": {
+          borderColor: colors.secondary,
+        },
+      }}
+    ></Box>
   );
 };
 
@@ -257,29 +210,26 @@ const IndexPage = (props) => {
     );
   }
 
-  const profileImage = author.image;
-  const imgurl = imageUrlFor(buildImageObj(profileImage))
-    .fit("fill")
-    .width(225)
-    .invert(true)
-    .height(400)
-    .url();
   const context = useThemeUI();
   const { colors } = context.theme;
   const bg = createHeroBG(colors);
+  const tri = createTriangle(colors);
   return (
-    <Layout mainStyle={{ display: "flex", flexDirection: "column" }}>
+    <Layout mainStyle={{ display: "flex", flexDirection: "column", px: 0 }}>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container
         sx={{
           position: "relative",
-          height: "calc(100vh - 81px)",
+          height: "100vh",
           overflow: "hidden",
           backgroundImage: (t) => `
-          linear-gradient(
-            to bottom,
-            ${alpha("primary", 0)(t)},
-            ${alpha("background", 1)(t)}
+          radial-gradient(
+            circle at 50% 25%,
+            ${alpha("background", 1)(t)} 0%,
+            ${alpha("background", 1)(t)} 25%,
+            ${alpha("background", 0)(t)}40%,
+            ${alpha("background", 1)(t)}60%,
+            ${alpha("background", 1)(t)} 100%
           )
         `,
         }}
@@ -330,6 +280,7 @@ const IndexPage = (props) => {
             </Box>
           </Box>
         </Box>
+        {tri}
       </Container>
 
       {projectNodes && projectNodes.length > 0 && (

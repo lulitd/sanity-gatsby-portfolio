@@ -33,65 +33,29 @@ export default ({ colors }) => {
             top:0;
             grid-gap: 0.125em;
           }
-          border-radius:50%;
+          // border-radius:50%;
           border: 2px solid;
           opacity:0.4;
           width:1rem;
           height:1rem;
-          animation: color-change-3x 2s linear infinite alternate both;
-          animation-delay: @rand(1000ms);
+          animation: color-change-3x @pick(2s,2.5s,3s) linear infinite alternate both;
 
           @keyframes color-change-3x {
-            0% {
-              border-color: @pick(${colors.primary},${colors.primary},${colors.secondary},${colors.background},${colors.muted});
+            0%,10% {
+              border-radius:@pick(0%,50%);
+              border-color: @pick(${colors.primary},${colors.secondary},${colors.muted});
             }
             50% {
-              border-color: @pick(${colors.background},${colors.primary},${colors.secondary},${colors.muted});
+              border-radius:25%;
+              border-color:${colors.background};
             }
-            100% {
-              border-color: @pick(${colors.primary},${colors.secondary},${colors.secondary},${colors.background},${colors.muted});
+             90%,100% {
+              border-radius:@pick(50%,0%);
+              border-color: @pick(${colors.primary},${colors.secondary},${colors.muted});
              }
            }
      `}
       </css-doodle>
-      {/* Need to examine why this doesn't work on refresh... */}
-      {/* <css-doodle>
-        {`
-            :doodle {
-              @grid: 1x6 / 100%;
-              position: absolute;
-              left: 50%;
-              top: 50%;
-              transform: translate(-50%,-50%);
-              @size:1500px;
-              opacity:1;
-              z-index: -1;
-            }
-
-            @place-cell: center;
-            @size: calc(10% + @i * 7.5%);
-
-            border-radius: 100%;
-            border-style: dashed;
-            border-width: 2px;
-
-            border-color:
-              hsla(
-                174, @r(40%,50%), @r(70%, 82%), @r(50%, 90%)
-              )
-              transparent
-            ;
-
-            background-color: ${alpha(colors.primary, 0.5)};
-            will-change: transform;
-            animation: myanimation @r(4s, 15s) linear alternate infinite;
-
-            @keyframes myanimation {
-              from { transform: rotate(@r(360deg)) }
-              to { transform: rotate(@r(360deg)) }
-            }
-        `}
-      </css-doodle> */}
     </>
   );
 };

@@ -15,8 +15,16 @@ const Layout = ({
 }) => (
   <Flex flexDirection="column" minHeight="100vh" {...rest} sx={{}}>
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
-    <Box sx={{ width: "100%", flex: "1 1 auto", px: [3, 2, 1], ...mainStyle }} as="main">
-      {children}
+    <Box
+      sx={{
+        width: "100%",
+        flex: "1 1 auto",
+        px: [3, 2, 1],
+        ...mainStyle,
+      }}
+      as="main"
+    >
+      <Box pt={81}>{children}</Box>
     </Box>
     <Footer author={author} />
   </Flex>

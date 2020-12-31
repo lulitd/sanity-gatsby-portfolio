@@ -79,24 +79,30 @@ const NavLink = ({ to, children }) => (
 const Nav = ({ showNav }) => (
   <Box
     as="nav"
-    display={[showNav ? "block" : "none", "block"]}
+    display={[showNav ? "flex" : "none", "flex"]}
     color={["text"]}
     sx={{
       position: ["absolute", "static"],
       left: 0,
       right: 0,
-      top: 5,
+      top: "60px",
+      height: ["calc(100vh - 60px)", "inherit"],
       pt: 2,
-      backgroundColor: [lighten("background", 0.05), "transparent"],
+      backgroundColor: [lighten("background", 0.1), "transparent"],
+      border: "2px solid transparent",
+      borderBottomColor: ["primary", "transparent"],
     }}
   >
     <Flex
       as="ul"
       sx={{
         listStyle: "none",
-        justifyContent: "flex-end",
+        justifyContent: "center",
+        marginX: "auto",
         p: [2, 0],
         flexDirection: ["column", "row"],
+        alignItems: ["center", "inherit"],
+        fontSize: [7, 3],
       }}
     >
       <li>
@@ -122,12 +128,18 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
   const [colorMode, setColorMode] = useColorMode();
   return (
     <Flex
-      sx={{ position: "relative", zIndex: 100, width: "100%", alignItems: "center" }}
+      sx={{
+        position: "fixed",
+        zIndex: 100,
+        width: "100%",
+        alignItems: "center",
+      }}
       as="header"
     >
       <Container
         px={[2]}
         py={[2, 3]}
+        backgroundColor="background"
         sx={{
           display: "flex",
           alignItems: "center",
@@ -135,7 +147,7 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
           "&:before": {
             content: "''",
             float: "left",
-            backgroundColor: "primary",
+            backgroundColor: [`${showNav ? "transparent" : "primary"}`, "primary"],
             width: "100%",
             height: "2px",
             borderRadius: "1px",
