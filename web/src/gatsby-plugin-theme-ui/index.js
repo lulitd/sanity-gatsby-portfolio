@@ -1,4 +1,5 @@
 import { alpha, lighten } from "@theme-ui/color";
+
 const theme = {
   sizes: {
     container: 1200,
@@ -6,26 +7,13 @@ const theme = {
   colors: {
     text: "#05a696",
     body: "#94d1cb",
-    heading: "#f02348",
+    heading: "#dc3856",
     background: "#020426",
     primary: "#05a696",
-    secondary: "#f02348",
+    secondary: "#dc3856",
     muted: "#94d1cb",
     darkest: "#020426",
-    lightest: "#ffffff",
-    // modes:{
-    //   light:{
-    //     text: '#020426',
-    //     body: '#020426',
-    //     heading: '#f02348',
-    //     background: '#94d1cb',
-    //     primary: '#12076d',
-    //     secondary: '#f02348',
-    //     muted: '#020426',
-    //     darkest: '#020426',
-    //     lightest: '#ffffff',
-    //   }
-    // }
+    lightest: "#ffffff"
   },
   fonts: {
     body: 'Inter,"Helvetica Neue", sans-serif',

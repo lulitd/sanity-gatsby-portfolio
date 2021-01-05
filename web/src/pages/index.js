@@ -187,14 +187,14 @@ const IndexPage = (props) => {
   const site = (data || {}).site;
   const projectNodes = (data || {}).projects
     ? mapEdgesToNodes(data.projects)
-        .filter(filterOutDocsWithoutSlugs)
-        .filter(filterOutDocsPublishedInTheFuture)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterOutDocsPublishedInTheFuture)
     : [];
 
   const postNodes = (data || {}).posts
     ? mapEdgesToNodes(data.posts)
-        .filter(filterOutDocsWithoutSlugs)
-        .filter(filterOutDocsPublishedInTheFuture)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterOutDocsPublishedInTheFuture)
     : [];
 
   if (!site) {
@@ -257,7 +257,7 @@ const IndexPage = (props) => {
             <Heading fontWeight="400" fontSize={[24, 36]}>
               {site.jumboTag}
             </Heading>
-            <Text pt={4} pb={2} display="table" fontSize={[1, 2, 3]}>
+            <Text pt={4} pb={2} fontWeight={300} display="table" fontSize={[1, 2, 3]}>
               {site.jumboDescription}
             </Text>
             <Box

@@ -41,7 +41,7 @@ function Project(props) {
 
   return (
     <Container as="article" px={[2, 4, 6]}>
-      <Box pb={[2, 4]}>
+      <Box pb={[3,4,6]}>
         <Heading>{title}</Heading>
         {props.mainImage && mainImage.asset && (
           <AspectImage
@@ -57,8 +57,8 @@ function Project(props) {
       </Box>
       <div>
         {uniqueAccolades && uniqueAccolades.length > 0 && (
-          <Box>
-            <Styled.h3>Exhibitions & Awards</Styled.h3>
+          <Box pb={null,null,2}>
+            <Styled.h4>Exhibitions & Awards</Styled.h4>
             <Grid as="ul" gap={2} columns={[1, 2, 2]}>
               {uniqueAccolades.map((accolade) => {
                 let label = "";

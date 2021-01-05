@@ -3,6 +3,7 @@ import Header from "./header";
 import Footer from "./footer";
 import { Flex, Box } from "rebass";
 
+
 const Layout = ({
   children,
   onHideNav,
@@ -13,6 +14,7 @@ const Layout = ({
   mainStyle,
   ...rest
 }) => (
+
   <Flex flexDirection="column" minHeight="100vh" {...rest} sx={{}}>
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
     <Box

@@ -1,17 +1,3 @@
-// /* doodle.js */
-// import React, { Component } from "react";
-// import Loadable from "@loadable/component";
-// const Doodler = Loadable(() => import("css-doodle"));
-
-// const Doodles = ({ rule = "" }) => {
-//   if (typeof window === "undefined" || !window) return null;
-//   return <Doodler />;
-//   //   return <Doodler>{rule}</Doodler>;
-// };
-
-// // export default Doodler;
-
-// export default Doodles;
 import { lighten, alpha } from "@theme-ui/color";
 import React, { useEffect } from "react";
 
@@ -33,12 +19,12 @@ export default ({ colors }) => {
             top:0;
             grid-gap: 0.125em;
           }
-          // border-radius:50%;
           border: 2px solid;
           opacity:0.4;
           width:1rem;
           height:1rem;
           animation: color-change-3x @pick(2s,2.5s,3s) linear infinite alternate both;
+          animation-delay: @rand(1000ms);
 
           @keyframes color-change-3x {
             0%,10% {
