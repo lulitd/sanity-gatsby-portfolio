@@ -12,7 +12,12 @@ export default class BlockWindow extends Component{
         }
     
         createRipple = ({ length }, event, hex, color, node) => {
-            const body = document.body
+
+            // const html = document.querySelector("html");
+
+            // html.style= html.style.overflow = "hidden";
+
+            const body = document.body;
             const canvas = document.createElement('canvas')
             const ctx = canvas.getContext('2d')
     
@@ -121,6 +126,10 @@ export default class BlockWindow extends Component{
         }
     
         slideIn = ({ length }, node, from) => {
+            
+            // const html = document.querySelector("html");
+
+            // html.style= html.style.overflow = "auto";
             gsap.from(node, length, {
                 ...this.getDirection(from),
                 ease: 'power1.easeOut',

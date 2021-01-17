@@ -17,6 +17,7 @@
     "lerna": "^3.22.1"
   },
   "dependencies": {
-    "css-doodle": "^0.8.5"
+    "css-doodle": "^0.8.5",
+    "smooth-scroll": "^16.1.3"
   }
 }

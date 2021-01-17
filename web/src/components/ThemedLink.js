@@ -12,8 +12,8 @@ const ThemedLink = ({ to, children, variant, sx, transitionColor, ...rest }) => 
     <Transition
       to={to}
       {...rest}
-      hex={transitionColor ? transitionColor : colors.secondary}
       bg={transitionColor ? transitionColor : colors.secondary}
+      hex={transitionColor ? transitionColor : colors.secondary}
       sx={{ variant: `buttons.${variant}`, ...sx }}
     >
       {children}

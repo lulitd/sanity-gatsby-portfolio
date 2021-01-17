@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import SEO from "../components/seo";
-import Layout from "../containers/layout";
+// import Layout from "../containers/layout";
 import BlockContent from "../components/block-content";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
@@ -49,21 +49,7 @@ export const query = graphql`
   }
 `;
 
-// const Move = (e) => {
-//   let xAxis = (window.innerWidth * 0.5 - e.pageX) * 0.05;
-//   let yAxis = (window.innerHeight * 0.5 - e.pageY) * 0.05;
-//   AboutImageRef.current.style.transform = `rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
-//   LabelRef.current.style.transform = `translate(12.5%,50%) translateZ(25px)`;
-// }
 
-// const StopMoving = () => {
-//   AboutImageRef.current.style.transition='all 0.75s ease-out';
-//   AboutImageRef.current.style.transform = 'rotateX(0deg) rotateY(0deg)';
-//   LabelRef.current.style.transform = `translate(12.5%,50%)  translateZ(0px)`;
-// }
-// const PrepForMove = () => {
-//   AboutImageRef.current.style.transition='none';
-// }
 
 const AboutImageRef = React.createRef();
 const LabelRef = React.createRef();
@@ -84,9 +70,9 @@ const AboutPage = (props) => {
 
   if (errors) {
     return (
-      <Layout>
+      <>
         <GraphQLErrorList errors={errors} />
-      </Layout>
+      </>
     );
   }
 
@@ -107,7 +93,7 @@ const AboutPage = (props) => {
 
   const profileImage = author.image;
   return (
-    <Layout mainStyle={{ perspective: "1000px" }}>
+    <>
       <SEO title="About" />
       <Container>
         <Styled.h1>About</Styled.h1>
@@ -192,7 +178,7 @@ const AboutPage = (props) => {
           </Box>
         </Flex>
       </Container>
-    </Layout>
+    </>
   );
 };
 

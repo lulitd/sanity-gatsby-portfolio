@@ -1,12 +1,12 @@
 import React from "react";
-import Layout from "../containers/layout";
+// import Layout from "../containers/layout";
 import SEO from "../components/seo";
 import Container from "../components/container";
 import { Styled } from "theme-ui";
 import ThemedLink from "../components/ThemedLink";
 
 const NotFoundPage = () => (
-  <Layout>
+  <>
     <SEO title="Whoops!" />
     <Container>
       <Styled.h1>Oh no! Something went wrong!</Styled.h1>
@@ -16,7 +16,7 @@ const NotFoundPage = () => (
         Back Home
       </ThemedLink>
     </Container>
-  </Layout>
+  </>
 );
 
 export default NotFoundPage;

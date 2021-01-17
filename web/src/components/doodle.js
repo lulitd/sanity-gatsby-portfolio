@@ -12,7 +12,8 @@ export default ({ colors }) => {
         {`
           :doodle {
             @grid: 24/1200;
-            width: 100%; height:calc(100vh - 81px);
+            width: 100%;
+            height:calc(100vh - 64px);
             z-index: -2;
             position: absolute;
             left:0;

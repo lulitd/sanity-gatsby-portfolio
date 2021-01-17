@@ -1,5 +1,5 @@
 import { graphql, StaticQuery } from "gatsby";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Layout from "../components/layout";
 
 const query = graphql`
@@ -27,9 +27,10 @@ function LayoutContainer(props) {
   }
   const html = document.querySelector("html");
 
-  useEffect(() => {
-    showNav ? (html.style.overflow = "hidden") : (html.style.overflow = "visible");
-  }, [showNav]);
+  // useEffect(() => {
+  //   showNav ? (html.style.overflow = "hidden") : (html.style.overflow = "auto");
+  // }, [showNav]);
+
   return (
     <StaticQuery
       query={query}

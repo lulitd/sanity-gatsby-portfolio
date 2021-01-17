@@ -2,9 +2,9 @@ import React from "react";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import { ucfirst } from "../lib/string-utils";
-import { Box } from "rebass";
-import { Styled, Image, Grid, jsx } from "theme-ui";
+import { Styled, Image, Grid, jsx,Box } from "theme-ui";
 import { FaHandMiddleFinger } from "react-icons/fa";
+import { darken, lighten } from '@theme-ui/color'
 //@jsx jsx
 const ConditionalWrapper = ({ condition, wrapper, children }) =>
   condition ? wrapper(children) : children;
@@ -15,8 +15,11 @@ function ConditionalIcon(asset) {
 }
 function RoleList({ items, title }) {
   return (
-    <div>
-      <Styled.h2>{title}</Styled.h2>
+    <Box pb={2} sx={{ textAlign: 'center' }}>
+      <Styled.h3 sx={{
+           color: lighten('secondary', .1),
+           fontWeight: 100,
+      }} >{title}</Styled.h3>
       <Grid
         as="ul"
         columns={[1, items.length % 2 == 0 ? 2 : 3, null]}
@@ -48,6 +51,7 @@ function RoleList({ items, title }) {
                 "& span": {
                   color: "primary",
                   textTransform: "capitalize",
+                  fontWeight:100,
                 },
               }}
             >
@@ -59,12 +63,12 @@ function RoleList({ items, title }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
-                      color: "blue",
                       "&:hover": {
                         textDecoration: "underline",
                         color: "secondary",
                         "& span": {
                           color: "body",
+                          textDecoration: "underline",
                         },
                       },
                     }}
@@ -97,7 +101,7 @@ function RoleList({ items, title }) {
           );
         })}
       </Grid>
-    </div>
+    </Box>
   );
 }
 

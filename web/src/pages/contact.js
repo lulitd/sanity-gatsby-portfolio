@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import SEO from "../components/seo";
-import Layout from "../containers/layout";
+// import Layout from "../containers/layout";
 import AnimHello from "../animIcons/animHello";
 import { Styled, Label, Input, Textarea } from "theme-ui";
 import { Box, Flex, Button } from "rebass";
@@ -22,9 +22,9 @@ const ContactPage = (props) => {
 
   if (errors) {
     return (
-      <Layout>
+      <>
         <GraphQLErrorList errors={errors} />
-      </Layout>
+      </>
     );
   }
 
@@ -36,7 +36,7 @@ const ContactPage = (props) => {
     );
   }
   return (
-    <Layout>
+    <>
       <SEO title="Contact" />
 
       <Container pr="0">
@@ -116,7 +116,7 @@ const ContactPage = (props) => {
           </Box>
         </Flex>
       </Container>
-    </Layout>
+    </>
   );
 };
 

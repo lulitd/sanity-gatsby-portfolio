@@ -3,6 +3,9 @@ import { alpha, lighten } from "@theme-ui/color";
 const theme = {
   sizes: {
     container: 1200,
+    videoL:1024,
+    videoM:720,
+    videoS:640,
   },
   colors: {
     text: "#05a696",
@@ -33,6 +36,7 @@ const theme = {
   fontWeights: {
     body: 400,
     heading: 600,
+    a:600,
     bold: 600,
   },
   lineHeights: {
@@ -220,12 +224,15 @@ const theme = {
       fontFamily: "body",
       fontWeight: "body",
       lineHeight: "body",
+      maxWidth:"90ch",
     },
     a: {
       color: "secondary",
       textDecoration: "none",
+      fontWeight:"a",
       ":hover": {
         textDecoration: "underline",
+        color:"inherit",
       },
     },
     pre: {

@@ -12,7 +12,12 @@ module.exports = {
   plugins: [
     "gatsby-plugin-theme-ui",
     "gatsby-plugin-react-helmet",
-    `gatsby-plugin-transition-link`,
+    {
+      resolve: "gatsby-plugin-transition-link",
+      options: {
+          layout: require.resolve(`./src/containers/layout.js`)
+        }
+   },
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {

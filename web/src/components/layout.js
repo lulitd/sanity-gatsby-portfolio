@@ -3,6 +3,10 @@ import Header from "./header";
 import Footer from "./footer";
 import { Flex, Box } from "rebass";
 
+if (typeof window !== "undefined") {
+  // eslint-disable-next-line global-require
+  require("smooth-scroll")('a[href*="#"]')
+}
 
 const Layout = ({
   children,
@@ -26,7 +30,7 @@ const Layout = ({
       }}
       as="main"
     >
-      <Box pt={81}>{children}</Box>
+      <Box pt={64}>{children}</Box>
     </Box>
     <Footer author={author} />
   </Flex>

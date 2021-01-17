@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql,Link} from "gatsby";
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
@@ -9,7 +9,7 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import SEO from "../components/seo";
-import Layout from "../containers/layout";
+// import Layout from "../containers/layout";
 import { Heading, Text, Flex, Box } from "rebass";
 import { Styled, jsx, Image, AspectImage, Grid, Button } from "theme-ui";
 import ThemedLink from "../components/ThemedLink";
@@ -20,6 +20,7 @@ import { imageUrlFor } from "../lib/image-url";
 import { flip } from "ramda";
 import Doodles from "../components/doodle";
 import { useThemeUI } from "theme-ui";
+
 //@jsx jsx
 export const query = graphql`
   query IndexPageQuery {
@@ -147,9 +148,10 @@ const createHeroBG = (colors) => {
   return <Doodles colors={colors} />;
 };
 
-const createTriangle = (colors) => {
+const createTriangle = (colors,url) => {
   return (
-    <Box
+    <Link
+       to ={"/#"+url}
       sx={{
         width: [33],
         height: [33],
@@ -169,7 +171,7 @@ const createTriangle = (colors) => {
           borderColor: colors.secondary,
         },
       }}
-    ></Box>
+    ></Link>
   );
 };
 
@@ -178,9 +180,9 @@ const IndexPage = (props) => {
 
   if (errors) {
     return (
-      <Layout>
+      <>
         <GraphQLErrorList errors={errors} />
-      </Layout>
+      </>
     );
   }
 
@@ -213,9 +215,11 @@ const IndexPage = (props) => {
   const context = useThemeUI();
   const { colors } = context.theme;
   const bg = createHeroBG(colors);
-  const tri = createTriangle(colors);
+  const featuredURL = (projectNodes && projectNodes.length > 0)?"featured-projects":((postNodes && postNodes.length > 0)?"featured-posts":null);
+
+  const tri = featuredURL? createTriangle(colors,featuredURL): null;
   return (
-    <Layout mainStyle={{ display: "flex", flexDirection: "column", px: 0 }}>
+    <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container
         sx={{
@@ -285,7 +289,7 @@ const IndexPage = (props) => {
 
       {projectNodes && projectNodes.length > 0 && (
         <Container mb={5}>
-          <Styled.h2>Featured Projects</Styled.h2>
+          <Styled.h2 id="featured-projects">Featured Projects</Styled.h2>
           <ProjectPreviewGrid
             columns={[1, 2, null]}
             nodes={projectNodes}
@@ -296,11 +300,11 @@ const IndexPage = (props) => {
 
       {postNodes && postNodes.length > 0 && (
         <Container mb={5}>
-          <Styled.h2>Latest Posts</Styled.h2>
+          <Styled.h2 id="featured-posts">Latest Posts</Styled.h2>
           <PostPreviewGrid columns={[1, 2, 1]} nodes={postNodes} browseMoreHref="/posts/" />
         </Container>
       )}
-    </Layout>
+    </>
   );
 };
 
