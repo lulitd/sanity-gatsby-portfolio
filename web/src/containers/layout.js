@@ -25,7 +25,7 @@ function LayoutContainer(props) {
   function handleHideNav() {
     setShowNav(false);
   }
-  const html = document.querySelector("html");
+  //const html = document.querySelector("html");
 
   // useEffect(() => {
   //   showNav ? (html.style.overflow = "hidden") : (html.style.overflow = "auto");
