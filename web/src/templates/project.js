@@ -4,7 +4,6 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import Project from "../components/project";
 import SEO from "../components/seo";
-//import Layout from "../containers/layout";
 
 export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
@@ -154,6 +153,7 @@ const ProjectTemplate = (props) => {
   data.awards.edges.forEach(function (obj) {
     awards.push(obj.node);
   });
+ 
   return (
     <>
       {errors && <SEO title="GraphQL Error" />}

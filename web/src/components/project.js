@@ -12,6 +12,7 @@ import { AspectImage, Styled, Grid, jsx } from "theme-ui";
 import ThemedLink from "./ThemedLink";
 import { darken, lighten } from '@theme-ui/color'
 import { FaAutoprefixer } from "react-icons/fa";
+import TransitionState from "gatsby-plugin-transition-link"
 
 // @jsx jsx
 function Project(props) {
@@ -44,6 +45,7 @@ function Project(props) {
 
   return (
     <Container as="article" px={[2, 4, 6]} mb={4}>
+
       {/* Title and Image */}
       <Box pb={[0]} sx={{ textAlign: 'center' }}>
         {props.mainImage && mainImage.asset && (
@@ -61,34 +63,34 @@ function Project(props) {
           pt: 4,
         }}>{title}</Heading>
 
-        
-      {categories && categories.length > 0 && (
-        <Box pb={2} sx={{ textAlign: 'center' }}>
-          <ul sx={{
-            listStyle:"none",
-            padding:0,
-          }}>
-            {categories.reduce((acm, cat) => {
-              if (cat.projectFilter) {
-                const el = (
-                  <Styled.li sx={{ display: "inline-block", pr: "2" }}>
-                    <ThemedLink
-                      block="true"
-                      to={`/archive/${cat.slug.current}`}
-                      variant="outlineBtn"
-                      key={cat._id}
-                    >
-                      #{cat.title}
-                    </ThemedLink>
-                  </Styled.li>
-                );
-                acm.push(el);
-              }
-              return acm;
-            }, [])}
-          </ul>
-        </Box>
-      )}
+
+        {categories && categories.length > 0 && (
+          <Box pb={2} sx={{ textAlign: 'center' }}>
+            <ul sx={{
+              listStyle: "none",
+              padding: 0,
+            }}>
+              {categories.reduce((acm, cat) => {
+                if (cat.projectFilter) {
+                  const el = (
+                    <Styled.li sx={{ display: "inline-block", pr: "2" }}>
+                      <ThemedLink
+                        block="true"
+                        to={`/archive/${cat.slug.current}`}
+                        variant="outlineBtn"
+                        key={cat._id}
+                      >
+                        #{cat.title}
+                      </ThemedLink>
+                    </Styled.li>
+                  );
+                  acm.push(el);
+                }
+                return acm;
+              }, [])}
+            </ul>
+          </Box>
+        )}
       </Box>
 
       {_rawProjectBrief && (
@@ -156,7 +158,7 @@ function Project(props) {
           sx={{
             borderTop: "1px solid",
             borderColor: "muted",
-            mt:4,
+            mt: 4,
           }}
         >
           <Styled.h3>Related Projects</Styled.h3>

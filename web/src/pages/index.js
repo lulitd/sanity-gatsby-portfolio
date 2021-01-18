@@ -21,6 +21,7 @@ import { flip } from "ramda";
 import Doodles from "../components/doodle";
 import { useThemeUI } from "theme-ui";
 
+
 //@jsx jsx
 export const query = graphql`
   query IndexPageQuery {
@@ -218,6 +219,7 @@ const IndexPage = (props) => {
   const featuredURL = (projectNodes && projectNodes.length > 0)?"featured-projects":((postNodes && postNodes.length > 0)?"featured-posts":null);
 
   const tri = featuredURL? createTriangle(colors,featuredURL): null;
+  
   return (
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />

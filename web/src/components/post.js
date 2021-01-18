@@ -8,6 +8,7 @@ import Container from "./container";
 import { Heading, Box, Text, Button } from "rebass";
 import { AspectImage, Styled, Grid, jsx } from "theme-ui";
 import ThemedLink from "./ThemedLink";
+import { TransitionState } from "gatsby-plugin-transition-link";
 // @jsx jsx
 
 function getLatestUpdate(publishedAt, _updatedAt) {

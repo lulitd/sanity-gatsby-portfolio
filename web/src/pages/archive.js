@@ -78,6 +78,8 @@ const ArchivePage = (props) => {
   const categoryNodes = data && data.categories && mapEdgesToNodes(data.categories);
 
   const usedCategories = data && data.usedCategories;
+
+
   return (
     <>
       <SEO title="Archive" />

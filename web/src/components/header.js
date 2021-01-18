@@ -6,6 +6,8 @@ import Container from "./container";
 import ThemedLink from "./ThemedLink";
 import { lighten } from "@theme-ui/color";
 import { useColorMode } from "theme-ui";
+import { TransitionState } from "gatsby-plugin-transition-link";
+
 ///@jsx jsx
 const Branding = (props) => (
   <Box flex="1">
@@ -26,10 +28,6 @@ const Branding = (props) => (
           display: "inline-block",
         }}
       />
-      {/* <span sx={{
-        paddingLeft: [1],
-        verticalAlign: 'middle',
-      }} >Lalaine</span> */}
     </ThemedLink>
   </Box>
 );
@@ -51,7 +49,7 @@ const ToggleButton = ({ showNav, onHideNav, onShowNav }) => (
   </Button>
 );
 
-const NavLink = ({ to, children }) => (
+const NavLink = ({ to, children, trigger }) => (
   <ThemedLink
     to={to}
     variant="nav"
@@ -59,24 +57,15 @@ const NavLink = ({ to, children }) => (
     direction="down"
     duration={1.5}
     sx={{
-      // color: 'inherit',
-      // textDecoration: 'none',
-      // display: 'block',
-      // fontFamily: 'heading',
-      // letterSpacing: [1],
-
-      // '&:hover': {
-      //   color: 'secondary'
-      // },
-      paddingLeft: [1, 3],
-      // paddingY: [2,0],
+      paddingLeft: [1, 3]
     }}
+    trigger={trigger}
   >
     {children}
   </ThemedLink>
 );
 
-const Nav = ({ showNav }) => (
+const Nav = ({ showNav, onHideNav, onShowNav }) => (
   <Box
     as="nav"
     display={[showNav ? "flex" : "none", "flex"]}
@@ -106,19 +95,34 @@ const Nav = ({ showNav }) => (
       }}
     >
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" trigger={async pages => {
+            const exit = await pages.exit;
+            const entry = await pages.entry;
+            await entry.visible;
+            onHideNav();}}>Home</NavLink>
       </li>
       <li>
-        <NavLink to="/about/">About</NavLink>
+        <NavLink to="/about/" trigger={async pages => {
+            const exit = await pages.exit;
+            const entry = await pages.entry;
+            await entry.visible;
+            onHideNav();}}>About</NavLink>
       </li>
       <li>
-        <NavLink to="/archive/">Projects</NavLink>
+        <NavLink to="/archive/" trigger={async pages => {const exit = await pages.exit;
+            const entry = await pages.entry;
+            await entry.visible;
+            onHideNav();}}>Projects</NavLink>
       </li>
       {/* <li>
         <NavLink to="/posts/">Blog</NavLink>
       </li> */}
       <li>
-        <NavLink to="/contact/">Contact</NavLink>
+        <NavLink to="/contact/" trigger={async pages => {
+            const exit = await pages.exit;
+            const entry = await pages.entry;
+            await entry.visible;
+            onHideNav();}} >Contact</NavLink>
       </li>
     </Flex>
   </Box>
@@ -126,6 +130,8 @@ const Nav = ({ showNav }) => (
 
 const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
   const [colorMode, setColorMode] = useColorMode();
+
+
   return (
     <Flex
       sx={{
@@ -161,7 +167,7 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
       >
         <Branding />
         <ToggleButton showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
-        <Nav showNav={showNav} />
+        <Nav showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
       </Container>
     </Flex>
   );

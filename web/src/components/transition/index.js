@@ -5,16 +5,17 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import BlockWindow from  './blockTransition'
 
 export default function DefaultTransition(allProps) {
-	const { children, ...props } = allProps
+	const { children,entry,exit, ...props } = allProps
+
 	return (
 		<>
-			{props.block && <BlockWindow {...props}>{children}</BlockWindow>}
+			{props.block && <BlockWindow entry={entry} exit={exit} {...props}>{children}</BlockWindow>}
             {(props.cover ||
 				props.fade ||
 				props.paintDrip ||
 				props.swipe ||
 				props.morph) && (
-					<AniLink {...props}>{children}</AniLink>
+					<AniLink entry={entry} exit={exit}  {...props}>{children}</AniLink>
 			)}
 			{!props.cover &&
 				!props.fade &&
@@ -23,7 +24,7 @@ export default function DefaultTransition(allProps) {
                 !props.morph && 
                 !props.block &&
                 (
-					<TransitionLink {...props}>{children}</TransitionLink>
+					<TransitionLink entry={entry} exit={exit}  {...props}>{children}</TransitionLink>
 				)}
 		</>
 	)

@@ -170,12 +170,15 @@ export default class BlockWindow extends Component{
                                     props.color,
                                     node
                                 ),
+                            state: removedExit? removedExit.state : null,
                         }}
                         entry={{
                             delay: aniDelay,
                             length: aniLength,
+                            state: removedEntry? removedEntry.state : null,
                             trigger: ({ entry, node }) =>
                                 this.slideIn(entry, node, direction),
+                                
                         }}
                         {...props}>
                         {props.children}
