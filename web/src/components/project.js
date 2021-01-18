@@ -73,9 +73,9 @@ function Project(props) {
               {categories.reduce((acm, cat) => {
                 if (cat.projectFilter) {
                   const el = (
-                    <Styled.li sx={{ display: "inline-block", pr: "2" }}>
+                    <Styled.li sx={{ display: "inline-block", pr: "2" }} key={`li_${cat._id}`}>
                       <ThemedLink
-                        block="true"
+                        block
                         to={`/archive/${cat.slug.current}`}
                         variant="outlineBtn"
                         key={cat._id}

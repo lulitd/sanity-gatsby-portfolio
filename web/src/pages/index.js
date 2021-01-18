@@ -277,10 +277,10 @@ const IndexPage = (props) => {
                 },
               }}
             >
-              <ThemedLink block="true" to="/archive" variant="semiOutlineBtn" fontSize={2}>
+              <ThemedLink block to="/archive" variant="semiOutlineBtn" fontSize={2}>
                 View Projects
               </ThemedLink>
-              <ThemedLink block="true" to="/about" variant="outlineBtn" fontSize={2}>
+              <ThemedLink block to="/about" variant="outlineBtn" fontSize={2}>
                 Get To Know Me
               </ThemedLink>
             </Box>
