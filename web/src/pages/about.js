@@ -56,12 +56,13 @@ const LabelRef = React.createRef();
 
 const Animate = () => {
   const tl = gsap.timeline({ repeat: -1, yoyo: true, defaults: { duration: 5 } });
-  tl.fromTo(AboutImageRef.current, { rotateY: 10 }, { rotateY: -10 }).fromTo(
+  tl
+  .fromTo(AboutImageRef.current, { rotateY: 10 }, { rotateY: -10 })
+    .fromTo(
     LabelRef.current,
     { rotateY: -5, translateX: "5%", translateY: "25%", translateZ: 50 },
     { rotateY: 5, translateZ: 150, translateX: "12.5%", translateY: "100%" },
-    0
-  );
+    0)
 };
 const AboutPage = (props) => {
   const { data, errors } = props;
@@ -167,6 +168,11 @@ const AboutPage = (props) => {
                     borderTopLeftRadius: "default",
                     borderBottomRightRadius: "default",
                     width: ["16ch"],
+
+                  //   "& span": {
+                  //  display:'none',
+                  //  opacity:0,
+                  //   },
                   }}
                 >
                   {/* <span>Maker </span>

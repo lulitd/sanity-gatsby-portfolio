@@ -95,9 +95,10 @@ function ProjectPreview(props) {
               color: lighten("primary", 0.1),
               textTransform: "uppercase",
               letterSpacing: "0.1rem",
+              fontFamily:'body',
             }}
             fontSize={[3, 4]}
-            fontWeight="normal"
+            fontWeight="lighter"
           >
             {props.subtitle}
           </Heading>
