@@ -20,9 +20,9 @@ const theme = {
   },
   fonts: {
     body: 'Inter,"Helvetica Neue", sans-serif',
-    heading: '"dharma-gothic-c","Inter", sans-serif',
-    button: '"dharma-gothic-c","Inter",sans-serif',
-    nav: '"dharma-gothic-c","Inter",sans-serif',
+    heading: '"Orbitron","Inter", sans-serif',
+    button: '"Orbitron","Inter",sans-serif',
+    nav: '"Orbitron","Inter",sans-serif',
     monospace: "monospace",
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048],
