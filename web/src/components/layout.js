@@ -19,6 +19,7 @@ const Layout = ({
   ...rest
 }) => (
 
+  
   <Flex flexDirection="column" minHeight="100vh" {...rest} sx={{}}>
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
     <Box

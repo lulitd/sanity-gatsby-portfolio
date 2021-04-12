@@ -37,7 +37,7 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
     }
     const count = cat.title === "All" ? (total ? `(${total})` : "") : totalCount;
     return (
-      <Styled.li sx={{ display: "inline-block", pr: "2" }} key={cat.id}>
+      <Styled.li sx={{ display: "inline-block", pr: "2", lineHeight:[2] }} key={cat.id}>
         <ThemedLink
           to={`/archive/${cat.slug.current}`}
           variant={isCurrent ? "semiOutlineBtn" : "outlineBtn"}

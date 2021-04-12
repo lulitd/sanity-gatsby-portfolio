@@ -51,7 +51,7 @@ function ProjectPreview(props) {
           display: "flex",
           flexDirection: "column",
           minHeight: "200px",
-          background: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.3)), url(${bgURL})`,
+          background: `linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.5)), url(${bgURL})`,
           backgroundSize: "cover",
           opacity: "0.6",
           transition: "0.5s",
@@ -66,7 +66,7 @@ function ProjectPreview(props) {
             borderWidth: 2,
             borderStyle: "solid",
             borderColor: "secondary",
-            background: `linear-gradient(rgba(0.5,0.5,0.5,0.5),rgba(0.5,0.5,0.5,0.75)), url(${bgURL})`,
+            background: `linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.5)), url(${bgURL})`,
             bg: "background",
             opacity: 1,
             backgroundSize: "cover",
@@ -82,7 +82,7 @@ function ProjectPreview(props) {
       >
         <Heading
           sx={{
-            color: lighten("primary", 0.1),
+            color: lighten("primary", 0.3),
             textTransform: "uppercase",
           }}
           fontSize={[4, 5]}
@@ -92,12 +92,12 @@ function ProjectPreview(props) {
         {props.subtitle && (
           <Heading
             sx={{
-              color: "primary",
-              textTransform: "captialize",
+              color: lighten("primary", 0.1),
+              textTransform: "uppercase",
               letterSpacing: "0.1rem",
             }}
             fontSize={[3, 4]}
-            fontWeight="400"
+            fontWeight="normal"
           >
             {props.subtitle}
           </Heading>

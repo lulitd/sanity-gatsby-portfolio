@@ -23,6 +23,8 @@ export default {
           {title: 'Artist', value: 'artist'},
           {title: 'Performer', value: 'performer'},
           {title: 'Editor', value: 'editor'},
+          {title: 'Music', value: 'music'},
+          {title: 'Sound Effects', value: 'sound effects'},
           {title: 'Manager', value: 'manager'}
         ]
       }

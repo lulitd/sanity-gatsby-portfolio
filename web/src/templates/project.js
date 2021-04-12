@@ -28,6 +28,7 @@ export const query = graphql`
       }
       relatedProjects {
         title
+        subtitle
         publishedAt
         mainImage {
           crop {

@@ -127,9 +127,6 @@ export default class BlockWindow extends Component{
     
         slideIn = ({ length }, node, from) => {
             
-            // const html = document.querySelector("html");
-
-            // html.style= html.style.overflow = "auto";
             gsap.from(node, length, {
                 ...this.getDirection(from),
                 ease: 'power1.easeOut',
