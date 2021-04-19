@@ -8,6 +8,7 @@ import SEO from "../components/seo";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { Styled, jsx } from "theme-ui";
+import { FaCentercode } from "react-icons/fa";
 
 //@jsx jsx
 export const query = graphql`
@@ -83,7 +84,9 @@ const ArchivePage = (props) => {
   return (
     <>
       <SEO title="Archive" />
-      <Container>
+      <Container sx={{
+       textAlign:"center" 
+      }}>
         <Styled.h1 sx={{ py: 1 }}>Projects #All</Styled.h1>
         <CategoryLinkList
           categories={categoryNodes}

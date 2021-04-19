@@ -105,7 +105,9 @@ const CategoryTemplate = (props) => {
       )}
 
       <SEO title={`Archive: ${category.title}`} />
-      <Container>
+      <Container sx={{
+        textAlign:"center" 
+      }}>
         <Styled.h1 sx={{ py: 1 }}>{`Projects #${category.title}`}</Styled.h1>
         <CategoryLinkList
           categories={categoryNodes}
@@ -114,6 +116,7 @@ const CategoryTemplate = (props) => {
           used={usedCategories}
           total={totalCount}
         />
+        
         {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>
     </>

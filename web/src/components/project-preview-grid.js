@@ -7,12 +7,14 @@ import ThemedLink from "./ThemedLink";
 
 function ProjectPreviewGrid(props) {
   return (
+
+
     <Box>
       {props.title && <Styled.h2>{props.title}</Styled.h2>}
       <Grid
         as="ul"
-        gap={[3, 4]}
-        columns={props.columns}
+        gap={[2, 3]}
+        columns={props.nodes.length > 1 ? props.columns : 1}
         sx={{
           listStyle: "none",
           color: "inherit",

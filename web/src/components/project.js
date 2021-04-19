@@ -43,6 +43,33 @@ function Project(props) {
     return item && item.publishedAt;
   });
 
+  const categoriesButtons =
+    <Box pb={2} sx={{ textAlign: 'center' }}>
+      <ul sx={{
+        listStyle: "none",
+        padding: 0,
+      }}>
+        {categories.reduce((acm, cat) => {
+          if (cat.projectFilter) {
+            const el = (
+              <Styled.li sx={{ display: "inline-block",pr:[2], py:[3] }} key={`li_${cat._id}`}>
+                <ThemedLink
+                  block
+                  to={`/archive/${cat.slug.current}`}
+                  variant="outlineBtn"
+                  key={cat._id}
+                >
+                  #{cat.title}
+                </ThemedLink>
+              </Styled.li>
+            );
+            acm.push(el);
+          }
+          return acm;
+        }, [])}
+      </ul>
+    </Box>; 
+
   return (
     <Container as="article" px={[2, 4, 6]} mb={4}>
 
@@ -63,34 +90,7 @@ function Project(props) {
           pt: 4,
         }}>{title}</Heading>
 
-
-        {categories && categories.length > 0 && (
-          <Box pb={2} sx={{ textAlign: 'center' }}>
-            <ul sx={{
-              listStyle: "none",
-              padding: 0,
-            }}>
-              {categories.reduce((acm, cat) => {
-                if (cat.projectFilter) {
-                  const el = (
-                    <Styled.li sx={{ display: "inline-block", pr: "2" }} key={`li_${cat._id}`}>
-                      <ThemedLink
-                        block
-                        to={`/archive/${cat.slug.current}`}
-                        variant="outlineBtn"
-                        key={cat._id}
-                      >
-                        #{cat.title}
-                      </ThemedLink>
-                    </Styled.li>
-                  );
-                  acm.push(el);
-                }
-                return acm;
-              }, [])}
-            </ul>
-          </Box>
-        )}
+        {categories && categories.length > 0 && categoriesButtons}
       </Box>
 
       {_rawProjectBrief && (
@@ -159,9 +159,11 @@ function Project(props) {
             borderTop: "1px solid",
             borderColor: "muted",
             mt: 4,
+            textAlign:"center",
           }}
         >
           <Styled.h3>Related Projects</Styled.h3>
+ {categories && categories.length > 0 && categoriesButtons}
           <ProjectPreviewGrid nodes={filteredProjects} />
         </Box>
       )}
