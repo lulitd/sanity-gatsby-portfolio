@@ -1,4 +1,4 @@
-//import {MdPerson} from 'react-icons/md'
+// import {MdPerson} from 'react-icons/md'
 
 export default {
   name: 'person',
@@ -8,7 +8,7 @@ export default {
     {
       name: 'social',
       title: 'Social media handles',
-      options: { collapsible: true, collapsed: false }
+      options: {collapsible: true, collapsed: false}
     }
   ],
   fields: [
@@ -30,13 +30,19 @@ export default {
     {
       name: 'image',
       title: 'Image',
-      type: 'figure',
+      type: 'figure'
     },
     {
       name: 'bio',
       title: 'Bio',
       type: 'bioPortableText',
-      options: { collapsible: true, collapsed: false }
+      options: {collapsible: true, collapsed: false}
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{type: 'string'}]
     },
     {
       title: 'Website',

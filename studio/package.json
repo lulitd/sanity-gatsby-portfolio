@@ -26,6 +26,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-player": "^1.14.2",
+    "sanity-cli": "0.0.2",
     "sanity-plugin-dashboard-widget-document-list": "^0.0.8",
     "sanity-plugin-dashboard-widget-netlify": "^1.0.1",
     "sanity-plugin-media": "^0.2.10"

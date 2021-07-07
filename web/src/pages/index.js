@@ -64,13 +64,35 @@ export const query = graphql`
       filter: {
         slug: { current: { ne: null } }
         publishedAt: { ne: null }
-        featured: { eq: false }
+        featured: { eq: true }
       }
     ) {
       edges {
         node {
           _id
           mainImage {
+            crop {
+              _key
+              _type
+              top
+              bottom
+              left
+              right
+            }
+            hotspot {
+              _key
+              _type
+              x
+              y
+              height
+              width
+            }
+            asset {
+              _id
+            }
+            alt
+          }
+          thumbImage {
             crop {
               _key
               _type

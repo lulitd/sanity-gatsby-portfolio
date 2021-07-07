@@ -27,6 +27,12 @@ export const query = graphql`
             }
             alt
           }
+          thumbImage {
+            asset {
+              _id
+            }
+            alt
+          }
           title
           subtitle
           slug {

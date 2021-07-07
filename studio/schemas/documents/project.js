@@ -54,6 +54,11 @@ export default {
       type: 'datetime'
     },
     {
+      name: 'thumbImage',
+      title: 'Thumbnail image',
+      type: 'figure'
+    },
+    {
       name: 'mainImage',
       title: 'Main image',
       type: 'figure'
@@ -85,7 +90,7 @@ export default {
       title: 'Accolades',
       type: 'array',
       of: [{type: 'reference', to: {type: 'accolade'}}]
-    },
+    }
   ],
   preview: {
     select: {
@@ -94,7 +99,7 @@ export default {
       slug: 'slug',
       media: 'mainImage'
     },
-    prepare({title = 'No title', publishedAt, slug = {}, media}) {
+    prepare ({title = 'No title', publishedAt, slug = {}, media}) {
       const dateSegment = format(publishedAt, 'YYYY/MM')
       const path = `/${dateSegment}/${slug.current}/`
       return {

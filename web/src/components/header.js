@@ -13,7 +13,7 @@ const Branding = (props) => (
   <Box flex="1">
     <ThemedLink
       to="/"
-      cover
+      block
       direction="down"
       duration={1.5}
       variant="nav"
@@ -53,7 +53,7 @@ const NavLink = ({ to, children, trigger }) => (
   <ThemedLink
     to={to}
     variant="nav"
-    cover
+    block
     direction="down"
     duration={1.5}
     sx={{

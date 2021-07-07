@@ -77,10 +77,10 @@ function Project(props) {
       <Box pb={[0]} sx={{ textAlign: 'center' }}>
         {props.mainImage && mainImage.asset && (
           <AspectImage
-            ratio={16 / 4}
+            ratio={16 /6}
             src={imageUrlFor(buildImageObj(mainImage))
               .width(1200)
-              .height(Math.floor((4 / 16) * 1200))
+              .height(Math.floor((6 / 16) * 1200))
               .fit("crop")
               .url()}
             alt={mainImage.alt}

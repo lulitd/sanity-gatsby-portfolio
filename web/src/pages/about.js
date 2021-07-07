@@ -21,6 +21,7 @@ export const query = graphql`
         instagram
         twitter
         linkedin
+        tags
         image {
           crop {
             _key
@@ -53,21 +54,45 @@ export const query = graphql`
 
 const AboutImageRef = React.createRef();
 const LabelRef = React.createRef();
+let TextRefs = [];
 
 const Animate = () => {
-  const tl = gsap.timeline({ repeat: -1, yoyo: true, defaults: { duration: 5 } });
-  tl
-  .fromTo(AboutImageRef.current, { rotateY: 10 }, { rotateY: -10 })
-    .fromTo(
-    LabelRef.current,
-    { rotateY: -5, translateX: "5%", translateY: "25%", translateZ: 50 },
-    { rotateY: 5, translateZ: 150, translateX: "12.5%", translateY: "100%" },
-    0)
+  
+  const delay = 0.3; 
+  const dur = 1; 
+  const fullDur = TextRefs.length* (delay+dur+dur);
+  const tl = gsap.timeline({ repeat: -1, defaults:{duration:dur}});
+
+  TextRefs.forEach((e, i) => {
+    tl.fromTo(e.current, { opacity: 0 }, { opacity: 1, repeat: 1, yoyo: true, yoyoEase: true ,repeatDelay:delay})
+  });
+
+    tl.fromTo(AboutImageRef.current, { rotateY: -20 }, { repeat: 1,rotateY:20 ,yoyo: true,duration:fullDur*0.5,ease:"none" ,repeatDelay:0},0)
+  //  tl.fromTo(LabelRef.current, { rotateY: 10 }, { repeat: 1,rotateY:-10 ,yoyo: true,duration:3.45,ease:"none" ,repeatDelay:0},0)
+  .fromTo(
+  LabelRef.current,
+  { rotateY: -5, translateX: "5%", translateY: "25%", translateZ: 25 },
+  { rotateY: 5, translateZ: 50, translateX: "12.5%", translateY: "100%",repeat:1 ,yoyo: true,duration:fullDur*0.5,ease:"none" ,repeatDelay:0},
+  0);
+};
+
+const CreateTags = (tags) => {
+
+
+  
+  return (
+    tags.map((label, i) => {
+      TextRefs.push(React.createRef());
+      return (
+        <Box ref={TextRefs[i]} key={i}>{label}</Box>
+      );
+    })
+  );
 };
 const AboutPage = (props) => {
   const { data, errors } = props;
 
-  useEffect(Animate, [AboutImageRef, LabelRef]);
+  useEffect(Animate, [AboutImageRef, LabelRef, TextRefs]);
 
   if (errors) {
     return (
@@ -93,6 +118,9 @@ const AboutPage = (props) => {
   }
 
   const profileImage = author.image;
+
+  const tags = CreateTags(author.tags);
+
   return (
     <>
       <SEO title="About" />
@@ -168,16 +196,19 @@ const AboutPage = (props) => {
                     borderTopLeftRadius: "default",
                     borderBottomRightRadius: "default",
                     width: ["16ch"],
+                    minHeight:"2rem",
 
-                  //   "& span": {
-                  //  display:'none',
-                  //  opacity:0,
-                  //   },
+                    "& div": {
+                     display:"inline-block",
+                     position:"absolute",
+                     left:"50%",
+                     top:"50%",
+                     transform:"translate(-50%,-50%)",
+                     width:["100%"], 
+                    },
                   }}
                 >
-                  {/* <span>Maker </span>
-                  <span>Developer </span> */}
-                  <span>Creative Coder </span>
+                  {tags}
                 </Box>
               </Box>
             )}

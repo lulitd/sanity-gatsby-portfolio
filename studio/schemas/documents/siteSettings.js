@@ -10,12 +10,12 @@ export default {
   ],
   fieldsets: [
     {
-     name: 'jumbotron', 
-     title: 'Jumbotron Settings',
-     options: {collapsible: true, collapsed: false}
+      name: 'jumbotron',
+      title: 'Jumbotron Settings',
+      options: {collapsible: true, collapsed: false}
     },
     {
-      name: 'contact', 
+      name: 'contact',
       title: 'Contact Settings',
       options: {collapsible: true, collapsed: false}
     }
@@ -27,9 +27,9 @@ export default {
       title: 'Title'
     },
     {
-      name:'logo',
-      type:'image',
-      title:'Logo',
+      name: 'logo',
+      type: 'image',
+      title: 'Logo'
     },
     {
       name: 'description',
@@ -42,33 +42,37 @@ export default {
       type: 'text',
       title: 'Jumbotron Description',
       description: 'This is the description that appears in the header of the index page.',
-      fieldset:'jumbotron'
+      fieldset: 'jumbotron'
     },
     {
       name: 'jumboName',
       type: 'text',
       title: 'Jumbotron Name',
       description: 'This is the name that appears in the jumbotron of index page.',
-      fieldset:'jumbotron'
+      fieldset: 'jumbotron'
     },
     {
       name: 'jumboTag',
       type: 'text',
       title: 'Jumbotron Tag',
       description: 'This is the tag that appears in the jumbotron of index page.',
-      fieldset:'jumbotron'
+      fieldset: 'jumbotron'
     },
-    { name: 'contactEmail',
-    type: 'text',
-    title: 'email',
-    description: 'This is the email that people can contact you at',
-    fieldset:'contact'},
-    { name: 'contactor',
-    type: 'reference',
-    title: 'contactor',
-    to: [{type: 'person'}],
-    description: 'This is will display the social icons of the contactor',
-    fieldset:'contact'},
+    {
+      name: 'contactEmail',
+      type: 'text',
+      title: 'email',
+      description: 'This is the email that people can contact you at',
+      fieldset: 'contact'
+    },
+    {
+      name: 'contactor',
+      type: 'reference',
+      title: 'contactor',
+      to: [{type: 'person'}],
+      description: 'This is will display the social icons of the contactor',
+      fieldset: 'contact'
+    },
     {
       name: 'keywords',
       type: 'array',

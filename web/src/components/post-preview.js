@@ -39,7 +39,7 @@ function PostPreview(props) {
   const { colors } = context.theme;
   return (
     <ThemedLink
-      block
+      cover
       to={`/post/${props.slug.current}`}
       transitionColor={colors.primary}
       sx={{

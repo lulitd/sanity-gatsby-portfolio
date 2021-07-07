@@ -7,10 +7,10 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // Document types
 import category from './documents/category'
 import person from './documents/person'
-import project from  './documents/project'
+import project from './documents/project'
 import siteSettings from './documents/siteSettings'
 import accolade from './documents/accolade'
-import post from  "./documents/post"
+import post from './documents/post'
 // Object types
 import bioPortableText from './objects/bioPortableText'
 import figure from './objects/figure'

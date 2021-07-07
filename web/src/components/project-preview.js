@@ -11,14 +11,14 @@ import ThemedLink from "./ThemedLink";
 import { useThemeUI } from "theme-ui";
 //@jsx jsx
 function ProjectPreview(props) {
-  const hasBG = props.mainImage && props.mainImage.asset;
+  const hasBG = (props.thumbImage && props.thumbImage.asset) || (props.mainImage && props.mainImage.asset);
   let bgURL;
 
   if (hasBG) {
-    bgURL = imageUrlFor(buildImageObj(props.mainImage))
+    bgURL = imageUrlFor(buildImageObj(props.thumbImage?props.thumbImage:props.mainImage))
       .width(600)
       .height(Math.floor((9 / 16) * 600))
-      .blur(15)
+      .blur(20)
       .url();
   }
 
@@ -51,7 +51,7 @@ function ProjectPreview(props) {
           display: "flex",
           flexDirection: "column",
           minHeight: "200px",
-          background: `linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.5)), url(${bgURL})`,
+          background: `linear-gradient(45deg, rgba(2,0,36,0.85) 0%, rgba(9,9,121,0) 100%),  url(${bgURL})`,
           backgroundSize: "cover",
           opacity: "0.6",
           transition: "0.5s",
@@ -66,7 +66,7 @@ function ProjectPreview(props) {
             borderWidth: 2,
             borderStyle: "solid",
             borderColor: "secondary",
-            background: `linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.5)), url(${bgURL})`,
+            background: `linear-gradient(45deg, rgba(2,0,36,0.85) 0%, rgba(9,9,121,0) 100%), url(${bgURL})`,
             bg: "background",
             opacity: 1,
             backgroundSize: "cover",

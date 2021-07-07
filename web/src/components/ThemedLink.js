@@ -17,7 +17,7 @@ const ThemedLink = ({ to, children, variant, sx, transitionColor, ...rest }) => 
       sx={{ variant: `buttons.${variant}`, ...sx }}
       entry={{
         state: {
-          showNav: false
+        showNav: false
         }
       }}
     >

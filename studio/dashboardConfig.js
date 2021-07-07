@@ -25,7 +25,7 @@ export default {
         title: 'Recent posts',
         order: '_createdAt desc',
         types: ['post'],
-        limit: 5,
+        limit: 5
       },
       layout: {width: 'medium'}
     },

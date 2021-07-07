@@ -20,13 +20,12 @@ export default {
     {
       name: 'projectFilter',
       type: 'boolean',
-      title:'Project Filter'
+      title: 'Project Filter'
     },
     {
       name: 'description',
       type: 'text',
       title: 'Description'
-    },
- 
+    }
   ]
 }

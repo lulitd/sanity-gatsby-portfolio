@@ -5,7 +5,7 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import BlockWindow from  './blockTransition'
 
 export default function DefaultTransition(allProps) {
-	const { children,entry,exit, ...props } = allProps
+	const { children,entry,exit, ...props } = allProps;
 
 	return (
 		<>
@@ -15,7 +15,7 @@ export default function DefaultTransition(allProps) {
 				props.paintDrip ||
 				props.swipe ||
 				props.morph) && (
-					<AniLink entry={entry} exit={exit}  {...props}>{children}</AniLink>
+					<AniLink entry={entry} exit={exit} {...props}>{children}</AniLink>
 			)}
 			{!props.cover &&
 				!props.fade &&

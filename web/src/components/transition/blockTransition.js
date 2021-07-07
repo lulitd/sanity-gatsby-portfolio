@@ -52,8 +52,8 @@ export default class BlockWindow extends Component{
                 y: y,
             }
     
-            const seconds = length
-    
+      const seconds = length
+   
             gsap.timeline({
                 onUpdate: drawRipple,
                 onComplete: () => removeCanvas(seconds / 3),
