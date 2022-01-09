@@ -168,6 +168,7 @@ const theme = {
     },
     textarea: {
       variant: "forms.input",
+      resize:"none",
     },
   },
   styles: {

@@ -107,19 +107,19 @@ function Project(props) {
             backdropFilter: "blur(10px)",
           }}>
 
-            <Box width='32ch'>
-          <Heading 
-          sx={{
-            color: lighten("primary", 0.2),
-            textTransform: "uppercase",
-        
-          }}
-            fontSize={[5,6]}>{title}</Heading>  
-            </Box>       
+          <Box width='32ch'>
+            <Heading
+              sx={{
+                color: lighten("primary", 0.2),
+                textTransform: "uppercase",
+
+              }}
+              fontSize={[5, 6]}>{title}</Heading>
+          </Box>
         </Card>
       </Flex>
       <Container>
-      {categories && categories.length > 0 && categoriesButtons}
+        {categories && categories.length > 0 && categoriesButtons}
         {_rawProjectBrief && (
           <Flex pb={2} flexDirection="column" mx="auto">
             <Styled.h3 sx={{
@@ -143,26 +143,38 @@ function Project(props) {
         )}
 
 
-        {collaborators && collaborators.length > 0 && (
-          <RoleList items={collaborators} title="Team" />
-        )}
+        <Flex justifyContent="space-evenly">
+          {collaborators && collaborators.length > 0 && (
+            <RoleList items={collaborators} title="Team" />
+          )}
 
 
-        {uniqueAccolades && uniqueAccolades.length > 0 && (
-          <Box pb={2} sx={{ textAlign: 'center' }}>
-            <Styled.h3 sx={{
-              color: lighten('secondary', .1),
-              fontWeight: 100,
-              mx: [0, 'auto']
-            }}>Exhibitions & Awards</Styled.h3>
-            <Grid as="ul" gap={2} columns={[1, uniqueAccolades.length > 1 ? 2 : 1]} sx={{ listStyle: 'none', padding: 0 }}>
-              {uniqueAccolades.map((accolade) => {
+          {uniqueAccolades && uniqueAccolades.length > 0 && (
+            <Flex pb={2}
+              flexDirection="column" alignItems="center" width="fitContent">
+              <Styled.h3 sx={{
+                color: lighten('secondary', .1),
+                fontWeight: 100
+              }}>Exhibitions & Awards</Styled.h3>
+              <Flex
+                as="ul"
+                flexDirection="column"
+                sx={{
+                  listStylePosition: "inside",
+                  listStyle: "none",
+                  padding: 0,
+                }}
+              >  {uniqueAccolades.map((accolade) => {
                 let label = "";
                 label += `${accolade.date.split("-")[0]}: `;
                 label += accolade.title;
                 label += accolade.event ? `,\n${accolade.event}` : "";
                 return (
-                  <Box as="li" key={accolade._id}>
+                  <Box as="li" key={accolade._id} sx={{
+                    "& :last-child": {
+                      pb: 2,
+                    },
+                  }}>
                     <Text
                       sx={{
                         whiteSpace: "pre-wrap",
@@ -176,10 +188,10 @@ function Project(props) {
                   </Box>
                 );
               })}
-            </Grid>
-          </Box>
-        )}
-
+              </Flex>
+            </Flex>
+          )}
+        </Flex>
         {filteredProjects && filteredProjects.length > 0 && (
           <Box
             sx={{

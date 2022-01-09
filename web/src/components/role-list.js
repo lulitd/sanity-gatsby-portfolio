@@ -2,9 +2,10 @@ import React from "react";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import { ucfirst } from "../lib/string-utils";
-import { Styled, Image, Grid, jsx,Box } from "theme-ui";
+import { Styled, Image, Grid, jsx, Box } from "theme-ui";
 import { FaHandMiddleFinger } from "react-icons/fa";
 import { darken, lighten } from '@theme-ui/color'
+import { Flex } from "rebass";
 //@jsx jsx
 const ConditionalWrapper = ({ condition, wrapper, children }) =>
   condition ? wrapper(children) : children;
@@ -13,16 +14,18 @@ function ConditionalIcon(asset) {
   if (!asset) return null;
   return !asset.metadata.isOpaque;
 }
+
 function RoleList({ items, title }) {
   return (
-    <Box pb={2} sx={{ textAlign: 'center' }}>
+    <Flex pb={2} 
+    flexDirection="column" alignItems="center" width="fitContent">
       <Styled.h3 sx={{
-           color: lighten('secondary', .1),
-           fontWeight: 100,
+        color: lighten('secondary', .1),
+        fontWeight: 100,
       }} >{title}</Styled.h3>
-      <Grid
+      <Flex
         as="ul"
-        columns={[1, items.length % 2 == 0 ? 2 : 3, null]}
+        flexDirection="column"
         sx={{
           listStylePosition: "inside",
           listStyle: "none",
@@ -51,7 +54,7 @@ function RoleList({ items, title }) {
                 "& span": {
                   color: "primary",
                   textTransform: "capitalize",
-                  fontWeight:100,
+                  fontWeight: 100,
                 },
               }}
             >
@@ -67,7 +70,7 @@ function RoleList({ items, title }) {
                         textDecoration: "underline",
                         color: "secondary",
                         "& span": {
-                          color: "body",
+                          color: "secondary",
                           textDecoration: "underline",
                         },
                       },
@@ -77,31 +80,28 @@ function RoleList({ items, title }) {
                   </Styled.a>
                 )}
               >
-                <Box>
-                  <strong>{(item.person && item.person.name) || <em>Missing name</em>} </strong>
-                  {item.roles && (
-                    <Box>
-                      <span>
-                        {item.roles.map((role, idx) => {
-                          switch (true) {
-                            case idx === 0:
-                              return <span key={`${role}-${item.person.name}`}>{role}</span>;
-                            case idx === item.roles.length - 1:
-                              return <span key={`${role}-${item.person.name}`}> & {role}</span>;
-                            default:
-                              return <span key={`${role}-${item.person.name}`}>, {role}</span>;
-                          }
-                        })}
-                      </span>
-                    </Box>
-                  )}
+                <Box sx={{
+                  "& p:last-child":{
+                    pb:1, 
+                  },
+                }}>
+                  <Styled.p sx={{
+                    fontWeight: "bold",
+                    fontSize:[2],
+                    margin:0,
+                    lineHeight:0,
+                  }}> {(item.person && item.person.name) || <em>Missing name</em>} </Styled.p >
+                  {item.roles && (<Styled.p  sx={{
+                    textTransform: "Capitalize",
+                    color: lighten('primary', .1),
+                  }}>{item.roles.join(" + ")}</Styled.p >)}
                 </Box>
               </ConditionalWrapper>
             </Styled.li>
           );
         })}
-      </Grid>
-    </Box>
+      </Flex>
+    </Flex>
   );
 }
 
