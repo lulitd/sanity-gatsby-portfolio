@@ -328,12 +328,14 @@ const IndexPage = (props) => {
           <Styled.h3>SAY HELLO!</Styled.h3>
           <Styled.p sx={{ my: 0 }}>Whether for a potential project or just to say hi, my inbox is always open. -></Styled.p>
         </Flex>
-        <Flex flex={2} p={2} flexDirection="column" mx={"auto"} alignItems={["center", "start", "start"]}>
+        <Flex flex={2} p={2}  flexDirection="column" mx={"auto"} alignItems={["center", "start", "center"]}>
           <Styled.h3>SOCIAL</Styled.h3>
           <ul sx={{
             listStyle: 'none',
             paddingInline: 'inherit',
             my: 0,
+            padding:0,
+            width:["inherit","50ch","inherit"]
           }}>
             <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>TWITTER</Styled.a></li>
             <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>INSTAGRAM</Styled.a></li>

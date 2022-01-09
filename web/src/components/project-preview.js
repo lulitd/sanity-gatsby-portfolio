@@ -87,7 +87,7 @@ function ProjectPreview(props) {
         px={4}
       >
         <Box sx={{
-          maxWidth: '22ch'
+          maxWidth: ["22ch","22ch","30ch"]
         }}>
           <Heading
             sx={{

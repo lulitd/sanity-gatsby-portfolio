@@ -95,7 +95,6 @@ function PostPreview(props) {
             src={bgURL}
             alt={props.mainImage.alt}
             sx={{
-              width: "250px",
               height: "100%",
               width: "100%",
               objectFit: "cover",

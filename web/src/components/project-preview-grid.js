@@ -20,17 +20,17 @@ function ProjectPreviewGrid(props) {
           listStyle: "none",
           color: "inherit",
           flexDirection: "column",
-          m: 0,
+          m: 2,
           mb: [2, null, 3],
           px: 0,
           pb: 3,
           columnGap: [1,2],
           rowGap:[3],
           "& li:nth-child(3n+1)":{
-            gridColumn:['auto','1 / span 2'],
+            gridColumn:['auto','auto','1 / span 2'],
           },
           ...(hasEvenElements && { "& li:last-child ":{
-            gridColumn:['auto','1 / span 2']
+            gridColumn:['auto','auto','1 / span 2']
           }})
         }}
       >
@@ -56,7 +56,7 @@ ProjectPreviewGrid.defaultProps = {
   title: "",
   nodes: [],
   browseMoreHref: "",
-  columns: [1, 2, null],
+  columns: [1, 1, 2],
 };
 
 export default ProjectPreviewGrid;
