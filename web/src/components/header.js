@@ -78,8 +78,7 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
       height: ["calc(100vh - 60px)", "inherit"],
       pt: 2,
       backgroundColor: [lighten("background", 0.1), "transparent"],
-      border: "2px solid transparent",
-      borderBottomColor: ["primary", "transparent"],
+      border: "0px solid transparent",
     }}
   >
     <Flex
@@ -95,13 +94,6 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
       }}
     >
       <li>
-        <NavLink to="/" trigger={async pages => {
-            const exit = await pages.exit;
-            const entry = await pages.entry;
-            await entry.visible;
-            onHideNav();}}>Home</NavLink>
-      </li>
-      <li>
         <NavLink to="/about/" trigger={async pages => {
             const exit = await pages.exit;
             const entry = await pages.entry;
@@ -115,7 +107,10 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
             onHideNav();}}>Projects</NavLink>
       </li>
       {/* <li>
-        <NavLink to="/posts/">Blog</NavLink>
+        <NavLink to="/posts/"  trigger={async pages => {const exit = await pages.exit;
+            const entry = await pages.entry;
+            await entry.visible;
+            onHideNav();}}>Blog</NavLink>
       </li> */}
       <li>
         <NavLink to="/contact/" trigger={async pages => {
@@ -139,6 +134,9 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
         zIndex: 100,
         width: "100%",
         alignItems: "center",
+        backgroundColor:"background",
+        borderWidth:[1],
+        borderBottomColor: ["primary", "transparent"],
       }}
       as="header"
     >
@@ -150,19 +148,7 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
           display: "flex",
           alignItems: "center",
           position: "relative",
-          "&:before": {
-            content: "''",
-            float: "left",
-            backgroundColor: [`${showNav ? "transparent" : "primary"}`, "primary"],
-            width: "100%",
-            height: "2px",
-            borderRadius: "1px",
-            marginTop: "1px",
-            position: "absolute",
-            display: "block",
-            bottom: 0,
-            left: 0,
-          },
+
         }}
       >
         <Branding />

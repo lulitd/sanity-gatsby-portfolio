@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql,Link} from "gatsby";
+import { graphql, Link } from "gatsby";
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
@@ -17,7 +17,7 @@ import { lighten, alpha } from "@theme-ui/color";
 import PostPreviewGrid from "../components/post-preview-grid";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
-import { flip } from "ramda";
+import { F, flip } from "ramda";
 import Doodles from "../components/doodle";
 import { useThemeUI } from "theme-ui";
 
@@ -33,6 +33,10 @@ export const query = graphql`
       jumboDescription
       jumboTag
       author {
+        github
+        instagram
+        twitter
+        linkedin
         name
         image {
           crop {
@@ -115,7 +119,9 @@ export const query = graphql`
             alt
           }
           title
-          subtitle
+          categories {
+            title
+          }
           slug {
             current
           }
@@ -171,10 +177,10 @@ const createHeroBG = (colors) => {
   return <Doodles colors={colors} />;
 };
 
-const createTriangle = (colors,url) => {
+const createTriangle = (colors, url) => {
   return (
     <Link
-       to ={"/#"+url}
+      to={"/#" + url}
       sx={{
         width: [33],
         height: [33],
@@ -238,10 +244,10 @@ const IndexPage = (props) => {
   const context = useThemeUI();
   const { colors } = context.theme;
   const bg = createHeroBG(colors);
-  const featuredURL = (projectNodes && projectNodes.length > 0)?"featured-projects":((postNodes && postNodes.length > 0)?"featured-posts":null);
+  const featuredURL = (projectNodes && projectNodes.length > 0) ? "featured-projects" : ((postNodes && postNodes.length > 0) ? "featured-posts" : null);
 
-  const tri = featuredURL? createTriangle(colors,featuredURL): null;
-  
+  const tri = featuredURL ? createTriangle(colors, featuredURL) : null;
+
   return (
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
@@ -278,11 +284,11 @@ const IndexPage = (props) => {
           >
             <Heading variant="subheading" fontWeight="body" fontSize={[2, 3]} pb={0}>
               Hi my name is
-              <Text as="span" pb={0} display="block" variant="title" fontSize={[36, 48, 64]}>
+              <Text as="span" pb={0} display="block" variant="title" sx={{ fontSize: [36, 48, 48] }}>
                 {site.jumboName}.
               </Text>
             </Heading>
-            <Heading fontWeight="400" fontSize={[24, 36]}>
+            <Heading variant="subheading" fontWeight="body" fontSize={[5, 6]} pb={0}>
               {site.jumboTag}
             </Heading>
             <Text pt={4} pb={2} fontWeight={300} display="table" fontSize={[1, 2, 3]}>
@@ -309,6 +315,34 @@ const IndexPage = (props) => {
           </Box>
         </Box>
         {tri}
+      </Container>
+      <Container bg={'darkest'} sx={{
+        display: "flex",
+        flexDirection: ["column", "column", "row"],
+      }}>
+        <Flex flex={4} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "start", "start"]}}>
+          <Styled.h3>INFO</Styled.h3>
+          <Styled.p sx={{ my: 0 }}>I'm Lalaine, a software developer and interactive artist based in Toronto, Canada. I design and build custom-tailored websites, games and apps for unique experiences.</Styled.p>
+        </Flex>
+        <Flex flex={3} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "start", "start"]}}>
+          <Styled.h3>SAY HELLO!</Styled.h3>
+          <Styled.p sx={{ my: 0 }}>Whether for a potential project or just to say hi, my inbox is always open. -></Styled.p>
+        </Flex>
+        <Flex flex={2} p={2} flexDirection="column" mx={"auto"} alignItems={["center", "start", "start"]}>
+          <Styled.h3>SOCIAL</Styled.h3>
+          <ul sx={{
+            listStyle: 'none',
+            paddingInline: 'inherit',
+            my: 0,
+          }}>
+            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>TWITTER</Styled.a></li>
+            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>INSTAGRAM</Styled.a></li>
+            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>GITHUB</Styled.a></li>
+            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>ARTSTATION</Styled.a></li>
+            <li><Styled.a href={author.twitter} sx={{ color: 'body' }} >YOUTUBE</Styled.a></li>
+            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>LINKEDIN</Styled.a></li>
+          </ul>
+        </Flex>
       </Container>
 
       {projectNodes && projectNodes.length > 0 && (

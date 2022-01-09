@@ -26,12 +26,12 @@ const Layout = ({
       sx={{
         width: "100%",
         flex: "1 1 auto",
-        px: [3, 2, 1],
+        px: [0],
         ...mainStyle,
       }}
       as="main"
     >
-      <Box pt={64}>{children}</Box>
+      <Box pt={60}>{children}</Box>
     </Box>
     <Footer author={author} />
   </Flex>

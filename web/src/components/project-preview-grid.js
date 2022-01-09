@@ -6,6 +6,8 @@ import ThemedLink from "./ThemedLink";
 //@jsx jsx
 
 function ProjectPreviewGrid(props) {
+
+  const hasEvenElements= props.nodes.length%2==0; 
   return (
 
 
@@ -13,7 +15,6 @@ function ProjectPreviewGrid(props) {
       {props.title && <Styled.h2>{props.title}</Styled.h2>}
       <Grid
         as="ul"
-        gap={[2, 3]}
         columns={props.nodes.length > 1 ? props.columns : 1}
         sx={{
           listStyle: "none",
@@ -23,12 +24,20 @@ function ProjectPreviewGrid(props) {
           mb: [2, null, 3],
           px: 0,
           pb: 3,
+          columnGap: [1,2],
+          rowGap:[3],
+          "& li:nth-child(3n+1)":{
+            gridColumn:['auto','1 / span 2'],
+          },
+          ...(hasEvenElements && { "& li:last-child ":{
+            gridColumn:['auto','1 / span 2']
+          }})
         }}
       >
         {props.nodes &&
-          props.nodes.map((node) => (
+          props.nodes.map((node,i) => (
             <Styled.li key={node._id}>
-              <ProjectPreview {...node} />
+              <ProjectPreview {...node} isFull={i%3==0||i==0 || (hasEvenElements && i == props.nodes.length-1)} />
             </Styled.li>
           ))}
       </Grid>

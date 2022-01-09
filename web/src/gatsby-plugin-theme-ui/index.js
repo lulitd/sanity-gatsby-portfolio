@@ -3,9 +3,9 @@ import { alpha, lighten } from "@theme-ui/color";
 const theme = {
   sizes: {
     container: 1200,
-    videoL:1024,
-    videoM:720,
-    videoS:640,
+    videoL: 1024,
+    videoM: 720,
+    videoS: 640,
   },
   colors: {
     text: "#05a696",
@@ -19,11 +19,12 @@ const theme = {
     lightest: "#ffffff"
   },
   fonts: {
-    body: 'Inter,"Helvetica Neue", sans-serif',
-    heading: '"Orbitron","Inter", sans-serif',
-    button: '"Orbitron","Inter",sans-serif',
-    nav: '"Orbitron","Inter",sans-serif',
+    body: 'Fort,"Helvetica Neue", sans-serif',
+    heading: '"ethnocentric", sans-serif',
+    button: '"ethnocentric",sans-serif',
+    nav: '"ethnocentric",sans-serif',
     monospace: "monospace",
+
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048],
   radii: {
@@ -31,12 +32,12 @@ const theme = {
     default: 16,
     pill: 9999,
   },
-  borderWidths: [0, 1, 2, 4, 8, 16, 32, 64, 128],
-  fontSizes: [12, 14, 16, 18, 20, 24, 32, 48, 64, 96],
+  borderWidths: [0, 1, 1.5, 2, 4, 8, 16, 32, 64, 128],
+  fontSizes: [14, 16, 18, 20, 24,28,32, 48, 64, 96],
   fontWeights: {
     body: 400,
-    heading: 600,
-    a:600,
+    heading: 300,
+    a: 600,
     bold: 600,
   },
   lineHeights: {
@@ -53,6 +54,7 @@ const theme = {
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
+      fontStyle: "normal",
       fontSize: [6, 7, 8],
       p: 0,
       pb: "0.66rem",
@@ -63,10 +65,8 @@ const theme = {
       fontSize: [7, 8],
     },
     subheading: {
+      variant: "text.heading",
       color: "muted",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
       fontSize: [4, 5, 6],
       p: 0,
       pb: "0.66rem",
@@ -90,7 +90,7 @@ const theme = {
       textDecoration: "none",
       backgroundColor: "transparent",
       border: "solid currentColor",
-      borderWidth: "2",
+      borderWidth: [2],
       borderRadius: "0",
       borderTopRightRadius: "default",
       borderBottomLeftRadius: "default",
@@ -182,57 +182,93 @@ const theme = {
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [7, 8],
+      fontSize: [6, 7],
+      "&:before": {
+        content: '"< "',
+      },
+      "&:after": {
+        content: '" />"',
+      },
     },
     h2: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [6, 7],
+      fontSize: [5, 6],
+      "&:before": {
+        content: '"< "',
+      },
+      "&:after": {
+        content: '" />"',
+      },
     },
     h3: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [5, 6],
+      fontSize: [4, 5],
+      "&:before": {
+        content: '"< "',
+      },
+      "&:after": {
+        content: '" />"',
+      },
     },
     h4: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [4, 5],
+      fontSize: [3, 4],
+      "&:before": {
+        content: '"< "',
+      },
+      "&:after": {
+        content: '" />"',
+      },
     },
     h5: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [3, 4],
+      fontSize: [2, 3],
+      "&:before": {
+        content: '"< "',
+      },
+      "&:after": {
+        content: '" />"',
+      },
     },
     h6: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [2, 3],
+      fontSize: [1, 2],
+      "&:before": {
+        content: '"< "',
+      },
+      "&:after": {
+        content: '" />"',
+      },
     },
     p: {
       color: "body",
       fontFamily: "body",
       fontWeight: "body",
       lineHeight: "body",
-      maxWidth:"90ch",
+      maxWidth: ["40ch","50ch","70ch"],
     },
     a: {
       color: "secondary",
       textDecoration: "none",
-      fontWeight:"a",
+      fontWeight: "a",
       ":hover": {
         textDecoration: "underline",
-        color:"inherit",
+        color: "inherit",
       },
     },
     pre: {

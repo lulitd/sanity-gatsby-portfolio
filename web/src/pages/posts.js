@@ -59,8 +59,9 @@ const ArchivePage = (props) => {
     <>
       <SEO title="Posts" />
       <Container>
-        
-        <Styled.h1 sx={{ py: 1 }}>All Posts</Styled.h1>
+        {!postNodes || postNodes.length<=0 && 
+        <><Styled.h1 sx={{ py: 1 }}>Coming Soon</Styled.h1></> }
+        {postNodes && postNodes.length > 0 && <Styled.h1 sx={{ py: 1 }}>All Posts</Styled.h1> }
         {postNodes && postNodes.length > 0 && <PostPreviewGrid nodes={postNodes} columns={[1]} />}
       </Container>
     </>

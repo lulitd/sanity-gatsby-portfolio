@@ -22,11 +22,11 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         typekit: {
-          id: process.env.TYPEKIT_ID,
+          id:'tal5ocw',
         },
-        google: {
-          families: ["Space Mono:400,700:latin", "Inter:300,600,800,900:latin"],
-        },
+        // google: {
+        //   families: ["Space Mono:400,700:latin", "Inter:300,600,800,900:latin"],
+        // },
       },
     },
     {

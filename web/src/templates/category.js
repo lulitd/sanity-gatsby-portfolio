@@ -49,6 +49,9 @@ export const query = graphql`
           }
           title
           subtitle
+          categories {
+            title
+          }
           slug {
             current
           }

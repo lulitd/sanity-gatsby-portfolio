@@ -3,22 +3,31 @@ import React from "react";
 import { cn, buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import BlockText from "./block-text";
-import { Styled, Grid, jsx, Card } from "theme-ui";
+import { Styled, Grid, jsx, Card, Box } from "theme-ui";
 import { lighten, alpha } from "@theme-ui/color";
 import { Heading } from "rebass";
 import ThemedLink from "./ThemedLink";
 
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { useThemeUI } from "theme-ui";
 //@jsx jsx
 function ProjectPreview(props) {
   const hasBG = (props.thumbImage && props.thumbImage.asset) || (props.mainImage && props.mainImage.asset);
   let bgURL;
 
+  const cat = props.categories && props.categories.slice(0, 3).map(x => x.title).join(" + ");  
+
+  const isFull= props.isFull;
+
+  // image settings using sanity to resize and frame images for thumbnails. 
+  const xAspect =isFull?50:25; // take into account the aspect ratio of the image thumbail. 
+  const yApsect =9; 
   if (hasBG) {
-    bgURL = imageUrlFor(buildImageObj(props.thumbImage?props.thumbImage:props.mainImage))
-      .width(600)
-      .height(Math.floor((9 / 16) * 600))
-      .blur(20)
+    bgURL = imageUrlFor(buildImageObj(props.thumbImage ? props.thumbImage : props.mainImage))
+      .width(1200)
+      .height(Math.floor((yApsect/ xAspect) * 1200))
+      .blur(10)
+      .fit("crop")
       .url();
   }
 
@@ -39,21 +48,20 @@ function ProjectPreview(props) {
           borderRadius: "default",
           borderTopLeftRadius: 0,
           borderBottomRightRadius: 0,
-          borderWidth: 2,
+          borderWidth: 1,
           borderStyle: "solid",
           color: "primary",
           fontFamily: "heading",
           letterSpacing: "0.25rem",
           borderColor: "inherit",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
+          alignItems: "left",
+          justifyContent: "flex-end",
+          textAlign: "left",
           display: "flex",
           flexDirection: "column",
           minHeight: "200px",
-          background: `linear-gradient(45deg, rgba(2,0,36,0.85) 0%, rgba(9,9,121,0) 100%),  url(${bgURL})`,
+          background: `linear-gradient(90deg, rgba(2,0,36,1) 0%,rgba(2,0,36,0.6) 40%,rgba(9,9,121,0) 100%),  url(${bgURL})`,
           backgroundSize: "cover",
-          opacity: "0.6",
           transition: "0.5s",
           "& h2,h3": {
             opacity: 1,
@@ -63,12 +71,10 @@ function ProjectPreview(props) {
             borderRadius: "0",
             borderTopLeftRadius: "default",
             borderBottomRightRadius: "default",
-            borderWidth: 2,
             borderStyle: "solid",
             borderColor: "secondary",
-            background: `linear-gradient(45deg, rgba(2,0,36,0.85) 0%, rgba(9,9,121,0) 100%), url(${bgURL})`,
+            background: `linear-gradient(90deg, rgba(2,0,36,1) 0%,rgba(2,0,36,0.6) 40%,rgba(9,9,121,0) 100%), url(${bgURL})`,
             bg: "background",
-            opacity: 1,
             backgroundSize: "cover",
 
             "& h2,h3": {
@@ -80,29 +86,35 @@ function ProjectPreview(props) {
         py={2}
         px={4}
       >
-        <Heading
-          sx={{
-            color: lighten("primary", 0.3),
-            textTransform: "uppercase",
-          }}
-          fontSize={[4, 5]}
-        >
-          {props.title}
-        </Heading>
-        {props.subtitle && (
+        <Box sx={{
+          maxWidth: '22ch'
+        }}>
           <Heading
             sx={{
-              color: lighten("primary", 0.1),
+              color: lighten("primary", 0.3),
               textTransform: "uppercase",
-              letterSpacing: "0.1rem",
-              fontFamily:'body',
             }}
-            fontSize={[3, 4]}
-            fontWeight="lighter"
+            fontSize={[4, 5]}
           >
-            {props.subtitle}
+            {props.title}
           </Heading>
-        )}
+
+
+          {props.categories && (
+            <Heading
+              sx={{
+                color: lighten("primary", 0.1),
+                textTransform: "uppercase",
+                letterSpacing: "0.1rem",
+                fontFamily: 'body',
+              }}
+              fontSize={[3, 2, 3]}
+              fontWeight="lighter"
+            >
+              {cat}
+            </Heading>
+          )}
+        </Box>
       </Card>
     </ThemedLink>
   );

@@ -29,6 +29,9 @@ export const query = graphql`
       relatedProjects {
         title
         subtitle
+        categories {
+          title
+        }
         publishedAt
         mainImage {
           crop {
