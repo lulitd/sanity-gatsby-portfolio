@@ -24,7 +24,7 @@ function ProjectPreviewGrid(props) {
           mb: [2, null, 3],
           px: 0,
           pb: 3,
-          columnGap: [1,2],
+          columnGap: [2,3],
           rowGap:[3],
           "& li:nth-child(3n+1)":{
             gridColumn:['auto','auto','1 / span 2'],

@@ -337,12 +337,12 @@ const IndexPage = (props) => {
             padding:0,
             width:["inherit","50ch","inherit"]
           }}>
-            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>TWITTER</Styled.a></li>
-            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>INSTAGRAM</Styled.a></li>
-            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>GITHUB</Styled.a></li>
-            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>ARTSTATION</Styled.a></li>
-            <li><Styled.a href={author.twitter} sx={{ color: 'body' }} >YOUTUBE</Styled.a></li>
-            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}>LINKEDIN</Styled.a></li>
+            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">TWITTER</Styled.a></li>
+            <li><Styled.a href={author.instagram} sx={{ color: 'body' }} target="_blank" rel="noopener noreferrer">INSTAGRAM</Styled.a></li>
+            <li><Styled.a href={author.github} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">GITHUB</Styled.a></li>
+            {/* <li><Styled.a href={author.artstation} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">ARTSTATION</Styled.a></li>
+            <li><Styled.a href={author.youtube} sx={{ color: 'body' }} >YOUTUBE</Styled.a></li> */}
+            <li><Styled.a href={author.linkedin} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">LINKEDIN</Styled.a></li>
           </ul>
         </Flex>
       </Container>

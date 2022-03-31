@@ -14,6 +14,7 @@ import { darken, alpha, lighten } from '@theme-ui/color'
 import { FaAutoprefixer } from "react-icons/fa";
 import TransitionState from "gatsby-plugin-transition-link"
 
+
 // @jsx jsx
 function Project(props) {
   const {
@@ -136,14 +137,15 @@ function Project(props) {
             <Styled.h3 sx={{
               color: lighten('secondary', .1),
               fontWeight: 100,
-              mx: [0, 'auto']
+              mx: [0, 'auto'],
+              textAlign: "center"
             }}>Project Breakdown</Styled.h3>
             <BlockContent style={{ mx: 'auto' }} blocks={_rawProjectBreakdown || []} />
           </Flex>
         )}
 
 
-        <Flex justifyContent="space-evenly">
+        <Flex justifyContent="space-evenly" flexDirection={["column", "column", "row"]}>
           {collaborators && collaborators.length > 0 && (
             <RoleList items={collaborators} title="Team" />
           )}
@@ -154,7 +156,7 @@ function Project(props) {
               flexDirection="column" alignItems="center" width="fitContent">
               <Styled.h3 sx={{
                 color: lighten('secondary', .1),
-                fontWeight: 100
+                fontWeight: 100,
               }}>Exhibitions & Awards</Styled.h3>
               <Flex
                 as="ul"
@@ -163,6 +165,7 @@ function Project(props) {
                   listStylePosition: "inside",
                   listStyle: "none",
                   padding: 0,
+                  textAlign: "center"
                 }}
               >  {uniqueAccolades.map((accolade) => {
                 let label = "";
@@ -182,7 +185,9 @@ function Project(props) {
                       fontWeight="bolder"
                       fontSize={[2, 1, 2]}
                     >{`${label}`}</Text>
-                    <Text color={"primary"} fontSize={[2, 1, 2]}>
+                    <Text fontSize={[2, 1, 2]} sx={{
+                      color: lighten('primary', .1)
+                    }}>
                       {accolade.address}
                     </Text>
                   </Box>
@@ -201,7 +206,9 @@ function Project(props) {
               textAlign: "center",
             }}
           >
-            <Styled.h3>Related Projects</Styled.h3>
+            <Styled.h3 sx={{
+              color: lighten('secondary', .1)
+            }}>Related Projects</Styled.h3>
             {categories && categories.length > 0 && categoriesButtons}
             <ProjectPreviewGrid nodes={filteredProjects} />
           </Box>

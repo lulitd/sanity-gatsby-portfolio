@@ -2,7 +2,7 @@ import React from "react";
 import HamburgerIcon from "./hamburger";
 import LogoIcon from "./logo";
 import { FaFacebookF , FaExternalLinkAlt,FaLinkedinIn} from 'react-icons/fa';
-import { AiOutlineTwitter,AiFillInstagram,AiFillGithub } from "react-icons/ai";
+import { AiOutlineTwitter,AiFillInstagram,AiFillGithub,AiOutlineYoutube } from "react-icons/ai";
 
 function Icon(props) {
   switch (props.symbol) {
@@ -12,11 +12,12 @@ function Icon(props) {
       return <LogoIcon {...props} />;
     case "facebook":
       return <FaFacebookF  {...props}/>;
-
     case "twitter":
       return <AiOutlineTwitter {...props} />;
     case "instagram":
       return <AiFillInstagram  {...props}/>;
+    case "youtube":
+      return <AiOutlineYoutube  {...props}/>;
     case "github":
       return <AiFillGithub {...props}/>;
     case "linkedin":

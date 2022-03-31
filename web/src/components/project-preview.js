@@ -4,7 +4,7 @@ import { cn, buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import BlockText from "./block-text";
 import { Styled, Grid, jsx, Card, Box } from "theme-ui";
-import { lighten, alpha } from "@theme-ui/color";
+import { lighten, darken } from "@theme-ui/color";
 import { Heading } from "rebass";
 import ThemedLink from "./ThemedLink";
 
@@ -48,12 +48,12 @@ function ProjectPreview(props) {
           borderRadius: "default",
           borderTopLeftRadius: 0,
           borderBottomRightRadius: 0,
-          borderWidth: 1,
+          borderWidth: 3,
           borderStyle: "solid",
           color: "primary",
           fontFamily: "heading",
           letterSpacing: "0.25rem",
-          borderColor: "inherit",
+          borderColor: darken("primary", 0.1),
           alignItems: "left",
           justifyContent: "flex-end",
           textAlign: "left",
@@ -63,6 +63,7 @@ function ProjectPreview(props) {
           background: `linear-gradient(90deg, rgba(2,0,36,1) 0%,rgba(2,0,36,0.6) 40%,rgba(9,9,121,0) 100%),  url(${bgURL})`,
           backgroundSize: "cover",
           transition: "0.5s",
+          opacity:0.5, 
           "& h2,h3": {
             opacity: 1,
           },
@@ -73,10 +74,10 @@ function ProjectPreview(props) {
             borderBottomRightRadius: "default",
             borderStyle: "solid",
             borderColor: "secondary",
-            background: `linear-gradient(90deg, rgba(2,0,36,1) 0%,rgba(2,0,36,0.6) 40%,rgba(9,9,121,0) 100%), url(${bgURL})`,
+            background: `linear-gradient(90deg, rgba(2,0,36,1) 0%,rgba(2,0,36,0.6) 40%,rgba(9,9,121,0) 100%),  url(${bgURL})`,
             bg: "background",
             backgroundSize: "cover",
-
+            opacity:0.9, 
             "& h2,h3": {
               color: "secondary",
               opacity: 1,

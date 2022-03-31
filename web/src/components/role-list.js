@@ -6,6 +6,7 @@ import { Styled, Image, Grid, jsx, Box } from "theme-ui";
 import { FaHandMiddleFinger } from "react-icons/fa";
 import { darken, lighten } from '@theme-ui/color'
 import { Flex } from "rebass";
+import Icon from "./icon";
 //@jsx jsx
 const ConditionalWrapper = ({ condition, wrapper, children }) =>
   condition ? wrapper(children) : children;
@@ -17,8 +18,8 @@ function ConditionalIcon(asset) {
 
 function RoleList({ items, title }) {
   return (
-    <Flex pb={2} 
-    flexDirection="column" alignItems="center" width="fitContent">
+    <Flex pb={2}
+      flexDirection="column" alignItems="center" width="fitContent">
       <Styled.h3 sx={{
         color: lighten('secondary', .1),
         fontWeight: 100,
@@ -26,6 +27,7 @@ function RoleList({ items, title }) {
       <Flex
         as="ul"
         flexDirection="column"
+        textAlign="center"
         sx={{
           listStylePosition: "inside",
           listStyle: "none",
@@ -48,6 +50,7 @@ function RoleList({ items, title }) {
               sx={{
                 textDecoration: "none",
                 color: "body",
+                pb:2,
                 "& > a": {
                   color: "body",
                 },
@@ -81,17 +84,19 @@ function RoleList({ items, title }) {
                 )}
               >
                 <Box sx={{
-                  "& p:last-child":{
-                    pb:1, 
+                  "& p:last-child": {
+                    pb: 1,
                   },
                 }}>
                   <Styled.p sx={{
                     fontWeight: "bold",
-                    fontSize:[2],
-                    margin:0,
-                    lineHeight:0,
-                  }}> {(item.person && item.person.name) || <em>Missing name</em>} </Styled.p >
-                  {item.roles && (<Styled.p  sx={{
+                    fontSize: [2],
+                    margin: 0,
+                    lineHeight: 0,
+                  }}> {(item.person && item.person.name) || <em>Missing name</em>}
+                    {link && (<span color="body"><Icon sx={{mx:1}}/></span>)}
+                  </Styled.p >
+                  {item.roles && (<Styled.p sx={{
                     textTransform: "Capitalize",
                     color: lighten('primary', .1),
                   }}>{item.roles.join(" + ")}</Styled.p >)}
