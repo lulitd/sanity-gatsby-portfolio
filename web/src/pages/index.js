@@ -20,6 +20,7 @@ import { imageUrlFor } from "../lib/image-url";
 import { F, flip } from "ramda";
 import Doodles from "../components/doodle";
 import { useThemeUI } from "theme-ui";
+import Icon from "../components/icon"
 
 
 //@jsx jsx
@@ -280,18 +281,19 @@ const IndexPage = (props) => {
           <Box
             sx={{
               gridArea: "Header-Content",
+  textAlign:["center","center","center"]
             }}
           >
             <Heading variant="subheading" fontWeight="body" fontSize={[2, 3]} pb={0}>
               Hi my name is
-              <Text as="span" pb={0} display="block" variant="title" sx={{ fontSize: [36, 48, 48] }}>
+              <Text as="span" pb={0} display="block" variant="title" sx={{ fontSize: [6,6, 7] }}>
                 {site.jumboName}.
               </Text>
             </Heading>
             <Heading variant="subheading" fontWeight="body" fontSize={[5, 6]} pb={0}>
               {site.jumboTag}
             </Heading>
-            <Text pt={4} pb={2} fontWeight={300} display="table" fontSize={[1, 2, 3]}>
+            <Text textAlign="left" pt={4} pb={2} fontWeight={300} display="table" fontSize={[1, 2, 3]}>
               {site.jumboDescription}
             </Text>
             <Box
@@ -320,36 +322,39 @@ const IndexPage = (props) => {
         display: "flex",
         flexDirection: ["column", "column", "row"],
       }}>
-        <Flex flex={4} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "start", "start"]}}>
+        <Flex flex={4} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "center", "start"]}}>
           <Styled.h3>INFO</Styled.h3>
-          <Styled.p sx={{ my: 0 }}>I'm Lalaine, a software developer and interactive artist based in Toronto, Canada. I design and build custom-tailored websites, games and apps for unique experiences.</Styled.p>
+          <Styled.p sx={{ fontSize:[1,2], my: 0 }}>I'm Lalaine, a software developer and interactive artist based in Toronto, Canada. I design and build custom-tailored websites, games and apps for unique experiences.</Styled.p>
         </Flex>
-        <Flex flex={3} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "start", "start"]}}>
-          <Styled.h3>SAY HELLO!</Styled.h3>
-          <Styled.p sx={{ my: 0 }}>Whether for a potential project or just to say hi, my inbox is always open. -></Styled.p>
+        <Flex flex={3} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "center", "start"]}}>
+          <Styled.h3 >SAY HELLO!</Styled.h3>
+          <Styled.p sx={{ fontSize:[1,2], my: 0 }}>Whether for a potential project or just to say hi, my inbox is always open. -></Styled.p>
         </Flex>
-        <Flex flex={2} p={2}  flexDirection="column" mx={"auto"} alignItems={["center", "start", "center"]}>
+        <Flex flex={2} p={2}  flexDirection="column" mx={"auto"} alignItems={["center", "center", "center"]}>
           <Styled.h3>SOCIAL</Styled.h3>
           <ul sx={{
             listStyle: 'none',
             paddingInline: 'inherit',
             my: 0,
             padding:0,
-            width:["inherit","50ch","inherit"]
+            width:["inherit"],
+            fontSize:[1,2],
           }}>
-            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">TWITTER</Styled.a></li>
-            <li><Styled.a href={author.instagram} sx={{ color: 'body' }} target="_blank" rel="noopener noreferrer">INSTAGRAM</Styled.a></li>
-            <li><Styled.a href={author.github} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">GITHUB</Styled.a></li>
+            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">TWITTER <Icon symbol="twitter" sx={{mx:1}}/></Styled.a></li>
+            <li><Styled.a href={author.instagram} sx={{ color: 'body' }} target="_blank" rel="noopener noreferrer">INSTAGRAM <Icon symbol="instagram" sx={{mx:1}}/></Styled.a></li>
+            <li><Styled.a href={author.github} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">GITHUB <Icon symbol="github" sx={{mx:1}}/></Styled.a></li>
             {/* <li><Styled.a href={author.artstation} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">ARTSTATION</Styled.a></li>
             <li><Styled.a href={author.youtube} sx={{ color: 'body' }} >YOUTUBE</Styled.a></li> */}
-            <li><Styled.a href={author.linkedin} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">LINKEDIN</Styled.a></li>
+            <li><Styled.a href={author.linkedin} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">LINKEDIN <Icon symbol="linkedin" sx={{mx:1}}/></Styled.a></li>
           </ul>
         </Flex>
       </Container>
 
       {projectNodes && projectNodes.length > 0 && (
-        <Container mb={5}>
-          <Styled.h2 id="featured-projects">Featured Projects</Styled.h2>
+        <Container mb={5} >
+          <Styled.h2 sx={{
+            textAlign:["center","center","unset"]
+          }} id="featured-projects">Featured Projects</Styled.h2>
           <ProjectPreviewGrid
             columns={[1, 2, null]}
             nodes={projectNodes}

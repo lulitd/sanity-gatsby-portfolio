@@ -2,6 +2,7 @@ import React from "react";
 import ProjectPreview from "./project-preview";
 import { Styled, Grid, Box, jsx } from "theme-ui";
 import ThemedLink from "./ThemedLink";
+import { Flex } from "rebass";
 
 //@jsx jsx
 
@@ -42,11 +43,11 @@ function ProjectPreviewGrid(props) {
           ))}
       </Grid>
       {props.browseMoreHref && (
-        <Box>
+        <Flex justifyContent={["center","center","left"]} flexDirection="row">
           <ThemedLink block variant="outlineBtn" to={props.browseMoreHref}>
             Browse More
           </ThemedLink>
-        </Box>
+        </Flex>
       )}
     </Box>
   );
