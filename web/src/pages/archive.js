@@ -7,7 +7,7 @@ import SEO from "../components/seo";
 // import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { Styled, jsx } from "theme-ui";
+import { Styled,Heading, jsx } from "theme-ui";
 import { FaCentercode } from "react-icons/fa";
 
 //@jsx jsx
@@ -96,7 +96,7 @@ const ArchivePage = (props) => {
       <Container sx={{
        textAlign:"center" 
       }}>
-        <Styled.h1 sx={{ py: 1 }}>Projects #All</Styled.h1>
+        <Heading as="h1" variant={'text.barcodes'} fontSize={[8]}>Projects</Heading>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={{ title: "All" }}

@@ -19,11 +19,12 @@ const theme = {
     lightest: "#ffffff"
   },
   fonts: {
-    body: 'Fort,"Helvetica Neue", sans-serif',
-    heading: '"ethnocentric", sans-serif',
-    button: '"ethnocentric",sans-serif',
-    nav: '"ethnocentric",sans-serif',
+    body: '"Helvetica Neue", sans-serif',
+    heading: '"Source Code Pro", sans-serif',
+    button: '"Helvetica Neue",sans-serif',
+    nav: '"Helvetica Neue",sans-serif',
     monospace: "monospace",
+    barcode:'"Libre Barcode 39 Text", sans-serif',
 
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048],
@@ -42,7 +43,7 @@ const theme = {
   },
   lineHeights: {
     body: 1.5,
-    heading: 1.25,
+    heading: 1,
   },
   text: {
     color: "body",
@@ -55,21 +56,35 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       fontStyle: "normal",
+      textTransform:"uppercase",
       fontSize: [6, 7, 8],
       p: 0,
       pb: "0.66rem",
-      // textTransform:'Uppercase'
     },
     title: {
       variant: "text.heading",
       fontSize: [7, 8],
     },
     subheading: {
-      variant: "text.heading",
+      variant: "text.body",
       color: "muted",
       fontSize: [4, 5, 6],
-      p: 0,
-      pb: "0.66rem",
+      //m:"5rem",
+      pb:"0.25rem"
+    },
+    brackets:{
+      "&:before": {
+        content: '"< "',
+      },
+      "&:after": {
+        content: '" />"',
+      },
+    },
+    barcodes: {
+      variant: "text.heading",
+      fontFamily: "barcode",
+      textTransform:"uppercase",
+      mb:0,
     },
   },
   buttons: {
@@ -183,13 +198,8 @@ const theme = {
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
+      textTransform:"uppercase",
       fontSize: [6, 7],
-      "&:before": {
-        content: '"< "',
-      },
-      "&:after": {
-        content: '" />"',
-      },
     },
     h2: {
       color: "heading",
@@ -197,12 +207,6 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       fontSize: [5, 6],
-      "&:before": {
-        content: '"< "',
-      },
-      "&:after": {
-        content: '" />"',
-      },
     },
     h3: {
       color: "heading",
@@ -210,25 +214,14 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       fontSize: [4, 5],
-      "&:before": {
-        content: '"< "',
-      },
-      "&:after": {
-        content: '" />"',
-      },
     },
+
     h4: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
       fontSize: [3, 4],
-      "&:before": {
-        content: '"< "',
-      },
-      "&:after": {
-        content: '" />"',
-      },
     },
     h5: {
       color: "heading",
@@ -236,12 +229,6 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       fontSize: [2, 3],
-      "&:before": {
-        content: '"< "',
-      },
-      "&:after": {
-        content: '" />"',
-      },
     },
     h6: {
       color: "heading",
@@ -249,12 +236,6 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       fontSize: [1, 2],
-      "&:before": {
-        content: '"< "',
-      },
-      "&:after": {
-        content: '" />"',
-      },
     },
     p: {
       color: "body",

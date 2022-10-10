@@ -1,11 +1,11 @@
 import React from "react";
 import Icon from "./icon";
-import { Box, Button } from "rebass";
+import { Box, Button,Text} from "rebass";
 import { jsx } from "theme-ui";
 
 //@jsx jsx
 
-function SocialsFromBio({ bio, ...rest }) {
+function SocialsFromBio({ bio,withLabels,iconStyle, ...rest }) {
   let socials = [];
 
   if (!bio) return null;
@@ -25,8 +25,10 @@ function SocialsFromBio({ bio, ...rest }) {
         rel="nofollow noopener noreferrer"
         variant="socialBtn"
         aria-label={social.name}
+        sx={iconStyle}
       >
         <Icon symbol={social.name} />
+        {withLabels?<Text>{social.name}</Text>:null}
       </Button>
     );
   });

@@ -18,17 +18,23 @@ module.exports = {
           layout: require.resolve(`./src/containers/layout.js`)
         }
    },
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        typekit: {
-          id:'tal5ocw',
-        },
-        // google: {
-        //   families: ["Space Mono:400,700:latin", "Inter:300,600,800,900:latin"],
-        // },
+   {
+   resolve: `gatsby-omni-font-loader`,
+   options: {
+     enableListener: true,
+     preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
+     web: [
+       {
+        name: `Libre Barcode 39 Text`,
+        file: `https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap`,
       },
-    },
+      {
+        name: `Source Code Pro`,
+        file: `https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap`,
+      },
+     ],
+   },
+  },
     {
       resolve: "gatsby-source-sanity",
       options: {

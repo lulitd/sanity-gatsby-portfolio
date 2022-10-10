@@ -6,7 +6,7 @@ import Container from "../components/container";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import ProjectPreviewGrid from "../components/project-preview-grid";
-import { Styled } from "theme-ui";
+import { Styled ,Heading} from "theme-ui";
 export const query = graphql`
   query CategoryTemplateQuery($id: String!) {
     category: sanityCategory(id: { eq: $id }) {
@@ -111,7 +111,7 @@ const CategoryTemplate = (props) => {
       <Container sx={{
         textAlign:"center" 
       }}>
-        <Styled.h1 sx={{ py: 1 }}>{`Projects #${category.title}`}</Styled.h1>
+      <Heading as="h1" variant={'text.barcodes'} fontSize={[8]}>{`Projects // ${category.title}`} </Heading>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={category}

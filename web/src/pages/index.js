@@ -6,6 +6,7 @@ import {
   filterOutDocsPublishedInTheFuture,
 } from "../lib/helpers";
 import Container from "../components/container";
+import SocialsFromBio from "../components/socials-from-bio";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import SEO from "../components/seo";
@@ -284,13 +285,13 @@ const IndexPage = (props) => {
   textAlign:["center","center","center"]
             }}
           >
-            <Heading variant="subheading" fontWeight="body" fontSize={[2, 3]} pb={0}>
+            <Heading variant="subheading" fontWeight="body" fontSize={[2, 3]}>
               Hi my name is
-              <Text as="span" pb={0} display="block" variant="title" sx={{ fontSize: [6,6, 7] }}>
+              <Text as="span" display="block" variant="title" sx={{ fontSize: [6,6, 7], pt:[1]}}>
                 {site.jumboName}.
               </Text>
             </Heading>
-            <Heading variant="subheading" fontWeight="body" fontSize={[5, 6]} pb={0}>
+            <Heading variant="subheading" fontWeight="body" fontSize={[4, 5,6]}>
               {site.jumboTag}
             </Heading>
             <Text textAlign="left" pt={4} pb={2} fontWeight={300} display="table" fontSize={[1, 2, 3]}>
@@ -323,38 +324,35 @@ const IndexPage = (props) => {
         flexDirection: ["column", "column", "row"],
       }}>
         <Flex flex={4} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "center", "start"]}}>
-          <Styled.h3>INFO</Styled.h3>
+          <Heading as="h3" variant={"text.barcodes"} fontSize={[4]}>INFO</Heading>
+          
           <Styled.p sx={{ fontSize:[1,2], my: 0 }}>I'm Lalaine, a software developer and interactive artist based in Toronto, Canada. I design and build custom-tailored websites, games and apps for unique experiences.</Styled.p>
         </Flex>
         <Flex flex={3} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "center", "start"]}}>
-          <Styled.h3 >SAY HELLO!</Styled.h3>
+        <Heading as="h3" variant={"text.barcodes"} fontSize={[4]}>SAY HELLO</Heading>
           <Styled.p sx={{ fontSize:[1,2], my: 0 }}>Whether for a potential project or just to say hi, my inbox is always open. -></Styled.p>
         </Flex>
-        <Flex flex={2} p={2}  flexDirection="column" mx={"auto"} alignItems={["center", "center", "center"]}>
-          <Styled.h3>SOCIAL</Styled.h3>
-          <ul sx={{
-            listStyle: 'none',
-            paddingInline: 'inherit',
-            my: 0,
-            padding:0,
-            width:["inherit"],
-            fontSize:[1,2],
-          }}>
-            <li><Styled.a href={author.twitter} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">TWITTER <Icon symbol="twitter" sx={{mx:1}}/></Styled.a></li>
-            <li><Styled.a href={author.instagram} sx={{ color: 'body' }} target="_blank" rel="noopener noreferrer">INSTAGRAM <Icon symbol="instagram" sx={{mx:1}}/></Styled.a></li>
-            <li><Styled.a href={author.github} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">GITHUB <Icon symbol="github" sx={{mx:1}}/></Styled.a></li>
-            {/* <li><Styled.a href={author.artstation} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">ARTSTATION</Styled.a></li>
-            <li><Styled.a href={author.youtube} sx={{ color: 'body' }} >YOUTUBE</Styled.a></li> */}
-            <li><Styled.a href={author.linkedin} sx={{ color: 'body' }}target="_blank" rel="noopener noreferrer">LINKEDIN <Icon symbol="linkedin" sx={{mx:1}}/></Styled.a></li>
-          </ul>
+        <Flex flex={2} p={1}  flexDirection="column" mx={"auto"} alignItems={["center", "center", "center"]}>
+        <Heading as="h3" variant={"text.barcodes"} fontSize={[4]}>SOCIAL</Heading>
+        
+          <SocialsFromBio bio={author} withLabels 
+          iconStyle={{
+            m:[1],
+          }}
+
+          sx={{
+            display:"flex",
+            flexDirection:["row", "row", "column"],
+            }}/>
+          
         </Flex>
       </Container>
 
       {projectNodes && projectNodes.length > 0 && (
         <Container mb={5} >
-          <Styled.h2 sx={{
+           <Heading as="h3" variant={"text.barcodes"} fontSize={[4]} sx={{
             textAlign:["center","center","unset"]
-          }} id="featured-projects">Featured Projects</Styled.h2>
+          }} id="featured-projects">Featured Projects</Heading>
           <ProjectPreviewGrid
             columns={[1, 2, null]}
             nodes={projectNodes}

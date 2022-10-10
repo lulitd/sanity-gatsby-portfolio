@@ -8,10 +8,13 @@ import BlockContent from "../components/block-content";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import SocialsFromBio from "../components/socials-from-bio";
-import { Label, Styled } from "theme-ui";
+import { Label, Styled, jsx } from "theme-ui";
 import { alpha } from "@theme-ui/color";
-import { Box, Flex, Image } from "rebass";
+import { Box, Flex, Heading, Image } from "rebass";
 import gsap from "gsap";
+
+
+//@jsx jsx
 
 export const query = graphql`
   query AboutQuery {
@@ -67,19 +70,16 @@ const Animate = () => {
     tl.fromTo(e.current, { opacity: 0 }, { opacity: 1, repeat: 1, yoyo: true, yoyoEase: true ,repeatDelay:delay})
   });
 
-    tl.fromTo(AboutImageRef.current, { rotateY: -20 }, { repeat: 1,rotateY:20 ,yoyo: true,duration:fullDur*0.5,ease:"none" ,repeatDelay:0},0)
-  //  tl.fromTo(LabelRef.current, { rotateY: 10 }, { repeat: 1,rotateY:-10 ,yoyo: true,duration:3.45,ease:"none" ,repeatDelay:0},0)
-  .fromTo(
-  LabelRef.current,
-  { rotateY: -5, translateX: "5%", translateY: "25%", translateZ: 25 },
-  { rotateY: 5, translateZ: 50, translateX: "12.5%", translateY: "100%",repeat:1 ,yoyo: true,duration:fullDur*0.5,ease:"none" ,repeatDelay:0},
-  0);
+ //  tl.fromTo(AboutImageRef.current, { rotateY: -10 }, { repeat: 1,rotateY:10 ,yoyo: true,duration:fullDur*0.5,ease:"none" ,repeatDelay:0},0)
+  // tl.fromTo(LabelRef.current, { translateZ:100}, { repeat: 1,translateZ:10 ,yoyo: true,duration:fullDur,ease:"none" ,repeatDelay:0},0)
+  // .fromTo(
+  // LabelRef.current,
+  // { rotateY: -5, translateX: "5%", translateY: "5%", translateZ: 20},
+  // { rotateY: 5, translateZ: 20, translateX: "12.5%", translateY: "25%",repeat:1 ,yoyo: true,duration:fullDur*0.5,ease:"none" ,repeatDelay:0},
+  // 0);
 };
 
 const CreateTags = (tags) => {
-
-
-  
   return (
     tags.map((label, i) => {
       TextRefs.push(React.createRef());
@@ -125,7 +125,7 @@ const AboutPage = (props) => {
     <>
       <SEO title="About" />
       <Container>
-        <Styled.h1>About</Styled.h1>
+        <Heading as="h3" variant={'text.barcodes'} fontSize={[8]}>About</Heading>
         <Flex>
           <Box flex="2" minWidth={["fit-content", 0]} pr={[0, 4]}>
             {author._rawBio && (
@@ -195,8 +195,8 @@ const AboutPage = (props) => {
                     wordSpacing: 3,
                     borderTopLeftRadius: "default",
                     borderBottomRightRadius: "default",
-                    width: ["16ch"],
-                    minHeight:"2rem",
+                    width: ["24ch"],
+                    minHeight:"2.5rem",
 
                     "& div": {
                      display:"inline-block",
