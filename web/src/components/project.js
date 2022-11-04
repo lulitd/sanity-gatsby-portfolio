@@ -72,9 +72,9 @@ function Project(props) {
     </Box>;
 
   const bgUrl = props.mainImage && mainImage.asset && imageUrlFor(buildImageObj(mainImage))
-    .width(1200)
-    .height(Math.floor((2 / 5) * 1200))
-    .blur(5)
+    .width(1080)
+    .height(Math.floor((2 / 5) * 1080))
+    .blur(10)
     .url();
 
   return (
@@ -90,6 +90,9 @@ function Project(props) {
         alignItems: "center",
         justifyContent: "center",
         backgroundAttachment: "fixed",
+        backgroundPositionY:"center",
+        backgroundRepeat:"no-repeat",
+        minHeight:"100px"
       }}>
 
         <Card

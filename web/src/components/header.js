@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "./icon";
-import { jsx } from "theme-ui";
-import { Flex, Box, Button } from "rebass";
+import { jsx,Styled, Button} from "theme-ui";
+import { Flex, Box } from "rebass";
 import Container from "./container";
 import ThemedLink from "./ThemedLink";
 import { lighten } from "@theme-ui/color";
@@ -34,12 +34,13 @@ const Branding = (props) => (
 
 const ToggleButton = ({ showNav, onHideNav, onShowNav }) => (
   <Button
-    display={["block", "none"]}
+
     onClick={showNav ? onHideNav : onShowNav}
     fontSize={4}
     m={0}
     p={2}
     sx={{
+      display:["block","none"],
       border: "none",
       color: "inherit",
       background: "none",
@@ -113,6 +114,17 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
             onHideNav();}}>Blog</NavLink>
       </li> */}
       <li>
+        <Button as="a" href="../2022-CV-Lalaine-Ulit-Destajo.pdf"
+            target="_blank" rel="noreferrer noopener"
+            variant="nav"
+            sx={{
+              color:"primary",
+              p:0, 
+              paddingLeft: [1, 3],
+              display: "block",
+          }}>CV</Button>
+      </li>
+      <li>
         <NavLink to="/contact/" trigger={async pages => {
             const exit = await pages.exit;
             const entry = await pages.entry;
@@ -125,8 +137,6 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
 
 const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
   const [colorMode, setColorMode] = useColorMode();
-
-
   return (
     <Flex
       sx={{

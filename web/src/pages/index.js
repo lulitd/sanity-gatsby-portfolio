@@ -65,7 +65,7 @@ export const query = graphql`
       }
     }
     projects: allSanityProject(
-      limit: 6
+      limit: 3
       sort: { fields: [endedAt], order: DESC }
       filter: {
         slug: { current: { ne: null } }
@@ -208,7 +208,7 @@ const createTriangle = (colors, url) => {
 
 const IndexPage = (props) => {
   const { data, errors } = props;
-
+  
   if (errors) {
     return (
       <>
@@ -223,7 +223,7 @@ const IndexPage = (props) => {
       .filter(filterOutDocsWithoutSlugs)
       .filter(filterOutDocsPublishedInTheFuture)
     : [];
-
+    const profileImage = site.author.image;
   const postNodes = (data || {}).posts
     ? mapEdgesToNodes(data.posts)
       .filter(filterOutDocsWithoutSlugs)
@@ -321,36 +321,83 @@ const IndexPage = (props) => {
       </Container>
       <Container bg={'darkest'} sx={{
         display: "flex",
-        flexDirection: ["column", "column", "row"],
+        alignItems:"center",
+        minHeight:["50vh","75vh","100vh"],
+        justifyContent:"center"
+
       }}>
-        <Flex flex={4} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "center", "start"]}}>
-          <Heading as="h3" variant={"text.barcodes"} fontSize={[4]}>INFO</Heading>
+        {author.image && profileImage.asset && (
+              <Box
+                sx={{
+                  display: ["none", "block"],
+                  maxHeight: 450,
+                  mr:[0,5]
+                }}
+              >
+                <Image
+                  src={imageUrlFor(buildImageObj(profileImage))
+                    .fit("clip")
+                    .width(360)
+                    .height(450)
+                    .url()}
+                  sx={{
+                    minHeight: 0,
+                    maxHeight: "100%",
+                    backgroundColor: "transparent",
+                    border: "solid currentColor",
+                    borderWidth: "2",
+                    borderRadius: "default",
+                    color: "muted",
+                  }}
+                  alt={profileImage.alt}
+                />
+              </Box>
+            )}
+          <Flex flexDirection={"column"} alignItems={["center","start"]}>
+          <Heading as="h3" variant={"text.barcodes"} fontSize={[8]}>INFO</Heading>
           
-          <Styled.p sx={{ fontSize:[1,2], my: 0 }}>I'm Lalaine, a software developer and interactive artist based in Toronto, Canada. I design and build custom-tailored websites, games and apps for unique experiences.</Styled.p>
-        </Flex>
-        <Flex flex={3} p={2} mx={"auto"} flexDirection="column" sx={{alignItems: ["center", "center", "start"]}}>
-        <Heading as="h3" variant={"text.barcodes"} fontSize={[4]}>SAY HELLO</Heading>
-          <Styled.p sx={{ fontSize:[1,2], my: 0 }}>Whether for a potential project or just to say hi, my inbox is always open. -></Styled.p>
-        </Flex>
-        <Flex flex={2} p={1}  flexDirection="column" mx={"auto"} alignItems={["center", "center", "center"]}>
-        <Heading as="h3" variant={"text.barcodes"} fontSize={[4]}>SOCIAL</Heading>
-        
-          <SocialsFromBio bio={author} withLabels 
+          <Box sx={{maxWidth:"75ch"}}>
+          <Styled.p sx={{ fontSize:[1,2], my: 0 
+          }}>
+            Hi, I'm Lalaine.            
+             Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am a new media artist and software developer, but I am a storyteller at heart. I develop software that tells compelling stories and spark curiosity across many mediums and platforms. I have been able to tell stories of individuals and multinational corporations. I've designed and created projects exhibited in museums, galleries & festivals worldwide. 
+          </Styled.p>
+          </Box>
+          <SocialsFromBio bio={author}  
           iconStyle={{
             m:[1],
           }}
 
           sx={{
             display:"flex",
-            flexDirection:["row", "row", "column"],
+            flexDirection:["row", "row", "row"],
             }}/>
-          
-        </Flex>
+        <Box
+              pt={4}
+              sx={{
+                textAlign: "center",
+                "& a": {
+                  mr: 2,
+                  mb: 2,
+                  display: "inline-block",
+                },
+              }}
+            >
+        <ThemedLink to="../2022-CV-Lalaine-Ulit-Destajo.pdf" target="_blank" variant="outlineBtn" fontSize={1}>
+                CV
+              </ThemedLink>
+              <ThemedLink block to="/about" variant="outlineBtn" fontSize={1}>
+                Get To Know Me 
+              </ThemedLink>
+              </Box>
+   
+          </Flex>
+      
       </Container>
 
       {projectNodes && projectNodes.length > 0 && (
         <Container mb={5} >
-           <Heading as="h3" variant={"text.barcodes"} fontSize={[4]} sx={{
+           <Heading as="h3" variant={"text.barcodes"} fontSize={[8]} sx={{
             textAlign:["center","center","unset"]
           }} id="featured-projects">Featured Projects</Heading>
           <ProjectPreviewGrid
@@ -363,7 +410,7 @@ const IndexPage = (props) => {
 
       {postNodes && postNodes.length > 0 && (
         <Container mb={5}>
-          <Styled.h2 id="featured-posts">Latest Posts</Styled.h2>
+          <Heading as="h3" variant={"text.barcodes"} id="featured-posts" fontSize={[8]}>Latest Posts</Heading>
           <PostPreviewGrid columns={[1, 2, 1]} nodes={postNodes} browseMoreHref="/posts/" />
         </Container>
       )}

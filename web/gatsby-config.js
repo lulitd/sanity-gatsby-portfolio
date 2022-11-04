@@ -52,5 +52,18 @@ module.exports = {
         },
       },
     },
+    {
+      resolve:"gatsby-plugin-manifest",
+      options: {
+        name: `Lalaine Portfolio`,
+        short_name: `Lalaine Ulit-Destajo Portfolio`,
+        start_url: `/`,
+        background_color: `#020426`,
+        theme_color: `#05a696`,
+        display: `standalone`,
+        description:"Portfolio website of Lalaine Ulit-Destajo. New Media Artist. Interactive Designer. Creative Coder.",
+        icon:"src/assets/logo.svg",
+    }
+  }
   ],
 };
