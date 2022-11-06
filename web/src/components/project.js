@@ -21,6 +21,7 @@ function Project(props) {
     _rawProjectBrief,
     _rawProjectBreakdown,
     title,
+    subtitle,
     categories,
     members,
     accolades,
@@ -119,6 +120,11 @@ function Project(props) {
 
               }}
               fontSize={[5, 6]}>{title}</Heading>
+              <Heading
+              variant="subheading"
+              fontSize={[3,4]} sx={{
+                fontFamily:"body"
+              }}>{subtitle}</Heading>
           </Box>
         </Card>
       </Flex>

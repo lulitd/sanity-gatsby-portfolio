@@ -25,6 +25,8 @@ export default {
           {title: 'Editor', value: 'editor'},
           {title: 'Music', value: 'music'},
           {title: 'Sound Effects', value: 'sound effects'},
+          {title: 'Video Editor', value: 'video editor'},
+          {title: 'Motion Graphics', value: 'motion graphics'},
           {title: 'Manager', value: 'manager'}
         ]
       }

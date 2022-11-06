@@ -99,9 +99,22 @@ function ProjectPreview(props) {
           >
             {props.title}
           </Heading>
+          {props.subtitle && (
+            <Heading
+              sx={{
+                color: lighten("primary", 0.1),
+                textTransform: "uppercase",
+                letterSpacing: "0.1rem",
+                fontFamily: 'body',
+              }}
+              fontSize={[1, 1, 1]}
+              fontWeight="lighter"
+            >
+              {props.subtitle }
+            </Heading>
+          )}
 
-
-          {props.categories && (
+          {/* {props.categories && (
             <Heading
               sx={{
                 color: lighten("primary", 0.1),
@@ -114,7 +127,7 @@ function ProjectPreview(props) {
             >
               {cat}
             </Heading>
-          )}
+          )} */}
         </Box>
       </Card>
     </ThemedLink>

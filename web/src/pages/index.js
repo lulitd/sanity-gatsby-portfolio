@@ -329,25 +329,30 @@ const IndexPage = (props) => {
         {author.image && profileImage.asset && (
               <Box
                 sx={{
-                  display: ["none", "block"],
-                  maxHeight: 450,
+                  display: ["none", "flex"],
+                  height: 450,
                   mr:[0,5]
+         
                 }}
               >
                 <Image
                   src={imageUrlFor(buildImageObj(profileImage))
                     .fit("clip")
-                    .width(360)
-                    .height(450)
+                    .width(720)
+                    .height(900)
                     .url()}
                   sx={{
-                    minHeight: 0,
-                    maxHeight: "100%",
+                  
                     backgroundColor: "transparent",
                     border: "solid currentColor",
                     borderWidth: "2",
                     borderRadius: "default",
                     color: "muted",
+                    height: "100%",
+                    width: "100%",
+                    objectFit: "cover",
+                    width: "auto",
+                    height: "auto"
                   }}
                   alt={profileImage.alt}
                 />

@@ -177,6 +177,7 @@ const AboutPage = (props) => {
                   id="profile-label-container"
                   ref={LabelRef}
                   sx={{
+                    display:["none","none","block"],
                     border: "0.125rem solid white",
                     borderColor: "background",
                     p: 1,
