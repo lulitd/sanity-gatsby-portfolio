@@ -32,6 +32,13 @@ export default {
       title: 'Logo'
     },
     {
+      name: 'author',
+      type: 'reference',
+      description: 'Publish an author and set a reference to them here.',
+      title: 'Author',
+      to: [{type: 'person'}]
+    },
+    {
       name: 'description',
       type: 'text',
       title: 'Description',
@@ -84,11 +91,11 @@ export default {
       }
     },
     {
-      name: 'author',
-      type: 'reference',
-      description: 'Publish an author and set a reference to them here.',
-      title: 'Author',
-      to: [{type: 'person'}]
+      name: 'archive',
+      type: 'array',
+      description: 'Defines order of projects',
+      title: 'Archive',
+      of: [{type: 'reference', to: {type: 'project'}}]
     }
   ]
 }

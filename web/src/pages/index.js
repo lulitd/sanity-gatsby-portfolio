@@ -34,6 +34,10 @@ export const query = graphql`
       jumboName
       jumboDescription
       jumboTag
+      archive {
+        _id
+        title
+      }
       author {
         github
         instagram
@@ -121,6 +125,7 @@ export const query = graphql`
             alt
           }
           title
+          subtitle
           categories {
             title
           }
@@ -218,6 +223,7 @@ const IndexPage = (props) => {
   }
 
   const site = (data || {}).site;
+  const archiveOrder = (site||{}).archive; 
   const projectNodes = (data || {}).projects
     ? mapEdgesToNodes(data.projects)
       .filter(filterOutDocsWithoutSlugs)
@@ -287,6 +293,7 @@ const IndexPage = (props) => {
           >
             <Heading variant="subheading" fontWeight="body" fontSize={[2, 3]}>
               Hi my name is
+              
               <Text as="span" display="block" variant="title" sx={{ fontSize: [6,6, 7], pt:[1]}}>
                 {site.jumboName}.
               </Text>
@@ -408,6 +415,7 @@ const IndexPage = (props) => {
           <ProjectPreviewGrid
             columns={[1, 2, null]}
             nodes={projectNodes}
+            order={archiveOrder}
             browseMoreHref="/archive/"
           />
         </Container>

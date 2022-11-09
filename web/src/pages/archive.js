@@ -13,6 +13,13 @@ import { FaCentercode } from "react-icons/fa";
 //@jsx jsx
 export const query = graphql`
   query ArchivePageQuery {
+    archive: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+      archive {
+        _id
+        title
+      }
+    }
+
     projects: allSanityProject(
       sort: { fields: [publishedAt], order: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
@@ -89,6 +96,7 @@ const ArchivePage = (props) => {
 
   const usedCategories = data && data.usedCategories;
 
+  const archiveOrder = data && data.archive.archive; 
 
   return (
     <>
@@ -104,7 +112,7 @@ const ArchivePage = (props) => {
           total={totalCount}
           used={usedCategories}
         />
-        {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}
+        {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} order={archiveOrder}/>}
       </Container>
     </>
   );

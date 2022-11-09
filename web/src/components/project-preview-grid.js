@@ -6,17 +6,39 @@ import { Flex } from "rebass";
 
 //@jsx jsx
 
-function ProjectPreviewGrid(props) {
+function ProjectPreviewGrid({nodes,title,order,columns, ...props }) {
 
-  const hasEvenElements= props.nodes.length%2==0; 
+  const hasEvenElements= nodes.length%2==0;
+
+
+  if (order){
+  const idOrder = order.map( o => o._id );
+    nodes.sort(function(a, b) {
+      const orderIndexA = idOrder.indexOf(a._id);
+      const orderIndexB = idOrder.indexOf(b._id);
+      if (orderIndexB>=0 && orderIndexA>=0 ){
+        return orderIndexA - orderIndexB; 
+      } else if (orderIndexB == orderIndexA){
+       
+        // if they are both the same then they aren't in the list
+        const offset = idOrder.length *2; 
+        const nodeIndexA = nodes.findIndex(n=> n._id==a._id); 
+        const nodeIndexB = nodes.findIndex(n=> n._id==b._id); 
+
+        return nodeIndexA - nodeIndexB + offset; 
+      } else {
+        return orderIndexB; 
+      }
+    });
+  }
+
+    
   return (
-
-
     <Box>
-      {props.title && <Styled.h2>{props.title}</Styled.h2>}
+      {title && <Styled.h2>{title}</Styled.h2>}
       <Grid
         as="ul"
-        columns={props.nodes.length > 1 ? props.columns : 1}
+        columns={nodes.length > 1 ? columns : 1}
         sx={{
           listStyle: "none",
           color: "inherit",
@@ -35,10 +57,10 @@ function ProjectPreviewGrid(props) {
           }})
         }}
       >
-        {props.nodes &&
-          props.nodes.map((node,i) => (
+        {nodes &&
+          nodes.map((node,i) => (
             <Styled.li key={node._id}>
-              <ProjectPreview {...node} isFull={i%3==0||i==0 || (hasEvenElements && i == props.nodes.length-1)} />
+              <ProjectPreview {...node} isFull={i%3==0||i==0 || (hasEvenElements && i == nodes.length-1)} />
             </Styled.li>
           ))}
       </Grid>

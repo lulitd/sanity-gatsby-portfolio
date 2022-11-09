@@ -91,29 +91,6 @@ export default {
       type: 'array',
       of: [{type: 'reference', to: {type: 'accolade'}}]
     },
-    {
-      name: 'comments',
-      title: 'Comments',
-      type: 'array',
-      of: [
-        {
-          title: 'Comment',
-          type: 'object',
-          fields: [
-            {
-              title: 'Comment Text',
-              name: 'commentText',
-              type: 'projectPortableText'
-            },
-            {
-              title: 'Source',
-              name: 'sourceComment',
-              type: 'projectPortableText'
-            } 
-          ]
-        }
-      ]
-    }
   ],
   preview: {
     select: {
