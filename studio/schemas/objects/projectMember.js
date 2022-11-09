@@ -14,22 +14,7 @@ export default {
       name: 'roles',
       type: 'array',
       of: [{type: 'string'}],
-      options: {
-        layout: 'radio',
-        list: [
-          {title: 'Designer', value: 'designer'},
-          {title: 'Developer', value: 'developer'},
-          {title: 'Director', value: 'director'},
-          {title: 'Artist', value: 'artist'},
-          {title: 'Performer', value: 'performer'},
-          {title: 'Editor', value: 'editor'},
-          {title: 'Music', value: 'music'},
-          {title: 'Sound Effects', value: 'sound effects'},
-          {title: 'Video Editor', value: 'video editor'},
-          {title: 'Motion Graphics', value: 'motion graphics'},
-          {title: 'Manager', value: 'manager'}
-        ]
-      }
+      validation: Rule => Rule.unique()
     }
   ],
   preview: {

@@ -55,7 +55,7 @@ function RoleList({ items, title }) {
                   color: "body",
                 },
                 "& span": {
-                  color: "primary",
+                  color: "muted",
                   textTransform: "capitalize",
                   fontWeight: 100,
                 },
@@ -70,11 +70,13 @@ function RoleList({ items, title }) {
                     rel="noopener noreferrer"
                     sx={{
                       "&:hover": {
-                        textDecoration: "underline",
-                        color: "secondary",
+                        textDecoration: "none",
+                        transform:"scale(5)",
+                        "& p": {
+                          color: "secondary"
+                        },
                         "& span": {
-                          color: "secondary",
-                          textDecoration: "underline",
+                          color: "secondary"
                         },
                       },
                     }}
