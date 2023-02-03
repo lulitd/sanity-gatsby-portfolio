@@ -7,16 +7,28 @@ const theme = {
     videoM: 720,
     videoS: 640,
   },
+  // colors: {
+  //   text: "#05a696",
+  //   body: "#94d1cb",
+  //   heading: "#dc3856",
+  //   background: "#020426",
+  //   primary: "#05a696",
+  //   secondary: "#dc3856",
+  //   muted: "#94d1cb",
+  //   darkest: "#020426",
+  //   lightest: "#ffffff"
+  // },
   colors: {
-    text: "#05a696",
+    text: "#94d1cb",
     body: "#94d1cb",
-    heading: "#dc3856",
-    background: "#020426",
+    heading: "#05a696",
+    background: "#121212",
     primary: "#05a696",
-    secondary: "#dc3856",
+    secondary: "#F29E1F", 
+    third:"#A6110D",
     muted: "#94d1cb",
-    darkest: "#020426",
-    lightest: "#ffffff"
+    darkest: "#121212",
+    lightest: "#ddd"
   },
   fonts: {
     body: '"Helvetica Neue", sans-serif',
@@ -33,7 +45,7 @@ const theme = {
     default: 16,
     pill: 9999,
   },
-  borderWidths: [0, 1, 1.5, 2, 4, 8, 16, 32, 64, 128],
+  borderWidths: [0,1, 2, 3,4],
   fontSizes: [14, 16, 18, 20, 24,28,32, 48, 64, 96],
   fontWeights: {
     body: 400,
@@ -90,7 +102,7 @@ const theme = {
   buttons: {
     nav: {
       backgroundColor: "transparent",
-      color: "inherit",
+      color: "muted",
       display: "inline-block",
       textDecoration: "none",
       fontFamily: "nav",
@@ -109,7 +121,7 @@ const theme = {
       borderRadius: "0",
       borderTopRightRadius: "default",
       borderBottomLeftRadius: "default",
-      color: "text",
+      color: "primary",
       fontFamily: "button",
       letterSpacing: [1],
       px: 3,
@@ -151,6 +163,7 @@ const theme = {
       fontSize: 2,
       fontWeight: "bold",
       pb: 1,
+      color:"muted",
     },
     labelRequired: {
       variant: "forms.label",
@@ -160,21 +173,21 @@ const theme = {
       },
     },
     input: {
-      borderColor: "secondary",
+      borderColor: "primary",
       borderStyle: "dashed",
-      borderWidth: 1,
+      borderWidth:[1],
       borderRadius: 0,
       marginBottom: 3,
       fontFamily: "body",
       "&:focus": {
-        borderColor: "primary",
+        borderColor: "secondary",
         outline: "none",
       },
     },
     select: {
       borderColor: "secondary",
       borderStyle: "dashed",
-      borderWidth: 1,
+      borderWidth: [1],
       borderRadius: 0,
       "&:focus": {
         borderColor: "primary",
@@ -245,12 +258,12 @@ const theme = {
       maxWidth: ["40ch","50ch","70ch"],
     },
     a: {
-      color: "secondary",
+      color: "primary",
       textDecoration: "none",
       fontWeight: "a",
       ":hover": {
         textDecoration: "underline",
-        color: "inherit",
+        color: "secondary",
       },
     },
     pre: {

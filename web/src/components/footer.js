@@ -13,7 +13,7 @@ const CleanLink = ({ to, children }) => {
   const { colors } = context.theme;
   return (
     <BlockLink
-      hex={colors.secondary}
+      hex={colors.primary}
       to={to}
       sx={{
         color: "muted",

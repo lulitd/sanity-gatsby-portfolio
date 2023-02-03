@@ -36,3 +36,14 @@ Netlify automatically deploys new changes commited to the `master` branch on Git
 [![Slack Community Button](https://slack.sanity.io/badge.svg)](https://slack.sanity.io/)
 
 Join [Sanity’s developer community](https://slack.sanity.io) or ping us [on twitter](https://twitter.com/sanity_io).
+
+## Troubleshooting
+
+Because of a bug in Learna, if project is not closed properly, there will be orphaned node server running, which will prevent you from running the project again. 
+
+To close orphaned server, within terminal:
+1. find the process id that listening to port 3333 or 8000
+  - netstat -ano | find "LISTENING" | find "3333"
+2. The last number will be the pid ie. 14282
+3. Kill the task server using the following command with the correct pid. 
+  - taskkill /f /pid 14282 

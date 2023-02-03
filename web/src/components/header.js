@@ -113,7 +113,7 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
             await entry.visible;
             onHideNav();}}>Blog</NavLink>
       </li> */}
-      <li>
+      {/* <li>
         <Button as="a" href="../2022-CV-Lalaine-Ulit-Destajo.pdf"
             target="_blank" rel="noreferrer noopener"
             variant="nav"
@@ -123,7 +123,7 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
               paddingLeft: [1, 3],
               display: "block",
           }}>CV</Button>
-      </li>
+      </li> */}
       <li>
         <NavLink to="/contact/" trigger={async pages => {
             const exit = await pages.exit;

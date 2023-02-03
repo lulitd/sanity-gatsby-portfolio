@@ -7,7 +7,7 @@ import SEO from "../components/seo";
 import AnimHello from "../animIcons/animHello";
 import { Styled, Label, Input, Textarea } from "theme-ui";
 import { Box, Flex, Button } from "rebass";
-import { jsx } from "theme-ui";
+import {Heading, jsx } from "theme-ui";
 /*@jsx jsx*/
 export const query = graphql`
   query ContactQuery {
@@ -39,9 +39,10 @@ const ContactPage = (props) => {
     <>
       <SEO title="Contact" />
 
-      <Container pr="0">
+      <Container>
+      <Heading as="h1" variant={'text.barcodes'} fontSize={[8]}>Say Hello</Heading>
         <Flex>
-          <Flex flex="2">
+          <Flex flex="3">
             <Box
               as="form"
               id="contact-form"
@@ -49,7 +50,6 @@ const ContactPage = (props) => {
               action="https://usebasin.com/f/aeb507374cd0"
               role="form"
             >
-              <Styled.h1>Say Hello</Styled.h1>
               <Styled.p>
                 Whether for a potential project or just to say hi, my inbox is always open.
               </Styled.p>

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./header";
 import Footer from "./footer";
-import { Flex, Box } from "rebass";
+import { Flex, Box } from "theme-ui";
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -19,20 +19,23 @@ const Layout = ({
   ...rest
 }) => (
 
-  
-  <Flex flexDirection="column" minHeight="100vh" {...rest} sx={{}}>
+  <Flex {...rest} sx={{
+    flexDirection:"column",
+    minHeight:"100vh"
+  }}>
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
-    <Box
+    <Flex
       sx={{
         width: "100%",
         flex: "1 1 auto",
         px: [0],
-        ...mainStyle,
+        flexDirection:"column",
+        alignItems:"center",
       }}
       as="main"
     >
-      <Box pt={60}>{children}</Box>
-    </Box>
+      <Box sx={{pt:90, width:"100%"}}>{children}</Box>
+    </Flex>
     <Footer author={author} />
   </Flex>
 );
