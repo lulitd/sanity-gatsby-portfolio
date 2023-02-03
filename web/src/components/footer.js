@@ -4,7 +4,7 @@ import { Flex, Text } from "rebass";
 import { jsx } from "theme-ui";
 import Container from "./container";
 import { alpha } from "@theme-ui/color";
-import BlockLink from "./transition/blockTransition";
+// import BlockLink from "./transition/blockTransition";
 // @jsx jsx
 import { useThemeUI } from "theme-ui";
 
@@ -12,20 +12,20 @@ const CleanLink = ({ to, children }) => {
   const context = useThemeUI();
   const { colors } = context.theme;
   return (
-    <BlockLink
-      hex={colors.primary}
-      to={to}
-      sx={{
-        color: "muted",
-        textDecoration: "none",
-        "&:hover": {
-          color: "secondary",
-          textDecoration: "underline",
-        },
-      }}
-    >
+    // <BlockLink
+    //   hex={colors.primary}
+    //   to={to}
+    //   sx={{
+    //     color: "muted",
+    //     textDecoration: "none",
+    //     "&:hover": {
+    //       color: "secondary",
+    //       textDecoration: "underline",
+    //     },
+    //   }}
+    // >
       {children}
-    </BlockLink>
+    // </BlockLink>
   );
 };
 

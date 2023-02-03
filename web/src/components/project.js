@@ -1,4 +1,4 @@
-import { format, distanceInWords, differenceInDays } from "date-fns";
+import { format, distanceInWords, differenceInDays,parseISO } from "date-fns";
 import React from "react";
 import { Link } from "gatsby";
 import { buildImageObj } from "../lib/helpers";
@@ -8,11 +8,12 @@ import Container from "./container";
 import RoleList from "./role-list";
 import ProjectPreviewGrid from "./project-preview-grid";
 import { Heading, Box, Text, Button, Flex } from "rebass";
-import { AspectImage, Image, Styled, Grid, jsx, Card } from "theme-ui";
+import { AspectImage, Image, Grid, jsx, Card } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "./ThemedLink";
 import { darken, alpha, lighten } from '@theme-ui/color'
 import { FaAutoprefixer } from "react-icons/fa";
-import TransitionState from "gatsby-plugin-transition-link"
+// import TransitionState from "gatsby-plugin-transition-link"
 
 
 // @jsx jsx
@@ -25,7 +26,7 @@ function Project(props) {
     categories,
     members,
     accolades,
-    mainImage,
+   mainImage,
     relatedProjects,
     awards,
   } = props;
@@ -54,7 +55,7 @@ function Project(props) {
         {categories.reduce((acm, cat) => {
           if (cat.projectFilter) {
             const el = (
-              <Styled.li sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
+              <Themed.li sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
                 <ThemedLink
                   block
                   to={`/archive/${cat.slug.current}`}
@@ -63,7 +64,7 @@ function Project(props) {
                 >
                   #{cat.title}
                 </ThemedLink>
-              </Styled.li>
+              </Themed.li>
             );
             acm.push(el);
           }
@@ -132,23 +133,23 @@ function Project(props) {
         {categories && categories.length > 0 && categoriesButtons}
         {_rawProjectBrief && (
           <Flex pb={2} flexDirection="column" mx="auto">
-            <Styled.h3 sx={{
+            <Themed.h3 sx={{
               color: lighten('secondary', .1),
               fontWeight: 100,
               mx: [0, 'auto']
-            }}>Project Description</Styled.h3>
+            }}>Project Description</Themed.h3>
             <BlockContent style={{ mx: 'auto' }} blocks={_rawProjectBrief || []} />
           </Flex>
         )}
 
         {_rawProjectBreakdown && (
           <Flex pb={2} flexDirection="column" mx="auto">
-            <Styled.h3 sx={{
+            <Themed.h3 sx={{
               color: lighten('secondary', .1),
               fontWeight: 100,
               mx: [0, 'auto'],
               textAlign: "center"
-            }}>Project Breakdown</Styled.h3>
+            }}>Project Breakdown</Themed.h3>
             <BlockContent style={{ mx: 'auto' }} blocks={_rawProjectBreakdown || []} />
           </Flex>
         )}
@@ -163,10 +164,10 @@ function Project(props) {
           {uniqueAccolades && uniqueAccolades.length > 0 && (
             <Flex pb={2}
               flexDirection="column" alignItems="center" width="fitContent">
-              <Styled.h3 sx={{
+              <Themed.h3 sx={{
                 color: lighten('secondary', .1),
                 fontWeight: 100,
-              }}>Exhibitions & Awards</Styled.h3>
+              }}>Exhibitions & Awards</Themed.h3>
               <Flex
                 as="ul"
                 flexDirection="column"
@@ -215,9 +216,9 @@ function Project(props) {
               textAlign: "center",
             }}
           >
-            <Styled.h3 sx={{
+            <Themed.h3 sx={{
               color: lighten('secondary', .1)
-            }}>Related Projects</Styled.h3>
+            }}>Related Projects</Themed.h3>
             {categories && categories.length > 0 && categoriesButtons}
             <ProjectPreviewGrid nodes={filteredProjects} />
           </Box>

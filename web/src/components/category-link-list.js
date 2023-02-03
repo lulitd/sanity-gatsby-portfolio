@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "gatsby";
 import ThemedLink from "./ThemedLink";
-import { Styled, jsx } from "theme-ui";
+import { jsx } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 import { Box } from "rebass";
 
 //@jsx jsx
@@ -37,7 +38,7 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
     }
     const count = cat.title === "All" ? (total ? `(${total})` : "") : totalCount;
     return (
-      <Styled.li sx={{ display: "inline-block", pr: "2", lineHeight:[3] }} key={cat.id}>
+      <Themed.li sx={{ display: "inline-block", pr: "2", lineHeight:[3] }} key={cat.id}>
         <ThemedLink
           to={`/archive/${cat.slug.current}`}
           variant={isCurrent ? "semiOutlineBtn" : "outlineBtn"}
@@ -47,12 +48,12 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
         >
           {cat.title} {count}
         </ThemedLink>
-      </Styled.li>
+      </Themed.li>
     );
   });
   return (
     <Box pb={[4]}>
-      <Styled.ul
+      <Themed.ul
         sx={{
           listStyle: "none",
           margin: 0,
@@ -60,7 +61,7 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
         }}
       >
         {list}
-      </Styled.ul>
+      </Themed.ul>
     </Box>
   );
 }

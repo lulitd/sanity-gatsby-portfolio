@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import Project from "../components/project";
-import SEO from "../components/seo";
+import {SEO} from "../components/seo";
 //import Layout from "../containers/layout";
 import Post from "../components/post";
 
@@ -20,26 +20,7 @@ export const query = graphql`
       publishedAt
       _updatedAt
       mainImage {
-        crop {
-          _key
-          _type
-          top
-          bottom
-          left
-          right
-        }
-        hotspot {
-          _key
-          _type
-          x
-          y
-          height
-          width
-        }
-        asset {
-          _id
-        }
-        alt
+        ...ImageWithPreview
       }
     }
   }
@@ -51,9 +32,6 @@ const PostTemplate = (props) => {
 
   return (
     <>
-      {errors && <SEO title="GraphQL Error" />}
-      {post && <SEO title={post.title || "Untitled"} />}
-
       {errors && (
         <Container>
           <GraphQLErrorList errors={errors} />
@@ -65,3 +43,7 @@ const PostTemplate = (props) => {
 };
 
 export default PostTemplate;
+
+export const Head = () => (
+  <SEO title="Post" />
+)

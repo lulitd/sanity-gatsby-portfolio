@@ -9,10 +9,11 @@ import Container from "../components/container";
 import SocialsFromBio from "../components/socials-from-bio";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
-import SEO from "../components/seo";
+import {SEO} from "../components/seo";
 // import Layout from "../containers/layout";
 import { Heading, Text, Flex, Box } from "rebass";
-import { Styled, jsx, Image, AspectImage, Grid, Button } from "theme-ui";
+import { jsx, Image, AspectImage, Grid, Button } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "../components/ThemedLink";
 import { lighten, alpha } from "@theme-ui/color";
 import PostPreviewGrid from "../components/post-preview-grid";
@@ -26,158 +27,79 @@ import Icon from "../components/icon"
 
 //@jsx jsx
 export const query = graphql`
-  query IndexPageQuery {
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+query IndexPageQuery {
+  site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {
+    title
+    description
+    keywords
+    jumboName
+    jumboDescription
+    jumboTag
+    archive {
+      _id
       title
-      description
-      keywords
-      jumboName
-      jumboDescription
-      jumboTag
-      archive {
+    }
+    author {
+      github
+      instagram
+      twitter
+      linkedin
+      name
+      image {
+        ...ImageWithPreview
+      }
+    }
+  }
+  projects: allSanityProject(
+    limit: 3
+    sort: {endedAt: DESC}
+    filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}, featured: {eq:
+true}}
+  ) {
+    edges {
+      node {
         _id
+        mainImage {
+          ...ImageWithPreview
+        }
+        thumbImage {
+          ...ImageWithPreview
+        }
         title
-      }
-      author {
-        github
-        instagram
-        twitter
-        linkedin
-        name
-        image {
-          crop {
-            _key
-            _type
-            top
-            bottom
-            left
-            right
-          }
-          hotspot {
-            _key
-            _type
-            x
-            y
-            height
-            width
-          }
-          asset {
-            _id
-          }
-          alt
-        }
-      }
-    }
-    projects: allSanityProject(
-      limit: 3
-      sort: { fields: [endedAt], order: DESC }
-      filter: {
-        slug: { current: { ne: null } }
-        publishedAt: { ne: null }
-        featured: { eq: true }
-      }
-    ) {
-      edges {
-        node {
-          _id
-          mainImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-            alt
-          }
-          thumbImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-            alt
-          }
+        subtitle
+        categories {
           title
-          subtitle
-          categories {
-            title
-          }
-          slug {
-            current
-          }
         }
-      }
-    }
-    posts: allSanityPost(limit: 4, sort: { fields: [publishedAt], order: DESC }) {
-      edges {
-        node {
-          _id
-          title
-          subtitle
-          publishedAt
-          _updatedAt
-          slug {
-            current
-          }
-          author {
-            name
-          }
-          categories {
-            title
-          }
-          mainImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-            alt
-          }
+        slug {
+          current
         }
       }
     }
   }
+  posts: allSanityPost(limit: 4, sort: {publishedAt: DESC}) {
+    edges {
+      node {
+        _id
+        title
+        subtitle
+        publishedAt
+        _updatedAt
+        slug {
+          current
+        }
+        author {
+          name
+        }
+        categories {
+          title
+        }
+        mainImage {
+          ...ImageWithPreview
+        }
+      }
+    }
+  }
+}
 `;
 
 const createHeroBG = (colors) => {
@@ -258,8 +180,7 @@ const IndexPage = (props) => {
 
   return (
     <>
-      <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <Container
+         <Container
         sx={{
           position: "relative",
           height: "100vh",
@@ -369,11 +290,11 @@ const IndexPage = (props) => {
           <Heading as="h3" variant={"text.barcodes"} fontSize={[8]}>INFO</Heading>
           
           <Box sx={{maxWidth:"75ch"}}>
-          <Styled.p sx={{ fontSize:[1,2], my: 0 
+          <Themed.p sx={{ fontSize:[1,2], my: 0 
           }}>
             Hi, I'm Lalaine.            
              Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am a new media artist and software developer, but I am a storyteller at heart. I develop software that tells compelling stories and spark curiosity across many mediums and platforms. I have been able to tell stories of individuals and multinational corporations. I've designed and created projects exhibited in museums, galleries & festivals worldwide. 
-          </Styled.p>
+          </Themed.p>
           </Box>
           <SocialsFromBio bio={author}  
           iconStyle={{
@@ -432,3 +353,7 @@ const IndexPage = (props) => {
 };
 
 export default IndexPage;
+
+export const Head = () => (
+  <SEO />
+)

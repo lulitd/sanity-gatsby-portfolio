@@ -1,6 +1,6 @@
 import React from "react";
 // import Layout from "../containers/layout";
-import SEO from "../components/seo";
+import {SEO} from "../components/seo";
 import { graphql } from "gatsby";
 import Container from "../components/container";
 import CategoryLinkList from "../components/category-link-list";
@@ -8,80 +8,61 @@ import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import { Styled ,Heading} from "theme-ui";
 export const query = graphql`
-  query CategoryTemplateQuery($id: String!) {
-    category: sanityCategory(id: { eq: $id }) {
-      id
-      title
-    }
-    allProjects: allSanityProject(
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-    ) {
-      totalCount
-    }
-    projects: allSanityProject(
-      filter: { categories: { elemMatch: { id: { eq: $id } } }, publishedAt: { ne: null } }
-    ) {
-      edges {
-        node {
-          id
-          mainImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-            alt
-          }
-          title
-          subtitle
-          categories {
-            title
-          }
-          slug {
-            current
-          }
+query CategoryTemplateQuery($id: String!) {
+  category: sanityCategory(id: {eq: $id}) {
+    id
+    title
+  }
+  allProjects: allSanityProject(
+    sort: {publishedAt: DESC}
+    filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
+  ) {
+    totalCount
+  }
+  projects: allSanityProject(
+    filter: {categories: {elemMatch: {id: {eq: $id}}}, publishedAt: {ne: null}}
+  ) {
+    edges {
+      node {
+        id
+        mainImage {
+          ...ImageWithPreview
         }
-      }
-    }
-    usedCategories: allSanityProject(
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-    ) {
-      group(field: categories___title) {
-        totalCount
-        fieldValue
-      }
-    }
-    categories: allSanityCategory(
-      filter: { projectFilter: { eq: true } }
-      sort: { fields: title, order: ASC }
-    ) {
-      edges {
-        node {
+        title
+        subtitle
+        categories {
           title
-          id
-          slug {
-            current
-          }
+        }
+        slug {
+          current
         }
       }
     }
   }
+  usedCategories: allSanityProject(
+    sort: {publishedAt: DESC}
+    filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
+  ) {
+    group(field: {categories: {title: SELECT}}) {
+      totalCount
+      fieldValue
+    }
+  }
+  categories: allSanityCategory(
+    filter: {projectFilter: {eq: true}}
+    sort: {title: ASC}
+  ) {
+    edges {
+      node {
+        title
+        id
+        slug {
+          current
+        }
+      }
+    }
+  }
+}
 `;
 
 const CategoryTemplate = (props) => {
@@ -107,7 +88,7 @@ const CategoryTemplate = (props) => {
         </Container>
       )}
 
-      <SEO title={`Archive: ${category.title}`} />
+  
       <Container sx={{
         textAlign:"center" 
       }}>
@@ -127,3 +108,7 @@ const CategoryTemplate = (props) => {
 };
 
 export default CategoryTemplate;
+
+export const Head = () => (
+  <SEO title="Category" />
+)

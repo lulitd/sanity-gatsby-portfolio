@@ -1,10 +1,11 @@
 import { Link } from "gatsby";
 import React from "react";
 import { cn, buildImageObj } from "../lib/helpers";
-import { format, isThisYear, isAfter, isSameDay } from "date-fns";
+import { format, isThisYear, isAfter, isSameDay, parseISO } from "date-fns";
 import { imageUrlFor } from "../lib/image-url";
 import BlockText from "./block-text";
-import { Styled, Grid, jsx, Card, Image } from "theme-ui";
+import { Grid, jsx, Card, Image } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 import { lighten, alpha } from "@theme-ui/color";
 
 import { Heading, Box, Flex } from "rebass";
@@ -120,7 +121,7 @@ function PostPreview(props) {
                 {props.title}
               </Heading>
               {props.publishedAt && (
-                <Styled.p
+                <Themed.p
                   sx={{
                     color: "muted",
                     letterSpacing: "normal",
@@ -130,11 +131,11 @@ function PostPreview(props) {
                   }}
                 >
                   {getLatestUpdate(props.publishedAt, props._updatedAt)}
-                </Styled.p>
+                </Themed.p>
               )}
             </Flex>
             {props.subtitle && (
-              <Styled.p
+              <Themed.p
                 sx={{
                   color: "muted",
                   letterSpacing: "normal",
@@ -142,9 +143,9 @@ function PostPreview(props) {
                 }}
               >
                 {props.subtitle}
-              </Styled.p>
+              </Themed.p>
             )}
-            <Styled.p sx={{ color: "muted", fontSize: 1 }}>Read More...</Styled.p>
+            <Themed.p sx={{ color: "muted", fontSize: 1 }}>Read More...</Themed.p>
           </Flex>
         </Grid>
       </Card>

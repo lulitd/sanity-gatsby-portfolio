@@ -1,16 +1,16 @@
 import React from "react";
-import Img from "gatsby-image";
-import { getFluidGatsbyImage } from "gatsby-source-sanity";
+import Image from "gatsby-plugin-sanity-image"
+// import { getFluidGatsbyImage } from "gatsby-source-sanity";
 import clientConfig from "../../client-config";
 import { Box, Text } from "rebass";
 import { alpha } from "@theme-ui/color";
 import { reduce } from "ramda";
 export default ({ node }) => {
-  if (!node.asset) {
+  if (!node.image) {
     return null;
   }
 
-  const fluidProps = getFluidGatsbyImage(node.asset._ref, { maxWidth: 675 }, clientConfig.sanity);
+  // const fluidProps = getFluidGatsbyImage(node.asset._ref, { maxWidth: 675 }, clientConfig.sanity);
 
   return (
     <Box sx={{
@@ -18,7 +18,7 @@ export default ({ node }) => {
 			position: "relative"
 
     }} as="figure">
-      <Img fluid={fluidProps} alt={node.alt} />
+      <Image {...node.image}/>
       {node.caption && < Text as={"figcaption"}
       sx={{
         position:"absolute",

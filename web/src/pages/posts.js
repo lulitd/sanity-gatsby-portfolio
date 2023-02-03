@@ -3,44 +3,42 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
-import SEO from "../components/seo";
+import {SEO} from "../components/seo";
 // import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { Styled, jsx } from "theme-ui";
+import {jsx } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 import PostPreviewGrid from "../components/post-preview-grid";
 
 //@jsx jsx
 export const query = graphql`
-  query PostPageQuery {
-    posts: allSanityPost(
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-    ) {
-      totalCount
-      edges {
-        node {
-          _id
-          mainImage {
-            asset {
-              _id
-            }
-            alt
-          }
-          title
-          subtitle
-          slug {
-            current
-          }
-          categories {
-            title
-          }
-          publishedAt
-          _updatedAt
+query PostPageQuery {
+  posts: allSanityPost(
+    sort: {publishedAt: DESC}
+    filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
+  ) {
+    totalCount
+    edges {
+      node {
+        _id
+        mainImage {
+          ...ImageWithPreview
         }
+        title
+        subtitle
+        slug {
+          current
+        }
+        categories {
+          title
+        }
+        publishedAt
+        _updatedAt
       }
     }
   }
+}
 `;
 
 const ArchivePage = (props) => {
@@ -57,11 +55,10 @@ const ArchivePage = (props) => {
 
   return (
     <>
-      <SEO title="Posts" />
       <Container>
         {!postNodes || postNodes.length<=0 && 
-        <><Styled.h1 sx={{ py: 1 }}>Coming Soon</Styled.h1></> }
-        {postNodes && postNodes.length > 0 && <Styled.h1 sx={{ py: 1 }}>All Posts</Styled.h1> }
+        <><Themed.h1 sx={{ py: 1 }}>Coming Soon</Themed.h1></> }
+        {postNodes && postNodes.length > 0 && <Themed.h1 sx={{ py: 1 }}>All Posts</Themed.h1> }
         {postNodes && postNodes.length > 0 && <PostPreviewGrid nodes={postNodes} columns={[1]} />}
       </Container>
     </>
@@ -69,3 +66,7 @@ const ArchivePage = (props) => {
 };
 
 export default ArchivePage;
+
+export const Head = () => (
+  <SEO title="Blog" />
+)

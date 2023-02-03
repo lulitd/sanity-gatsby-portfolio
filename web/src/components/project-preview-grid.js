@@ -1,8 +1,9 @@
 import React from "react";
 import ProjectPreview from "./project-preview";
-import { Styled, Grid, Box, jsx } from "theme-ui";
+import { Grid, Box, jsx } from "theme-ui";
 import ThemedLink from "./ThemedLink";
 import { Flex } from "rebass";
+import { Themed } from '@theme-ui/mdx';
 
 //@jsx jsx
 
@@ -35,7 +36,7 @@ function ProjectPreviewGrid({nodes,title,order,columns, ...props }) {
     
   return (
     <Box>
-      {title && <Styled.h2>{title}</Styled.h2>}
+      {title && <Themed.h2>{title}</Themed.h2>}
       <Grid
         as="ul"
         columns={nodes.length > 1 ? columns : 1}
@@ -49,7 +50,7 @@ function ProjectPreviewGrid({nodes,title,order,columns, ...props }) {
           pb: 3,
           columnGap: [2,3],
           rowGap:[3],
-          "& li:nth-child(3n+1)":{
+          "& li:nth-of-type(3n+1)":{
             gridColumn:['auto','auto','1 / span 2'],
           },
           ...(hasEvenElements && { "& li:last-child ":{
@@ -59,9 +60,9 @@ function ProjectPreviewGrid({nodes,title,order,columns, ...props }) {
       >
         {nodes &&
           nodes.map((node,i) => (
-            <Styled.li key={node._id}>
+            <Themed.li key={node._id}>
               <ProjectPreview {...node} isFull={i%3==0||i==0 || (hasEvenElements && i == nodes.length-1)} />
-            </Styled.li>
+            </Themed.li>
           ))}
       </Grid>
       {props.browseMoreHref && (

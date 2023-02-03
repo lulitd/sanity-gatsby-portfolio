@@ -1,4 +1,4 @@
-import { format, isThisYear, isAfter, isSameDay } from "date-fns";
+import { format, isThisYear, isAfter, isSameDay,parseISO} from "date-fns";
 import React from "react";
 import { Link } from "gatsby";
 import { buildImageObj } from "../lib/helpers";
@@ -6,9 +6,10 @@ import { imageUrlFor } from "../lib/image-url";
 import BlockContent from "./block-content";
 import Container from "./container";
 import { Heading, Box, Text, Button } from "rebass";
-import { AspectImage, Styled, Grid, jsx } from "theme-ui";
+import { AspectImage, Grid, jsx } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "./ThemedLink";
-import { TransitionState } from "gatsby-plugin-transition-link";
+// import { TransitionState } from "gatsby-plugin-transition-link";
 // @jsx jsx
 
 function getLatestUpdate(publishedAt, _updatedAt) {
@@ -42,10 +43,10 @@ function Post(props) {
             />
           </Box>
         )}
-        <Styled.h1 sx={{ p: 0, m: 0, textTransform: "capitalize " }}>{title}</Styled.h1>
-        <Styled.p sx={{ p: 0, m: 0, color: "muted", fontWeight: "body" }}>
+        <Themed.h1 sx={{ p: 0, m: 0, textTransform: "capitalize " }}>{title}</Themed.h1>
+        <Themed.p sx={{ p: 0, m: 0, color: "muted", fontWeight: "body" }}>
           {getLatestUpdate(publishedAt, _updatedAt)}
-        </Styled.p>
+        </Themed.p>
       </Box>
       <Box>
         {_rawContent && (

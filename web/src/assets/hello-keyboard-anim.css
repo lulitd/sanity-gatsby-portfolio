@@ -15,13 +15,13 @@
   animation: fade-o 5s linear 0s infinite;  
 }
 
-#Hello g:nth-child(1) { 
+#Hello g:nth-of-type(1) { 
   animation-delay: .5s 
 }
-#Hello g:nth-child(2) { animation-delay: 1.15s }
-#Hello g:nth-child(3) { animation-delay: 1.9s }
-#Hello g:nth-child(4) { animation-delay: 2.65s }
-#Hello g:nth-child(5) { animation-delay: 3.4s }
+#Hello g:nth-of-type(2) { animation-delay: 1.15s }
+#Hello g:nth-of-type(3) { animation-delay: 1.9s }
+#Hello g:nth-of-type(4) { animation-delay: 2.65s }
+#Hello g:nth-of-type(5) { animation-delay: 3.4s }
 
   
   @keyframes text-wave {

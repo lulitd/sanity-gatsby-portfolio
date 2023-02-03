@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
-import SEO from "../components/seo";
+import {SEO} from "../components/seo";
 // import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
@@ -21,7 +21,7 @@ export const query = graphql`
     }
 
     projects: allSanityProject(
-      sort: { fields: [publishedAt], order: DESC }
+      sort: {publishedAt: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
     ) {
       totalCount
@@ -29,16 +29,10 @@ export const query = graphql`
         node {
           _id
           mainImage {
-            asset {
-              _id
-            }
-            alt
+            ...ImageWithPreview
           }
           thumbImage {
-            asset {
-              _id
-            }
-            alt
+            ...ImageWithPreview
           }
           title
           subtitle
@@ -53,17 +47,17 @@ export const query = graphql`
     }
 
     usedCategories: allSanityProject(
-      sort: { fields: [publishedAt], order: DESC }
+      sort: {publishedAt:DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
     ) {
-      group(field: categories___title) {
+      group(field: {categories: {title: SELECT}}) {
         totalCount
         fieldValue
       }
     }
     categories: allSanityCategory(
-      filter: { projectFilter: { eq: true } }
-      sort: { fields: title, order: ASC }
+      filter: {projectFilter: {eq: true}}
+      sort: {title: ASC}
     ) {
       edges {
         node {
@@ -100,7 +94,6 @@ const ArchivePage = (props) => {
 
   return (
     <>
-      <SEO title="Archive" />
       <Container sx={{
        textAlign:"center" 
       }}>
@@ -119,3 +112,7 @@ const ArchivePage = (props) => {
 };
 
 export default ArchivePage;
+
+export const Head = () => (
+  <SEO title="Archive" />
+)

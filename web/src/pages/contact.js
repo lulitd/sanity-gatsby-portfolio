@@ -2,12 +2,13 @@ import React from "react";
 import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
-import SEO from "../components/seo";
+import {SEO} from "../components/seo";
 // import Layout from "../containers/layout";
 import AnimHello from "../animIcons/animHello";
-import { Styled, Label, Input, Textarea } from "theme-ui";
+import {Label, Input, Textarea } from "theme-ui";
 import { Box, Flex, Button } from "rebass";
 import {Heading, jsx } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 /*@jsx jsx*/
 export const query = graphql`
   query ContactQuery {
@@ -37,8 +38,6 @@ const ContactPage = (props) => {
   }
   return (
     <>
-      <SEO title="Contact" />
-
       <Container>
       <Heading as="h1" variant={'text.barcodes'} fontSize={[8]}>Say Hello</Heading>
         <Flex>
@@ -50,9 +49,9 @@ const ContactPage = (props) => {
               action="https://usebasin.com/f/aeb507374cd0"
               role="form"
             >
-              <Styled.p>
+              <Themed.p>
                 Whether for a potential project or just to say hi, my inbox is always open.
-              </Styled.p>
+              </Themed.p>
               <Flex alignItems="center">
                 <Flex flexDirection="column" pr="2" flex="50%">
                   <Label htmlFor="form_name" variant="labelRequired">
@@ -96,7 +95,7 @@ const ContactPage = (props) => {
                 {" "}
                 Get In Touch
               </Button>
-              <Styled.p>I'll try my best to answer your email!</Styled.p>
+              <Themed.p>I'll try my best to answer your email!</Themed.p>
             </Box>
           </Flex>
           <Box
@@ -121,3 +120,7 @@ const ContactPage = (props) => {
 };
 
 export default ContactPage;
+
+export const Head = () => (
+  <SEO title="Contact" />
+)

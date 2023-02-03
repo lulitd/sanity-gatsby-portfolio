@@ -9,15 +9,22 @@ const token = process.env.SANITY_READ_TOKEN;
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
+  siteMetadata: {
+    title: `Lalaine Ulit-Destajo Portfolio`,
+    description: `Portfolio website of Lalaine Ulit-Destajo. New Media Artist. Interactive Designer. Creative Coder.`,
+    twitterUsername: `@lulitdestajo`,
+    image: `src/assets/logo.svg`,
+    siteUrl: `https://www.lalaineulitdestajo.com`,
+  },
   plugins: [
     "gatsby-plugin-theme-ui",
-    "gatsby-plugin-react-helmet",
-    {
-      resolve: "gatsby-plugin-transition-link",
-      options: {
-          layout: require.resolve(`./src/containers/layout.js`)
-        }
-   },
+    "gatsby-plugin-image",
+  //   {
+  //     resolve: "gatsby-plugin-transition-link",
+  //     options: {
+  //         layout: require.resolve(`./src/containers/layout.js`)
+  //       }
+  //  },
    {
    resolve: `gatsby-omni-font-loader`,
    options: {
@@ -42,6 +49,13 @@ module.exports = {
         token,
         watchMode: !isProd,
         overlayDrafts: !isProd && token,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-sanity-image",
+      options: {
+        ...clientConfig.sanity,
+        customImageTypes: ["figure", "images", "SanityFigure","SanityDefaultImage"],
       },
     },
     {

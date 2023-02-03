@@ -2,7 +2,8 @@ import React from "react";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import { ucfirst } from "../lib/string-utils";
-import { Styled, Image, Grid, jsx, Box } from "theme-ui";
+import { Image, Grid, jsx, Box } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 import { FaHandMiddleFinger } from "react-icons/fa";
 import { darken, lighten } from '@theme-ui/color'
 import { Flex } from "rebass";
@@ -20,10 +21,10 @@ function RoleList({ items, title }) {
   return (
     <Flex pb={2}
       flexDirection="column" alignItems="center" width="fitContent">
-      <Styled.h3 sx={{
+      <Themed.h3 sx={{
         color: lighten('secondary', .1),
         fontWeight: 100,
-      }} >{title}</Styled.h3>
+      }} >{title}</Themed.h3>
       <Flex
         as="ul"
         flexDirection="column"
@@ -45,7 +46,7 @@ function RoleList({ items, title }) {
           if (item.person.name === "Lalaine Ulit-Destajo") link = "";
 
           return (
-            <Styled.li
+            <Themed.li
               key={item._key}
               sx={{
                 textDecoration: "none",
@@ -64,7 +65,7 @@ function RoleList({ items, title }) {
               <ConditionalWrapper
                 condition={link}
                 wrapper={(children) => (
-                  <Styled.a
+                  <Themed.a
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -82,7 +83,7 @@ function RoleList({ items, title }) {
                     }}
                   >
                     {children}
-                  </Styled.a>
+                  </Themed.a>
                 )}
               >
                 <Box sx={{
@@ -90,21 +91,21 @@ function RoleList({ items, title }) {
                     pb: 1,
                   },
                 }}>
-                  <Styled.p sx={{
+                  <Themed.p sx={{
                     fontWeight: "bold",
                     fontSize: [2],
                     margin: 0,
                     lineHeight: 0,
                   }}> {(item.person && item.person.name) || <em>Missing name</em>}
                     {link && (<span color="body"><Icon sx={{mx:1}}/></span>)}
-                  </Styled.p >
-                  {item.roles && (<Styled.p sx={{
+                  </Themed.p >
+                  {item.roles && (<Themed.p sx={{
                     textTransform: "Capitalize",
                     color: lighten('primary', .1),
-                  }}>{item.roles.join(" + ")}</Styled.p >)}
+                  }}>{item.roles.join(" + ")}</Themed.p >)}
                 </Box>
               </ConditionalWrapper>
-            </Styled.li>
+            </Themed.li>
           );
         })}
       </Flex>

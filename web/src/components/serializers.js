@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 import Figure from "./figure";
 import React from "react";
 import EmbedVideo from "./embed-video";
@@ -13,33 +14,33 @@ const serializers = {
     block(props) {
       switch (props.node.style) {
         case "h1":
-          return <Styled.h1>{props.children}</Styled.h1>;
+          return <Themed.h1>{props.children}</Themed.h1>;
         case "h2":
-          return <Styled.h2>{props.children}</Styled.h2>;
+          return <Themed.h2>{props.children}</Themed.h2>;
         case "h3":
-          return <Styled.h3>{props.children}</Styled.h3>;
+          return <Themed.h3>{props.children}</Themed.h3>;
         case "h4":
-          return <Styled.h4>{props.children}</Styled.h4>;
+          return <Themed.h4>{props.children}</Themed.h4>;
         case "h5":
-          return <Styled.h5>{props.children}</Styled.h5>;
+          return <Themed.h5>{props.children}</Themed.h5>;
         case "h6":
-          return <Styled.h6>{props.children}</Styled.h6>;
+          return <Themed.h6>{props.children}</Themed.h6>;
         case "blockquote":
-          return <Styled.blockquote>{props.children}</Styled.blockquote>;
+          return <Themed.blockquote>{props.children}</Themed.blockquote>;
         case "ul":
-          return <Styled.ul>{props.children}</Styled.ul>;
+          return <Themed.ul>{props.children}</Themed.ul>;
         case "li":
-          return <Styled.li>{props.children}</Styled.li>;
+          return <Themed.li>{props.children}</Themed.li>;
         default:
-          return <Styled.p>{props.children}</Styled.p>;
+          return <Themed.p>{props.children}</Themed.p>;
       }
     },
   },
   marks: {
     link: ({ children, mark }) => (
-      <Styled.a href={mark.href} target="_blank" rel="noopener noreferrer">
+      <Themed.a href={mark.href} target="_blank" rel="noopener noreferrer">
         {children}
-      </Styled.a>
+      </Themed.a>
     ),
   },
 };

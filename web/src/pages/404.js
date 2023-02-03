@@ -1,17 +1,17 @@
 import React from "react";
 // import Layout from "../containers/layout";
-import SEO from "../components/seo";
+import {SEO} from "../components/seo";
 import Container from "../components/container";
-import { Styled,Heading,Flex} from "theme-ui";
+import {Heading,Flex} from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "../components/ThemedLink";
 
 const NotFoundPage = () => (
   <>
-    <SEO title="Whoops!" />
     <Container>
       <Flex sx={{flexDirection:"column", alignItems:"center",}}>
       <Heading variant="text.barcodes">//Lost in the network</Heading>
-      <Styled.p>It looks like we can't find the page you were looking for... </Styled.p>
+      <Themed.p>It looks like we can't find the page you were looking for... </Themed.p>
 
       <ThemedLink block to="/" variant="semiOutlineBtn" sx={{my:4}}>
         Back Home
@@ -22,3 +22,7 @@ const NotFoundPage = () => (
 );
 
 export default NotFoundPage;
+
+export const Head = () => (
+  <SEO  title="404"/>
+)

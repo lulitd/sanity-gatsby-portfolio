@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import Project from "../components/project";
-import SEO from "../components/seo";
+import {SEO} from "../components/seo";
 
 export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
@@ -34,26 +34,7 @@ export const query = graphql`
         }
         publishedAt
         mainImage {
-          crop {
-            _key
-            _type
-            top
-            bottom
-            left
-            right
-          }
-          hotspot {
-            _key
-            _type
-            x
-            y
-            height
-            width
-          }
-          asset {
-            _id
-          }
-          alt
+          ...ImageWithPreview
         }
         _id
         slug {
@@ -61,48 +42,10 @@ export const query = graphql`
         }
       }
       mainImage {
-        crop {
-          _key
-          _type
-          top
-          bottom
-          left
-          right
-        }
-        hotspot {
-          _key
-          _type
-          x
-          y
-          height
-          width
-        }
-        asset {
-          _id
-        }
-        alt
+        ...ImageWithPreview
       }
       thumbImage {
-        crop {
-          _key
-          _type
-          top
-          bottom
-          left
-          right
-        }
-        hotspot {
-          _key
-          _type
-          x
-          y
-          height
-          width
-        }
-        asset {
-          _id
-        }
-        alt
+        ...ImageWithPreview
       }
       title
       subtitle
@@ -120,36 +63,7 @@ export const query = graphql`
           github
           instagram
           image {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-              mimeType
-              metadata {
-                isOpaque
-                palette {
-                  dominant {
-                    background
-                    foreground
-                    title
-                  }
-                }
-              }
-            }
+            ...ImageWithPreview
           }
           name
         }
@@ -183,8 +97,6 @@ const ProjectTemplate = (props) => {
  
   return (
     <>
-      {errors && <SEO title="GraphQL Error" />}
-      {project && <SEO title={project.title || "Untitled"} />}
 
       {errors && (
         <Container>
@@ -197,3 +109,7 @@ const ProjectTemplate = (props) => {
 };
 
 export default ProjectTemplate;
+
+export const Head = () => (
+  <SEO title="Project" />
+)

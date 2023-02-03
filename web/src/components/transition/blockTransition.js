@@ -1,5 +1,5 @@
 import React, {Component}  from 'react';
-import TransitionLink from 'gatsby-plugin-transition-link';
+// import TransitionLink from 'gatsby-plugin-transition-link';
 import gsap from 'gsap';
 import convert from  'color-convert';
 
@@ -156,7 +156,7 @@ export default class BlockWindow extends Component{
     
             return (
                 <>
-                    <TransitionLink
+                    {/* <TransitionLink
                         exit={{
                             length: aniLength,
                             trigger: ({ exit, e, node }) =>
@@ -177,9 +177,9 @@ export default class BlockWindow extends Component{
                                 this.slideIn(entry, node, direction),
                                 
                         }}
-                        {...props}>
+                        {...props}> */}
                         {props.children}
-                    </TransitionLink>
+                    {/* </TransitionLink> */}
                 </>
             )
         }

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
-import SEO from "../components/seo";
+import {SEO} from "../components/seo";
 // import Layout from "../containers/layout";
 import BlockContent from "../components/block-content";
 import { buildImageObj } from "../lib/helpers";
@@ -26,26 +26,7 @@ export const query = graphql`
         linkedin
         tags
         image {
-          crop {
-            _key
-            _type
-            top
-            bottom
-            left
-            right
-          }
-          hotspot {
-            _key
-            _type
-            x
-            y
-            height
-            width
-          }
-          asset {
-            _id
-          }
-          alt
+          ...ImageWithPreview
         }
         _rawBio
       }
@@ -123,7 +104,6 @@ const AboutPage = (props) => {
 
   return (
     <>
-      <SEO title="About" />
       <Container>
         <Heading as="h3" variant={'text.barcodes'} fontSize={[8]}>About</Heading>
         <Flex>
@@ -221,3 +201,8 @@ const AboutPage = (props) => {
 };
 
 export default AboutPage;
+
+export const Head = () => (
+  <SEO title="About Page" />
+)
+
