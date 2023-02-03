@@ -24,7 +24,7 @@ const Layout = ({
     flexDirection:"column",
     minHeight:"100vh"
   }}>
-    {/* <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} /> */}
+    <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
     <Flex
       sx={{
         width: "100%",

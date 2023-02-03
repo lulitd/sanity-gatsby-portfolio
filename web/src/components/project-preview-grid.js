@@ -67,7 +67,7 @@ function ProjectPreviewGrid({nodes,title,order,columns, ...props }) {
       </Grid>
       {props.browseMoreHref && (
         <Flex justifyContent={["center","center","left"]} flexDirection="row">
-          <ThemedLink block variant="outlineBtn" to={props.browseMoreHref}>
+          <ThemedLink variant="outlineBtn" to={props.browseMoreHref}>
             Browse More
           </ThemedLink>
         </Flex>

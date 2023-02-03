@@ -36,7 +36,6 @@ function ProjectPreview(props) {
 
   return (
     <ThemedLink
-      block
       to={`/project/${props.slug.current}`}
       sx={{
         textDecoration: "none",

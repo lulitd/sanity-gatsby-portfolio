@@ -1,20 +1,18 @@
 import React from "react";
 import Icon from "./icon";
-import { jsx,Styled, Button} from "theme-ui";
-import { Flex, Box } from "rebass";
+import { jsx, Button , Box} from "theme-ui";
+import { Flex} from "rebass";
 import Container from "./container";
 import ThemedLink from "./ThemedLink";
 import { lighten } from "@theme-ui/color";
-import { useColorMode } from "theme-ui";
+import { Themed } from '@theme-ui/mdx';
+// import { useColorMode } from "theme-ui";
 
 ///@jsx jsx
 const Branding = (props) => (
   <Box flex="1">
     <ThemedLink
       to="/"
-      block
-      direction="down"
-      duration={1.5}
       variant="nav"
       sx={{
         color: "primary",
@@ -33,7 +31,6 @@ const Branding = (props) => (
 
 const ToggleButton = ({ showNav, onHideNav, onShowNav }) => (
   <Button
-
     onClick={showNav ? onHideNav : onShowNav}
     fontSize={4}
     m={0}
@@ -49,17 +46,13 @@ const ToggleButton = ({ showNav, onHideNav, onShowNav }) => (
   </Button>
 );
 
-const NavLink = ({ to, children, trigger }) => (
+const NavLink = ({ to, children }) => (
   <ThemedLink
     to={to}
     variant="nav"
-    block
-    direction="down"
-    duration={1.5}
     sx={{
       paddingLeft: [1, 3]
     }}
-    trigger={trigger}
   >
     {children}
   </ThemedLink>
@@ -68,17 +61,19 @@ const NavLink = ({ to, children, trigger }) => (
 const Nav = ({ showNav, onHideNav, onShowNav }) => (
   <Box
     as="nav"
-    display={[showNav ? "flex" : "none", "flex"]}
     color={["text"]}
     sx={{
+      display: [showNav ? "flex" : "none", "flex"],
       position: ["absolute", "static"],
       left: 0,
       right: 0,
-      top: "60px",
-      height: ["calc(100vh - 60px)", "inherit"],
+      top: 0,
+      bottom:0,
+      height: ["calc(100vh)", "inherit"],
       pt: 2,
-      backgroundColor: [lighten("background", 0.1), "transparent"],
+      backgroundColor:["background","transparent"],
       border: "0px solid transparent",
+      zIndex:1000
     }}
   >
     <Flex
@@ -94,17 +89,10 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
       }}
     >
       <li>
-        <NavLink to="/about/" trigger={async pages => {
-            const exit = await pages.exit;
-            const entry = await pages.entry;
-            await entry.visible;
-            onHideNav();}}>About</NavLink>
+        <NavLink to="/about/">About</NavLink>
       </li>
       <li>
-        <NavLink to="/archive/" trigger={async pages => {const exit = await pages.exit;
-            const entry = await pages.entry;
-            await entry.visible;
-            onHideNav();}}>Projects</NavLink>
+        <NavLink to="/archive/" >Projects</NavLink>
       </li>
       {/* <li>
         <NavLink to="/posts/"  trigger={async pages => {const exit = await pages.exit;
@@ -124,18 +112,14 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
           }}>CV</Button>
       </li> */}
       <li>
-        <NavLink to="/contact/" trigger={async pages => {
-            const exit = await pages.exit;
-            const entry = await pages.entry;
-            await entry.visible;
-            onHideNav();}} >Contact</NavLink>
+        <NavLink to="/contact/" >Contact</NavLink>
       </li>
     </Flex>
   </Box>
 );
 
 const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
-  const [colorMode, setColorMode] = useColorMode();
+  // const [colorMode, setColorMode] = useColorMode();
   return (
     <Flex
       sx={{
@@ -165,6 +149,7 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
         <Nav showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
       </Container>
     </Flex>
+    
   );
 };
 

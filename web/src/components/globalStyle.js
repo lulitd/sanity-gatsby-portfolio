@@ -11,19 +11,15 @@ export default (props) =>(
       
       /* Works on Chrome, Edge, and Safari */
       "*::-webkit-scrollbar": {
-        width: "0.5rem",
+        width: "0.75em",
       },
       
       "*::-webkit-scrollbar-track": {
-        background: "red"
+        background: theme.colors.muted,
       },
       
       "*::-webkit-scrollbar-thumb": {
-        backgroundColor: "blue",
-        borderRadius:"0.25rem",
-        border:"3px solid red",
-        borderColor:  "red",
-        
+        backgroundColor: theme.colors.secondary, 
       },
 
       ".overflow-y-none":{

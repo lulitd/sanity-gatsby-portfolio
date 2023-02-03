@@ -236,10 +236,10 @@ const IndexPage = (props) => {
                 },
               }}
             >
-              <ThemedLink block to="/archive" variant="semiOutlineBtn" fontSize={2}>
+              <ThemedLink to="/archive" variant="semiOutlineBtn" fontSize={2}>
                 View Projects
               </ThemedLink>
-              <ThemedLink block to="/about" variant="outlineBtn" fontSize={2}>
+              <ThemedLink to="/about" variant="outlineBtn" fontSize={2}>
                 Get To Know Me
               </ThemedLink>
             </Box>
@@ -319,7 +319,7 @@ const IndexPage = (props) => {
         <ThemedLink to="../2022-CV-Lalaine-Ulit-Destajo.pdf" target="_blank" variant="outlineBtn" fontSize={1}>
                 CV
               </ThemedLink>
-              <ThemedLink block to="/about" variant="outlineBtn" fontSize={1}>
+              <ThemedLink to="/about" variant="outlineBtn" fontSize={1}>
                 Get To Know Me 
               </ThemedLink>
               </Box>
