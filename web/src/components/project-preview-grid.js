@@ -1,11 +1,10 @@
 import React from "react";
 import ProjectPreview from "./project-preview";
-import { Grid, Box, jsx } from "theme-ui";
+import { Grid, Box } from "theme-ui";
 import ThemedLink from "./ThemedLink";
 import { Flex } from "rebass";
 import { Themed } from '@theme-ui/mdx';
 
-//@jsx jsx
 
 function ProjectPreviewGrid({nodes,title,order,columns, ...props }) {
 

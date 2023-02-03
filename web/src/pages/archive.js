@@ -7,10 +7,9 @@ import {SEO} from "../components/seo";
 import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { Styled,Heading, jsx } from "theme-ui";
+import { Styled,Heading } from "theme-ui";
 import { FaCentercode } from "react-icons/fa";
 
-//@jsx jsx
 export const query = graphql`
   query ArchivePageQuery {
     archive: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {

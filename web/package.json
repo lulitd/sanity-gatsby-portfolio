@@ -18,6 +18,7 @@
     "@sanity/image-url": "^1.0.2",
     "@theme-ui/color": "^0.15.4",
     "@theme-ui/typography": "^0.15.4",
+    "babel-preset-gatsby": "^3.5.0",
     "date-fns": "^2.29.3",
     "deepmerge": "^4.3.0",
     "gatsby": "^5.5.0",

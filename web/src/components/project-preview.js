@@ -3,14 +3,12 @@ import React from "react";
 import { cn, buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import BlockText from "./block-text";
-import { Styled, Grid, jsx, Card, Box } from "theme-ui";
+import { Styled, Grid, Card, Box, Heading } from "theme-ui";
 import { lighten, darken } from "@theme-ui/color";
-import { Heading } from "rebass";
 import ThemedLink from "./ThemedLink";
-
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { useThemeUI } from "theme-ui";
-//@jsx jsx
+
 function ProjectPreview(props) {
   const hasBG = (props.thumbImage && props.thumbImage.asset) || (props.mainImage && props.mainImage.asset);
   let bgURL;
@@ -46,7 +44,7 @@ function ProjectPreview(props) {
           borderRadius: "default",
           borderTopLeftRadius: 0,
           borderBottomRightRadius: 0,
-          borderWidth: 3,
+          borderWidth: 2,
           borderStyle: "solid",
           color: "primary",
           fontFamily: "heading",
@@ -92,8 +90,9 @@ function ProjectPreview(props) {
             sx={{
               color: lighten("primary", 0.3),
               textTransform: "uppercase",
+              fontSize:[4, 5],
             }}
-            fontSize={[4, 5]}
+        
           >
             {props.title}
           </Heading>
@@ -104,9 +103,9 @@ function ProjectPreview(props) {
                 textTransform: "uppercase",
                 letterSpacing: "0.1rem",
                 fontFamily: 'body',
+                fontSize:[1,1,1],
+                fontWeight:"lighter"
               }}
-              fontSize={[1, 1, 1]}
-              fontWeight="lighter"
             >
               {props.subtitle }
             </Heading>

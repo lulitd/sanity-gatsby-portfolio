@@ -2,10 +2,8 @@ import BaseBlockContent from "@sanity/block-content-to-react";
 import React from "react";
 import clientConfig from "../../client-config";
 import serializers from "./serializers";
-import { Box, jsx } from "theme-ui";
+import { Box } from "theme-ui";
 
-
-// @jsx jsx
 const BlockContent =({blocks,style})=> {
 
 

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 import Figure from "./figure";
 import React from "react";

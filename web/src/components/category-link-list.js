@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "gatsby";
 import ThemedLink from "./ThemedLink";
-import { jsx } from "theme-ui";
+import { Box } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
-import { Box } from "rebass";
 
-//@jsx jsx
 function CategoryLinkList({ categories, currentCategory, all, used, total }) {
   if (!categories) return null;
 

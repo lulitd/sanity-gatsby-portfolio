@@ -1,14 +1,13 @@
 import React from "react";
 import Icon from "./icon";
-import { jsx, Button , Box} from "theme-ui";
-import { Flex} from "rebass";
+import { Button , Box, Flex} from "theme-ui";
 import Container from "./container";
 import ThemedLink from "./ThemedLink";
 import { lighten } from "@theme-ui/color";
 import { Themed } from '@theme-ui/mdx';
+import { secondsToMilliseconds } from "date-fns";
 // import { useColorMode } from "theme-ui";
 
-///@jsx jsx
 const Branding = (props) => (
   <Box flex="1">
     <ThemedLink
@@ -67,13 +66,12 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
       position: ["absolute", "static"],
       left: 0,
       right: 0,
-      top: 0,
-      bottom:0,
-      height: ["calc(100vh)", "inherit"],
+      top:"60px",
+      height: ["calc(100vh - 60px)", "inherit"],
       pt: 2,
       backgroundColor:["background","transparent"],
       border: "0px solid transparent",
-      zIndex:1000
+    //  zIndex:1000
     }}
   >
     <Flex
@@ -128,8 +126,9 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
         width: "100%",
         alignItems: "center",
         backgroundColor:"background",
-        borderWidth:[1],
+        borderBottom:"solid red",
         borderBottomColor: ["primary", "transparent"],
+        borderBottomWidth: [3],
       }}
       as="header"
     >
@@ -144,10 +143,11 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
 
         }}
       >
-        <Branding />
-        <ToggleButton showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
-        <Nav showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
-      </Container>
+       <Branding />
+       <Box sx={{ mx: 'auto' }} />
+       <ToggleButton showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
+       <Nav showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
+       </Container>
     </Flex>
     
   );

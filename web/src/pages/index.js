@@ -11,8 +11,7 @@ import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import {SEO} from "../components/seo";
 import Layout from "../containers/layout";
-import { Heading, Text, Flex, Box } from "rebass";
-import { jsx, Image, AspectImage, Grid, Button } from "theme-ui";
+import { Image, AspectImage, Grid, Button, Heading, Text, Flex, Box } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "../components/ThemedLink";
 import { lighten, alpha } from "@theme-ui/color";
@@ -24,8 +23,6 @@ import Doodles from "../components/doodle";
 import { useThemeUI } from "theme-ui";
 import Icon from "../components/icon"
 
-
-//@jsx jsx
 export const query = graphql`
 query IndexPageQuery {
   site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {

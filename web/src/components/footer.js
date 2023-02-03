@@ -1,12 +1,10 @@
 import React from "react";
 import SocialsFromBio from "./socials-from-bio";
-import { Flex, Text } from "rebass";
-import { jsx } from "theme-ui";
 import Container from "./container";
 import { alpha } from "@theme-ui/color";
 import ThemedLink from "./ThemedLink";
-// @jsx jsx
-import { useThemeUI } from "theme-ui";
+
+import { useThemeUI,Flex, Text } from "theme-ui";
 
 const CleanLink = ({ to, children }) => {
   const context = useThemeUI();

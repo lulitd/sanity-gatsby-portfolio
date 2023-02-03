@@ -1,11 +1,10 @@
 import React from "react";
 import ProjectPreview from "./project-preview";
-import { Grid, Box, jsx } from "theme-ui";
+import { Grid, Box } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "./ThemedLink";
 import PostPreview from "./post-preview";
 
-//@jsx jsx
 
 function PostPreviewGrid(props) {
   return (

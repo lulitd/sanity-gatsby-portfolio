@@ -8,13 +8,9 @@ import BlockContent from "../components/block-content";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import SocialsFromBio from "../components/socials-from-bio";
-import { Label, Styled, jsx } from "theme-ui";
+import { Label,Box, Flex, Heading, Image} from "theme-ui";
 import { alpha } from "@theme-ui/color";
-import { Box, Flex, Heading, Image } from "rebass";
 import gsap from "gsap";
-
-
-//@jsx jsx
 
 export const query = graphql`
   query AboutQuery {

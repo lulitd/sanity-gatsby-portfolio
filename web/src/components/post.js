@@ -5,11 +5,9 @@ import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import BlockContent from "./block-content";
 import Container from "./container";
-import { Heading, Box, Text, Button } from "rebass";
-import { AspectImage, Grid, jsx } from "theme-ui";
+import { AspectImage, Grid , Heading, Box, Text, Button } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "./ThemedLink";
-// @jsx jsx
 
 function getLatestUpdate(publishedAt, _updatedAt) {
   // use the latest date

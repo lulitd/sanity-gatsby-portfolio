@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "./header";
 import Footer from "./footer";
-import { Flex, Box,jsx } from "theme-ui";
-//@jsx jsx
+import { Flex, Box } from "theme-ui";
+
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -22,7 +22,8 @@ const Layout = ({
 
   <Flex {...rest} sx={{
     flexDirection:"column",
-    minHeight:"100vh"
+    minHeight:"100vh",
+    overflow:"hidden",
   }}>
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
     <Flex

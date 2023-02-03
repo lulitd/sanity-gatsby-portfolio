@@ -1,9 +1,7 @@
 import React from "react";
 import Icon from "./icon";
-import { Box, Button,Text} from "rebass";
-import { jsx } from "theme-ui";
+import { Button,Box,Text} from "theme-ui";
 
-//@jsx jsx
 
 function SocialsFromBio({ bio,withLabels,iconStyle, ...rest }) {
   let socials = [];

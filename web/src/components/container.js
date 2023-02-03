@@ -1,7 +1,6 @@
 import React from "react";
 import { Container as UiContainer } from "theme-ui";
-import { jsx } from "theme-ui";
-/*@jsx jsx*/
+
 const Container = ({ sx, ...props }) => {
   return (
     <UiContainer

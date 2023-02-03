@@ -2,13 +2,13 @@ import React from "react";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import { ucfirst } from "../lib/string-utils";
-import { Image, Grid, jsx, Box } from "theme-ui";
+import { Image, Grid, Box , Flex } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 import { FaHandMiddleFinger } from "react-icons/fa";
 import { darken, lighten } from '@theme-ui/color'
-import { Flex } from "rebass";
+// import { Flex } from "rebass";
 import Icon from "./icon";
-//@jsx jsx
+
 const ConditionalWrapper = ({ condition, wrapper, children }) =>
   condition ? wrapper(children) : children;
 

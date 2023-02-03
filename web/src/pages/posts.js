@@ -7,11 +7,8 @@ import {SEO} from "../components/seo";
 import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import {jsx } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 import PostPreviewGrid from "../components/post-preview-grid";
-
-//@jsx jsx
 export const query = graphql`
 query PostPageQuery {
   posts: allSanityPost(

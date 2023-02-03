@@ -7,15 +7,12 @@ import BlockContent from "./block-content";
 import Container from "./container";
 import RoleList from "./role-list";
 import ProjectPreviewGrid from "./project-preview-grid";
-import { Heading, Box, Text, Button, Flex } from "rebass";
-import { AspectImage, Image, Grid, jsx, Card } from "theme-ui";
+import { AspectImage, Image, Grid, Card , Heading, Box, Text, Button, Flex  } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "./ThemedLink";
 import { darken, alpha, lighten } from '@theme-ui/color'
 import { FaAutoprefixer } from "react-icons/fa";
 
-
-// @jsx jsx
 function Project(props) {
   const {
     _rawProjectBrief,

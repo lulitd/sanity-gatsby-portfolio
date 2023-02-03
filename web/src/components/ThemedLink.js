@@ -1,7 +1,6 @@
 import React from "react";
-import { jsx } from "theme-ui";
 import {Link} from "gatsby";
-// @jsx jsx
+
 import { useThemeUI } from "theme-ui";
 
 const ThemedLink = ({ to, children, variant, sx,...rest }) => {

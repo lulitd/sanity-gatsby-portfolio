@@ -45,7 +45,7 @@ const theme = {
     default: 16,
     pill: 9999,
   },
-  borderWidths: [0,1, 2, 3,4],
+  borderWidths: [0,1, 2,4,8],
   fontSizes: [14, 16, 18, 20, 24,28,32, 48, 64, 96],
   fontWeights: {
     body: 400,
@@ -108,8 +108,9 @@ const theme = {
       fontFamily: "nav",
       textTransform: "uppercase",
       letterSpacing: [1],
-      "&:hover": {
+      "&:hover,:focus": {
         color: "secondary",
+        outline:"none", 
       },
     },
     outlineBtn: {
@@ -129,11 +130,12 @@ const theme = {
       textTransform: "uppercase",
       transition: "0.33s",
       fontWeight: "normal",
-      ":hover": {
+      ":hover,:focus": {
         color: lighten("secondary", 0.05),
         borderRadius: "default",
         borderTopRightRadius: "0",
         borderBottomLeftRadius: "0",
+        outline:"none", 
       },
     },
     semiOutlineBtn: {
@@ -142,12 +144,13 @@ const theme = {
       backgroundColor: "secondary",
       borderColor: "secondary",
       fontWeight: "normal",
-      ":hover": {
+      ":hover,:focus": {
         color: lighten("secondary", 0.05),
         backgroundColor: "background",
         borderRadius: "default",
         borderTopRightRadius: "0",
         borderBottomLeftRadius: "0",
+        outline:"none", 
       },
     },
     socialBtn: {
@@ -179,7 +182,7 @@ const theme = {
       borderRadius: 0,
       marginBottom: 3,
       fontFamily: "body",
-      "&:focus": {
+      "&:hover,&:focus": {
         borderColor: "secondary",
         outline: "none",
       },
@@ -189,7 +192,7 @@ const theme = {
       borderStyle: "dashed",
       borderWidth: [1],
       borderRadius: 0,
-      "&:focus": {
+      "&:hover,&:focus":{
         borderColor: "primary",
         outline: "none",
       },
@@ -261,9 +264,10 @@ const theme = {
       color: "primary",
       textDecoration: "none",
       fontWeight: "a",
-      ":hover": {
+      ":hover,:focus": {
         textDecoration: "underline",
         color: "secondary",
+        outline:"none"  
       },
     },
     pre: {

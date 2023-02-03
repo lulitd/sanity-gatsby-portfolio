@@ -5,11 +5,10 @@ import GraphQLErrorList from "../components/graphql-error-list";
 import {SEO} from "../components/seo";
 import Layout from "../containers/layout";
 import AnimHello from "../animIcons/animHello";
-import {Label, Input, Textarea } from "theme-ui";
-import { Box, Flex, Button } from "rebass";
-import {Heading, jsx } from "theme-ui";
+import {Label, Input, Textarea, Button} from "theme-ui";
+import {Heading, Box, Flex } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
-/*@jsx jsx*/
+
 export const query = graphql`
   query ContactQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {

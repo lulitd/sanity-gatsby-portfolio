@@ -4,18 +4,17 @@ import { cn, buildImageObj } from "../lib/helpers";
 import { format, isThisYear, isAfter, isSameDay, parseISO } from "date-fns";
 import { imageUrlFor } from "../lib/image-url";
 import BlockText from "./block-text";
-import { Grid, jsx, Card, Image } from "theme-ui";
+import { Grid, Card, Image,Heading, Box, Flex} from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 import { lighten, alpha } from "@theme-ui/color";
 
-import { Heading, Box, Flex } from "rebass";
 import { compose, filter } from "ramda";
 import { FaRegIdBadge } from "react-icons/fa";
 
 import ThemedLink from "./ThemedLink";
 
 import { useThemeUI } from "theme-ui";
-//@jsx jsx
+
 function getLatestUpdate(publishedAt, _updatedAt) {
   // use the latest date
   const useUpdateDate = isAfter(_updatedAt, publishedAt);
@@ -40,7 +39,6 @@ function PostPreview(props) {
   const { colors } = context.theme;
   return (
     <ThemedLink
-      cover
       to={`/post/${props.slug.current}`}
       sx={{
         textDecoration: "none",

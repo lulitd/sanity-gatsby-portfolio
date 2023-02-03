@@ -2,7 +2,7 @@ import React from "react";
 import Image from "gatsby-plugin-sanity-image"
 // import { getFluidGatsbyImage } from "gatsby-source-sanity";
 import clientConfig from "../../client-config";
-import { Box, Text } from "rebass";
+import { Box, Text } from "theme-ui";
 import { alpha } from "@theme-ui/color";
 import { reduce } from "ramda";
 export default ({ node }) => {
@@ -33,7 +33,6 @@ export default ({ node }) => {
         fontSize:"smaller"
       }}
       >
-        
         {node.caption}</Text>}
     </Box>
   );
