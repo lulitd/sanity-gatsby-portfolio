@@ -25,7 +25,7 @@ const CleanLink = ({ to, children }) => {
       }}
     >
       {children}
-   </BlockLink>
+   </ThemedLink>
   );
 };
 

@@ -10,7 +10,7 @@ import SocialsFromBio from "../components/socials-from-bio";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import {SEO} from "../components/seo";
-// import Layout from "../containers/layout";
+import Layout from "../containers/layout";
 import { Heading, Text, Flex, Box } from "rebass";
 import { jsx, Image, AspectImage, Grid, Button } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
@@ -138,9 +138,9 @@ const IndexPage = (props) => {
   
   if (errors) {
     return (
-      <>
+      <Layout>
         <GraphQLErrorList errors={errors} />
-      </>
+      </Layout>
     );
   }
 
@@ -179,7 +179,7 @@ const IndexPage = (props) => {
   const tri = featuredURL ? createTriangle(colors, featuredURL) : null;
 
   return (
-    <>
+    <Layout>
          <Container
         sx={{
           position: "relative",
@@ -348,7 +348,7 @@ const IndexPage = (props) => {
           <PostPreviewGrid columns={[1, 2, 1]} nodes={postNodes} browseMoreHref="/posts/" />
         </Container>
       )}
-    </>
+    </Layout>
   );
 };
 

@@ -4,6 +4,7 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import Project from "../components/project";
 import {SEO} from "../components/seo";
+import Layout from "../containers/layout";
 
 export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
@@ -96,7 +97,7 @@ const ProjectTemplate = (props) => {
   });
  
   return (
-    <>
+    <Layout>
 
       {errors && (
         <Container>
@@ -104,7 +105,7 @@ const ProjectTemplate = (props) => {
         </Container>
       )}
       {project && <Project {...project} awards={awards} />}
-    </>
+    </Layout>
   );
 };
 

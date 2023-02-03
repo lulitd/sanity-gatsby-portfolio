@@ -4,7 +4,7 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import {SEO} from "../components/seo";
-// import Layout from "../containers/layout";
+import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { Styled,Heading, jsx } from "theme-ui";
@@ -76,9 +76,9 @@ const ArchivePage = (props) => {
   const { data, errors } = props;
   if (errors) {
     return (
-      <>
+      <Layout>
         <GraphQLErrorList errors={errors} />
-      </>
+      </Layout>
     );
   }
   const projectNodes =
@@ -93,7 +93,7 @@ const ArchivePage = (props) => {
   const archiveOrder = data && data.archive.archive; 
 
   return (
-    <>
+    <Layout>
       <Container sx={{
        textAlign:"center" 
       }}>
@@ -107,7 +107,7 @@ const ArchivePage = (props) => {
         />
         {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} order={archiveOrder}/>}
       </Container>
-    </>
+    </Layout>
   );
 };
 

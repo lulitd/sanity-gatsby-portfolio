@@ -4,7 +4,7 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import Project from "../components/project";
 import {SEO} from "../components/seo";
-//import Layout from "../containers/layout";
+import Layout from "../containers/layout";
 import Post from "../components/post";
 
 export const query = graphql`
@@ -31,14 +31,14 @@ const PostTemplate = (props) => {
   const post = data && data.post;
 
   return (
-    <>
+    <Layout>
       {errors && (
         <Container>
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
       {post && <Post {...post} />}
-    </>
+    </Layout>
   );
 };
 

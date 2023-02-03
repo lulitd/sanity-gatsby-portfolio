@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import {SEO} from "../components/seo";
-// import Layout from "../containers/layout";
+import Layout from "../containers/layout";
 import BlockContent from "../components/block-content";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
@@ -77,9 +77,9 @@ const AboutPage = (props) => {
 
   if (errors) {
     return (
-      <>
+      <Layout>
         <GraphQLErrorList errors={errors} />
-      </>
+      </Layout>
     );
   }
 
@@ -103,7 +103,7 @@ const AboutPage = (props) => {
   const tags = CreateTags(author.tags);
 
   return (
-    <>
+    <Layout>
       <Container>
         <Heading as="h3" variant={'text.barcodes'} fontSize={[8]}>About</Heading>
         <Flex>
@@ -196,7 +196,7 @@ const AboutPage = (props) => {
           </Box>
         </Flex>
       </Container>
-    </>
+    </Layout>
   );
 };
 

@@ -1,10 +1,9 @@
 import React from 'react'
-import { Global } from '@emotion/core'
-import {alpha} from "@theme-ui/color"
+import { Global } from '@emotion/react'
 
-export default props =>
+export default (props) =>(
   <Global
-    styles={theme => ({
+    styles={ (theme) => ({
      "*": {
         scrollbarWidth: "thin",
         scrollbarColor: "blue orange",
@@ -16,14 +15,14 @@ export default props =>
       },
       
       "*::-webkit-scrollbar-track": {
-        background: theme.colors.muted,
+        background: "red"
       },
       
       "*::-webkit-scrollbar-thumb": {
-        backgroundColor: theme.colors.secondary,
+        backgroundColor: "blue",
         borderRadius:"0.25rem",
         border:"3px solid red",
-        borderColor:  theme.colors.secondary,
+        borderColor:  "red",
         
       },
 
@@ -32,3 +31,4 @@ export default props =>
       }
     })}
   />
+)
