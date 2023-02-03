@@ -6,7 +6,6 @@ import Container from "./container";
 import ThemedLink from "./ThemedLink";
 import { lighten } from "@theme-ui/color";
 import { useColorMode } from "theme-ui";
-// import { TransitionState } from "gatsby-plugin-transition-link";
 
 ///@jsx jsx
 const Branding = (props) => (

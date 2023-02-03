@@ -9,7 +9,6 @@ import { Heading, Box, Text, Button } from "rebass";
 import { AspectImage, Grid, jsx } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "./ThemedLink";
-// import { TransitionState } from "gatsby-plugin-transition-link";
 // @jsx jsx
 
 function getLatestUpdate(publishedAt, _updatedAt) {

@@ -42,7 +42,6 @@ function PostPreview(props) {
     <ThemedLink
       cover
       to={`/post/${props.slug.current}`}
-      transitionColor={colors.primary}
       sx={{
         textDecoration: "none",
       }}

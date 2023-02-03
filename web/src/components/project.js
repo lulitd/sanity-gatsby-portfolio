@@ -13,7 +13,6 @@ import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "./ThemedLink";
 import { darken, alpha, lighten } from '@theme-ui/color'
 import { FaAutoprefixer } from "react-icons/fa";
-// import TransitionState from "gatsby-plugin-transition-link"
 
 
 // @jsx jsx

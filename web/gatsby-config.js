@@ -19,12 +19,6 @@ module.exports = {
   plugins: [
     "gatsby-plugin-theme-ui",
     "gatsby-plugin-image",
-  //   {
-  //     resolve: "gatsby-plugin-transition-link",
-  //     options: {
-  //         layout: require.resolve(`./src/containers/layout.js`)
-  //       }
-  //  },
    {
    resolve: `gatsby-omni-font-loader`,
    options: {
