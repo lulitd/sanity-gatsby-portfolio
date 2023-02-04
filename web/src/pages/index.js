@@ -9,7 +9,7 @@ import Container from "../components/container";
 import SocialsFromBio from "../components/socials-from-bio";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
-import {SEO} from "../components/seo";
+import { SEO } from "../components/seo";
 import Layout from "../containers/layout";
 import { Image, AspectImage, Grid, Button, Heading, Text, Flex, Box } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
@@ -132,7 +132,7 @@ const createTriangle = (colors, url) => {
 
 const IndexPage = (props) => {
   const { data, errors } = props;
-  
+
   if (errors) {
     return (
       <Layout>
@@ -142,13 +142,13 @@ const IndexPage = (props) => {
   }
 
   const site = (data || {}).site;
-  const archiveOrder = (site||{}).archive; 
+  const archiveOrder = (site || {}).archive;
   const projectNodes = (data || {}).projects
     ? mapEdgesToNodes(data.projects)
       .filter(filterOutDocsWithoutSlugs)
       .filter(filterOutDocsPublishedInTheFuture)
     : [];
-    const profileImage = site.author.image;
+  const profileImage = site.author.image;
   const postNodes = (data || {}).posts
     ? mapEdgesToNodes(data.posts)
       .filter(filterOutDocsWithoutSlugs)
@@ -177,7 +177,7 @@ const IndexPage = (props) => {
 
   return (
     <Layout>
-         <Container
+      <Container
         sx={{
           position: "relative",
           height: "100vh",
@@ -206,20 +206,37 @@ const IndexPage = (props) => {
           <Box
             sx={{
               gridArea: "Header-Content",
-  textAlign:["center","center","center"]
+              textAlign: ["center", "center", "center"]
             }}
           >
-            <Heading variant="subheading" fontWeight="body" fontSize={[2, 3]}>
+            <Heading  variant="subheading"
+              sx={{
+                fontWeight: "body",
+                fontSize: [2, 3]
+              }}>
               Hi my name is
-              
-              <Text as="span" display="block" variant="title" sx={{ fontSize: [6,6, 7], pt:[1]}}>
+              <Text as="span" variant="title"
+                sx={{
+                  display: "block",
+                  fontSize: [6, 6, 7],
+                  pt: [1],
+                }}>
                 {site.jumboName}.
               </Text>
             </Heading>
-            <Heading variant="subheading" fontWeight="body" fontSize={[4, 5,6]}>
+            <Heading variant="subheading" sx={{
+              fontSize: [4, 5, 6],
+            }}>
               {site.jumboTag}
             </Heading>
-            <Text textAlign="left" pt={4} pb={2} fontWeight={300} display="table" fontSize={[1, 2, 3]}>
+            <Text sx={{
+              display:"table",
+              textAlign:"left",
+              pt:4,
+              pb:2,
+              fontWeight:300 ,
+              fontSize:[1, 2, 3],
+            }}>
               {site.jumboDescription}
             </Text>
             <Box
@@ -244,91 +261,90 @@ const IndexPage = (props) => {
         </Box>
         {tri}
       </Container>
-      <Container bg={'darkest'} sx={{
+      
+      <Container sx={{
         display: "flex",
-        alignItems:"center",
-        minHeight:["50vh","75vh","100vh"],
-        justifyContent:"center"
-
+        alignItems: "center",
+        minHeight: ["50vh", "75vh", "100vh"],
+        justifyContent: "center",
+        mb:5,
       }}>
         {author.image && profileImage.asset && (
-              <Box
-                sx={{
-                  display: ["none", "flex"],
-                  height: 450,
-                  mr:[0,5]
-         
-                }}
-              >
-                <Image
-                  src={imageUrlFor(buildImageObj(profileImage))
-                    .fit("clip")
-                    .width(720)
-                    .height(900)
-                    .url()}
-                  sx={{
-                  
-                    backgroundColor: "transparent",
-                    border: "solid currentColor",
-                    borderWidth: "2",
-                    borderRadius: "default",
-                    color: "muted",
-                    height: "100%",
-                    width: "100%",
-                    objectFit: "cover",
-                    width: "auto",
-                    height: "auto"
-                  }}
-                  alt={profileImage.alt}
-                />
-              </Box>
-            )}
-          <Flex flexDirection={"column"} alignItems={["center","start"]}>
-          <Heading as="h3" variant={"text.barcodes"} fontSize={[8]}>INFO</Heading>
-          
-          <Box sx={{maxWidth:"75ch"}}>
-          <Themed.p sx={{ fontSize:[1,2], my: 0 
-          }}>
-            Hi, I'm Lalaine.            
-             Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am a new media artist and software developer, but I am a storyteller at heart. I develop software that tells compelling stories and spark curiosity across many mediums and platforms. I have been able to tell stories of individuals and multinational corporations. I've designed and created projects exhibited in museums, galleries & festivals worldwide. 
-          </Themed.p>
-          </Box>
-          <SocialsFromBio bio={author}  
-          iconStyle={{
-            m:[1],
-          }}
-
-          sx={{
-            display:"flex",
-            flexDirection:["row", "row", "row"],
-            }}/>
-        <Box
-              pt={4}
+          <Box
+            sx={{
+              display: ["none", "flex"],
+              height: 450,
+              mr: [0, 5]
+            }}
+          >
+            <Image
+              src={imageUrlFor(buildImageObj(profileImage))
+                .fit("clip")
+                .width(720)
+                .height(900)
+                .url()}
               sx={{
-                textAlign: "center",
-                "& a": {
-                  mr: 2,
-                  mb: 2,
-                  display: "inline-block",
-                },
+                backgroundColor: "transparent",
+                border: "solid currentColor",
+                borderWidth: "2",
+                borderRadius: "default",
+                color: "muted",
+                height: "100%",
+                width: "100%",
+                objectFit: "cover",
+                width: "auto",
+                height: "auto"
               }}
-            >
-        <ThemedLink to="../2022-CV-Lalaine-Ulit-Destajo.pdf" target="_blank" variant="outlineBtn" fontSize={1}>
-                CV
-              </ThemedLink>
-              <ThemedLink to="/about" variant="outlineBtn" fontSize={1}>
-                Get To Know Me 
-              </ThemedLink>
-              </Box>
-   
-          </Flex>
-      
+              alt={profileImage.alt}
+            />
+          </Box>
+        )}
+        <Box>
+          <Heading as="h3" sx={{
+            variant:"text.barcodes",
+            fontSize:[8],}}>INFO</Heading>
+
+          <Box sx={{ maxWidth: "75ch" }}>
+            <Themed.p sx={{
+              fontSize: [1, 2], my:0, pb:3,
+            }}>
+              Hi, I'm Lalaine.
+              Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am a new media artist and software developer, but I am a storyteller at heart. I develop software that tells compelling stories and spark curiosity across many mediums and platforms. I have been able to tell stories of individuals and multinational corporations. I've designed and created projects exhibited in museums, galleries & festivals worldwide.
+            </Themed.p>
+          </Box>
+          <SocialsFromBio bio={author}
+            iconStyle={{
+              m: [1],
+            }}
+            sx={{
+              display: "flex",
+              flexDirection: ["row", "row", "row"],
+            }} />
+          <Box
+            pt={4}
+            sx={{
+              "& a": {
+                mr: 2,
+                mb: 2,
+                display: "inline-block",
+              },
+            }}
+          >
+            <ThemedLink to="../2022-CV-Lalaine-Ulit-Destajo.pdf" target="_blank" variant="outlineBtn" fontSize={1}>
+              CV
+            </ThemedLink>
+            <ThemedLink to="/about" variant="outlineBtn" fontSize={1}>
+              Get To Know Me
+            </ThemedLink>
+          </Box>
+
+        </Box>
       </Container>
 
       {projectNodes && projectNodes.length > 0 && (
         <Container mb={5} >
-           <Heading as="h3" variant={"text.barcodes"} fontSize={[8]} sx={{
-            textAlign:["center","center","unset"]
+          <Heading as="h3" variant={"text.barcodes"} fontSize={[8]} sx={{
+            textAlign: ["center", "center", "unset"]
           }} id="featured-projects">Featured Projects</Heading>
           <ProjectPreviewGrid
             columns={[1, 2, null]}
