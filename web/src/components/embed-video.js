@@ -5,9 +5,8 @@ import { AspectRatio } from "theme-ui";
 function EmbedVideo({ url, ratio = 16 / 9 }) {
   return (
     <AspectRatio ratio={ratio} sx={{
-      width:["100%","75%"],
+      width:["100%"],
       maxWidth:["videoS","videoM","videoL"],
-      mx:'auto',
     }}>
       <ReactPlayer url={url} width="100%" height="100%" controls />
     </AspectRatio>

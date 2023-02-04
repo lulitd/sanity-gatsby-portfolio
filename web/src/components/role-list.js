@@ -15,12 +15,11 @@ function ConditionalIcon(asset) {
   return !asset.metadata.isOpaque;
 }
 
-function RoleList({ items, title }) {
+function RoleList({ items, title , style }) {
   return (
-    <Box pb={2}
+    <Box 
       sx={{
-        textAlign: "center",
-        border: "2px solid hotPink"
+        ...style
       }}>
       <Themed.h3 sx={{
         color: lighten('secondary', .1),
@@ -79,7 +78,7 @@ function RoleList({ items, title }) {
                   </Themed.a>
                 )}
               >
-                <Box p={1} mx={2} mb={3}>
+                <Box mb={3}>
                   <Text as="p">
                     {(item.person && item.person.name) || <em>Missing name</em>}
                     {link && (<span color="body"><Icon sx={{ mx: 1 }} /></span>)}
