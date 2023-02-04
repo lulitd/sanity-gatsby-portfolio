@@ -2,11 +2,9 @@ import React from "react";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import { ucfirst } from "../lib/string-utils";
-import { Image, Grid, Box , Flex } from "theme-ui";
+import { Image, Grid, Box, Flex, Text } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
-import { FaHandMiddleFinger } from "react-icons/fa";
 import { darken, lighten } from '@theme-ui/color'
-// import { Flex } from "rebass";
 import Icon from "./icon";
 
 const ConditionalWrapper = ({ condition, wrapper, children }) =>
@@ -19,16 +17,17 @@ function ConditionalIcon(asset) {
 
 function RoleList({ items, title }) {
   return (
-    <Flex pb={2}
-      flexDirection="column" alignItems="center" width="fitContent">
+    <Box pb={2}
+      sx={{
+        textAlign: "center",
+        border: "2px solid hotPink"
+      }}>
       <Themed.h3 sx={{
         color: lighten('secondary', .1),
         fontWeight: 100,
       }} >{title}</Themed.h3>
-      <Flex
+      <Box
         as="ul"
-        flexDirection="column"
-        textAlign="center"
         sx={{
           listStylePosition: "inside",
           listStyle: "none",
@@ -42,23 +41,18 @@ function RoleList({ items, title }) {
             item.person.github ||
             item.person.twitter ||
             item.person.instagram;
-
           if (item.person.name === "Lalaine Ulit-Destajo") link = "";
 
           return (
             <Themed.li
               key={item._key}
               sx={{
+                fontFamily: "heading",
                 textDecoration: "none",
                 color: "body",
-                pb:2,
                 "& > a": {
                   color: "body",
-                },
-                "& span": {
-                  color: "muted",
-                  textTransform: "capitalize",
-                  fontWeight: 100,
+                  fontWeight: 400,
                 },
               }}
             >
@@ -70,9 +64,8 @@ function RoleList({ items, title }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
-                      "&:hover": {
+                      "&:hover,&:focus": {
                         textDecoration: "none",
-                        transform:"scale(5)",
                         "& p": {
                           color: "secondary"
                         },
@@ -86,30 +79,22 @@ function RoleList({ items, title }) {
                   </Themed.a>
                 )}
               >
-                <Box sx={{
-                  "& p:last-child": {
-                    pb: 1,
-                  },
-                }}>
-                  <Themed.p sx={{
-                    fontWeight: "bold",
-                    fontSize: [2],
-                    margin: 0,
-                    lineHeight: 0,
-                  }}> {(item.person && item.person.name) || <em>Missing name</em>}
-                    {link && (<span color="body"><Icon sx={{mx:1}}/></span>)}
-                  </Themed.p >
-                  {item.roles && (<Themed.p sx={{
+                <Box p={1} mx={2} mb={3}>
+                  <Text as="p">
+                    {(item.person && item.person.name) || <em>Missing name</em>}
+                    {link && (<span color="body"><Icon sx={{ mx: 1 }} /></span>)}
+                  </Text >
+                  {item.roles && (<Text as="p" sx={{
                     textTransform: "Capitalize",
                     color: lighten('primary', .1),
-                  }}>{item.roles.join(" + ")}</Themed.p >)}
+                  }}>{item.roles.join(" + ")}</Text >)}
                 </Box>
               </ConditionalWrapper>
             </Themed.li>
           );
         })}
-      </Flex>
-    </Flex>
+      </Box>
+    </Box>
   );
 }
 
