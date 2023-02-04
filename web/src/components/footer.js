@@ -30,9 +30,9 @@ const CleanLink = ({ to, children }) => {
 const Footer = ({ author }) => (
   <Flex as="footer" sx={{ alignItems: "center", width: "100%" }}>
     <Container
-      px={(4, null, 3)}
-      py={2}
       sx={{
+        px:[2, null, 3],
+        py:[2],
         position: "relative",
         "::before": {
           content: '""',
