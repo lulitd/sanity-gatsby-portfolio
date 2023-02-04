@@ -6,7 +6,7 @@ import {SEO} from "../components/seo";
 import Layout from "../containers/layout";
 import AnimHello from "../animIcons/animHello";
 import {Label, Input, Textarea, Button} from "theme-ui";
-import {Heading, Box, Flex } from "theme-ui";
+import {Heading, Box, Flex , Grid } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 
 export const query = graphql`
@@ -38,9 +38,10 @@ const ContactPage = (props) => {
   return (
     <Layout>
       <Container>
-      <Heading as="h1" variant={'text.barcodes'} fontSize={[8]}>Say Hello</Heading>
-        <Flex>
-          <Flex flex="3">
+      <Heading as="h1" variant={'text.barcodes'} sx={{fontSize:[8]}}>Say Hello</Heading>
+        <Grid columns={["1","2fr 1fr"]} gap={3}>
+          <Box sx={{
+            maxWidth:"40em"}}>
             <Box
               as="form"
               id="contact-form"
@@ -51,8 +52,8 @@ const ContactPage = (props) => {
               <Themed.p>
                 Whether for a potential project or just to say hi, my inbox is always open.
               </Themed.p>
-              <Flex alignItems="center">
-                <Flex flexDirection="column" pr="2" flex="50%">
+              <Grid columns="1fr 1fr">
+                <Box>
                   <Label htmlFor="form_name" variant="labelRequired">
                     Name
                   </Label>
@@ -64,8 +65,8 @@ const ContactPage = (props) => {
                     required="required"
                     data-error="Name is required."
                   />
-                </Flex>
-                <Flex flexDirection="column" flex="50%">
+                </Box>
+                <Box>
                   <Label htmlFor="form_email" variant="labelRequired">
                     Email
                   </Label>
@@ -77,8 +78,9 @@ const ContactPage = (props) => {
                     required="required"
                     data-error="Valid email is required."
                   />
-                </Flex>
-              </Flex>
+                </Box>
+              </Grid>
+              <Box>
               <Label htmlFor="form_message" variant="labelRequired">
                 Message
               </Label>
@@ -90,29 +92,22 @@ const ContactPage = (props) => {
                 required="required"
                 data-error="Please, leave a message."
               ></Textarea>
+              </Box>
               <Button type="submit" variant="outlineBtn">
-                {" "}
                 Get In Touch
               </Button>
               <Themed.p>I'll try my best to answer your email!</Themed.p>
             </Box>
-          </Flex>
+          </Box>
           <Box
-            flex="1"
             as="aside"
-            px="2"
-            py="1"
             sx={{
-              display: ["none", "flex"],
-              flexDirection: "column",
-              justifyContent: "center",
+              display: ["none","block"],
             }}
           >
-            <Box display="block" width="100%">
-              <AnimHello />
-            </Box>
+            <AnimHello />
           </Box>
-        </Flex>
+        </Grid>
       </Container>
     </Layout>
   );
