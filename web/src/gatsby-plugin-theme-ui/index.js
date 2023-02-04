@@ -311,6 +311,7 @@ const theme = {
       fontFamily: "body",
       fontWeight: "body",
       lineHeight: "body",
+      maxWidth: ["40ch","50ch","70ch"],
     },
   },
 };
