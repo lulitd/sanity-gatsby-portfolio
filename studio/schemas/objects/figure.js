@@ -10,9 +10,6 @@ export default {
       title: 'Caption',
       name: 'caption',
       type: 'string',
-      options: {
-        isHighlighted: true
-      }
     },
     {
       name: 'alt',
@@ -20,9 +17,6 @@ export default {
       title: 'Alternative text',
       validation: Rule => Rule.error('You have to fill out the alternative text.').required(),
       description: 'Important for SEO and accessiblity.',
-      options: {
-        isHighlighted: true
-      }
     }
   ],
   preview: {

@@ -2,12 +2,12 @@ export default {
   name: 'siteSettings',
   type: 'document',
   title: 'Site Settings',
-  __experimental_actions: [
-    // 'create',
-    'update',
-    // 'delete',
-    'publish'
-  ],
+  // __experimental_actions: [
+  //   // 'create',
+  //   'update',
+  //   // 'delete',
+  //   'publish'
+  // ],
   fieldsets: [
     {
       name: 'jumbotron',
