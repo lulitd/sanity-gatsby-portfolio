@@ -90,9 +90,9 @@ async function createProjectPages(graphql, actions, reporter) {
   categoriesEdges.forEach((edge) => {
     const id = edge.node.id;
     const slug = edge.node.slug.current;
-    const path = `/archive/${slug}/`;
+    const path = `/projects/category/${slug}/`;
 
-    reporter.info(`Creating tag page: ${path}`);
+    reporter.info(`Creating category page: ${path}`);
 
     createPage({
       path,

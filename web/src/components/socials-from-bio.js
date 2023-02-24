@@ -6,13 +6,14 @@ import { Button,Box,Text} from "theme-ui";
 function SocialsFromBio({ bio,withLabels,iconStyle, ...rest }) {
   let socials = [];
 
-  if (!bio) return null;
+  //if (!bio) return null;
 
   if (bio.twitter) socials.push({ name: "twitter", link: bio.twitter });
   if (bio.instagram) socials.push({ name: "instagram", link: bio.instagram });
   if (bio.linkedin) socials.push({ name: "linkedin", link: bio.linkedin });
   if (bio.github) socials.push({ name: "github", link: bio.github });
-
+  if (bio.website) socials.push({ name: "website", link: bio.website });
+  if (bio.youtube) socials.push({ name: "youtube", link: bio.youtube });
   const socialIcons = socials.map((social) => {
     return (
       <Button

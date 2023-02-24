@@ -13,9 +13,7 @@ const Branding = (props) => (
     <ThemedLink
       to="/"
       variant="nav"
-      sx={{
-        color: "primary",
-      }}
+      activeClassName="active"
     >
       <Icon
         symbol="logo"
@@ -50,8 +48,10 @@ const NavLink = ({ to, children }) => (
     to={to}
     variant="nav"
     sx={{
-      paddingLeft: [1, 3]
+      ml: [1, 3]
     }}
+    activeClassName="active"
+    partiallyActive={true}
   >
     {children}
   </ThemedLink>
@@ -90,7 +90,7 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
         <NavLink to="/about/">About</NavLink>
       </li>
       <li>
-        <NavLink to="/archive/" >Projects</NavLink>
+        <NavLink to="/projects/" >Projects</NavLink>
       </li>
       {/* <li>
         <NavLink to="/posts/"  trigger={async pages => {const exit = await pages.exit;

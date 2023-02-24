@@ -35,14 +35,14 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
       }
     }
     const count = cat.title === "All" ? (total ? `(${total})` : "") : totalCount;
+    const path =  `/projects${cat.title==="All"?"":"/category"}/${cat.slug.current}`;
     return (
       <Themed.li sx={{ display: "inline-block", pr: "2", lineHeight:[3] }} key={cat.id}>
         <ThemedLink
-          to={`/archive/${cat.slug.current}`}
-          variant={isCurrent ? "semiOutlineBtn" : "outlineBtn"}
-          cover
-          direction="top"
+          to={path}
+          variant="outlineBtn"
           duration={2}
+          activeClassName="active"
         >
           {cat.title} {count}
         </ThemedLink>

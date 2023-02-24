@@ -23,7 +23,7 @@ const Layout = ({
   <Flex {...rest} sx={{
     flexDirection:"column",
     minHeight:"100vh",
-    overflow:"hidden",
+    minHeight:"100svh",
   }}>
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
     <Flex

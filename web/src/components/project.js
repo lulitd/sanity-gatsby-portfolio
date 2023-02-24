@@ -6,6 +6,7 @@ import { imageUrlFor } from "../lib/image-url";
 import BlockContent from "./block-content";
 import Container from "./container";
 import RoleList from "./role-list";
+import SocialsFromBio from "./socials-from-bio";
 import ProjectPreviewGrid from "./project-preview-grid";
 import { AspectImage, Image, Grid, Card, Heading, Box, Text, Button, Flex } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
@@ -25,6 +26,11 @@ function Project(props) {
     mainImage,
     relatedProjects,
     awards,
+    youtube,
+    website,
+    instagram,
+    github,
+    twitter,
   } = props;
 
   const collaborators = members;
@@ -57,7 +63,7 @@ function Project(props) {
               <Themed.li sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
                 <ThemedLink
                   block
-                  to={`/archive/${cat.slug.current}`}
+                  to={`/projects/category/${cat.slug.current}`}
                   variant="outlineBtn"
                   key={cat._id}
                 >
@@ -72,30 +78,45 @@ function Project(props) {
       </ul>
     </Box>;
 
+  const socialIcons = <SocialsFromBio bio={props}
+    iconStyle={{ m: [1] }}
+    sx={{
+      display: "flex",
+      placeContent: "center",
+      pt:3,
+    }} />;
+
   const bgUrl = props.mainImage && mainImage.asset && imageUrlFor(buildImageObj(mainImage))
     .width(1080)
     .height(Math.floor((2 / 5) * 1080))
-    .blur(10)
+    .blur(5)
     .url();
 
-    const statStyle = stats>1?null:{
-      border: "1px solid red",
-      borderColor:"secondary",
-      borderWidth: 3,
-      borderRadius:["small"],
-      mx:"auto",
-      px:[3]
-    };
+  const statStyle = stats > 1 ? null : {
+    borderRight: "1px solid red",
+    borderWidth: [0, 0, 1],
+    borderColor: "secondary",
+    paddingRight: [0, 0, 3],
+    marginLeft: 3,
+  };
   return (
-    <Container as="article" sx={{ px: [0], maxWidth: '100vw' }}>
+    <Container as="article" sx={{ px: [0], maxWidth: '100%' }}>
       {/* Title and Image */}
       <Grid
         sx={{
-          minHeight: "100px",
+          minHeight: "100px", background: (t) => `
+          linear-gradient(
+            90deg,
+            ${alpha('background', 1)(t)} 0%,
+            ${alpha('background', 0.7)(t)} 40%,
+            ${alpha('secondary', 0.0)(t)} 100%
+          ),
+          url(${bgURL})
+        `,
           textAlign: 'center',
           height: ['75vh'],
-          gridTemplateColumns: "1fr 2fr 1fr",
-          gridTemplateRows: "1fr 2fr 1fr",
+          gridTemplateColumns: ["1fr 6fr 1fr","1fr 4fr 1fr","1fr 2fr 1fr","1fr 1fr 1fr"],
+          gridTemplateRows: ["1fr 2fr 1fr","1fr 2fr 1fr","1fr 2fr 1fr","1fr 1fr 1fr"],
           backgroundColor: "third",
           background: [bgUrl ? `url(${bgUrl})` : (t) => `
         linear-gradient(
@@ -116,17 +137,17 @@ function Project(props) {
             borderWidth: [2, null, 3],
             borderStyle: 'solid',
             borderColor: 'primary',
-            backgroundColor: alpha("background", 0.7),
+            backgroundColor: alpha("background", 0.5),
             backdropFilter: "blur(2em)",
           }}>
           <Box sx={{
             m: "auto",
             p: [2],
-            maxWidth: "50ch"
+            maxWidth: "50ch",
           }}>
             <Heading
               sx={{
-                color: lighten("primary", 0.2),
+                color: "primary",
                 textTransform: "uppercase",
                 fontSize: [5, 6]
               }}>
@@ -140,6 +161,7 @@ function Project(props) {
               }}>
               {subtitle}
             </Heading>
+            {socialIcons}
           </Box>
         </Card>
       </Grid>
@@ -186,20 +208,24 @@ function Project(props) {
             }} blocks={_rawProjectBreakdown || []} />
           </Grid>
         )}
-        {stats > 0 && (<Grid columns={[1, 1, stats > 1 ? "1fr 1fr 3fr 1fr" : 1]} gap={[1, 2, 2]}
+        {stats > 0 && (<Grid columns={[1, 1, "1fr 1fr 3fr 1fr"]} gap={[1, 2, 2]}
           sx={{
             placeContent: "center",
             my: 5
           }}>
 
-          {collaborators && collaborators.length > 0 && (
+          {(collaborators && collaborators.length > 0) ? (
             <RoleList items={collaborators} title="Team" style={{
-              gridColumn: [1, 1, stats>1?2:1],
+              gridColumn: [1, 1, 2],
               minWidth: "200px",
-              textAlign: ["center", "center", stats > 1 ? "right" : "center"],
+              textAlign: ["center", "center", "right"],
               ...statStyle
+
             }} />
-          )}
+          ) : <Box sx={{
+            gridColumn: [1, 1, 2],
+            minWidth: "200px",
+          }}></Box>}
           {uniqueAccolades && uniqueAccolades.length > 0 && (
             <Box sx={{
               textAlign: ["center", "center", "left"],

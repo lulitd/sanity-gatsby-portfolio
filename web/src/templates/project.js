@@ -50,6 +50,11 @@ export const query = graphql`
       }
       title
       subtitle
+      github
+      instagram
+      twitter
+      youtube
+      website
       slug {
         current
       }

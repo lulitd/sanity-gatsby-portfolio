@@ -4,6 +4,13 @@ export default {
   name: 'project',
   title: 'Project',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'social',
+      title: 'Social media handles',
+      options: {collapsible: true, collapsed: false}
+    }
+  ],
   fields: [
     {
       name: 'title',
@@ -90,6 +97,36 @@ export default {
       title: 'Accolades',
       type: 'array',
       of: [{type: 'reference', to: {type: 'accolade'}}]
+    },
+    {
+      title: 'Website',
+      name: 'website',
+      type: 'string',
+      fieldset: 'social'
+    },
+    {
+      title: 'Twitter',
+      name: 'twitter',
+      type: 'string',
+      fieldset: 'social'
+    },
+    {
+      title: 'Instagram',
+      name: 'instagram',
+      type: 'string',
+      fieldset: 'social'
+    },
+    {
+      title: 'Youtube',
+      name: 'youtube',
+      type: 'string',
+      fieldset: 'social'
+    },
+    {
+      title: 'Github',
+      name: 'github',
+      type: 'string',
+      fieldset: 'social'
     }
   ],
   // preview: {

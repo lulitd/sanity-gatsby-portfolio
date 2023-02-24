@@ -3,8 +3,8 @@ import React from "react";
 import { cn, buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import BlockText from "./block-text";
-import { Styled, Grid, Card, Box, Heading } from "theme-ui";
-import { lighten, darken } from "@theme-ui/color";
+import { Styled, Grid, Card, Box, Heading,Text} from "theme-ui";
+import { lighten, darken,alpha} from "@theme-ui/color";
 import ThemedLink from "./ThemedLink";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { useThemeUI } from "theme-ui";
@@ -12,7 +12,7 @@ import { useThemeUI } from "theme-ui";
 function ProjectPreview(props) {
   const hasBG = (props.thumbImage && props.thumbImage.asset) || (props.mainImage && props.mainImage.asset);
   let bgURL;
-
+  if (props.bgURL) bgURL = props.bgURL; 
   const cat = props.categories && props.categories.slice(0, 3).map(x => x.title).join(" + ");  
 
   const isFull= props.isFull;
@@ -44,87 +44,104 @@ function ProjectPreview(props) {
           borderRadius: "default",
           borderTopLeftRadius: 0,
           borderBottomRightRadius: 0,
-          borderWidth: 2,
+          borderWidth: 1,
           borderStyle: "solid",
-          color: "primary",
+          color: "secondary",
           fontFamily: "heading",
           letterSpacing: "0.25rem",
-          borderColor: darken("primary", 0.1),
+          borderColor: "secondary700",
           alignItems: "left",
           justifyContent: "flex-end",
           textAlign: "left",
           display: "flex",
           flexDirection: "column",
-          minHeight: "200px",
-          background: `linear-gradient(90deg, rgba(2,0,36,1) 0%,rgba(2,0,36,0.6) 40%,rgba(9,9,121,0) 100%),  url(${bgURL})`,
+          minHeight: "200px", 
+          background: (t) => `
+            linear-gradient(
+              90deg,
+              ${alpha('background', 1)(t)} 0%,
+              ${alpha('background', 0.7)(t)} 70%,
+              ${alpha('secondary', 0.0)(t)} 100%
+            ),
+            url(${bgURL})
+          `,
           backgroundSize: "cover",
           transition: "0.5s",
           opacity:0.5, 
-          "& h2,h3": {
-            opacity: 1,
-          },
           ":hover": {
             color: "background",
             borderRadius: "0",
             borderTopLeftRadius: "default",
             borderBottomRightRadius: "default",
             borderStyle: "solid",
-            borderColor: "secondary",
-            background: `linear-gradient(90deg, rgba(2,0,36,1) 0%,rgba(2,0,36,0.6) 40%,rgba(9,9,121,0) 100%),  url(${bgURL})`,
+            borderColor: "primary",
+            background: (t) => `
+            linear-gradient(
+              90deg,
+              ${alpha('background', 1)(t)} 0%,
+              ${alpha('background', 0.7)(t)} 40%,
+              ${alpha('secondary', 0.0)(t)} 100%
+            ),
+            url(${bgURL})`,
             bg: "background",
             backgroundSize: "cover",
-            opacity:0.9, 
-            "& h2,h3": {
-              color: "secondary",
-              opacity: 1,
+            opacity:1, 
+            "& h3": {
+              color: "primary",
             },
           },
         }}
         py={2}
-        px={4}
+        px={3}
       >
         <Box sx={{
-          maxWidth: ["22ch","22ch","30ch"]
+          maxWidth: ["75%"],
         }}>
           <Heading
             sx={{
-              color: lighten("primary", 0.3),
+              color: "secondary500",
               textTransform: "uppercase",
-              fontSize:[4, 5],
+              fontSize:[5,5,6],
             }}
-        
+            as="h3"
           >
             {props.title}
           </Heading>
+          <Box sx={{
+            overflow:"hidden",
+          }}>
           {props.subtitle && (
-            <Heading
+            <Text
               sx={{
-                color: lighten("primary", 0.1),
+                color: "primary100",
                 textTransform: "uppercase",
-                letterSpacing: "0.1rem",
+                letterSpacing: "0",
+                lineHeight:'body',
                 fontFamily: 'body',
-                fontSize:[1,1,1],
-                fontWeight:"lighter"
+                fontSize:[1,2],
+                fontWeight:"lighter",
               }}
+              as="p"
             >
               {props.subtitle }
-            </Heading>
+            </Text>
           )}
-
           {/* {props.categories && (
-            <Heading
+            <Text
               sx={{
-                color: lighten("primary", 0.1),
+                color: "primary100",
                 textTransform: "uppercase",
                 letterSpacing: "0.1rem",
                 fontFamily: 'body',
               }}
               fontSize={[3, 2, 3]}
               fontWeight="lighter"
+              as="p"
             >
               {cat}
-            </Heading>
+            </Text>
           )} */}
+          </Box>
         </Box>
       </Card>
     </ThemedLink>

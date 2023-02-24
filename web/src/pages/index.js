@@ -11,7 +11,8 @@ import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import { SEO } from "../components/seo";
 import Layout from "../containers/layout";
-import { Image, AspectImage, Grid, Button, Heading, Text, Flex, Box } from "theme-ui";
+import { Image, AspectRatio, AspectImage, Grid, Button, Heading, Text, Flex, Box } from "theme-ui";
+import SanityImage from "gatsby-plugin-sanity-image";
 import { Themed } from '@theme-ui/mdx';
 import ThemedLink from "../components/ThemedLink";
 import { lighten, alpha } from "@theme-ui/color";
@@ -181,6 +182,7 @@ const IndexPage = (props) => {
         sx={{
           position: "relative",
           height: "100vh",
+          height: "100svh",
           overflow: "hidden",
           backgroundImage: (t) => `
           radial-gradient(
@@ -209,7 +211,7 @@ const IndexPage = (props) => {
               textAlign: ["center", "center", "center"]
             }}
           >
-            <Heading  variant="subheading"
+            <Heading variant="subheading"
               sx={{
                 fontWeight: "body",
                 fontSize: [2, 3]
@@ -230,12 +232,12 @@ const IndexPage = (props) => {
               {site.jumboTag}
             </Heading>
             <Text sx={{
-              display:"table",
-              textAlign:"left",
-              pt:4,
-              pb:2,
-              fontWeight:300 ,
-              fontSize:[1, 2, 3],
+              display: "table",
+              textAlign: "left",
+              pt: 4,
+              pb: 2,
+              fontWeight: 300,
+              fontSize: [1, 2, 3],
             }}>
               {site.jumboDescription}
             </Text>
@@ -250,7 +252,7 @@ const IndexPage = (props) => {
                 },
               }}
             >
-              <ThemedLink to="/archive" variant="semiOutlineBtn" fontSize={2}>
+              <ThemedLink to="/projects" variant="fillBtn" fontSize={2}>
                 View Projects
               </ThemedLink>
               <ThemedLink to="/about" variant="outlineBtn" fontSize={2}>
@@ -261,84 +263,67 @@ const IndexPage = (props) => {
         </Box>
         {tri}
       </Container>
-      
-      <Container sx={{
-        display: "flex",
-        alignItems: "center",
-        minHeight: ["50vh", "75vh", "100vh"],
-        justifyContent: "center",
-        mb:5,
-      }}>
-        {author.image && profileImage.asset && (
-          <Box
-            sx={{
-              display: ["none", "flex"],
-              height: 450,
-              mr: [0, 5]
-            }}
-          >
-            <Image
-              src={imageUrlFor(buildImageObj(profileImage))
-                .fit("clip")
-                .width(720)
-                .height(900)
-                .url()}
-              sx={{
-                backgroundColor: "transparent",
-                border: "solid currentColor",
-                borderWidth: "2",
-                borderRadius: "default",
-                color: "muted",
-                height: "100%",
-                width: "100%",
-                objectFit: "cover",
-                width: "auto",
-                height: "auto"
-              }}
-              alt={profileImage.alt}
-            />
-          </Box>
-        )}
-        <Box>
-          <Heading as="h3" sx={{
-            variant:"text.barcodes",
-            fontSize:[8],}}>INFO</Heading>
 
-          <Box sx={{ maxWidth: "75ch" }}>
-            <Themed.p sx={{
-              fontSize: [1, 2], my:0, pb:3,
+      <Container mb="4">
+        <Grid columns={["none", "none", "1fr 2fr"]}>
+          {author.image && profileImage.asset && (
+            <Box sx={{
+              display: ["none", "none", "flex"],
             }}>
-              Hi, I'm Lalaine.
-              Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am a new media artist and software developer, but I am a storyteller at heart. I develop software that tells compelling stories and spark curiosity across many mediums and platforms. I have been able to tell stories of individuals and multinational corporations. I've designed and created projects exhibited in museums, galleries & festivals worldwide.
-            </Themed.p>
-          </Box>
-          <SocialsFromBio bio={author}
-            iconStyle={{
-              m: [1],
-            }}
-            sx={{
-              display: "flex",
-              flexDirection: ["row", "row", "row"],
-            }} />
-          <Box
-            pt={4}
-            sx={{
-              "& a": {
-                mr: 2,
-                mb: 2,
-                display: "inline-block",
-              },
-            }}
-          >
-            <ThemedLink to="../2022-CV-Lalaine-Ulit-Destajo.pdf" target="_blank" variant="outlineBtn" fontSize={1}>
-              CV
-            </ThemedLink>
-            <ThemedLink to="/about" variant="outlineBtn" fontSize={1}>
-              Get To Know Me
-            </ThemedLink>
-          </Box>
+              <AspectRatio ratio={9 / 16}>
+                <SanityImage {...profileImage} width={250} height={444} sx={{
+                  backgroundColor: "transparent",
+                  border: "solid currentColor",
+                  borderWidth: 1,
+                  borderRadius: "default",
+                  color: "third500",
+                  objectFit: "cover",
+                }}/>
+              </AspectRatio >
+            </Box>
+          )}
+          <Box mx="auto">
+            <Heading as="h3" sx={{
+              variant: "text.barcodes",
+              fontSize: [8],
+            }}>Hello</Heading>
 
-        </Box>
+            <Box sx={{ maxWidth: "75ch" }}>
+              <Themed.p sx={{
+                fontSize: [1, 2], my: 0, pb: 3,
+              }}>
+                Hi, I'm Lalaine.
+                Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am a new media artist and software developer, but I am a storyteller at heart. I develop software that tells compelling stories and spark curiosity across many mediums and platforms. I have been able to tell stories of individuals and multinational corporations. I've designed and created projects exhibited in museums, galleries & festivals worldwide.
+              </Themed.p>
+            </Box>
+            <SocialsFromBio bio={author}
+              iconStyle={{
+                m: [1],
+              }}
+              sx={{
+                display: "flex",
+                flexDirection: ["row", "row", "row"],
+              }} />
+            <Box
+              pt={4}
+              sx={{
+                "& a": {
+                  mr: 2,
+                  mb: 2,
+                  display: "inline-block",
+                },
+              }}
+            >
+              <ThemedLink to="../2022-CV-Lalaine-Ulit-Destajo.pdf" target="_blank" variant="outlineBtn" fontSize={1}>
+                CV
+              </ThemedLink>
+              <ThemedLink to="/about" variant="outlineBtn" fontSize={1}>
+                Get To Know Me
+              </ThemedLink>
+            </Box>
+
+          </Box>
+        </Grid>
       </Container>
 
       {projectNodes && projectNodes.length > 0 && (
@@ -350,7 +335,7 @@ const IndexPage = (props) => {
             columns={[1, 2, null]}
             nodes={projectNodes}
             order={archiveOrder}
-            browseMoreHref="/archive/"
+            browseMoreHref="/projects/"
           />
         </Container>
       )}

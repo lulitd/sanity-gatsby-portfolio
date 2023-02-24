@@ -12,7 +12,7 @@ const NotFoundPage = () => (
       <Flex sx={{flexDirection:"column", alignItems:"center",}}>
       <Heading variant="text.barcodes">//Lost in the network</Heading>
       <Themed.p>It looks like we can't find the page you were looking for... </Themed.p>
-      <ThemedLink to="/" variant="semiOutlineBtn" sx={{my:4}}>
+      <ThemedLink to="/" variant="fillBtn" sx={{my:4}}>
         Back Home
       </ThemedLink>
       </Flex>

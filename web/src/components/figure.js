@@ -1,24 +1,28 @@
 import React from "react";
-import Image from "gatsby-plugin-sanity-image"
-// import { getFluidGatsbyImage } from "gatsby-source-sanity";
+import Image from "gatsby-plugin-sanity-image";
+//import { getFluidGatsbyImage } from "gatsby-source-sanity";
 import clientConfig from "../../client-config";
-import { Box, Text } from "theme-ui";
+import { Card, Text } from "theme-ui";
 import { alpha } from "@theme-ui/color";
 import { reduce } from "ramda";
-export default ({ node }) => {
-  if (!node.image) {
-    return null;
-  }
+export default ({node}) => {
+  // if (!node.image) {
+  //   console.log(node);
+  //   return null;
+  // }
 
+  // console.log(node);
   // const fluidProps = getFluidGatsbyImage(node.asset._ref, { maxWidth: 675 }, clientConfig.sanity);
 
   return (
-    <Box sx={{
+    <Card sx={{
       marginBottom: "1rem",
 			position: "relative"
-
     }} as="figure">
-      <Image {...node.image}/>
+   
+      <Image {...node} sx={{
+        width:["100%"]
+      }}/>
       {node.caption && < Text as={"figcaption"}
       sx={{
         position:"absolute",
@@ -34,6 +38,6 @@ export default ({ node }) => {
       }}
       >
         {node.caption}</Text>}
-    </Box>
+    </Card>
   );
 };
