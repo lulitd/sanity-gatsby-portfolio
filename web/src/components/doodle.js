@@ -1,13 +1,16 @@
 import { lighten, alpha } from "@theme-ui/color";
 import React, { useEffect } from "react";
+import { useExternalScript } from "../hooks/use-external-script";
+
 
 export default ({ colors }) => {
-  useEffect(() => {
-    import("css-doodle");
-  }, []);
+  
+  const doodleSrc = "https://unpkg.com/css-doodle@0.34.3/css-doodle.min.js"; 
+  const status = useExternalScript(doodleSrc);
 
   return (
     <>
+    {status ==="ready" &&(
       <css-doodle>
         {`
           :doodle {
@@ -24,9 +27,13 @@ export default ({ colors }) => {
           opacity:0.4;
           width:1em;
           height:1em;
-          animation: color-change-3x @pick(2s,2.5s,3s) linear infinite alternate both;
-          animation-delay: @rand(1000ms);
+          animation: fade-in ease-in 0.5s, color-change-3x @pick(2s,2.5s,3s) linear infinite alternate both @rand(1000ms); 
 
+          @keyframes fade-in {
+            0%{opacity:0;}
+            100%{opacity:0.4;}
+          }
+          
           @keyframes color-change-3x {
             0%,10% {
               border-radius:@pick(0%,50%);
@@ -43,6 +50,7 @@ export default ({ colors }) => {
            }
      `}
       </css-doodle>
+      )}
     </>
   );
 };
