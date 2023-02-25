@@ -346,7 +346,7 @@ const theme = {
       fontFamily: "body",
       fontWeight: "body",
       lineHeight: "body",
-      maxWidth: ["40ch","50ch","70ch"],
+      //maxWidth: ["40ch","50ch","70ch"],
     },
     a: {
       color: "primary",

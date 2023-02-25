@@ -87,10 +87,11 @@ function Project(props) {
     }} />;
 
   const bgUrl = props.mainImage && mainImage.asset && imageUrlFor(buildImageObj(mainImage))
-    .width(1080)
-    .height(Math.floor((2 / 5) * 1080))
-    .blur(5)
+    .width(1200)
+    .blur(10)
     .url();
+  
+  const imageHotspot = props.mainImage && (mainImage.hotspot); 
 
   const statStyle = stats > 1 ? null : {
     borderRight: "1px solid red",
@@ -100,26 +101,17 @@ function Project(props) {
     marginLeft: 3,
   };
   return (
-    <Container as="article" sx={{ px: [0], maxWidth: '100%' }}>
+    <Container as="article" sx={{ px: [0]}}>
       {/* Title and Image */}
       <Grid
         sx={{
-          minHeight: "100px", background: (t) => `
-          linear-gradient(
-            90deg,
-            ${alpha('background', 1)(t)} 0%,
-            ${alpha('background', 0.7)(t)} 40%,
-            ${alpha('secondary', 0.0)(t)} 100%
-          ),
-          url(${bgURL})
-        `,
+          minHeight: "100px",
           textAlign: 'center',
           height: ['75vh'],
           gridTemplateColumns: ["1fr 6fr 1fr","1fr 4fr 1fr","1fr 2fr 1fr","1fr 1fr 1fr"],
           gridTemplateRows: ["1fr 2fr 1fr","1fr 2fr 1fr","1fr 2fr 1fr","1fr 1fr 1fr"],
-          backgroundColor: "third",
           background: [bgUrl ? `url(${bgUrl})` : (t) => `
-        linear-gradient(
+          linear-gradient(
           to bottom,
           ${alpha('secondary', 0.25)(t)},
           ${alpha('third', 0.25)(t)}
@@ -127,7 +119,8 @@ function Project(props) {
       `],
           backgroundSize: "cover",
           backgroundAttachment: "fixed",
-          backgroundPositionY: "center",
+          backgroundPositionY: `${(imageHotspot?imageHotspot.y:0.5)*100}%`,
+          backgroundPositionX: `${(imageHotspot?imageHotspot.x:0.5)*100}%`,
           backgroundRepeat: "no-repeat",
         }}>
         <Card
@@ -143,7 +136,7 @@ function Project(props) {
           <Box sx={{
             m: "auto",
             p: [2],
-            maxWidth: "50ch",
+            // maxWidth: "50ch",
           }}>
             <Heading
               sx={{
@@ -166,7 +159,7 @@ function Project(props) {
         </Card>
       </Grid>
       {categories && categories.length > 0 && categoriesButtons}
-      <Container sx={{ mx: "auto" }}>
+      <Container sx={{ mx: "auto", px:[3,4]}}>
         {_rawProjectBrief && (
           <Grid columns={[1, 1, "1fr 1fr 3fr 1fr"]} gap={[1, 2, 2]} sx={{
             px: 1,
