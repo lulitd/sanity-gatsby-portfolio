@@ -49,12 +49,12 @@ module.exports = {
       resolve: "gatsby-plugin-sanity-image",
       options: {
         ...clientConfig.sanity,
+        customImageTypes: ["SanityFigure"],
         defaultImageConfig: {
           quality: 90,
           fit: "max",
           auto: "format",
         },
-        customImageTypes: ["figure", "images", "SanityFigure","SanityDefaultImage"],
       },
     },
     {

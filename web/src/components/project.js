@@ -110,13 +110,23 @@ function Project(props) {
           height: ['75vh'],
           gridTemplateColumns: ["1fr 6fr 1fr","1fr 4fr 1fr","1fr 2fr 1fr","1fr 1fr 1fr"],
           gridTemplateRows: ["1fr 2fr 1fr","1fr 2fr 1fr","1fr 2fr 1fr","1fr 1fr 1fr"],
-          background: [bgUrl ? `url(${bgUrl})` : (t) => `
+          background: [bgUrl ?  (t) => `
           linear-gradient(
           to bottom,
-          ${alpha('secondary', 0.25)(t)},
-          ${alpha('third', 0.25)(t)}
-        )
-      `],
+          ${alpha('background',0.5)(t)},
+          ${alpha('background',0.65)(t)},
+          ${alpha('primary',0.75)(t)}
+          ),
+          url(${bgUrl})
+          `
+        : (t) => `
+          linear-gradient(
+          to bottom,
+          ${alpha('background',1)(t)},
+          ${alpha('background',1)(t)},
+          ${alpha('primary',0.5)(t)}
+        )`
+        ],
           backgroundSize: "cover",
           backgroundAttachment: "fixed",
           backgroundPositionY: `${(imageHotspot?imageHotspot.y:0.5)*100}%`,

@@ -45,6 +45,10 @@ query IndexPageQuery {
       name
       image {
         ...ImageWithPreview
+        asset {
+          altText
+          description
+        }
       }
     }
   }
@@ -266,21 +270,21 @@ const IndexPage = (props) => {
 
       <Container mb="4">
         <Grid columns={["none", "none", "1fr 2fr"]}>
-          {author.image && profileImage.asset && (
-            <Box sx={{
+          {profileImage && profileImage.asset && (
+            <Flex sx={{
               display: ["none", "none", "flex"],
             }}>
-              <AspectRatio ratio={9 / 16}>
-                <SanityImage {...profileImage} width={250} height={444} sx={{
+             
+                <SanityImage {...profileImage} width={250} height={250} alt={profileImage.asset.altText} sx={{
                   backgroundColor: "transparent",
                   border: "solid currentColor",
                   borderWidth: 1,
                   borderRadius: "default",
                   color: "third500",
                   objectFit: "cover",
+                  maxWidth:"100%",
                 }}/>
-              </AspectRatio >
-            </Box>
+            </Flex>
           )}
           <Box mx="auto">
             <Heading as="h3" sx={{
@@ -321,7 +325,6 @@ const IndexPage = (props) => {
                 Get To Know Me
               </ThemedLink>
             </Box>
-
           </Box>
         </Grid>
       </Container>

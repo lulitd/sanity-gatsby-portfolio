@@ -26,7 +26,7 @@ query CategoryTemplateQuery($id: String!) {
     edges {
       node {
         id
-        mainImage {
+        mainImage{
           ...ImageWithPreview
         }
         title

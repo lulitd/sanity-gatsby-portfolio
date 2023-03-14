@@ -19,7 +19,7 @@ export const query = graphql`
       }
       publishedAt
       _updatedAt
-      mainImage {
+      mainImage{
         ...ImageWithPreview
       }
     }

@@ -10,6 +10,7 @@ import { imageUrlFor } from "../lib/image-url";
 import SocialsFromBio from "../components/socials-from-bio";
 import { Label, Box, Flex, Heading, Image, Grid } from "theme-ui";
 import { alpha } from "@theme-ui/color";
+import SanityImage from "gatsby-plugin-sanity-image";
 
 export const query = graphql`
   query AboutQuery {
@@ -21,6 +22,10 @@ export const query = graphql`
         linkedin
         image {
           ...ImageWithPreview
+          asset {
+            altText
+            description
+          }
         }
         _rawBio
       }
@@ -69,19 +74,17 @@ const AboutPage = (props) => {
             )}
           </Box>
           <Box as="aside">
-            {author.image && profileImage.asset && (
+            {profileImage && profileImage.asset && (
               <Box
                 sx={{
                   display: ["none", null, "block"],
                   maxHeight: 450,
                 }}
               >
-                <Image
-                  src={imageUrlFor(buildImageObj(profileImage))
-                    .fit("clip")
-                    .width(450)
-                    .height(450)
-                    .url()}
+                <SanityImage
+                  {...profileImage}
+                  width={450}
+                  height={450}
                   sx={{
                     minHeight: 0,
                     maxHeight: "100%",
@@ -90,8 +93,9 @@ const AboutPage = (props) => {
                     borderWidth: "2",
                     borderRadius: "default",
                     color: "muted",
+                    maxWidth:"100%",
                   }}
-                  alt={profileImage.alt}
+                  alt={profileImage.asset.altText}
                 />
               </Box>
             )}

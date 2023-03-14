@@ -34,7 +34,7 @@ export const query = graphql`
           title
         }
         publishedAt
-        mainImage {
+        mainImage{
           ...ImageWithPreview
         }
         _id
