@@ -9,13 +9,13 @@ import {Label, Input, Textarea, Button} from "theme-ui";
 import {Heading, Box, Flex , Grid } from "theme-ui";
 import { Themed } from '@theme-ui/mdx';
 
-export const query = graphql`
-  query ContactQuery {
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-      contactEmail
-    }
-  }
-`;
+// export const query = graphql`
+//   query ContactQuery {
+//     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+//       contactEmail
+//     }
+//   }
+// `;
 
 const ContactPage = (props) => {
   const { data, errors } = props;
@@ -28,13 +28,13 @@ const ContactPage = (props) => {
     );
   }
 
-  const site = (data || {}).site;
+  // const site = (data || {}).site;
 
-  if (!site) {
-    throw new Error(
-      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
-    );
-  }
+  // if (!site) {
+  //   throw new Error(
+  //     'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
+  //   );
+  // }
   return (
     <Layout>
       <Container>
