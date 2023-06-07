@@ -108,10 +108,11 @@ const createHeroBG = (colors) => {
   return <Doodles colors={colors} />;
 };
 
-const createTriangle = (colors, url) => {
+const createTriangle = (colors, url,label) => {
   return (
     <Link
       to={"/#" + url}
+      aria-label={label}
       sx={{
         width: [33],
         height: [33],
@@ -178,7 +179,7 @@ const IndexPage = (props) => {
   const bg = createHeroBG(colors);
   const featuredURL = (projectNodes && projectNodes.length > 0) ? "featured-projects" : ((postNodes && postNodes.length > 0) ? "featured-posts" : null);
 
-  const tri = featuredURL ? createTriangle(colors, featuredURL) : null;
+  const tri = featuredURL ? createTriangle(colors, featuredURL,featuredURL) : null;
 
   return (
     <Layout>

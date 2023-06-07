@@ -113,5 +113,5 @@ const ArchivePage = (props) => {
 export default ArchivePage;
 
 export const Head = () => (
-  <SEO title="Archive" />
+  <SEO title="All Projects" />
 )

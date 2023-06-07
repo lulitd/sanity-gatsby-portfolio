@@ -109,6 +109,6 @@ const AboutPage = (props) => {
 export default AboutPage;
 
 export const Head = () => (
-  <SEO title="About Page" />
+  <SEO title="About" />
 )
 

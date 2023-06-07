@@ -105,7 +105,7 @@ const theme = {
   borderWidths: ["0rem","0.125rem","0.25rem","0.375rem","0.5rem","0.625rem","0.75rem","1rem"],
   fontSizes: [14, 16, 18, 20, 24,28,32, 48, 64, 96],
   fontWeights: {
-    body: 400,
+    body: 300,
     heading: 300,
     a: 600,
     bold: 600,
@@ -264,20 +264,20 @@ const theme = {
       },
     },
     input: {
-      borderColor: "primary",
-      borderStyle: "dashed",
+      borderColor: "secondary",
+      borderStyle: "solid",
       borderWidth: 1,
       borderRadius: 0,
       marginBottom: 3,
       fontFamily: "body",
       "&:hover,&:focus": {
-        borderColor: "secondary",
+        borderColor: "primary",
         outline: "none",
       },
     },
     select: {
       borderColor: "secondary",
-      borderStyle: "dashed",
+      borderStyle: "solid",
       borderWidth: 1,
       borderRadius: 0,
       "&:hover,&:focus":{

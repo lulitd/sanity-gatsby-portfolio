@@ -5,7 +5,7 @@ export const SEO = ({ title, description, pathname, children }) => {
   const { title: defaultTitle, description: defaultDescription, image, siteUrl, twitterUsername } = useSiteMetadata()
 
   const seo = {
-    title: title || defaultTitle,
+    title: [title,defaultTitle].filter(Boolean).join(" — "),
     description: description || defaultDescription,
     image: `${siteUrl}${image}`,
     url: `${siteUrl}${pathname || ``}`,
@@ -15,6 +15,7 @@ export const SEO = ({ title, description, pathname, children }) => {
   return (
     <>
       <title>{seo.title}</title>
+      <html lang="en" />
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
       <meta name="twitter:card" content="summary_large_image" />

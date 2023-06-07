@@ -103,7 +103,7 @@ function ProjectPreview(props) {
               textTransform: "uppercase",
               fontSize:[5,5,6],
             }}
-            as="h3"
+            as="h2"
           >
             {props.title}
           </Heading>

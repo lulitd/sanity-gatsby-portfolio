@@ -14,6 +14,7 @@ const Branding = (props) => (
       to="/"
       variant="nav"
       activeClassName="active"
+      aria-label="Return to Home"
     >
       <Icon
         symbol="logo"
@@ -32,6 +33,7 @@ const ToggleButton = ({ showNav, onHideNav, onShowNav }) => (
     fontSize={4}
     m={0}
     p={2}
+    aria-label="Menu"
     sx={{
       display:["block","none"],
       border: "none",

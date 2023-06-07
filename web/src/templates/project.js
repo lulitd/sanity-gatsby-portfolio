@@ -116,6 +116,6 @@ const ProjectTemplate = (props) => {
 
 export default ProjectTemplate;
 
-export const Head = () => (
-  <SEO title="Project" />
+export const Head = ({data}) => (
+  <SEO title={`${data.project.title} — ${data.project.subtitle}`} />
 )

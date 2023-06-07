@@ -110,6 +110,6 @@ const CategoryTemplate = (props) => {
 
 export default CategoryTemplate;
 
-export const Head = () => (
-  <SEO title="Category" />
+export const Head = ({data}) => (
+  <SEO title={`Projects Tagged: ${data.category.title}`} />
 )
