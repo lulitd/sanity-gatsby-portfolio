@@ -141,7 +141,6 @@ const IndexPage = props => {
     : [];
   const profileImage = site.author.image;
   const featuredLogos = site.featuredLogos;
-  console.log(featuredLogos);
   const postNodes = (data || {}).posts
     ? mapEdgesToNodes(data.posts)
         .filter(filterOutDocsWithoutSlugs)
