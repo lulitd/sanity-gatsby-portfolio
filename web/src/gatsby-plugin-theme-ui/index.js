@@ -91,7 +91,8 @@ const theme = {
       textTransform: "uppercase",
       fontSize: [6, 7, 7],
       marginTop: "0.75em",
-      marginBottom: "1em"
+      marginBottom: "1em",
+      textWrap: "balance"
     },
     title: {
       variant: "text.heading",

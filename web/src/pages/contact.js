@@ -31,7 +31,7 @@ const ContactPage = props => {
         >
           Say Hello
         </Heading>
-        <Grid columns={["1", "2fr 1fr"]} gap={3}>
+        <Grid columns={["1", "2fr 1fr"]} gap={5}>
           <Box
             sx={{
               maxWidth: "40em"

@@ -136,7 +136,7 @@ function Project(props) {
             gridArea: "2/2",
             display: "grid",
             placeContent: "center",
-            padding: [2, 2, 3],
+            padding: [2, 3, 4],
             borderWidth: [2, null, 3],
             borderStyle: "solid",
             borderColor: "primary",
