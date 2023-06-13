@@ -6,6 +6,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean-cache": "gatsby clean",
+    "serve": "gatsby serve",
     "dev": "npm run clean-cache && gatsby develop -H 0.0.0.0",
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
@@ -26,6 +27,7 @@
     "gatsby-codemods": "^4.5.0",
     "gatsby-image": "^3.11.0",
     "gatsby-omni-font-loader": "^2.0.2",
+    "gatsby-plugin-google-gtag": "^5.10.0",
     "gatsby-plugin-image": "^3.5.0",
     "gatsby-plugin-manifest": "^5.5.0",
     "gatsby-plugin-react-svg": "^3.3.0",
