@@ -1,7 +1,7 @@
 export default {
-  name: 'siteSettings',
-  type: 'document',
-  title: 'Site Settings',
+  name: "siteSettings",
+  type: "document",
+  title: "Site Settings",
   // __experimental_actions: [
   //   // 'create',
   //   'update',
@@ -10,92 +10,98 @@ export default {
   // ],
   fieldsets: [
     {
-      name: 'jumbotron',
-      title: 'Jumbotron Settings',
-      options: {collapsible: true, collapsed: false}
+      name: "jumbotron",
+      title: "Jumbotron Settings",
+      options: { collapsible: true, collapsed: false },
     },
     {
-      name: 'contact',
-      title: 'Contact Settings',
-      options: {collapsible: true, collapsed: false}
-    }
+      name: "contact",
+      title: "Contact Settings",
+      options: { collapsible: true, collapsed: false },
+    },
   ],
   fields: [
     {
-      name: 'title',
-      type: 'string',
-      title: 'Title'
+      name: "title",
+      type: "string",
+      title: "Title",
     },
     {
-      name: 'logo',
-      type: 'image',
-      title: 'Logo'
+      name: "logo",
+      type: "image",
+      title: "Logo",
     },
     {
-      name: 'author',
-      type: 'reference',
-      description: 'Publish an author and set a reference to them here.',
-      title: 'Author',
-      to: [{type: 'person'}]
+      name: "author",
+      type: "reference",
+      description: "Publish an author and set a reference to them here.",
+      title: "Author",
+      to: [{ type: "person" }],
     },
     {
-      name: 'description',
-      type: 'text',
-      title: 'Description',
-      description: 'Describe your portfolio for search engines and social media.'
+      name: "description",
+      type: "text",
+      title: "Description",
+      description: "Describe your portfolio for search engines and social media.",
     },
     {
-      name: 'jumboDescription',
-      type: 'text',
-      title: 'Jumbotron Description',
-      description: 'This is the description that appears in the header of the index page.',
-      fieldset: 'jumbotron'
+      name: "jumboDescription",
+      type: "text",
+      title: "Jumbotron Description",
+      description: "This is the description that appears in the header of the index page.",
+      fieldset: "jumbotron",
     },
     {
-      name: 'jumboName',
-      type: 'text',
-      title: 'Jumbotron Name',
-      description: 'This is the name that appears in the jumbotron of index page.',
-      fieldset: 'jumbotron'
+      name: "jumboName",
+      type: "text",
+      title: "Jumbotron Name",
+      description: "This is the name that appears in the jumbotron of index page.",
+      fieldset: "jumbotron",
     },
     {
-      name: 'jumboTag',
-      type: 'text',
-      title: 'Jumbotron Tag',
-      description: 'This is the tag that appears in the jumbotron of index page.',
-      fieldset: 'jumbotron'
+      name: "jumboTag",
+      type: "text",
+      title: "Jumbotron Tag",
+      description: "This is the tag that appears in the jumbotron of index page.",
+      fieldset: "jumbotron",
     },
     {
-      name: 'contactEmail',
-      type: 'text',
-      title: 'email',
-      description: 'This is the email that people can contact you at',
-      fieldset: 'contact'
+      name: "contactEmail",
+      type: "text",
+      title: "email",
+      description: "This is the email that people can contact you at",
+      fieldset: "contact",
     },
     {
-      name: 'contactor',
-      type: 'reference',
-      title: 'contactor',
-      to: [{type: 'person'}],
-      description: 'This is will display the social icons of the contactor',
-      fieldset: 'contact'
+      name: "contactor",
+      type: "reference",
+      title: "contactor",
+      to: [{ type: "person" }],
+      description: "This is will display the social icons of the contactor",
+      fieldset: "contact",
     },
     {
-      name: 'keywords',
-      type: 'array',
-      title: 'Keywords',
-      description: 'Add keywords that describes your portfolio.',
-      of: [{type: 'string'}],
+      name: "keywords",
+      type: "array",
+      title: "Keywords",
+      description: "Add keywords that describes your portfolio.",
+      of: [{ type: "string" }],
       options: {
-        layout: 'tags'
-      }
+        layout: "tags",
+      },
     },
     {
-      name: 'archive',
-      type: 'array',
-      description: 'Defines order of projects',
-      title: 'Archive',
-      of: [{type: 'reference', to: {type: 'project'}}]
-    }
-  ]
-}
+      name: "archive",
+      type: "array",
+      description: "Defines order of projects",
+      title: "Archive",
+      of: [{ type: "reference", to: { type: "project" } }],
+    },
+    {
+      name: "featuredLogos",
+      type: "array",
+      description: "This sets the logos that appear in the homepage",
+      of: [{ type: "image" }],
+    },
+  ],
+};

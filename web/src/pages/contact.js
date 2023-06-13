@@ -2,22 +2,14 @@ import React from "react";
 import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
-import {SEO} from "../components/seo";
+import { SEO } from "../components/seo";
 import Layout from "../containers/layout";
 import AnimHello from "../animIcons/animHello";
-import {Label, Input, Textarea, Button} from "theme-ui";
-import {Heading, Box, Flex , Grid } from "theme-ui";
-import { Themed } from '@theme-ui/mdx';
+import { Label, Input, Textarea, Button } from "theme-ui";
+import { Heading, Box, Flex, Grid } from "theme-ui";
+import { Themed } from "@theme-ui/mdx";
 
-// export const query = graphql`
-//   query ContactQuery {
-//     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-//       contactEmail
-//     }
-//   }
-// `;
-
-const ContactPage = (props) => {
+const ContactPage = props => {
   const { data, errors } = props;
 
   if (errors) {
@@ -28,20 +20,23 @@ const ContactPage = (props) => {
     );
   }
 
-  // const site = (data || {}).site;
-
-  // if (!site) {
-  //   throw new Error(
-  //     'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
-  //   );
-  // }
   return (
     <Layout>
       <Container>
-      <Heading as="h1" variant={'text.barcodes'} sx={{fontSize:[8]}}>Say Hello</Heading>
-        <Grid columns={["1","2fr 1fr"]} gap={3}>
-          <Box sx={{
-            maxWidth:"40em"}}>
+        <Heading
+          as="h1"
+          sx={{
+            marginBottom: "1rem"
+          }}
+        >
+          Say Hello
+        </Heading>
+        <Grid columns={["1", "2fr 1fr"]} gap={3}>
+          <Box
+            sx={{
+              maxWidth: "40em"
+            }}
+          >
             <Box
               as="form"
               id="contact-form"
@@ -81,17 +76,17 @@ const ContactPage = (props) => {
                 </Box>
               </Grid>
               <Box>
-              <Label htmlFor="form_message" variant="labelRequired">
-                Message
-              </Label>
-              <Textarea
-                id="form_message"
-                name="message"
-                placeholder="Message for me"
-                rows="6"
-                required="required"
-                data-error="Please, leave a message."
-              ></Textarea>
+                <Label htmlFor="form_message" variant="labelRequired">
+                  Message
+                </Label>
+                <Textarea
+                  id="form_message"
+                  name="message"
+                  placeholder="Message for me"
+                  rows="6"
+                  required="required"
+                  data-error="Please, leave a message."
+                ></Textarea>
               </Box>
               <Button type="submit" variant="outlineBtn">
                 Get In Touch
@@ -102,7 +97,7 @@ const ContactPage = (props) => {
           <Box
             as="aside"
             sx={{
-              display: ["none","block"],
+              display: ["none", "block"]
             }}
           >
             <AnimHello />
@@ -115,6 +110,4 @@ const ContactPage = (props) => {
 
 export default ContactPage;
 
-export const Head = () => (
-  <SEO title="Contact" />
-)
+export const Head = () => <SEO title="Contact" />;

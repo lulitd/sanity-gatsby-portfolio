@@ -23,7 +23,7 @@ function RoleList({ items, title , style }) {
       }}>
       <Themed.h3 sx={{
         color: lighten('secondary', .1),
-        fontWeight: 100,
+        fontSize:[6],
       }} >{title}</Themed.h3>
       <Box
         as="ul"
@@ -79,7 +79,7 @@ function RoleList({ items, title , style }) {
                 )}
               >
                 <Box mb={3}>
-                  <Text as="p">
+                  <Text as="p" sx={{fontWeight:900, letterSpacing:"2px"}}>
                     {(item.person && item.person.name) || <em>Missing name</em>}
                     {link && (<span color="body"><Icon sx={{ mx: 1 }} /></span>)}
                   </Text >

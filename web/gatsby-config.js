@@ -25,13 +25,13 @@ module.exports = {
      enableListener: true,
      preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
      web: [
-       {
-        name: `Libre Barcode 39 Text`,
-        file: `https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap`,
-      },
       {
         name: `Source Code Pro`,
         file: `https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap`,
+      },
+      {
+        name: `Inter`,
+        file: `https://fonts.googleapis.com/css2?family=Inter&display=swap`,
       },
      ],
    },

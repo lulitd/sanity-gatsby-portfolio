@@ -4,7 +4,7 @@ import Container from "./container";
 import { alpha } from "@theme-ui/color";
 import ThemedLink from "./ThemedLink";
 
-import { useThemeUI,Flex, Text } from "theme-ui";
+import { useThemeUI, Flex, Text } from "theme-ui";
 
 const CleanLink = ({ to, children }) => {
   const context = useThemeUI();
@@ -14,16 +14,18 @@ const CleanLink = ({ to, children }) => {
       hex={colors.primary}
       to={to}
       sx={{
-        color: "muted",
+        color: "primary",
         textDecoration: "none",
-        "&:hover": {
-          color: "secondary",
-          textDecoration: "underline",
-        },
+        fontWeight: "a",
+        "&:hover,&:focus": {
+          color: "third",
+
+          textDecoration: "underline"
+        }
       }}
     >
       {children}
-   </ThemedLink>
+    </ThemedLink>
   );
 };
 
@@ -31,8 +33,6 @@ const Footer = ({ author }) => (
   <Flex as="footer" sx={{ alignItems: "center", width: "100%" }}>
     <Container
       sx={{
-        px:[2, null, 3],
-        py:[2],
         position: "relative",
         "::before": {
           content: '""',
@@ -42,15 +42,15 @@ const Footer = ({ author }) => (
           left: 0,
           width: "100%",
           height: "2px",
-          backgroundImage: (t) => `
+          backgroundImage: t => `
           linear-gradient(
             to right,
             ${alpha("primary", 1)(t)},
             ${alpha("background", 1)(t)}
           )
         `,
-          borderRadius: "default",
-        },
+          borderRadius: "default"
+        }
       }}
     >
       <Text py={2}>

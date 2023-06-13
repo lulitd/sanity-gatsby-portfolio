@@ -3,36 +3,31 @@ import ProjectPreview from "./project-preview";
 import { Grid, Box } from "theme-ui";
 import ThemedLink from "./ThemedLink";
 import { Flex } from "rebass";
-import { Themed } from '@theme-ui/mdx';
+import { Themed } from "@theme-ui/mdx";
 
+function ProjectPreviewGrid({ nodes, title, order, columns, ...props }) {
+  const hasEvenElements = nodes.length % 2 == 0;
 
-function ProjectPreviewGrid({nodes,title,order,columns, ...props }) {
-
-  const hasEvenElements= nodes.length%2==0;
-
-
-  if (order){
-  const idOrder = order.map( o => o._id );
+  if (order) {
+    const idOrder = order.map(o => o._id);
     nodes.sort(function(a, b) {
       const orderIndexA = idOrder.indexOf(a._id);
       const orderIndexB = idOrder.indexOf(b._id);
-      if (orderIndexB>=0 && orderIndexA>=0 ){
-        return orderIndexA - orderIndexB; 
-      } else if (orderIndexB == orderIndexA){
-       
+      if (orderIndexB >= 0 && orderIndexA >= 0) {
+        return orderIndexA - orderIndexB;
+      } else if (orderIndexB == orderIndexA) {
         // if they are both the same then they aren't in the list
-        const offset = idOrder.length *2; 
-        const nodeIndexA = nodes.findIndex(n=> n._id==a._id); 
-        const nodeIndexB = nodes.findIndex(n=> n._id==b._id); 
+        const offset = idOrder.length * 2;
+        const nodeIndexA = nodes.findIndex(n => n._id == a._id);
+        const nodeIndexB = nodes.findIndex(n => n._id == b._id);
 
-        return nodeIndexA - nodeIndexB + offset; 
+        return nodeIndexA - nodeIndexB + offset;
       } else {
-        return orderIndexB; 
+        return orderIndexB;
       }
     });
   }
 
-    
   return (
     <Box>
       {title && <Themed.h2>{title}</Themed.h2>}
@@ -43,29 +38,33 @@ function ProjectPreviewGrid({nodes,title,order,columns, ...props }) {
           listStyle: "none",
           color: "inherit",
           flexDirection: "column",
-          m: 2,
-          mb: [2, null, 3],
+          my: [2, null, 3],
           px: 0,
           pb: 3,
-          columnGap: [2,3],
-          rowGap:[3],
-          "& li:nth-of-type(3n+1)":{
-            gridColumn:['auto','auto','1 / span 2'],
+          columnGap: [2, 3],
+          rowGap: [3],
+          "& li:nth-of-type(3n+1)": {
+            gridColumn: ["auto", "auto", "1 / span 2"]
           },
-          ...(hasEvenElements && { "& li:last-child ":{
-            gridColumn:['auto','auto','1 / span 2']
-          }})
+          ...(hasEvenElements && {
+            "& li:last-child ": {
+              gridColumn: ["auto", "auto", "1 / span 2"]
+            }
+          })
         }}
       >
         {nodes &&
-          nodes.map((node,i) => (
+          nodes.map((node, i) => (
             <Themed.li key={node._id}>
-              <ProjectPreview {...node} isFull={i%3==0||i==0 || (hasEvenElements && i == nodes.length-1)} />
+              <ProjectPreview
+                {...node}
+                isFull={i % 3 == 0 || i == 0 || (hasEvenElements && i == nodes.length - 1)}
+              />
             </Themed.li>
           ))}
       </Grid>
       {props.browseMoreHref && (
-        <Flex justifyContent={["center","center","left"]} flexDirection="row">
+        <Flex justifyContent={["center", "center", "left"]} flexDirection="row">
           <ThemedLink variant="outlineBtn" to={props.browseMoreHref}>
             Browse More
           </ThemedLink>
@@ -79,7 +78,7 @@ ProjectPreviewGrid.defaultProps = {
   title: "",
   nodes: [],
   browseMoreHref: "",
-  columns: [1, 1, 2],
+  columns: [1, 1, 2]
 };
 
 export default ProjectPreviewGrid;

@@ -1,120 +1,81 @@
-import { getColor,shade, lightness ,lighten , darken } from "@theme-ui/color";
+import { getColor, shade, lightness, lighten, alpha, darken } from "@theme-ui/color";
 
 const theme = {
-  // config: {
-  //   initialColorModeName: 'dark',
-  //   useColorSchemeMediaQuery:'system'
-  // },
   sizes: {
-    container: 1200,
+    container: 1024,
     videoL: 1024,
     videoM: 720,
-    videoS: 640,
+    videoS: 640
   },
-  // colors: {
-  //   text: "#56606D",
-  //   body: "#56606D",
-  //   heading: "#AD0009",
-  //   background: "#FFF8E0",
-  //   primary: "#333941",
-  //   secondary: "#AD0009",
-  //   third: "#05a696", 
-  //   muted: "#BF0D0D",
-  //   darkest: "#020426",
-  //   lightest: "#ffffff"
-  // },
   colors: {
     primary: "#F29E1F",
-    secondary: "#05a6fe", 
+    secondary: "#05a6fe",
     third: "#dc3856",
     background: "#1a1a1a",
-    btn:"#1f1f1f",
+    btn: "#1f1f1f",
     clickable: "#05a6fe",
-    selected:"#dc3856",
+    selected: "#dc3856",
     active: "#F29E1F",
-    text: lightness("primary",0.9),
-    body: lightness("primary",0.9),
+    text: lightness("primary", 0.9),
+    body: lightness("primary", 0.9),
     heading: "#F29E1F",
-    muted: lightness("primary",0.9),
+    muted: lightness("primary", 0.9),
     darkest: "#020426",
     lightest: "#ddd",
-    primary100: lighten("primary",0.3),
-    primary300: lighten("primary",0.1),
+    primary100: lighten("primary", 0.3),
+    primary300: lighten("primary", 0.1),
     primary500: "#F29E1F",
-    primary700: darken("primary",0.2),
-    primary900: darken("primary",0.35),
-    secondary100: lighten("secondary",0.3),
-    secondary300: lighten("secondary",0.1),
+    primary700: darken("primary", 0.2),
+    primary900: darken("primary", 0.35),
+    secondary100: lighten("secondary", 0.3),
+    secondary300: lighten("secondary", 0.1),
     secondary500: "#05a6fe",
-    secondary700: darken("secondary",0.2),
-    secondary900: darken("secondary",0.35),
-    third100: lighten("third",0.3),
-    third300: lighten("third",0.1),
+    secondary700: darken("secondary", 0.2),
+    secondary900: darken("secondary", 0.35),
+    third100: lighten("third", 0.3),
+    third300: lighten("third", 0.1),
     third500: "#dc3856",
-    third700: darken("third",0.2),
-    third900: darken("third",0.35),
-    // modes: {
-    //   light: {
-    //     primary: "#F29E1F",
-    //     secondary: "#05a6fe", 
-    //     third: "#dc3856",
-    //     background: "#fadfb7",
-    //     btn:"#fceacf",
-    //     clickable: "#dc3856",
-    //     selected: darken("primary",0.1),
-    //     active: "#05a6fe",
-    //     text: darken("primary",0.9),
-    //     body: darken("primary",0.9),
-    //     heading: darken("third",0.1),
-    //     muted: darken("primary",0.9),
-    //     darkest: "#020426",
-    //     lightest: "#ddd",
-    //     primary100: lighten("primary",0.3),
-    //     primary300: lighten("primary",0.1),
-    //     primary500: "#F29E1F",
-    //     primary700: darken("primary",0.2),
-    //     primary900: darken("primary",0.35),
-    //     secondary100: lighten("secondary",0.3),
-    //     secondary300: lighten("secondary",0.1),
-    //     secondary500: "#05a6fe",
-    //     secondary700: darken("secondary",0.2),
-    //     secondary900: darken("secondary",0.35),
-    //     third100: lighten("third",0.3),
-    //     third300: lighten("third",0.1),
-    //     third500: "#dc3856",
-    //     third700: darken("third",0.2),
-    //     third900: darken("third",0.35),
-    //   }
-    // }
+    third700: darken("third", 0.2),
+    third900: darken("third", 0.35)
   },
   fonts: {
-    body: '"Helvetica Neue", sans-serif',
-    heading: '"Source Code Pro","Helvetica Neue", sans-serif',
-    btn: '"Source Code Pro","Helvetica Neue",sans-serif',
-    nav: '"Source Code Pro","Helvetica Neue",sans-serif',
-    monospace: "monospace",
-    barcode:'"Libre Barcode 39 Text", sans-serif',
+    body: '"Inter","Helvetica Neue", sans-serif',
+    heading: '"Inter","Helvetica Neue", sans-serif',
+    btn: '"Source Code Pro","Inter","Helvetica Neue",sans-serif',
+    nav: '"Source Code Pro","Inter","Helvetica Neue",sans-serif',
+    monospace: '"Source Code Pro","monospace"'
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048],
   radii: {
-    none:"0",
+    none: "0",
     small: "0.25rem",
     default: "0.5rem",
-    pill: 9999,
+    regular: "1rem",
+    large: "1.25rem",
+    pill: 9999
   },
-  borderWidths: ["0rem","0.125rem","0.25rem","0.375rem","0.5rem","0.625rem","0.75rem","1rem"],
-  fontSizes: [14, 16, 18, 20, 24,28,32, 48, 64, 96],
+  borderWidths: [
+    "0rem",
+    "0.125rem",
+    "0.25rem",
+    "0.375rem",
+    "0.5rem",
+    "0.625rem",
+    "0.75rem",
+    "1rem"
+  ],
+  fontSizes: [14, 16, 18, 20, 24, 28, 32, 48, 64, 96],
   fontWeights: {
-    body: 300,
-    heading: 300,
+    body: 400,
+    heading: 900,
     a: 600,
     bold: 600,
     nav: 400,
-    btn: 400,
+    btn: 400
   },
   lineHeights: {
-    body: 1.5,
-    heading: 1,
+    body: "1.6rem",
+    heading: 1
   },
   text: {
     color: "body",
@@ -127,69 +88,62 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       fontStyle: "normal",
-      textTransform:"uppercase",
-      fontSize: [6, 7, 8],
-      p: 0,
-      pb: "0.66rem",
+      textTransform: "uppercase",
+      fontSize: [6, 7, 7],
+      marginTop: "0.75em",
+      marginBottom: "1em"
     },
     title: {
       variant: "text.heading",
-      fontSize: [7, 8],
+      fontSize: [5, 6, 7]
     },
     subheading: {
       variant: "text.body",
       color: "muted",
-      fontSize: [4, 5, 6],
-      pb:"0.25rem"
+      fontWeight: "body",
+      fontSize: [3, 4, 4]
     },
-    brackets:{
+    brackets: {
       variant: "text.subheading",
       "&:before": {
-        content: '"< "',
+        content: '"< "'
       },
       "&:after": {
-        content: '" />"',
-      },
-    },
-    barcodes: {
-      variant: "text.heading",
-      fontFamily: "barcode",
-      textTransform:"uppercase",
-      mb:0,
-    },
+        content: '" />"'
+      }
+    }
   },
   buttons: {
     nav: {
       color: "muted",
-      backgroundColor: "background",
+      backgroundColor: "transparent",
       display: "inline-block",
       position: "relative",
-      px:2,
-      py:2,
+      px: 2,
+      py: 2,
       fontFamily: "nav",
       fontWeight: "nav",
       textTransform: "uppercase",
       textDecoration: "none",
       letterSpacing: [1],
-      borderRadius:"none",
+      borderRadius: "none",
       border: "solid 0px currentColor",
-      borderWidth: 1, 
+      borderWidth: 1,
       borderColor: "transparent",
       transition: "0.25s ease-in",
       "&.active": {
         color: "active",
-        borderColor:"currentColor",
-        borderRadius: "default",
+        borderColor: "currentColor",
+        borderRadius: "default"
       },
       "&:hover,&:focus": {
         color: "selected",
-        background:"btn",
-        borderColor:"currentColor",
+        borderColor: "currentColor",
         borderRadius: "default",
         borderTopRightRadius: "0",
         borderBottomLeftRadius: "0",
-        outline:"none", 
-      },
+        outline: "none"
+      }
     },
     outlineBtn: {
       color: "clickable",
@@ -208,17 +162,17 @@ const theme = {
       transition: "0.2s ease-in",
       "&.active": {
         color: "active",
-        background:"btn",
-        borderRadius: "default",
+        background: "btn",
+        borderRadius: "default"
       },
       "&:hover,&:focus": {
         color: "selected",
-        background:"btn",
+        background: "btn",
         borderRadius: "default",
         borderTopRightRadius: "0",
         borderBottomLeftRadius: "0",
-        outline:"none", 
-      },
+        outline: "none"
+      }
     },
     fillBtn: {
       variant: "buttons.outlineBtn",
@@ -227,9 +181,9 @@ const theme = {
       borderColor: "clickable",
       "&.active": {
         color: "btn",
-        background:"active",
+        background: "active",
         borderColor: "active",
-        borderRadius: "default",
+        borderRadius: "default"
       },
       "&:hover,&:focus": {
         color: "btn",
@@ -238,30 +192,54 @@ const theme = {
         borderRadius: "default",
         borderTopRightRadius: "0",
         borderBottomLeftRadius: "0",
-        outline:"none", 
-      },
+        outline: "none"
+      }
     },
     socialBtn: {
       variant: "buttons.outlineBtn",
       px: 2,
       py: 2,
       lineHeight: 1,
-      mr: 2,
+      mr: 2
+    }
+  },
+  cards: {
+    primary: {
+      padding: 4,
+      border: "1px solid",
+      borderColor: "primary300",
+      boxShadow: "2px 10px 25px #F29E1F30"
     },
+    compact: {
+      padding: 1,
+      border: "1px solid",
+      borderColor: "primary300",
+      boxShadow: "1px 5px 12px #F29E1F20"
+    }
+  },
+  images: {
+    avatar: {
+      width: 48,
+      height: 48,
+      borderRadius: 99999
+    },
+    duotone: {
+      filter: "url(/duo-tone.svg#duotone_peachypink)"
+    }
   },
   forms: {
     label: {
       fontSize: 2,
       fontWeight: "bold",
       pb: 1,
-      color:"muted",
+      color: "muted"
     },
     labelRequired: {
       variant: "forms.label",
       "&:after": {
         content: '"*"',
-        color: "secondary",
-      },
+        color: "secondary"
+      }
     },
     input: {
       borderColor: "secondary",
@@ -272,52 +250,52 @@ const theme = {
       fontFamily: "body",
       "&:hover,&:focus": {
         borderColor: "primary",
-        outline: "none",
-      },
+        outline: "none"
+      }
     },
     select: {
       borderColor: "secondary",
       borderStyle: "solid",
       borderWidth: 1,
       borderRadius: 0,
-      "&:hover,&:focus":{
+      "&:hover,&:focus": {
         borderColor: "primary",
-        outline: "none",
-      },
+        outline: "none"
+      }
     },
     textarea: {
       variant: "forms.input",
-      resize:"none",
-    },
+      resize: "none"
+    }
   },
   styles: {
     root: {
       color: "body",
       fontFamily: "body",
       lineHeight: "body",
-      fontWeight: "body",
+      fontWeight: "body"
     },
     h1: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      textTransform:"uppercase",
-      fontSize: [6, 7],
+      textTransform: "uppercase",
+      fontSize: [6, 7]
     },
     h2: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [5, 6],
+      fontSize: [5, 6]
     },
     h3: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [4, 5],
+      fontSize: [9]
     },
 
     h4: {
@@ -325,28 +303,27 @@ const theme = {
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [3, 4],
+      fontSize: [3, 4]
     },
     h5: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [2, 3],
+      fontSize: [2, 3]
     },
     h6: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [1, 2],
+      fontSize: [1, 2]
     },
     p: {
       color: "body",
       fontFamily: "body",
       fontWeight: "body",
-      lineHeight: "body",
-      //maxWidth: ["40ch","50ch","70ch"],
+      lineHeight: "body"
     },
     a: {
       color: "primary",
@@ -355,52 +332,52 @@ const theme = {
       ":hover,:focus": {
         textDecoration: "underline",
         color: "selected",
-        outline:"none"  
-      },
+        outline: "none"
+      }
     },
     pre: {
       fontFamily: "monospace",
       overflowX: "auto",
       code: {
-        color: "inherit",
-      },
+        color: "inherit"
+      }
     },
     code: {
       fontFamily: "monospace",
-      fontSize: "inherit",
+      fontSize: "inherit"
     },
     table: {
       width: "100%",
       borderCollapse: "separate",
-      borderSpacing: 0,
+      borderSpacing: 0
     },
     th: {
       textAlign: "left",
-      borderBottomStyle: "solid",
+      borderBottomStyle: "solid"
     },
     td: {
       textAlign: "left",
-      borderBottomStyle: "solid",
+      borderBottomStyle: "solid"
     },
     img: {
-      maxWidth: "100%",
+      maxWidth: "100%"
     },
     ol: {
       fontFamily: "body",
       fontWeight: "body",
-      lineHeight: "body",
+      lineHeight: "body"
     },
     ul: {
       fontFamily: "body",
       fontWeight: "body",
-      lineHeight: "body",
+      lineHeight: "body"
     },
     li: {
       fontFamily: "body",
       fontWeight: "body",
-      lineHeight: "body",
-    },
-  },
+      lineHeight: "body"
+    }
+  }
 };
 
 export default theme;

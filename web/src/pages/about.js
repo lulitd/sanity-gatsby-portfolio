@@ -64,20 +64,23 @@ const AboutPage = (props) => {
   return (
     <Layout>
       <Container>
-        <Grid columns={[1,1, '2fr 1fr']} gap={3} >
+        <Grid columns={[1,1,'2fr 1fr']} gap={4}>
           <Box mx={["auto","auto","0"]}>
-            <Heading as="h3" variant={'text.barcodes'} sx={{ fontSize: 8 }}>About</Heading>
+            <Heading as="h3">About</Heading>
             {author._rawBio && (
               <BlockContent blocks={author._rawBio || []} style={{
-                width: ["45ch", "50ch", "fit-content"]
+                maxWidth: ["45ch", "50ch", "fit-content"]
               }} />
             )}
           </Box>
-          <Box as="aside">
+          <Box as="aside" sx={{
+            placeItems:"center",
+            display: ["none", null, "flex"],
+          }}>
             {profileImage && profileImage.asset && (
               <Box
                 sx={{
-                  display: ["none", null, "block"],
+                 
                   maxHeight: 450,
                 }}
               >
@@ -85,16 +88,17 @@ const AboutPage = (props) => {
                   {...profileImage}
                   width={450}
                   height={450}
+                  className="gmap-secondary-primary"
                   sx={{
                     minHeight: 0,
                     maxHeight: "100%",
                     backgroundColor: "transparent",
                     border: "solid currentColor",
-                    borderWidth: "2",
+                    borderWidth: "1",
                     borderRadius: "default",
                     color: "muted",
                     maxWidth:"100%",
-                  }}
+                    }}
                   alt={profileImage.asset.altText}
                 />
               </Box>

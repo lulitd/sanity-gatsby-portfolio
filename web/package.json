@@ -12,6 +12,7 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
     "@loadable/component": "^5.15.3",
     "@rebass/forms": "^4.0.6",
     "@sanity/block-content-to-react": "^3.0.0",

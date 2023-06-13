@@ -93,7 +93,7 @@ const CategoryTemplate = (props) => {
       <Container sx={{
         textAlign:"center" 
       }}>
-      <Heading as="h1" variant={'text.barcodes'} fontSize={[8]}>{`Projects // ${category.title}`} </Heading>
+      <Heading as="h1">{`Projects // ${category.title}`} </Heading>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={category}

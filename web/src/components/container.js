@@ -2,13 +2,16 @@ import React from "react";
 import { Container as UiContainer } from "theme-ui";
 
 const Container = ({ sx, ...props }) => {
+  var style = {
+    mx: "auto",
+    px: [3, 3, 4],
+    py: [3]
+  };
   return (
     <UiContainer
       sx={{
-        mx: "auto",
-        px: [2, 4],
-        py: [2],
-        ...sx,
+        ...style,
+        ...sx
       }}
       {...props}
     >

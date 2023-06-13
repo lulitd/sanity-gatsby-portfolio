@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="svg-filters">
+  <filter id="gmap_primary">
+    <feColorMatrix type="matrix" result="grayscale"
+      values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0" />
+    <feComponentTransfer color-interpolation-filters="sRGB">
+      <feFuncR type="table" tableValues="0.05, 0.95"></feFuncR>
+      <feFuncG type="table" tableValues="0.05, 0.62"></feFuncG>
+      <feFuncB type="table" tableValues="0.05, 0.12"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_secondary">
+    <feColorMatrix type="matrix" result="grayscale"
+      values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0" />
+    
+    <feComponentTransfer color-interpolation-filters="sRGB">
+      <feFuncR type="table" tableValues="0.05 0.02"></feFuncR>
+      <feFuncG type="table" tableValues="0.05 0.65"></feFuncG>
+      <feFuncB type="table" tableValues="0.05 1"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_third">
+      <feColorMatrix type="matrix" result="grayscale"
+        values="1 0 0 0 0
+                1 0 0 0 0
+                1 0 0 0 0
+                0 0 0 1 0" />
+      
+      <feComponentTransfer color-interpolation-filters="sRGB">
+        <feFuncR type="table" tableValues="0.05 0.86"></feFuncR>
+        <feFuncG type="table" tableValues="0.05 0.22"></feFuncG>
+        <feFuncB type="table" tableValues="0.05 0.34"></feFuncB>
+        <feFuncA type="table" tableValues="0 1"></feFuncA>
+      </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_primary_mono">
+    <feColorMatrix type="matrix" result="grayscale"
+      values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0" />
+    <feComponentTransfer color-interpolation-filters="sRGB">
+    
+      <feFuncR type="table" tableValues="0.64	0.98"></feFuncR>
+      <feFuncG type="table" tableValues="0.40	0.87"></feFuncG>
+      <feFuncB type="table" tableValues="0.04	0.69"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_secondary_mono">
+    <feColorMatrix type="matrix" result="grayscale"
+      values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0" />
+    
+    <feComponentTransfer color-interpolation-filters="sRGB">
+      <feFuncR type="table" tableValues="0.00	0.62"></feFuncR>
+      <feFuncG type="table" tableValues="0.40	0.86"></feFuncG>
+      <feFuncB type="table" tableValues="0.61	1.00"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_third_mono">
+      <feColorMatrix type="matrix" result="grayscale"
+        values="1 0 0 0 0
+                1 0 0 0 0
+                1 0 0 0 0
+                0 0 0 1 0" />
+      
+      <feComponentTransfer color-interpolation-filters="sRGB">
+        <feFuncR type="table" tableValues="0.58	0.95"></feFuncR>
+        <feFuncG type="table" tableValues="0.10	0.73"></feFuncG>
+        <feFuncB type="table" tableValues="0.19	0.77"></feFuncB>
+        <feFuncA type="table" tableValues="0 1"></feFuncA>
+      </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_primary_secondary">
+    <feColorMatrix type="matrix" result="grayscale"
+      values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0" />
+    <feComponentTransfer color-interpolation-filters="sRGB">
+    
+      <feFuncR type="table" tableValues="0.64	0.62"></feFuncR>
+      <feFuncG type="table" tableValues="0.40	0.86"></feFuncG>
+      <feFuncB type="table" tableValues="0.04	1.00"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_primary_third">
+    <feColorMatrix type="matrix" result="grayscale"
+      values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0" />
+    <feComponentTransfer color-interpolation-filters="sRGB">
+    
+      <feFuncR type="table" tableValues="0.64	0.95"></feFuncR>
+      <feFuncG type="table" tableValues="0.40	0.73"></feFuncG>
+      <feFuncB type="table" tableValues="0.04	0.77"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_secondary_primary">
+    <feColorMatrix type="matrix" result="grayscale"
+      values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0" />
+    
+    <feComponentTransfer color-interpolation-filters="sRGB">
+      <feFuncR type="table" tableValues="0.00	0.98"></feFuncR>
+      <feFuncG type="table" tableValues="0.19	0.87"></feFuncG>
+      <feFuncB type="table" tableValues="0.30	0.69"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_secondary_third">
+    <feColorMatrix type="matrix" result="grayscale"
+      values="1 0 0 0 0
+              1 0 0 0 0
+              1 0 0 0 0
+              0 0 0 1 0" />
+    
+    <feComponentTransfer color-interpolation-filters="sRGB">
+      <feFuncR type="table" tableValues="0.00	0.95"></feFuncR>
+      <feFuncG type="table" tableValues="0.19	0.73"></feFuncG>
+      <feFuncB type="table" tableValues="0.30	0.77"></feFuncB>
+      <feFuncA type="table" tableValues="0 1"></feFuncA>
+    </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_third_primary">
+      <feColorMatrix type="matrix" result="grayscale"
+        values="1 0 0 0 0
+                1 0 0 0 0
+                1 0 0 0 0
+                0 0 0 1 0" />
+      
+      <feComponentTransfer color-interpolation-filters="sRGB">
+        <feFuncR type="table" tableValues="0.58	0.98"></feFuncR>
+        <feFuncG type="table" tableValues="0.10	0.87"></feFuncG>
+        <feFuncB type="table" tableValues="0.19	0.69"></feFuncB>
+        <feFuncA type="table" tableValues="0 1"></feFuncA>
+      </feComponentTransfer> 
+  </filter>
+
+  <filter id="gmap_third_secondary">
+      <feColorMatrix type="matrix" result="grayscale"
+        values="1 0 0 0 0
+                1 0 0 0 0
+                1 0 0 0 0
+                0 0 0 1 0" />
+      
+      <feComponentTransfer color-interpolation-filters="sRGB">
+        <feFuncR type="table" tableValues="0.58	0.62"></feFuncR>
+        <feFuncG type="table" tableValues="0.10	0.86"></feFuncG>
+        <feFuncB type="table" tableValues="0.19	1.00"></feFuncB>
+        <feFuncA type="table" tableValues="0 1"></feFuncA>
+      </feComponentTransfer> 
+  </filter>
+</svg>
