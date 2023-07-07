@@ -23,7 +23,7 @@
     "babel-preset-gatsby": "^3.5.0",
     "date-fns": "^2.29.3",
     "deepmerge": "^4.3.0",
-    "gatsby": "^5.5.0",
+    "gatsby": "^5.9.1",
     "gatsby-codemods": "^4.5.0",
     "gatsby-image": "^3.11.0",
     "gatsby-omni-font-loader": "^2.0.2",
