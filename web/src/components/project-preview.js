@@ -24,7 +24,7 @@ function ProjectPreview(props) {
   const isFull = props.isFull;
 
   // image settings using sanity to resize and frame images for thumbnails.
-  const xAspect = isFull ? 50 : 25; // take into account the aspect ratio of the image thumbail.
+  const xAspect = isFull == true ? 50 : 25; // take into account the aspect ratio of the image thumbail.
   const yApsect = 9;
   if (hasBG) {
     bgURL = imageUrlFor(buildImageObj(props.thumbImage ? props.thumbImage : props.mainImage))

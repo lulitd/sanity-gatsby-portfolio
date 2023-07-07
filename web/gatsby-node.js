@@ -1,4 +1,4 @@
-const { isFuture,parseISO} = require("date-fns");
+const { isFuture, parseISO } = require("date-fns");
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -33,7 +33,7 @@ async function createProjectPages(graphql, actions, reporter) {
           }
         }
       }
-      categories: allSanityCategory(filter: { projectFilter: { eq: true } }) {
+      categories: allSanityCategory(filter: { slug: { current: { ne: null } } }) {
         edges {
           node {
             title
@@ -52,8 +52,8 @@ async function createProjectPages(graphql, actions, reporter) {
   const projectEdges = (result.data.projects || {}).edges || [];
 
   projectEdges
-    .filter((edge) => !isFuture(parseISO(edge.node.publishedAt)))
-    .forEach((edge) => {
+    .filter(edge => !isFuture(parseISO(edge.node.publishedAt)))
+    .forEach(edge => {
       const id = edge.node.id;
       const slug = edge.node.slug.current;
       const path = `/project/${slug}/`;
@@ -63,15 +63,15 @@ async function createProjectPages(graphql, actions, reporter) {
       createPage({
         path,
         component: require.resolve("./src/templates/project.js"),
-        context: { id },
+        context: { id }
       });
     });
 
   const postEdges = (result.data.posts || {}).edges || [];
 
   postEdges
-    .filter((edge) => !isFuture(parseISO(edge.node.publishedAt)))
-    .forEach((edge) => {
+    .filter(edge => !isFuture(parseISO(edge.node.publishedAt)))
+    .forEach(edge => {
       const id = edge.node.id;
       const slug = edge.node.slug.current;
       const path = `/post/${slug}/`;
@@ -81,13 +81,13 @@ async function createProjectPages(graphql, actions, reporter) {
       createPage({
         path,
         component: require.resolve("./src/templates/post.js"),
-        context: { id },
+        context: { id }
       });
     });
 
   const categoriesEdges = (result.data.categories || {}).edges || [];
 
-  categoriesEdges.forEach((edge) => {
+  categoriesEdges.forEach(edge => {
     const id = edge.node.id;
     const slug = edge.node.slug.current;
     const path = `/projects/category/${slug}/`;
@@ -97,7 +97,7 @@ async function createProjectPages(graphql, actions, reporter) {
     createPage({
       path,
       component: require.resolve("./src/templates/category.js"),
-      context: { id },
+      context: { id }
     });
   });
 }

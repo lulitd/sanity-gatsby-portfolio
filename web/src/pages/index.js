@@ -73,6 +73,7 @@ export const query = graphql`
     ) {
       edges {
         node {
+          publishedAt
           _id
           mainImage {
             ...ImageWithPreview

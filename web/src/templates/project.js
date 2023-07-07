@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import Project from "../components/project";
-import {SEO} from "../components/seo";
+import { SEO } from "../components/seo";
 import Layout from "../containers/layout";
 
 export const query = graphql`
@@ -34,7 +34,7 @@ export const query = graphql`
           title
         }
         publishedAt
-        mainImage{
+        mainImage {
           ...ImageWithPreview
         }
         _id
@@ -50,6 +50,14 @@ export const query = graphql`
       }
       title
       subtitle
+      roles {
+        fieldTitle
+        fieldInfo
+      }
+      technologies {
+        fieldTitle
+        fieldInfo
+      }
       github
       instagram
       twitter
@@ -91,19 +99,18 @@ export const query = graphql`
   }
 `;
 
-const ProjectTemplate = (props) => {
+const ProjectTemplate = props => {
   const { data, errors } = props;
   const project = data && data.project;
 
   let awards = [];
 
-  data.awards.edges.forEach(function (obj) {
+  data.awards.edges.forEach(function(obj) {
     awards.push(obj.node);
   });
- 
+
   return (
     <Layout>
-
       {errors && (
         <Container>
           <GraphQLErrorList errors={errors} />
@@ -116,6 +123,6 @@ const ProjectTemplate = (props) => {
 
 export default ProjectTemplate;
 
-export const Head = ({data}) => (
+export const Head = ({ data }) => (
   <SEO title={`${data.project.title} — ${data.project.subtitle}`} />
-)
+);

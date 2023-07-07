@@ -21,6 +21,8 @@ function Project(props) {
     title,
     subtitle,
     categories,
+    roles,
+    technologies,
     members,
     accolades,
     mainImage,
@@ -52,7 +54,7 @@ function Project(props) {
   if (collaborators && collaborators.length > 0) stats++;
   if (uniqueAccolades && uniqueAccolades.length > 0) stats++;
   const categoriesButtons = (
-    <Box pb={2} sx={{ textAlign: "center" }}>
+    <Box pb={2} sx={{ flex: 1, textAlign: "center" }}>
       <ul
         sx={{
           listStyle: "none",
@@ -60,24 +62,136 @@ function Project(props) {
         }}
       >
         {categories.reduce((acm, cat) => {
-          if (cat.projectFilter) {
-            const el = (
-              <Themed.li sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
-                <ThemedLink
-                  block
-                  to={`/projects/category/${cat.slug.current}`}
-                  variant="outlineBtn"
-                  key={cat._id}
-                >
-                  #{cat.title}
-                </ThemedLink>
-              </Themed.li>
-            );
-            acm.push(el);
-          }
+          // if (cat.projectFilter) {
+          const el = (
+            <Themed.li sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
+              <ThemedLink
+                block
+                to={`/projects/category/${cat.slug.current}`}
+                variant="outlineBtn"
+                key={cat._id}
+              >
+                #{cat.title}
+              </ThemedLink>
+            </Themed.li>
+          );
+          acm.push(el);
+          // }
           return acm;
         }, [])}
       </ul>
+    </Box>
+  );
+
+  const rolesSection = (
+    <Box
+      sx={{
+        textAlign: "center",
+        flex: 1
+      }}
+    >
+      <Themed.h3
+        sx={{
+          color: lighten("secondary", 0.1),
+          fontSize: [4]
+        }}
+      >
+        Roles & Contributions
+      </Themed.h3>
+      <Box
+        as="ul"
+        sx={{
+          mx: 0,
+          px: 0,
+          listStyle: "none"
+        }}
+      >
+        {roles.map(role => {
+          return (
+            <Box as="li" key={role._id}>
+              <Text
+                sx={{
+                  whiteSpace: "pre-wrap",
+                  letterSpacing: "2px",
+                  fontWeight: "900"
+                }}
+                fontSize={[2, 1, 2]}
+              >
+                {role.fieldTitle}
+              </Text>
+              <Text
+                fontSize={[2, 1, 2]}
+                sx={{
+                  color: lighten("primary", 0.1),
+                  m: 0,
+                  display: "block"
+                }}
+              >
+                {role.fieldInfo}
+              </Text>
+            </Box>
+          );
+        })}
+      </Box>
+    </Box>
+  );
+
+  const techSection = (
+    <Box
+      sx={{
+        flex: 1,
+        textAlign: "center"
+      }}
+    >
+      <Themed.h3
+        sx={{
+          color: lighten("secondary", 0.1),
+          fontSize: [4]
+        }}
+      >
+        Technologies
+      </Themed.h3>
+      <Box
+        as="ul"
+        sx={{
+          mx: 0,
+          px: 0,
+          listStyle: "none"
+        }}
+      >
+        {technologies.map(tech => {
+          return (
+            <Box
+              as="li"
+              key={tech._id}
+              sx={{
+                mb: [2]
+              }}
+            >
+              <Text
+                sx={{
+                  whiteSpace: "pre-wrap",
+                  letterSpacing: "2px",
+                  fontWeight: "900"
+                }}
+                fontSize={[2, 1, 2]}
+              >
+                {tech.fieldTitle}
+              </Text>
+              <Text
+                fontSize={[2, 1, 2]}
+                sx={{
+                  color: lighten("primary", 0.1),
+                  m: 0,
+                  display: "block"
+                }}
+              >
+                {tech.fieldInfo}
+              </Text>
+            </Box>
+          );
+        })}
+      </Box>
     </Box>
   );
 
@@ -165,8 +279,13 @@ function Project(props) {
           {socialIcons}
         </Box>
       </Grid>
-      {categories && categories.length > 0 && categoriesButtons}
+
       <Container sx={{ mx: "auto", px: [3, 4] }}>
+        <Flex sx={{ flexDirection: ["column", "column", "row"], mb: 5 }}>
+          {categories && categories.length > 0 && categoriesButtons}
+          {roles && roles.length > 0 && rolesSection}
+          {technologies && technologies.length > 0 && techSection}
+        </Flex>
         {_rawProjectBrief && (
           <Grid
             columns={[1, 1, "2fr 3fr"]}

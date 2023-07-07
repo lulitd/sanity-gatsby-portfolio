@@ -27,6 +27,7 @@ export const query = graphql`
       totalCount
       edges {
         node {
+          publishedAt
           _id
           mainImage {
             ...ImageWithPreview
