@@ -36,10 +36,10 @@ function CardRow({ headingLevel, infoList }) {
   if (!infoList) return null;
 
   return (
-    <Grid gap={3} columns={[2, null, 4]}>
+    <Grid gap={2} columns={[2, null, 4]}>
       {infoList.map(info => {
         return (
-          <Card variant="primary">
+          <Card variant="primary" key={`card-row-${info.title}`}>
             <Icon symbol={info.icon} sx={{ height: 50, width: 50 }} />
             <Heading
               as={headingLevel}

@@ -185,11 +185,12 @@ const IndexPage = props => {
               inset: 0,
               backgroundImage: t => `
               linear-gradient(
-              225deg,
+             60deg,
               ${alpha("background", 1)(t)} 0%,
-              ${alpha("background", 1)(t)} 25%,
-              ${alpha("background", 0)(t)}40%,
-              ${alpha("background", 1)(t)}90%,
+              ${alpha("background", 0.75)(t)} 25%,
+              ${alpha("background", 0.9)(t)}40%,
+              ${alpha("background", 0.5)(t)}60%,
+              ${alpha("background", 0.75)(t)}80%,
               ${alpha("background", 1)(t)} 100%
             )
           `
@@ -202,19 +203,28 @@ const IndexPage = props => {
           sx={{
             display: "flex",
             flexDirection: "column",
+            my: [1, 2, 3],
             pt: [2, 4, 5]
           }}
         >
-          <Text sx={{ opacity: 0.7, textWrap: "balance", lineHeight: "1.25rem" }}>
+          <Text
+            sx={{
+              opacity: 0.7,
+              textWrap: "balance",
+              lineHeight: "1.25rem",
+              textTransform: "uppercase",
+              color: "primary600"
+            }}
+          >
             {site.jumboDescription}
           </Text>
           <Heading sx={{ my: [2, 2, 1], textWrap: "balance" }}>{site.jumboTag}</Heading>
           <Box
             sx={{
-              mt: 4,
+              mt: 3,
+              mb: [2, 4, 5],
               "& a": {
-                mr: 4,
-                mb: 1,
+                mr: 3,
                 display: "inline-block"
               }
             }}
@@ -232,6 +242,7 @@ const IndexPage = props => {
       <Container>
         <LogoScroller
           logos={featuredLogos}
+          title={"Clients & projects I've had the pleasure of working with"}
           logoHeight={30}
           duration={60}
           backgroundColor="primary"
@@ -260,7 +271,7 @@ const IndexPage = props => {
       )}
 
       <Container>
-        <Grid columns={["none", "none", "1fr 2fr"]} gap="2em">
+        <Grid columns={["none", "none", "1.25fr 2fr"]} gap={3} mb={3}>
           {profileImage && profileImage.asset && (
             <Flex
               sx={{
@@ -285,42 +296,34 @@ const IndexPage = props => {
             </Flex>
           )}
           <Box mx="auto">
-            <Heading as="h3">Hi, I'm Lalaine </Heading>
-
             <StatusPill statusColor="red" message="Available to Work" />
-            <Box sx={{ maxWidth: "75ch" }}>
+            <Heading as="h3" sx={{ my: 0, pt: 3 }}>
+              Hi, I'm Lalaine
+            </Heading>
+            <Box sx={{ maxWidth: "70ch", textWrap: "balance" }}>
               <p>
                 I'm a creative technologist based in Toronto, Canada.
                 <em>What does that mean?</em>
               </p>
               <p>
-                I help bridge the gap between <b>Design ⇄ Development.</b> I specialize in crafting
-                websites, apps and games. Think of me as your future Swiss Army Knife. I have the
-                ability to wear multiple hats to help bring your vision to life.
+                I help bridge the gap between <b>Design ⇄ Development.</b>
+              </p>
+              <p>
+                I specialize in crafting websites, apps and games. Think of me as your future Swiss
+                Army Knife. I can wear multiple hats to help bring your vision to life.
               </p>
               <p>
                 I've been fortunate enough to collaborate with new artists to established veterans,
-                as well as startups to multinational corporations. I’ve have designed and developed
-                projects that have been shown in museums, galleries, festivals, and tradeshows all
-                over the world.
+                and startups to multinational corporations. I have designed and developed projects
+                that have been shown in museums, galleries, festivals, and tradeshows all over the
+                world.
               </p>
             </Box>
-            <SocialsFromBio
-              bio={author}
-              iconStyle={{
-                m: [1]
-              }}
-              sx={{
-                display: "flex",
-                flexDirection: ["row", "row", "row"]
-              }}
-            />
             <Box
-              pt={4}
               sx={{
                 "& a": {
                   mr: 2,
-                  mb: 2,
+
                   display: "inline-block"
                 }
               }}
@@ -329,8 +332,7 @@ const IndexPage = props => {
                 Let's chat
               </ThemedLink>
               <ThemedLink to="/about" variant="outlineBtn" fontSize={1}>
-                {" "}
-                Get To Know Me{" "}
+                Get To Know Me
               </ThemedLink>
             </Box>
           </Box>

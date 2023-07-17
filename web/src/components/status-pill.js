@@ -4,8 +4,15 @@ import { Button, Box, Text, Flex, Image, Heading } from "theme-ui";
 import { darken, alpha, lighten } from "@theme-ui/color";
 import { keyframes } from "@emotion/react";
 
+const blinker = keyframes({
+  "0%": { transform: "scale(1)", opacity: "0.75" },
+  "50%": { transform: "scale(1.1)", opacity: "1" },
+  "100%": { transform: "scale(1)", opacity: "0.75" }
+});
+
 function StatusPill({ message, currentStatus, ...rest }) {
-  const notifSize = "0.75rem";
+  const notifSize = "0.5rem";
+
   return (
     <Box
       data-status={currentStatus ?? "chat"}
@@ -16,11 +23,11 @@ function StatusPill({ message, currentStatus, ...rest }) {
         border: `1px solid grey`,
         borderColor: "var(--pill-status-color,grey)",
         color: "var(--pill-status-color,grey)",
-        pr: "1rem",
-        py: "0.5rem",
+        pr: "0.5rem",
+        py: "0.25rem",
         pl: `calc(${notifSize}*3)`,
         borderRadius: "pill",
-        fontSize: 12,
+        fontSize: 10,
         letterSpacing: "0.25em",
         fontFamily: "btn",
         textTransform: "uppercase",
@@ -45,11 +52,13 @@ function StatusPill({ message, currentStatus, ...rest }) {
           left: `calc(${notifSize}*1.5)`,
           width: notifSize,
           height: notifSize,
-          borderRadius: "pill"
+          borderRadius: "pill",
+          filter: "blur(2px)",
+          animation: `${blinker} 1s infinite cubic-bezier(0, 0, 0.2, 1)`
         }
       })}
     >
-      {message}
+      {message ?? "Let's Work Together"}
     </Box>
   );
 }

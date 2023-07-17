@@ -3,7 +3,7 @@ import React from "react";
 import { cn, buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import BlockText from "./block-text";
-import { Styled, Grid, Card, Box, Heading, Text } from "theme-ui";
+import { Styled, Grid, Card, Box, Heading, Text, Flex } from "theme-ui";
 import { lighten, darken, alpha } from "@theme-ui/color";
 import ThemedLink from "./ThemedLink";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
@@ -14,12 +14,6 @@ function ProjectPreview(props) {
     (props.thumbImage && props.thumbImage.asset) || (props.mainImage && props.mainImage.asset);
   let bgURL;
   if (props.bgURL) bgURL = props.bgURL;
-  const cat =
-    props.categories &&
-    props.categories
-      .slice(0, 3)
-      .map(x => x.title)
-      .join(" + ");
 
   const isFull = props.isFull;
 
@@ -51,11 +45,11 @@ function ProjectPreview(props) {
           display: "flex",
           position: "relative",
           flexDirection: "column",
-          minHeight: "12rem",
+          minHeight: "14rem",
           justifyContent: "flex-end",
           p: 3,
           borderColor: "secondary700",
-          borderWidth: 2,
+          borderWidth: 1,
           borderStyle: "solid",
           borderRadius: "0",
           overflow: "clip",
@@ -129,7 +123,8 @@ function ProjectPreview(props) {
                   letterSpacing: "0",
                   textTransform: "capitalize",
                   lineHeight: "body",
-                  fontFamily: "body"
+                  fontFamily: "body",
+                  opacity: 0.75
                 }}
                 as="p"
               >

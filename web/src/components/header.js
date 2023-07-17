@@ -8,6 +8,7 @@ import { alpha } from "@theme-ui/color";
 import { Themed } from "@theme-ui/mdx";
 import { secondsToMilliseconds } from "date-fns";
 import { keyframes } from "@emotion/react";
+import StatusPill from "./status-pill";
 // import { useColorMode } from "theme-ui";
 
 const iconAnim = keyframes`
@@ -19,14 +20,21 @@ const iconAnim = keyframes`
 
 const Branding = props => (
   <Box flex="1">
-    <ThemedLink to="/" variant="nav" activeClassName="active" aria-label="Return to Home">
+    <ThemedLink
+      to="/"
+      variant="navBorderless"
+      sx={{ pl: 0 }}
+      aria-label="Return to Home"
+      activeClassName="active"
+    >
       <Icon
         symbol="logo"
         sx={{
-          verticalAlign: "middle",
+          verticalAlign: "bottom",
           display: "inline-block"
         }}
       />
+      <span sx={{ fontSize: "20px", pl: 1 }}>Lalaine</span>
     </ThemedLink>
   </Box>
 );
@@ -100,6 +108,9 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
       <li>
         <NavLink to="/contact/">Contact</NavLink>
       </li>
+      <Box sx={{ display: "block", m: 0, ml: [0, "0.75rem", "0.75rem"], pt: "0.5rem" }}>
+        <StatusPill />
+      </Box>
     </Flex>
   </Box>
 );

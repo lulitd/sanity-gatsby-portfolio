@@ -30,9 +30,10 @@ function LogoList(logos, logoSize, duration) {
           justifyContent: "space-around"
         }}
       >
-        {logos.map(logo => {
+        {logos.map((logo, i) => {
           return (
             <SanityImage
+              _key={`logo-${i}`}
               {...logo}
               sx={{
                 height: logoSize
@@ -55,18 +56,19 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
 
   return (
     <>
-      <Heading
+      <Text
+        as={"p"}
         sx={{
-          color: "primary",
-          fontWeight: "normal",
-          fontSize: [1, 1, 2],
-          margin: 0,
-          mb: 2,
+          color: "primary600",
+          opacity: 0.75,
+          fontFamily: "nav",
+          fontSize: [1, 1, 1],
+          textTransform: "uppercase",
           textAlign: "center"
         }}
       >
         {title}
-      </Heading>
+      </Text>
       <Box
         {...rest}
         sx={{

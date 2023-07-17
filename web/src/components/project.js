@@ -62,7 +62,6 @@ function Project(props) {
         }}
       >
         {categories.reduce((acm, cat) => {
-          // if (cat.projectFilter) {
           const el = (
             <Themed.li sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
               <ThemedLink
@@ -76,7 +75,6 @@ function Project(props) {
             </Themed.li>
           );
           acm.push(el);
-          // }
           return acm;
         }, [])}
       </ul>

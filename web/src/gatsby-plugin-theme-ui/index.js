@@ -128,7 +128,7 @@ const theme = {
       textDecoration: "none",
       letterSpacing: [1],
       borderRadius: "none",
-      border: "solid 0px currentColor",
+      border: "solid 1px currentColor",
       borderWidth: 1,
       borderColor: "transparent",
       transition: "0.25s ease-in",
@@ -144,6 +144,28 @@ const theme = {
         borderTopRightRadius: "0",
         borderBottomLeftRadius: "0",
         outline: "none"
+      }
+    },
+    navBorderless: {
+      color: "muted",
+      backgroundColor: "transparent",
+      display: "inline-block",
+      position: "relative",
+      px: 2,
+      py: 2,
+      fontFamily: "nav",
+      fontWeight: "nav",
+      textTransform: "uppercase",
+      textDecoration: "none",
+      letterSpacing: [1],
+      borderRadius: "none",
+      border: "solid 1px transparent",
+      transition: "0.25s ease-in",
+      "&.active": {
+        color: "active"
+      },
+      "&:hover,&:focus": {
+        color: "selected"
       }
     },
     outlineBtn: {
