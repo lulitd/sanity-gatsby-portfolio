@@ -296,7 +296,11 @@ const IndexPage = props => {
             </Flex>
           )}
           <Box mx="auto">
-            <StatusPill statusColor="red" message="Available to Work" />
+            <StatusPill
+              statusColor="red"
+              message="Available to Work"
+              contactInfo={"hello@lalaineulitdestajo.com"}
+            />
             <Heading as="h3" sx={{ my: 0, pt: 3 }}>
               Hi, I'm Lalaine
             </Heading>

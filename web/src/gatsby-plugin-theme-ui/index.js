@@ -16,6 +16,7 @@ const theme = {
     clickable: "#05a6fe",
     selected: "#dc3856",
     active: "#F29E1F",
+    go: "#05fe19",
     text: lightness("primary", 0.9),
     body: lightness("primary", 0.9),
     heading: "#F29E1F",
