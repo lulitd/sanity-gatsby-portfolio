@@ -23,14 +23,14 @@ function CardRow({ headingLevel, infoList }) {
     },
     {
       icon: "device",
-      title: "Production",
-      text: "Bringing your vision to life with the latest technology and design trends."
+      title: "Motion Design",
+      text: "Animating your vision to life with the latest technology."
     },
     {
       icon: "controller",
-      title: "Interactive Content",
+      title: "Crafting Interactive Content",
       text:
-        "Creating captivating interactive experiences for various platforms including mobile, web, games, and live events."
+        "Design & develop captivating interactive experiences for various platforms including mobile, web, games, and live events."
     }
   ];
   if (!infoList) return null;

@@ -34,6 +34,7 @@ import LogoScroller from "../components/logo-scroller";
 import Doodles from "../components/doodle";
 import Icon from "../components/icon";
 import CardRow from "../components/card-row";
+import StatusPill from "../components/status-pill";
 
 export const query = graphql`
   query IndexPageQuery {
@@ -169,83 +170,61 @@ const IndexPage = props => {
     <Layout>
       <Container
         sx={{
-          position: "relative",
-          height: "85vh",
-          height: "85svh",
-          overflow: "hidden",
-          backgroundImage: t => `
-          radial-gradient(
-            circle at 50% 25%,
-            ${alpha("background", 1)(t)} 0%,
-            ${alpha("background", 1)(t)} 25%,
-            ${alpha("background", 0)(t)}40%,
-            ${alpha("background", 1)(t)}60%,
-            ${alpha("background", 1)(t)} 100%
-          )
-        `
+          position: "relative"
         }}
       >
-        {bg}
         <Box
           sx={{
-            display: "grid",
-            gridTemplateColumns: ["0.25fr 3fr 0.25fr", "0.5fr 2fr 0.5fr", "0.5fr 2fr 0.5fr"],
-            gridTemplateRows: ["0.125fr 1fr 0.125fr", "0.5fr 2fr 0.5fr", "0.5fr 1fr 0.5fr"],
-            gridTemplateAreas: "'. . .' '. Header-Content .' '. . .'"
+            overflow: "hidden",
+            position: "absolute",
+            inset: 0,
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              zIndex: -1,
+              inset: 0,
+              backgroundImage: t => `
+              linear-gradient(
+              225deg,
+              ${alpha("background", 1)(t)} 0%,
+              ${alpha("background", 1)(t)} 25%,
+              ${alpha("background", 0)(t)}40%,
+              ${alpha("background", 1)(t)}90%,
+              ${alpha("background", 1)(t)} 100%
+            )
+          `
+            }
           }}
         >
+          {bg}
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            pt: [2, 4, 5]
+          }}
+        >
+          <Text sx={{ opacity: 0.7, textWrap: "balance", lineHeight: "1.25rem" }}>
+            {site.jumboDescription}
+          </Text>
+          <Heading sx={{ my: [2, 2, 1], textWrap: "balance" }}>{site.jumboTag}</Heading>
           <Box
             sx={{
-              gridArea: "Header-Content",
-              textAlign: ["center", "center", "center"]
+              mt: 4,
+              "& a": {
+                mr: 4,
+                mb: 1,
+                display: "inline-block"
+              }
             }}
           >
-            <Heading variant="subheading">
-              Hi my name is
-              <Text
-                as="span"
-                variant="title"
-                sx={{
-                  display: "block",
-                  mt: 1,
-                  mb: 4,
-                  pt: [1]
-                }}
-              >
-                {site.jumboName}.
-              </Text>
-            </Heading>
-            <Heading variant="subheading">{site.jumboTag}</Heading>
-            <Text
-              sx={{
-                display: "table",
-                textAlign: "left",
-                pt: 4,
-                pb: 2,
-                fontWeight: 300,
-                fontSize: [1, 2, 3]
-              }}
-            >
-              {site.jumboDescription}
-            </Text>
-            <Box
-              pt={4}
-              sx={{
-                textAlign: "center",
-                "& a": {
-                  mr: 4,
-                  mb: 2,
-                  display: "inline-block"
-                }
-              }}
-            >
-              <ThemedLink to="/projects" variant="fillBtn" fontSize={2}>
-                View Projects
-              </ThemedLink>
-              <ThemedLink to="/about" variant="outlineBtn" fontSize={2}>
-                Get To Know Me
-              </ThemedLink>
-            </Box>
+            <ThemedLink to="/contact" variant="fillBtn" fontSize={2}>
+              Let's Chat!
+            </ThemedLink>
+            <ThemedLink to="/projects" variant="outlineBtn" fontSize={2}>
+              View Projects
+            </ThemedLink>
           </Box>
         </Box>
       </Container>
@@ -253,21 +232,33 @@ const IndexPage = props => {
       <Container>
         <LogoScroller
           logos={featuredLogos}
-          logoHeight={50}
+          logoHeight={30}
           duration={60}
           backgroundColor="primary"
-          mb={6}
         />
       </Container>
-
-      <Container sx={{ minHeight: ["45svh"], display: "flex", placeItems: "center" }}>
-        <Heading>
-          I work with brands & agencies to create impactful and meaningful products.
-        </Heading>
-      </Container>
-      <Container sx={{ mb: 6 }}>
+      {projectNodes && projectNodes.length > 0 && (
+        <Container>
+          <ProjectPreviewGrid
+            columns={[1, 2, null]}
+            nodes={projectNodes}
+            order={archiveOrder}
+            browseMoreHref="/projects/"
+          />
+        </Container>
+      )}
+      <Container sx={{ my: 4 }}>
         <CardRow />
       </Container>
+      {postNodes && postNodes.length > 0 && (
+        <Container mb={5}>
+          <Heading as="h3" id="featured-posts" fontSize={[8]}>
+            Latest Posts
+          </Heading>
+          <PostPreviewGrid columns={[1, 2, 1]} nodes={postNodes} browseMoreHref="/posts/" />
+        </Container>
+      )}
+
       <Container>
         <Grid columns={["none", "none", "1fr 2fr"]} gap="2em">
           {profileImage && profileImage.asset && (
@@ -294,23 +285,25 @@ const IndexPage = props => {
             </Flex>
           )}
           <Box mx="auto">
-            <Heading as="h3">Hello</Heading>
+            <Heading as="h3">Hi, I'm Lalaine </Heading>
 
+            <StatusPill statusColor="red" message="Available to Work" />
             <Box sx={{ maxWidth: "75ch" }}>
-              <Themed.p
-                sx={{
-                  fontSize: [1, 2],
-                  my: 0,
-                  pb: 3
-                }}
-              >
-                Hi, I'm Lalaine. Based in Toronto, Canada, I've been described as a
-                jack-of-all-trades. I am a new media artist and software developer, but I am a
-                storyteller at heart. I develop software that tells compelling stories and spark
-                curiosity across many mediums and platforms. I have been able to tell stories of
-                individuals and multinational corporations. I've designed and created projects
-                exhibited in museums, galleries & festivals worldwide.
-              </Themed.p>
+              <p>
+                I'm a creative technologist based in Toronto, Canada.
+                <em>What does that mean?</em>
+              </p>
+              <p>
+                I help bridge the gap between <b>Design ⇄ Development.</b> I specialize in crafting
+                websites, apps and games. Think of me as your future Swiss Army Knife. I have the
+                ability to wear multiple hats to help bring your vision to life.
+              </p>
+              <p>
+                I've been fortunate enough to collaborate with new artists to established veterans,
+                as well as startups to multinational corporations. I’ve have designed and developed
+                projects that have been shown in museums, galleries, festivals, and tradeshows all
+                over the world.
+              </p>
             </Box>
             <SocialsFromBio
               bio={author}
@@ -332,15 +325,9 @@ const IndexPage = props => {
                 }
               }}
             >
-              <Button
-                variant="outlineBtn"
-                as="a"
-                href="../2022-CV-Lalaine-Ulit-Destajo.pdf"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-              >
-                CV
-              </Button>
+              <ThemedLink to="/contact" variant="fillBtn" fontSize={1}>
+                Let's chat
+              </ThemedLink>
               <ThemedLink to="/about" variant="outlineBtn" fontSize={1}>
                 {" "}
                 Get To Know Me{" "}
@@ -349,35 +336,6 @@ const IndexPage = props => {
           </Box>
         </Grid>
       </Container>
-
-      {projectNodes && projectNodes.length > 0 && (
-        <Container my={4}>
-          <Heading
-            as="h3"
-            sx={{
-              textAlign: ["center", "center", "unset"]
-            }}
-            id="featured-projects"
-          >
-            Featured Projects
-          </Heading>
-          <ProjectPreviewGrid
-            columns={[1, 2, null]}
-            nodes={projectNodes}
-            order={archiveOrder}
-            browseMoreHref="/projects/"
-          />
-        </Container>
-      )}
-
-      {postNodes && postNodes.length > 0 && (
-        <Container mb={5}>
-          <Heading as="h3" id="featured-posts" fontSize={[8]}>
-            Latest Posts
-          </Heading>
-          <PostPreviewGrid columns={[1, 2, 1]} nodes={postNodes} browseMoreHref="/posts/" />
-        </Container>
-      )}
     </Layout>
   );
 };
