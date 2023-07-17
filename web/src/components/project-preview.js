@@ -24,7 +24,7 @@ function ProjectPreview(props) {
     bgURL = imageUrlFor(buildImageObj(props.thumbImage ? props.thumbImage : props.mainImage))
       .width(1024)
       .height(Math.floor((yApsect / xAspect) * 1024))
-      .blur(10)
+      .blur(5)
       .fit("crop")
       .url();
   }

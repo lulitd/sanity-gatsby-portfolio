@@ -59,12 +59,15 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
       <Text
         as={"p"}
         sx={{
-          color: "primary600",
-          opacity: 0.75,
+          color: "primary",
+          opacity: 0.6,
           fontFamily: "nav",
+          pb: 1,
           fontSize: [1, 1, 1],
+          lineHeight: "initial",
           textTransform: "uppercase",
-          textAlign: "center"
+          textAlign: "center",
+          textWrap: "balance"
         }}
       >
         {title}

@@ -47,7 +47,8 @@ function StatusPill({ message, currentStatus, contactInfo, ...rest }) {
         "& a": {
           color: "var(--pill-status-color,grey)",
           fontWeight: 900,
-          textDecoration: "none"
+          textDecoration: "none",
+          textTransform: "none"
         },
         "&[data-status='available']": {
           "--pill-status-color": theme.colors.go,

@@ -34,7 +34,7 @@ const Branding = props => (
           display: "inline-block"
         }}
       />
-      <span sx={{ fontSize: "20px", pl: 1 }}>Lalaine</span>
+      <span sx={{ fontSize: "20px", pl: 1, display: ["inherit", "none", "inherit"] }}>Lalaine</span>
     </ThemedLink>
   </Box>
 );
@@ -62,7 +62,12 @@ const NavLink = ({ to, children }) => (
     to={to}
     variant="nav"
     sx={{
-      ml: [1, 3]
+      display: "block",
+      fontSize: [8, 2, 3],
+      mx: [2, 1, 2],
+      my: [0, 1, 1],
+      py: [4, 1, 1],
+      px: [2, 1, 1]
     }}
     activeClassName="active"
     partiallyActive={true}
@@ -71,7 +76,7 @@ const NavLink = ({ to, children }) => (
   </ThemedLink>
 );
 
-const Nav = ({ showNav, onHideNav, onShowNav }) => (
+const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
   <Box
     as="nav"
     color={["text"]}
@@ -92,11 +97,11 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
       sx={{
         listStyle: "none",
         justifyContent: "center",
+
         marginX: "auto",
         p: [2, 0],
         flexDirection: ["column", "row"],
-        alignItems: ["center", "inherit"],
-        fontSize: [7, 3]
+        alignItems: ["center", "inherit"]
       }}
     >
       <li>
@@ -109,13 +114,17 @@ const Nav = ({ showNav, onHideNav, onShowNav }) => (
         <NavLink to="/contact/">Contact</NavLink>
       </li>
       <Box sx={{ display: "block", m: 0, ml: [0, "0.75rem", "0.75rem"], pt: "0.5rem" }}>
-        <StatusPill />
+        <StatusPill
+          currentStatus={status.statusAvailablity}
+          message={status.statusMessage}
+          contactInfo={status.contactEmail}
+        />
       </Box>
     </Flex>
   </Box>
 );
 
-const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
+const Header = ({ onHideNav, onShowNav, showNav, siteTitle, status }) => {
   return (
     <Flex
       sx={{
@@ -165,7 +174,7 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
           <Branding />
           <ToggleButton showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
         </Box>
-        <Nav showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} />
+        <Nav showNav={showNav} onHideNav={onHideNav} onShowNav={onShowNav} status={status} />
       </Container>
     </Flex>
   );

@@ -3,8 +3,8 @@ import SocialsFromBio from "./socials-from-bio";
 import Container from "./container";
 import { alpha } from "@theme-ui/color";
 import ThemedLink from "./ThemedLink";
-
-import { useThemeUI, Flex, Text } from "theme-ui";
+import StatusPill from "./status-pill";
+import { useThemeUI, Flex, Text, Box } from "theme-ui";
 
 const CleanLink = ({ to, children }) => {
   const context = useThemeUI();
@@ -29,36 +29,47 @@ const CleanLink = ({ to, children }) => {
   );
 };
 
-const Footer = ({ author }) => (
-  <Flex as="footer" sx={{ alignItems: "center", width: "100%" }}>
-    <Container
-      sx={{
-        position: "relative",
-        "::before": {
-          content: '""',
-          display: "block",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "2px",
-          backgroundImage: t => `
+const Footer = ({ author, status }) => (
+  <Container
+    as="footer"
+    sx={{
+      display: "flex",
+      flexDirection: ["column", "row", "row"],
+      justifyContent: "space-between",
+      position: "relative",
+      "::before": {
+        content: '""',
+        display: "block",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "2px",
+        backgroundImage: t => `
           linear-gradient(
             to right,
             ${alpha("primary", 1)(t)},
             ${alpha("background", 1)(t)}
           )
         `,
-          borderRadius: "default"
-        }
-      }}
-    >
+        borderRadius: "default"
+      }
+    }}
+  >
+    <Box>
       <Text py={2}>
         Designed & Built by <CleanLink to="/">{author.name}</CleanLink>
       </Text>
       <SocialsFromBio bio={author} />
-    </Container>
-  </Flex>
+    </Box>
+    <Box sx={{ m: [2, 1, 1] }}>
+      <StatusPill
+        currentStatus={status.statusAvailablity}
+        message={status.statusMessage}
+        contactInfo={status.contactEmail}
+      />
+    </Box>
+  </Container>
 );
 
 export default Footer;

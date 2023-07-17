@@ -45,6 +45,9 @@ export const query = graphql`
       jumboName
       jumboDescription
       jumboTag
+      statusAvailablity
+      statusMessage
+      contactEmail
       featuredLogos {
         ...ImageWithPreview
       }
@@ -166,6 +169,7 @@ const IndexPage = props => {
   const { colors } = context.theme;
   const bg = createHeroBG(colors);
 
+  console.log(site);
   return (
     <Layout>
       <Container
@@ -288,7 +292,7 @@ const IndexPage = props => {
                   border: "solid currentColor",
                   borderWidth: 1,
                   borderRadius: "default",
-                  color: "third500",
+                  color: "primary",
                   objectFit: "cover",
                   maxWidth: "100%"
                 }}
@@ -297,9 +301,9 @@ const IndexPage = props => {
           )}
           <Box mx="auto">
             <StatusPill
-              statusColor="red"
-              message="Available to Work"
-              contactInfo={"hello@lalaineulitdestajo.com"}
+              currentStatus={site.statusAvailablity}
+              message={site.statusMessage}
+              contactInfo={site.contactEmail}
             />
             <Heading as="h3" sx={{ my: 0, pt: 3 }}>
               Hi, I'm Lalaine
