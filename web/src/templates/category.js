@@ -21,13 +21,17 @@ export const query = graphql`
       totalCount
     }
     projects: allSanityProject(
-      filter: { categories: { elemMatch: { id: { eq: $id } } }, publishedAt: { ne: null } }
+      sort: { publishedAt: DESC }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
     ) {
       edges {
         node {
           id
           publishedAt
           mainImage {
+            ...ImageWithPreview
+          }
+          thumbImage {
             ...ImageWithPreview
           }
           title

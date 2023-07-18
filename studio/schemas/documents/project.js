@@ -45,6 +45,11 @@ export default {
       type: "string",
     },
     {
+      name: "excerpt",
+      title: "Excerpt",
+      type: "text",
+    },
+    {
       name: "members",
       title: "Collaborators",
       type: "array",

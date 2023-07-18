@@ -10,13 +10,13 @@ import {
   Heading,
   Text,
   Flex,
-  Box
+  Box,
 } from "theme-ui";
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture,
-  buildImageObj
+  buildImageObj,
 } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import { Themed } from "@theme-ui/mdx";
@@ -71,7 +71,7 @@ export const query = graphql`
       }
     }
     projects: allSanityProject(
-      limit: 3
+      limit: 4
       sort: { endedAt: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null }, featured: { eq: true } }
     ) {
@@ -87,6 +87,7 @@ export const query = graphql`
           }
           title
           subtitle
+          excerpt
           categories {
             title
           }
@@ -122,11 +123,11 @@ export const query = graphql`
   }
 `;
 
-const createHeroBG = colors => {
+const createHeroBG = (colors) => {
   return <Doodles colors={colors} />;
 };
 
-const IndexPage = props => {
+const IndexPage = (props) => {
   const { data, errors } = props;
 
   if (errors) {
@@ -174,7 +175,7 @@ const IndexPage = props => {
     <Layout>
       <Container
         sx={{
-          position: "relative"
+          position: "relative",
         }}
       >
         <Box
@@ -187,7 +188,7 @@ const IndexPage = props => {
               position: "absolute",
               zIndex: -1,
               inset: 0,
-              backgroundImage: t => `
+              backgroundImage: (t) => `
               linear-gradient(
              60deg,
               ${alpha("background", 1)(t)} 0%,
@@ -197,8 +198,8 @@ const IndexPage = props => {
               ${alpha("background", 0.75)(t)}80%,
               ${alpha("background", 1)(t)} 100%
             )
-          `
-            }
+          `,
+            },
           }}
         >
           {bg}
@@ -208,7 +209,7 @@ const IndexPage = props => {
             display: "flex",
             flexDirection: "column",
             my: [1, 2, 3],
-            pt: [2, 4, 5]
+            pt: [2, 4, 5],
           }}
         >
           <Text
@@ -217,7 +218,7 @@ const IndexPage = props => {
               textWrap: "balance",
               lineHeight: "1.25rem",
               textTransform: "uppercase",
-              color: "primary600"
+              color: "primary600",
             }}
           >
             {site.jumboDescription}
@@ -229,8 +230,8 @@ const IndexPage = props => {
               mb: [2, 4, 5],
               "& a": {
                 mr: 3,
-                display: "inline-block"
-              }
+                display: "inline-block",
+              },
             }}
           >
             <ThemedLink to="/contact" variant="fillBtn" fontSize={2}>
@@ -279,7 +280,7 @@ const IndexPage = props => {
           {profileImage && profileImage.asset && (
             <Flex
               sx={{
-                display: ["none", "none", "flex"]
+                display: ["none", "none", "flex"],
               }}
             >
               <SanityImage
@@ -294,7 +295,7 @@ const IndexPage = props => {
                   borderRadius: "default",
                   color: "primary",
                   objectFit: "cover",
-                  maxWidth: "100%"
+                  maxWidth: "100%",
                 }}
               />
             </Flex>
@@ -332,8 +333,8 @@ const IndexPage = props => {
                 "& a": {
                   mr: 2,
 
-                  display: "inline-block"
-                }
+                  display: "inline-block",
+                },
               }}
             >
               <ThemedLink to="/contact" variant="fillBtn" fontSize={1}>

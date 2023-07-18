@@ -8,7 +8,7 @@ import { keyframes } from "@emotion/react";
 
 const slide = keyframes({
   from: { transform: "translateX(0)" },
-  to: { transform: "translateX(-100%)" }
+  to: { transform: "translateX(-100%)" },
 });
 
 function LogoList(logos, logoSize, duration) {
@@ -21,13 +21,13 @@ function LogoList(logos, logoSize, duration) {
         animation: `${slide} ${duration}s infinite linear`,
         "& img,svg": {
           mx: 3,
-          opacity: 0.5
-        }
+          opacity: 0.5,
+        },
       }}
     >
       <Flex
         sx={{
-          justifyContent: "space-around"
+          justifyContent: "space-around",
         }}
       >
         {logos.map((logo, i) => {
@@ -36,7 +36,7 @@ function LogoList(logos, logoSize, duration) {
               _key={`logo-${i}`}
               {...logo}
               sx={{
-                height: logoSize
+                height: logoSize,
               }}
             />
           );
@@ -56,26 +56,28 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
 
   return (
     <>
-      <Text
-        as={"p"}
-        sx={{
-          color: "primary",
-          opacity: 0.6,
-          fontFamily: "nav",
-          pb: 1,
-          fontSize: [1, 1, 1],
-          lineHeight: "initial",
-          textTransform: "uppercase",
-          textAlign: "center",
-          textWrap: "balance"
-        }}
-      >
-        {title}
-      </Text>
+      {title && (
+        <Text
+          as={"p"}
+          sx={{
+            color: "primary",
+            opacity: 0.6,
+            fontFamily: "nav",
+            pb: 1,
+            fontSize: [1, 1, 1],
+            lineHeight: "initial",
+            textTransform: "uppercase",
+            textAlign: "center",
+            textWrap: "balance",
+          }}
+        >
+          {title}
+        </Text>
+      )}
       <Box
         {...rest}
         sx={{
-          py: 3,
+          py: 2,
           position: "relative",
           isolation: "isolate",
           background: alpha(backgroundColor, 0.1),
@@ -91,13 +93,13 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
             inset: 0,
             right: "85%",
             zIndex: 5,
-            background: t => `
+            background: (t) => `
       linear-gradient(
         90deg,
         ${alpha("background", 1)(t)} 0%,
         ${alpha("background", 0.5)(t)} 70%,
         ${alpha("background", 0)(t)} 100%
-      )`
+      )`,
           },
           "&:after": {
             content: '""',
@@ -105,17 +107,17 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
             inset: 0,
             left: "85%",
             zIndex: 5,
-            background: t => `
+            background: (t) => `
       linear-gradient(
         -90deg,
         ${alpha("background", 1)(t)} 0%,
         ${alpha("background", 0.5)(t)} 70%,
         ${alpha("background", 0)(t)} 100%
-      )`
+      )`,
           },
           "&:hover .logoList": {
-            animationPlayState: "paused"
-          }
+            animationPlayState: "paused",
+          },
         }}
       >
         {logolist}
