@@ -12,39 +12,36 @@ function CardRow({ headingLevel, infoList }) {
     {
       icon: "ux",
       title: "UX",
-      text:
-        "Create enjoyable experiences for users and audiences that are easy to use, accessible to all, and leave a lasting impression."
+      text: "Create enjoyable experiences for users and audiences that are easy to use, accessible to all, and leave a lasting impression.",
     },
     {
       icon: "tools",
       title: "R&D",
-      text:
-        "Stay up-to-date on the latest technology trends and determine the appriopriate technology stack for the project's needs and budget."
+      text: "Stay up-to-date on the latest technology trends and determine the appriopriate technology stack for the project's needs and budget.",
     },
     {
       icon: "device",
       title: "Motion Design",
-      text: "Animating your vision to life with the latest technology."
+      text: "Animating your vision to life with the latest technology.",
     },
     {
       icon: "controller",
       title: "Crafting Interactive Content",
-      text:
-        "Design & develop captivating interactive experiences for various platforms including mobile, web, games, and live events."
-    }
+      text: "Design & develop captivating interactive experiences for various platforms including mobile, web, games, and live events.",
+    },
   ];
   if (!infoList) return null;
 
   return (
-    <Grid gap={2} columns={[2, null, 4]}>
-      {infoList.map(info => {
+    <Grid gap={(2, 2, 3)} columns={[1, 2, 2]}>
+      {infoList.map((info) => {
         return (
-          <Card variant="primary" key={`card-row-${info.title}`}>
+          <Card variant="primary" key={`card-row-${info.title}`} sx={{ p: [3] }}>
             <Icon symbol={info.icon} sx={{ height: 50, width: 50 }} />
             <Heading
               as={headingLevel}
               sx={{
-                fontSize: [3, 3, 3]
+                fontSize: [3, 3, 3],
               }}
             >
               {info.title}
