@@ -169,7 +169,6 @@ const IndexPage = (props) => {
   const { colors } = context.theme;
   const bg = createHeroBG(colors);
 
-  console.log(site);
   return (
     <Layout>
       <Container

@@ -128,5 +128,11 @@ export default {
       description: "This sets the logos that appear in the homepage",
       of: [{ type: "image" }],
     },
+    {
+      name: "socialImage",
+      title: "Social Image",
+      description: "The image that appears when link is shared on social.",
+      type: "image",
+    },
   ],
 };

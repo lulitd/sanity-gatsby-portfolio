@@ -1,6 +1,6 @@
 // Load variables from `.env` as soon as possible
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV || "development"}`
+  path: `.env.${process.env.NODE_ENV || "development"}`,
 });
 
 const clientConfig = require("./client-config");
@@ -13,8 +13,8 @@ module.exports = {
     title: `Lalaine Ulit-Destajo Portfolio`,
     description: `Portfolio website of Lalaine Ulit-Destajo. New Media Artist. Interactive Designer. Creative Coder.`,
     twitterUsername: `@lulitdestajo`,
-    image: `src/assets/logo.svg`,
-    siteUrl: `https://www.lalaineulitdestajo.com`
+    image: `src/assets/og-image.jpg`,
+    siteUrl: `https://www.lalaineulitdestajo.com`,
   },
   plugins: [
     {
@@ -25,8 +25,8 @@ module.exports = {
         // Puts tracking script in the head instead of the body
         head: false,
         // enable ip anonymization
-        anonymize: true
-      }
+        anonymize: true,
+      },
     },
     "gatsby-plugin-theme-ui",
     "gatsby-plugin-image",
@@ -38,14 +38,14 @@ module.exports = {
         web: [
           {
             name: `Source Code Pro`,
-            file: `https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap`
+            file: `https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap`,
           },
           {
             name: `Inter`,
-            file: `https://fonts.googleapis.com/css2?family=Inter&display=swap`
-          }
-        ]
-      }
+            file: `https://fonts.googleapis.com/css2?family=Inter&display=swap`,
+          },
+        ],
+      },
     },
     {
       resolve: "gatsby-source-sanity",
@@ -53,8 +53,8 @@ module.exports = {
         ...clientConfig.sanity,
         token,
         watchMode: !isProd,
-        overlayDrafts: !isProd && token
-      }
+        overlayDrafts: !isProd && token,
+      },
     },
     {
       resolve: "gatsby-plugin-sanity-image",
@@ -64,17 +64,17 @@ module.exports = {
         defaultImageConfig: {
           quality: 90,
           fit: "max",
-          auto: "format"
-        }
-      }
+          auto: "format",
+        },
+      },
     },
     {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /assets/ // Where the animated svgs are.
-        }
-      }
+          include: /assets/, // Where the animated svgs are.
+        },
+      },
     },
     {
       resolve: "gatsby-plugin-manifest",
@@ -87,8 +87,8 @@ module.exports = {
         display: `standalone`,
         description:
           "Portfolio website of Lalaine Ulit-Destajo. New Media Artist. Interactive Designer. Creative Coder.",
-        icon: "src/assets/logo.svg"
-      }
-    }
-  ]
+        icon: "src/assets/logo.svg",
+      },
+    },
+  ],
 };
