@@ -37,6 +37,7 @@ export const query = graphql`
           }
           title
           subtitle
+          excerpt
           categories {
             title
           }

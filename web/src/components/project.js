@@ -32,21 +32,21 @@ function Project(props) {
     website,
     instagram,
     github,
-    twitter
+    twitter,
   } = props;
 
   const collaborators = members;
 
   let merged = [...accolades, ...awards];
 
-  const allIds = merged.map(el => el["_id"]);
+  const allIds = merged.map((el) => el["_id"]);
   const uniqueAccolades = merged.filter((obj, index) => {
     return allIds.indexOf(obj["_id"]) === index;
   }); // removing all duplicates
 
   uniqueAccolades.sort((a, b) => a.date - b.date).reverse();
 
-  const filteredProjects = relatedProjects.filter(item => {
+  const filteredProjects = relatedProjects.filter((item) => {
     return item && item.publishedAt;
   });
 
@@ -58,23 +58,25 @@ function Project(props) {
       <ul
         sx={{
           listStyle: "none",
-          padding: 0
+          padding: 0,
         }}
       >
         {categories.reduce((acm, cat) => {
-          const el = (
-            <Themed.li sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
-              <ThemedLink
-                block
-                to={`/projects/category/${cat.slug.current}`}
-                variant="outlineBtn"
-                key={cat._id}
-              >
-                #{cat.title}
-              </ThemedLink>
-            </Themed.li>
-          );
-          acm.push(el);
+          if (cat && cat.title && cat.slug) {
+            const el = (
+              <Themed.li sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
+                <ThemedLink
+                  block
+                  to={`/projects/category/${cat.slug.current}`}
+                  variant="outlineBtn"
+                  key={cat._id}
+                >
+                  #{cat.title}
+                </ThemedLink>
+              </Themed.li>
+            );
+            acm.push(el);
+          }
           return acm;
         }, [])}
       </ul>
@@ -85,13 +87,13 @@ function Project(props) {
     <Box
       sx={{
         textAlign: "center",
-        flex: 1
+        flex: 1,
       }}
     >
       <Themed.h3
         sx={{
           color: lighten("secondary", 0.1),
-          fontSize: [4]
+          fontSize: [4],
         }}
       >
         Roles & Contributions
@@ -101,17 +103,17 @@ function Project(props) {
         sx={{
           mx: 0,
           px: 0,
-          listStyle: "none"
+          listStyle: "none",
         }}
       >
-        {roles.map(role => {
+        {roles.map((role) => {
           return (
             <Box as="li" key={role._id}>
               <Text
                 sx={{
                   whiteSpace: "pre-wrap",
                   letterSpacing: "2px",
-                  fontWeight: "900"
+                  fontWeight: "900",
                 }}
                 fontSize={[2, 1, 2]}
               >
@@ -122,7 +124,7 @@ function Project(props) {
                 sx={{
                   color: lighten("primary", 0.1),
                   m: 0,
-                  display: "block"
+                  display: "block",
                 }}
               >
                 {role.fieldInfo}
@@ -138,13 +140,13 @@ function Project(props) {
     <Box
       sx={{
         flex: 1,
-        textAlign: "center"
+        textAlign: "center",
       }}
     >
       <Themed.h3
         sx={{
           color: lighten("secondary", 0.1),
-          fontSize: [4]
+          fontSize: [4],
         }}
       >
         Technologies
@@ -154,23 +156,23 @@ function Project(props) {
         sx={{
           mx: 0,
           px: 0,
-          listStyle: "none"
+          listStyle: "none",
         }}
       >
-        {technologies.map(tech => {
+        {technologies.map((tech) => {
           return (
             <Box
               as="li"
               key={tech._id}
               sx={{
-                mb: [2]
+                mb: [2],
               }}
             >
               <Text
                 sx={{
                   whiteSpace: "pre-wrap",
                   letterSpacing: "2px",
-                  fontWeight: "900"
+                  fontWeight: "900",
                 }}
                 fontSize={[2, 1, 2]}
               >
@@ -181,7 +183,7 @@ function Project(props) {
                 sx={{
                   color: lighten("primary", 0.1),
                   m: 0,
-                  display: "block"
+                  display: "block",
                 }}
               >
                 {tech.fieldInfo}
@@ -200,7 +202,7 @@ function Project(props) {
       sx={{
         display: "flex",
         placeContent: "center",
-        pt: 3
+        pt: 3,
       }}
     />
   );
@@ -208,10 +210,7 @@ function Project(props) {
   const bgUrl =
     props.mainImage &&
     mainImage.asset &&
-    imageUrlFor(buildImageObj(mainImage))
-      .width(1200)
-      .blur(10)
-      .url();
+    imageUrlFor(buildImageObj(mainImage)).width(1024).blur(3).url();
 
   const imageHotspot = props.mainImage && mainImage.hotspot;
 
@@ -228,19 +227,19 @@ function Project(props) {
           background: [
             bgUrl
               ? `url(${bgUrl})`
-              : t => `
+              : (t) => `
           linear-gradient(
           to bottom,
           ${alpha("background", 1)(t)},
           ${alpha("background", 1)(t)},
           ${alpha("primary", 0.5)(t)}
-        )`
+        )`,
           ],
           backgroundSize: "cover",
           backgroundAttachment: "fixed",
           backgroundPositionY: `${(imageHotspot ? imageHotspot.y : 0.5) * 100}%`,
           backgroundPositionX: `${(imageHotspot ? imageHotspot.x : 0.5) * 100}%`,
-          backgroundRepeat: "no-repeat"
+          backgroundRepeat: "no-repeat",
         }}
       >
         <Box
@@ -253,14 +252,14 @@ function Project(props) {
             borderStyle: "solid",
             borderColor: "primary",
             backgroundColor: alpha("background", 0.5),
-            backdropFilter: "blur(2em)"
+            backdropFilter: "blur(2em)",
           }}
         >
           <Heading
             sx={{
               color: "primary",
               textTransform: "uppercase",
-              fontSize: [5, 6]
+              fontSize: [5, 6],
             }}
           >
             {title}
@@ -269,7 +268,7 @@ function Project(props) {
             variant="subheading"
             sx={{
               fontFamily: "body",
-              fontSize: [3, 4]
+              fontSize: [3, 4],
             }}
           >
             {subtitle}
@@ -290,7 +289,7 @@ function Project(props) {
             gap={[1, 2, 3]}
             sx={{
               mb: 5,
-              alignItems: "start"
+              alignItems: "start",
             }}
           >
             <Themed.h3
@@ -302,7 +301,7 @@ function Project(props) {
                 fontSize: [6],
                 position: ["initial", "initial", "sticky"],
                 top: "8rem",
-                marginTop: "1rem"
+                marginTop: "1rem",
               }}
             >
               Project Description
@@ -313,7 +312,7 @@ function Project(props) {
                 borderLeft: "1px solid red",
                 borderWidth: [0, 0, 1],
                 borderColor: "secondary",
-                paddingLeft: [0, 0, 3]
+                paddingLeft: [0, 0, 3],
               }}
               blocks={_rawProjectBrief || []}
             />
@@ -326,7 +325,7 @@ function Project(props) {
             gap={[1, 2, 3]}
             sx={{
               my: 5,
-              alignItems: "start"
+              alignItems: "start",
             }}
           >
             <Themed.h3
@@ -338,7 +337,7 @@ function Project(props) {
                 fontSize: [6],
                 position: ["initial", "initial", "sticky"],
                 top: "8rem",
-                marginTop: "1rem"
+                marginTop: "1rem",
               }}
             >
               Project Breakdown
@@ -349,7 +348,7 @@ function Project(props) {
                 borderLeft: "1px solid red",
                 borderWidth: [0, 0, 1],
                 borderColor: "secondary",
-                paddingLeft: [0, 0, 3]
+                paddingLeft: [0, 0, 3],
               }}
               blocks={_rawProjectBreakdown || []}
             />
@@ -360,7 +359,7 @@ function Project(props) {
             columns={[1, 1, "2fr 3fr"]}
             gap={[1, 2, 3]}
             sx={{
-              my: 5
+              my: 5,
             }}
           >
             {collaborators && collaborators.length > 0 ? (
@@ -381,8 +380,8 @@ function Project(props) {
                     borderWidth: [0, 0, stats > 1 ? 0 : 1],
                     borderColor: "secondary",
                     right: "-1rem",
-                    zIndex: -1
-                  }
+                    zIndex: -1,
+                  },
                 }}
               />
             ) : (
@@ -399,8 +398,8 @@ function Project(props) {
                     borderWidth: [0, 0, stats > 0 ? 0 : 1],
                     borderColor: "secondary",
                     right: "-1rem",
-                    zIndex: -1
-                  }
+                    zIndex: -1,
+                  },
                 }}
               ></Box>
             )}
@@ -412,13 +411,13 @@ function Project(props) {
                   borderLeft: "1px solid red",
                   borderWidth: [0, 0, 1],
                   borderColor: "secondary",
-                  paddingLeft: [0, 0, 3]
+                  paddingLeft: [0, 0, 3],
                 }}
               >
                 <Themed.h3
                   sx={{
                     color: lighten("secondary", 0.1),
-                    fontSize: [6]
+                    fontSize: [6],
                   }}
                 >
                   Exhibitions
@@ -430,10 +429,10 @@ function Project(props) {
                     px: 0,
                     listStylePosition: ["outside"],
                     listStyle: ["none", "none", "unset"],
-                    ml: ["1rem"]
+                    ml: ["1rem"],
                   }}
                 >
-                  {uniqueAccolades.map(accolade => {
+                  {uniqueAccolades.map((accolade) => {
                     let label = "";
                     label += `${accolade.date.split("-")[0]}: `;
                     label += accolade.title;
@@ -443,14 +442,14 @@ function Project(props) {
                         as="li"
                         key={accolade._id}
                         sx={{
-                          mb: [3]
+                          mb: [3],
                         }}
                       >
                         <Text
                           sx={{
                             whiteSpace: "pre-wrap",
                             letterSpacing: "2px",
-                            fontWeight: "900"
+                            fontWeight: "900",
                           }}
                           fontSize={[2, 1, 2]}
                         >{`${label}`}</Text>
@@ -459,7 +458,7 @@ function Project(props) {
                           sx={{
                             color: lighten("primary", 0.1),
                             m: 0,
-                            display: "block"
+                            display: "block",
                           }}
                         >
                           {accolade.address}
@@ -479,13 +478,13 @@ function Project(props) {
               borderTop: "1px solid",
               borderColor: "muted",
               mt: 4,
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
             <Themed.h3
               sx={{
                 color: "primary",
-                fontSize: [8]
+                fontSize: [8],
               }}
             >
               Related Projects

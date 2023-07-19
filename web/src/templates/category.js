@@ -36,6 +36,7 @@ export const query = graphql`
           }
           title
           subtitle
+          excerpt
           categories {
             title
           }
@@ -68,7 +69,7 @@ export const query = graphql`
   }
 `;
 
-const CategoryTemplate = props => {
+const CategoryTemplate = (props) => {
   const { data, errors } = props;
   const category = data && data.category;
 
@@ -93,7 +94,7 @@ const CategoryTemplate = props => {
 
       <Container
         sx={{
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         <Heading as="h1">{`Projects // ${category.title}`} </Heading>

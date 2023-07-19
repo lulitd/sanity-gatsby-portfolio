@@ -71,8 +71,7 @@ export const query = graphql`
       }
     }
     projects: allSanityProject(
-      limit: 4
-      sort: { endedAt: DESC }
+      limit: 6
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null }, featured: { eq: true } }
     ) {
       edges {
@@ -209,7 +208,7 @@ const IndexPage = (props) => {
             display: "flex",
             flexDirection: "column",
             my: [1, 2, 3],
-            pt: [2, 4, 5],
+            pt: [2, 4, 4],
           }}
         >
           <Text
@@ -227,7 +226,7 @@ const IndexPage = (props) => {
           <Box
             sx={{
               mt: 3,
-              mb: [2, 4, 5],
+              mb: [2, 4, 4],
               "& a": {
                 mr: 3,
                 display: "inline-block",
