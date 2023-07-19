@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "css-doodle": "^0.8.5",
-    "sanity": "^3.14.3",
     "smooth-scroll": "^16.1.3"
   }
 }
