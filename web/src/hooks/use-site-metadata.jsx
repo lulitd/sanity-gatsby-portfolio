@@ -24,9 +24,9 @@ export const useSiteMetadata = () => {
       }
     }
   `); 
-  console.log(data); 
   const  {siteMetadata}= data.site;
-  const {nodes:sanity}=data.allSanitySiteSettings;
+  const  sanity=data.allSanitySiteSettings.nodes[0];
+  
   const siteSettings={
     title: sanity.title ?? siteMetadata.title,
     description: sanity.description ?? siteMetadata.title,
