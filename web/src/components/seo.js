@@ -29,8 +29,11 @@ export const SEO = ({ title, description, image, pathname, children }) => {
     <>
       <title>{seo.title}</title>
       <html lang="en" />
-      <meta name="description" content={seo.description} />
-      <meta name="image" content={seo.image} />
+      <meta property="og:url" content={seo.url} />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:image:secure_url" content={seo.image} />
+      <meta property="og:image:type" content="image/jpeg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:url" content={seo.url} />
