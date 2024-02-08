@@ -1,4 +1,4 @@
-const { isFuture, parseISO } = require("date-fns");
+const { isFuture, parseISO, format } = require("date-fns");
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -7,6 +7,9 @@ const { isFuture, parseISO } = require("date-fns");
 
 async function createProjectPages(graphql, actions, reporter) {
   const { createPage } = actions;
+  // const todayDate = format(new Date(), "yyyy-MM-ddThh:mm:ss");
+  const todayDate = "2024-07-07T01:05:00.000Z";
+  console.log(todayDate);
   const result = await graphql(`
     query IndexPageQuery {
       projects: allSanityProject(
@@ -52,52 +55,55 @@ async function createProjectPages(graphql, actions, reporter) {
   const projectEdges = (result.data.projects || {}).edges || [];
 
   projectEdges
-    .filter(edge => !isFuture(parseISO(edge.node.publishedAt)))
-    .forEach(edge => {
+    .filter((edge) => !isFuture(parseISO(edge.node.publishedAt)))
+    .forEach((edge) => {
       const id = edge.node.id;
       const slug = edge.node.slug.current;
       const path = `/project/${slug}/`;
 
-      reporter.info(`Creating project page: ${path}`);
+      reporter.info(`Creating project pages: ${path} ${todayDate}`);
 
       createPage({
         path,
         component: require.resolve("./src/templates/project.js"),
-        context: { id }
+        context: {
+          id,
+          currentDate: todayDate,
+        },
       });
     });
 
   const postEdges = (result.data.posts || {}).edges || [];
 
   postEdges
-    .filter(edge => !isFuture(parseISO(edge.node.publishedAt)))
-    .forEach(edge => {
+    .filter((edge) => !isFuture(parseISO(edge.node.publishedAt)))
+    .forEach((edge) => {
       const id = edge.node.id;
       const slug = edge.node.slug.current;
       const path = `/post/${slug}/`;
 
-      reporter.info(`Creating post: ${path}`);
+      reporter.info(`Creating posts: ${path}`);
 
       createPage({
         path,
         component: require.resolve("./src/templates/post.js"),
-        context: { id }
+        context: { id, currentDate: todayDate },
       });
     });
 
   const categoriesEdges = (result.data.categories || {}).edges || [];
 
-  categoriesEdges.forEach(edge => {
+  categoriesEdges.forEach((edge) => {
     const id = edge.node.id;
     const slug = edge.node.slug.current;
     const path = `/projects/category/${slug}/`;
 
-    reporter.info(`Creating category page: ${path}`);
+    reporter.info(`Creating category pages: ${path}`);
 
     createPage({
       path,
       component: require.resolve("./src/templates/category.js"),
-      context: { id }
+      context: { id, currentDate: todayDate },
     });
   });
 }

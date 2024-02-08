@@ -7,7 +7,7 @@ import { SEO } from "../components/seo";
 import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { Styled, Heading } from "theme-ui";
+import { Styled, Heading, Text } from "theme-ui";
 import { FaCentercode } from "react-icons/fa";
 import { Themed } from "@theme-ui/mdx";
 
@@ -71,7 +71,7 @@ export const query = graphql`
   }
 `;
 
-const ArchivePage = props => {
+const ArchivePage = (props) => {
   const { data, errors } = props;
   if (errors) {
     return (
@@ -95,7 +95,7 @@ const ArchivePage = props => {
     <Layout>
       <Container
         sx={{
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         <Heading as="h1">Projects</Heading>

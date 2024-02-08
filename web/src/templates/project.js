@@ -99,13 +99,13 @@ export const query = graphql`
   }
 `;
 
-const ProjectTemplate = props => {
+const ProjectTemplate = (props) => {
   const { data, errors } = props;
   const project = data && data.project;
 
   let awards = [];
 
-  data.awards.edges.forEach(function(obj) {
+  data.awards.edges.forEach(function (obj) {
     awards.push(obj.node);
   });
 

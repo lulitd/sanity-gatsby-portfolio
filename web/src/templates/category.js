@@ -9,20 +9,24 @@ import ProjectPreviewGrid from "../components/project-preview-grid";
 import { Styled, Heading } from "theme-ui";
 
 export const query = graphql`
-  query CategoryTemplateQuery($id: String!) {
+  query CategoryTemplateQuery($id: String!, $currentDate: Date!) {
     category: sanityCategory(id: { eq: $id }) {
       id
       title
     }
     allProjects: allSanityProject(
       sort: { publishedAt: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null, lte: $currentDate } }
     ) {
       totalCount
     }
     projects: allSanityProject(
       sort: { publishedAt: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+      filter: {
+        slug: { current: { ne: null } }
+        publishedAt: { ne: null, lte: $currentDate }
+        categories: { elemMatch: { id: { eq: $id } } }
+      }
     ) {
       edges {
         node {
@@ -97,7 +101,7 @@ const CategoryTemplate = (props) => {
           textAlign: "center",
         }}
       >
-        <Heading as="h1">{`Projects // ${category.title}`} </Heading>
+        <Heading as="h1">{`Projects // ${category.title} ${projectNodes.length}`} </Heading>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={category}
