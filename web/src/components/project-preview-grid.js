@@ -1,6 +1,6 @@
 import React from "react";
 import ProjectPreview from "./project-preview";
-import { Grid, Box } from "theme-ui";
+import { Grid, Box, Heading } from "theme-ui";
 import ThemedLink from "./ThemedLink";
 import { Flex } from "rebass";
 import { Themed } from "@theme-ui/mdx";
@@ -57,7 +57,25 @@ function ProjectPreviewGrid({ nodes, title, order, columns, ...props }) {
         px: [2, 2, 4],
       }}
     >
-      {title && <Themed.h2>{title}</Themed.h2>}
+      {title && (
+        <Heading
+          as={"h2"}
+          sx={{
+            color: "primary",
+            opacity: 0.6,
+            fontFamily: "nav",
+            pb: 1,
+            fontSize: [4, 4, 4],
+            fontWeight: "400",
+            lineHeight: "initial",
+            textTransform: "uppercase",
+            textAlign: "center",
+            textWrap: "balance",
+          }}
+        >
+          {title}
+        </Heading>
+      )}
       <Grid
         columns={1}
         sx={{

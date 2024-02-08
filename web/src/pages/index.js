@@ -257,6 +257,7 @@ const IndexPage = (props) => {
             columns={[1, 2, null]}
             nodes={projectNodes}
             order={archiveOrder}
+            title="Highlighted Projects"
             browseMoreHref="/projects/"
           />
         </Container>
@@ -316,7 +317,7 @@ const IndexPage = (props) => {
                 I help bridge the gap between <b>Design ⇄ Development.</b>
               </p>
               <p>
-                I specialize in crafting websites, apps and games. Think of me as your future Swiss
+                I specialize in crafting websites, apps and games. Think of me as your digital Swiss
                 Army Knife. I can wear multiple hats to help bring your vision to life.
               </p>
               <p>

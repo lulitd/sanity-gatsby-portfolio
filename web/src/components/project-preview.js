@@ -35,7 +35,7 @@ function ProjectPreview(props) {
               fontSize: [5, 6, 7],
               mb: 1,
             }}
-            as="h2"
+            as="h3"
           >
             {props.title}
           </Heading>
