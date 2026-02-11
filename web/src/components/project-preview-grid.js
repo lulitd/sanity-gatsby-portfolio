@@ -66,7 +66,7 @@ function ProjectPreviewGrid({ nodes, title, order, columns, ...props }) {
             fontFamily: "nav",
             pb: 1,
             fontSize: [4, 4, 4],
-            fontWeight: "400",
+            fontWeight: "100",
             lineHeight: "initial",
             textTransform: "uppercase",
             textAlign: "center",

@@ -18,7 +18,7 @@ const iconAnim = keyframes`
  100%{transform: translateY(0px)}
 `;
 
-const Branding = props => (
+const Branding = (props) => (
   <Box flex="1">
     <ThemedLink
       to="/"
@@ -31,7 +31,7 @@ const Branding = props => (
         symbol="logo"
         sx={{
           verticalAlign: "bottom",
-          display: "inline-block"
+          display: "inline-block",
         }}
       />
       <span sx={{ fontSize: "20px", pl: 1, display: ["inherit", "none", "inherit"] }}>Lalaine</span>
@@ -50,7 +50,7 @@ const ToggleButton = ({ showNav, onHideNav, onShowNav }) => (
       display: ["block", "none"],
       border: "none",
       color: "inherit",
-      background: "none"
+      background: "none",
     }}
   >
     <Icon symbol="hamburger" sx={{ height: 28, width: 28 }} />
@@ -67,7 +67,7 @@ const NavLink = ({ to, children }) => (
       mx: [2, 1, 2],
       my: [0, 1, 1],
       py: [4, 1, 1],
-      px: [2, 1, 1]
+      px: [2, 1, 1],
     }}
     activeClassName="active"
     partiallyActive={true}
@@ -89,7 +89,7 @@ const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
       height: ["100dvh", "inherit", "inherit"],
       pt: 2,
       backgroundColor: ["background", "transparent"],
-      zIndex: [-5, "inherit", "inherit"]
+      zIndex: [-5, "inherit", "inherit"],
     }}
   >
     <Flex
@@ -101,7 +101,7 @@ const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
         marginX: "auto",
         p: [2, 0],
         flexDirection: ["column", "row"],
-        alignItems: ["center", "inherit"]
+        alignItems: ["center", "inherit"],
       }}
     >
       <li>
@@ -113,13 +113,13 @@ const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
       <li>
         <NavLink to="/contact/">Contact</NavLink>
       </li>
-      <Box sx={{ display: "block", m: 0, ml: [0, "0.75rem", "0.75rem"], pt: "0.5rem" }}>
+      {/* <Box sx={{ display: "block", m: 0, ml: [0, "0.75rem", "0.75rem"], pt: "0.5rem" }}>
         <StatusPill
           currentStatus={status.statusAvailablity}
           message={status.statusMessage}
           contactInfo={status.contactEmail}
         />
-      </Box>
+      </Box> */}
     </Flex>
   </Box>
 );
@@ -133,13 +133,13 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle, status }) => {
         width: "100%",
         bg: "background",
         alignItems: "center",
-        zIndex: "99999"
+        zIndex: "99999",
       }}
       as="header"
     >
       <Container
         px={[2]}
-        py={[2, 3]}
+        py={[1, 2]}
         sx={{
           position: "relative",
           display: "flex",
@@ -153,22 +153,22 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle, status }) => {
             left: 0,
             width: "100%",
             height: "1.5px",
-            backgroundImage: t => `
+            backgroundImage: (t) => `
             linear-gradient(
               to right,
               ${alpha("primary", 1)(t)},
               ${alpha("background", 1)(t)}
             )
           `,
-            borderRadius: "default"
-          }
+            borderRadius: "default",
+          },
         }}
       >
         <Box
           sx={{
             display: ["flex", "flex", "block"],
             flex: [1],
-            justifyContent: "space-between"
+            justifyContent: "space-between",
           }}
         >
           <Branding />

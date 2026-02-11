@@ -5,7 +5,7 @@ const theme = {
     container: 1024,
     videoL: 1024,
     videoM: 720,
-    videoS: 640
+    videoS: 640,
   },
   colors: {
     primary: "#F29E1F",
@@ -37,14 +37,14 @@ const theme = {
     third300: lighten("third", 0.1),
     third500: "#dc3856",
     third700: darken("third", 0.2),
-    third900: darken("third", 0.35)
+    third900: darken("third", 0.35),
   },
   fonts: {
     body: '"Inter","Helvetica Neue", sans-serif',
-    heading: '"Inter","Helvetica Neue", sans-serif',
-    btn: '"Source Code Pro","Inter","Helvetica Neue",sans-serif',
-    nav: '"Source Code Pro","Inter","Helvetica Neue",sans-serif',
-    monospace: '"Source Code Pro","monospace"'
+    heading: '"Space Mono","Inter","Helvetica Neue", sans-serif',
+    btn: '"Space Mono","Source Code Pro","Inter","Helvetica Neue",sans-serif',
+    nav: '"Space Mono","Source Code Pro","Inter","Helvetica Neue",sans-serif',
+    monospace: '"Space Mono","monospace"',
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048],
   radii: {
@@ -53,7 +53,7 @@ const theme = {
     default: "0.5rem",
     regular: "1rem",
     large: "1.25rem",
-    pill: 9999
+    pill: 9999,
   },
   borderWidths: [
     "0rem",
@@ -63,7 +63,7 @@ const theme = {
     "0.5rem",
     "0.625rem",
     "0.75rem",
-    "1rem"
+    "1rem",
   ],
   fontSizes: [14, 16, 18, 20, 24, 28, 32, 48, 64, 96],
   fontWeights: {
@@ -72,11 +72,11 @@ const theme = {
     a: 600,
     bold: 600,
     nav: 400,
-    btn: 400
+    btn: 400,
   },
   lineHeights: {
     body: "1.6rem",
-    heading: 1
+    heading: 1,
   },
   text: {
     color: "body",
@@ -89,31 +89,30 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       fontStyle: "normal",
-      textTransform: "uppercase",
       fontSize: [6, 7, 7],
       marginTop: "0.75em",
       marginBottom: "1em",
-      textWrap: "balance"
+      textWrap: "balance",
     },
     title: {
       variant: "text.heading",
-      fontSize: [5, 6, 7]
+      fontSize: [5, 6, 7],
     },
     subheading: {
       variant: "text.body",
       color: "muted",
       fontWeight: "body",
-      fontSize: [3, 4, 4]
+      fontSize: [3, 4, 4],
     },
     brackets: {
       variant: "text.subheading",
       "&:before": {
-        content: '"< "'
+        content: '"< "',
       },
       "&:after": {
-        content: '" />"'
-      }
-    }
+        content: '" />"',
+      },
+    },
   },
   buttons: {
     nav: {
@@ -136,7 +135,7 @@ const theme = {
       "&.active": {
         color: "active",
         borderColor: "currentColor",
-        borderRadius: "default"
+        borderRadius: "default",
       },
       "&:hover,&:focus": {
         color: "selected",
@@ -144,8 +143,8 @@ const theme = {
         borderRadius: "default",
         borderTopRightRadius: "0",
         borderBottomLeftRadius: "0",
-        outline: "none"
-      }
+        outline: "none",
+      },
     },
     navBorderless: {
       color: "muted",
@@ -163,11 +162,11 @@ const theme = {
       border: "solid 1px transparent",
       transition: "0.25s ease-in",
       "&.active": {
-        color: "active"
+        color: "active",
       },
       "&:hover,&:focus": {
-        color: "selected"
-      }
+        color: "selected",
+      },
     },
     outlineBtn: {
       color: "clickable",
@@ -187,7 +186,7 @@ const theme = {
       "&.active": {
         color: "active",
         background: "btn",
-        borderRadius: "default"
+        borderRadius: "default",
       },
       "&:hover,&:focus": {
         color: "selected",
@@ -195,8 +194,8 @@ const theme = {
         borderRadius: "default",
         borderTopRightRadius: "0",
         borderBottomLeftRadius: "0",
-        outline: "none"
-      }
+        outline: "none",
+      },
     },
     fillBtn: {
       variant: "buttons.outlineBtn",
@@ -207,7 +206,7 @@ const theme = {
         color: "btn",
         background: "active",
         borderColor: "active",
-        borderRadius: "default"
+        borderRadius: "default",
       },
       "&:hover,&:focus": {
         color: "btn",
@@ -216,54 +215,54 @@ const theme = {
         borderRadius: "default",
         borderTopRightRadius: "0",
         borderBottomLeftRadius: "0",
-        outline: "none"
-      }
+        outline: "none",
+      },
     },
     socialBtn: {
       variant: "buttons.outlineBtn",
       px: 2,
       py: 2,
       lineHeight: 1,
-      mr: 2
-    }
+      mr: 2,
+    },
   },
   cards: {
     primary: {
       padding: 4,
       border: "1px solid",
       borderColor: "primary300",
-      boxShadow: "2px 10px 25px #F29E1F30"
+      boxShadow: "2px 10px 25px #F29E1F30",
     },
     compact: {
       padding: 1,
       border: "1px solid",
       borderColor: "primary300",
-      boxShadow: "1px 5px 12px #F29E1F20"
-    }
+      boxShadow: "1px 5px 12px #F29E1F20",
+    },
   },
   images: {
     avatar: {
       width: 48,
       height: 48,
-      borderRadius: 99999
+      borderRadius: 99999,
     },
     duotone: {
-      filter: "url(/duo-tone.svg#duotone_peachypink)"
-    }
+      filter: "url(/duo-tone.svg#duotone_peachypink)",
+    },
   },
   forms: {
     label: {
       fontSize: 2,
       fontWeight: "bold",
       pb: 1,
-      color: "muted"
+      color: "muted",
     },
     labelRequired: {
       variant: "forms.label",
       "&:after": {
         content: '"*"',
-        color: "secondary"
-      }
+        color: "secondary",
+      },
     },
     input: {
       borderColor: "secondary",
@@ -274,8 +273,8 @@ const theme = {
       fontFamily: "body",
       "&:hover,&:focus": {
         borderColor: "primary",
-        outline: "none"
-      }
+        outline: "none",
+      },
     },
     select: {
       borderColor: "secondary",
@@ -284,20 +283,20 @@ const theme = {
       borderRadius: 0,
       "&:hover,&:focus": {
         borderColor: "primary",
-        outline: "none"
-      }
+        outline: "none",
+      },
     },
     textarea: {
       variant: "forms.input",
-      resize: "none"
-    }
+      resize: "none",
+    },
   },
   styles: {
     root: {
       color: "body",
       fontFamily: "body",
       lineHeight: "body",
-      fontWeight: "body"
+      fontWeight: "body",
     },
     h1: {
       color: "heading",
@@ -305,21 +304,21 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       textTransform: "uppercase",
-      fontSize: [6, 7]
+      fontSize: [6, 7],
     },
     h2: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [5, 6]
+      fontSize: [5, 6],
     },
     h3: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [9]
+      fontSize: [9],
     },
 
     h4: {
@@ -327,27 +326,27 @@ const theme = {
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [3, 4]
+      fontSize: [3, 4],
     },
     h5: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [2, 3]
+      fontSize: [2, 3],
     },
     h6: {
       color: "heading",
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
-      fontSize: [1, 2]
+      fontSize: [1, 2],
     },
     p: {
       color: "body",
       fontFamily: "body",
       fontWeight: "body",
-      lineHeight: "body"
+      lineHeight: "body",
     },
     a: {
       color: "primary",
@@ -356,52 +355,52 @@ const theme = {
       ":hover,:focus": {
         textDecoration: "underline",
         color: "selected",
-        outline: "none"
-      }
+        outline: "none",
+      },
     },
     pre: {
       fontFamily: "monospace",
       overflowX: "auto",
       code: {
-        color: "inherit"
-      }
+        color: "inherit",
+      },
     },
     code: {
       fontFamily: "monospace",
-      fontSize: "inherit"
+      fontSize: "inherit",
     },
     table: {
       width: "100%",
       borderCollapse: "separate",
-      borderSpacing: 0
+      borderSpacing: 0,
     },
     th: {
       textAlign: "left",
-      borderBottomStyle: "solid"
+      borderBottomStyle: "solid",
     },
     td: {
       textAlign: "left",
-      borderBottomStyle: "solid"
+      borderBottomStyle: "solid",
     },
     img: {
-      maxWidth: "100%"
+      maxWidth: "100%",
     },
     ol: {
       fontFamily: "body",
       fontWeight: "body",
-      lineHeight: "body"
+      lineHeight: "body",
     },
     ul: {
       fontFamily: "body",
       fontWeight: "body",
-      lineHeight: "body"
+      lineHeight: "body",
     },
     li: {
       fontFamily: "body",
       fontWeight: "body",
-      lineHeight: "body"
-    }
-  }
+      lineHeight: "body",
+    },
+  },
 };
 
 export default theme;

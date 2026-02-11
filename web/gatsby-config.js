@@ -44,6 +44,10 @@ module.exports = {
             name: `Inter`,
             file: `https://fonts.googleapis.com/css2?family=Inter&display=swap`,
           },
+          {
+            name: `Space Mono`,
+            file: `https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap`,
+          },
         ],
       },
     },
