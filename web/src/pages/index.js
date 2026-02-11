@@ -181,10 +181,10 @@ const IndexPage = (props) => {
             overflow: "hidden",
             position: "absolute",
             inset: 0,
+            zIndex: -1,
             "&::after": {
               content: '""',
               position: "absolute",
-              zIndex: -1,
               inset: 0,
               backgroundImage: (t) => `
               linear-gradient(
@@ -251,6 +251,7 @@ const IndexPage = (props) => {
           backgroundColor="primary"
         />
       </Container>
+
       {projectNodes && projectNodes.length > 0 && (
         <Container>
           <ProjectPreviewGrid
