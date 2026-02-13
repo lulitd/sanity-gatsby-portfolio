@@ -26,7 +26,14 @@ function ProjectPreview(props) {
       .join(" - ");
   return (
     <Grid columns={[1, 2, 2]} gap={[1, 2, 3]} sx={{ minHeight: "50vh", minHeight: "50svh" }}>
-      <Flex sx={{ flexDirection: "column", justifyContent: "space-evenly", p: [2, 3, 3] }}>
+      <Flex
+        sx={{
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          p: [2, 3, 3],
+          mb: 3,
+        }}
+      >
         <Box>
           <Heading
             sx={{
@@ -51,7 +58,11 @@ function ProjectPreview(props) {
             </Text>
           )}
         </Box>
-        <Box>
+        <Box
+          sx={{
+            pb: "2",
+          }}
+        >
           {(props.excerpt || props.subtitle) && (
             <Themed.p
               sx={{

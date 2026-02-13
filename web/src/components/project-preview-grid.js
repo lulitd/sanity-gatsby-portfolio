@@ -82,8 +82,12 @@ function ProjectPreviewGrid({ nodes, title, order, columns, ...props }) {
           color: "inherit",
           my: [5, 3, 3],
           px: 0,
-          pb: 3,
-          rowGap: [5, 3, 5],
+          pb: 2,
+          rowGap: [2, 3, 2],
+          " > div:not(:last-child)": {
+            borderBottom: "1px solid",
+            borderColor: alpha("primary", 0.4),
+          },
         }}
       >
         {filtered &&
