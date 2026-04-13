@@ -24,6 +24,12 @@ function ProjectPreview(props) {
       .slice(0, 3)
       .map((cat) => cat.title)
       .join(" - ");
+
+  const roles =
+    props.roles &&
+    props.roles.length > 0 &&
+    props.roles.flatMap((role) => Object.values(role).filter(Boolean)).join(" | ");
+
   return (
     <Grid columns={[1, 2, 2]} gap={[1, 2, 3]} sx={{ minHeight: "50vh", minHeight: "50svh" }}>
       <Flex
@@ -46,11 +52,25 @@ function ProjectPreview(props) {
           >
             {props.title}
           </Heading>
+          {roles && (
+            <Text
+              as="p"
+              sx={{
+                fontFamily: "nav",
+                textTransform: "uppercase",
+                color: "secondary",
+                textWrapStyle: "pretty",
+              }}
+            >
+              {roles}
+            </Text>
+          )}
           {cats && (
             <Text
               sx={{
                 fontFamily: "nav",
                 textTransform: "uppercase",
+                textWrapStyle: "pretty",
                 opacity: 0.7,
               }}
             >
@@ -71,6 +91,7 @@ function ProjectPreview(props) {
                 lineHeight: "body",
                 fontFamily: "body",
                 opacity: 1,
+                textWrapStyle: "pretty",
               }}
               as="p"
             >

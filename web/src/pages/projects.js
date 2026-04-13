@@ -12,7 +12,7 @@ import { FaCentercode } from "react-icons/fa";
 import { Themed } from "@theme-ui/mdx";
 
 export const query = graphql`
-  query ArchivePageQuery {
+  query ArchivePageQuery($currentDate: Date) {
     archive: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       archive {
         _id
@@ -22,7 +22,7 @@ export const query = graphql`
 
     projects: allSanityProject(
       sort: { publishedAt: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null, lte: $currentDate } }
     ) {
       totalCount
       edges {
@@ -38,6 +38,10 @@ export const query = graphql`
           title
           subtitle
           excerpt
+          roles {
+            fieldTitle
+            fieldInfo
+          }
           categories {
             title
           }
@@ -50,7 +54,7 @@ export const query = graphql`
 
     usedCategories: allSanityProject(
       sort: { publishedAt: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null, lt: $currentDate } }
     ) {
       group(field: { categories: { title: SELECT } }) {
         totalCount

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import ThemedLink from "./ThemedLink";
 import { Box } from "theme-ui";
-import { Themed } from '@theme-ui/mdx';
+import { Themed } from "@theme-ui/mdx";
 
 function CategoryLinkList({ categories, currentCategory, all, used, total }) {
   if (!categories) return null;
@@ -34,16 +34,11 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
         totalCount = `(${used.group[index].totalCount})`;
       }
     }
-    const count = cat.title === "All" ? (total ? `(${total})` : "") : totalCount;
-    const path =  `/projects${cat.title==="All"?"":"/category"}/${cat.slug.current}`;
+    const count = cat.title === "All" ? "" : totalCount;
+    const path = `/projects${cat.title === "All" ? "" : "/category"}/${cat.slug.current}`;
     return (
-      <Themed.li sx={{ display: "inline-block", pr: "2", lineHeight:[3] }} key={cat.id}>
-        <ThemedLink
-          to={path}
-          variant="outlineBtn"
-          duration={2}
-          activeClassName="active"
-        >
+      <Themed.li sx={{ display: "inline-block", pr: "2", lineHeight: [3] }} key={cat.id}>
+        <ThemedLink to={path} variant="outlineBtn" duration={2} activeClassName="active">
           {cat.title} {count}
         </ThemedLink>
       </Themed.li>

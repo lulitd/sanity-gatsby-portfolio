@@ -50,6 +50,10 @@ export const query = graphql`
       contactEmail
       featuredLogos {
         ...ImageWithPreview
+        asset {
+          altText
+          description
+        }
       }
       archive {
         _id
@@ -87,6 +91,10 @@ export const query = graphql`
           title
           subtitle
           excerpt
+          roles {
+            fieldTitle
+            fieldInfo
+          }
           categories {
             title
           }
@@ -307,25 +315,27 @@ const IndexPage = (props) => {
               contactInfo={site.contactEmail}
             />
             <Heading as="h3" sx={{ my: 0, pt: 3 }}>
-              Hi, I'm Lalaine
+              Hi, I'm Lalaine!
             </Heading>
-            <Box sx={{ maxWidth: "70ch", textWrap: "balance" }}>
+            <Box sx={{ maxWidth: "70ch", textWrap: "pretty" }}>
               <p>
-                I'm a creative technologist based in Toronto, Canada.
-                <em>What does that mean?</em>
+                I’m a Toronto-based creative technologist that turns ambitious ideas into
+                interactive realities.
               </p>
               <p>
-                I help bridge the gap between <b>Design ⇄ Development.</b>
+                In practice, that means I bridge the space between design and development. I build
+                websites, apps, games, and real-time experiences, often stepping into multiple roles
+                along the way. I’m comfortable shaping the creative direction of a project and
+                architecting the technical framework behind it.
               </p>
               <p>
-                I specialize in crafting websites, apps and games. Think of me as your digital Swiss
-                Army Knife. I can wear multiple hats to help bring your vision to life.
+                I’ve collaborated with independent artists, creative teams, startups, and global
+                brands, developing work that has been showcased in museums, galleries, festivals,
+                and international exhibitions.
               </p>
               <p>
-                I've been fortunate enough to collaborate with new artists to established veterans,
-                and startups to multinational corporations. I have designed and developed projects
-                that have been shown in museums, galleries, festivals, and tradeshows all over the
-                world.
+                I love designing systems with just enough structure to hold an idea and just enough
+                freedom to let it surprise us.
               </p>
             </Box>
             <Box

@@ -34,6 +34,7 @@ function LogoList(logos, logoSize, duration) {
           return (
             <SanityImage
               _key={`logo-${i}`}
+              alt={logo.asset.altText}
               {...logo}
               sx={{
                 height: logoSize,

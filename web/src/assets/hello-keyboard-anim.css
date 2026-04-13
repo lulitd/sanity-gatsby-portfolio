@@ -18,6 +18,8 @@
   animation: fade-o 5s linear 0s infinite;
 }
 
+#sun-large{  animation: fade 5s ease-in-out 0s infinite;}
+
 #Hello g:nth-of-type(1) {
   animation-delay: .5s
 }
@@ -38,6 +40,16 @@
   animation-delay: 3.4s
 }
 
+@keyframes fade{
+0% { opacity: .25;
+}
+25% { opacity: 0.5;
+}
+75% { opacity: 1;
+}
+100% { opacity: .25;
+}
+}
 
 @keyframes text-wave {
   0% {

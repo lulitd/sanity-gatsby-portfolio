@@ -9,7 +9,7 @@ import ProjectPreviewGrid from "../components/project-preview-grid";
 import { Styled, Heading } from "theme-ui";
 
 export const query = graphql`
-  query CategoryTemplateQuery($id: String!, $currentDate: Date!) {
+  query CategoryTemplateQuery($id: String!, $currentDate: Date) {
     category: sanityCategory(id: { eq: $id }) {
       id
       title
@@ -41,6 +41,10 @@ export const query = graphql`
           title
           subtitle
           excerpt
+          roles {
+            fieldTitle
+            fieldInfo
+          }
           categories {
             title
           }
@@ -101,7 +105,7 @@ const CategoryTemplate = (props) => {
           textAlign: "center",
         }}
       >
-        <Heading as="h1">{`Projects // ${category.title} ${projectNodes.length}`} </Heading>
+        <Heading as="h1">{`Projects // ${category.title}`} </Heading>
         <CategoryLinkList
           categories={categoryNodes}
           currentCategory={category}
