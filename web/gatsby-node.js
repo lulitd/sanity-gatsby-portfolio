@@ -111,3 +111,24 @@ async function createProjectPages(graphql, actions, reporter) {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createProjectPages(graphql, actions, reporter);
 };
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.svg$/,
+          oneOf: [
+            {
+              issuer: /\.[jt]sx?$/,
+              use: ["@svgr/webpack"],
+            },
+            {
+              type: "asset/",
+            },
+          ],
+        },
+      ],
+    },
+  });
+};

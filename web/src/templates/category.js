@@ -87,7 +87,6 @@ const CategoryTemplate = (props) => {
     data && data.projects && mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
 
   const usedCategories = data && data.usedCategories;
-  const totalCount = data && data.allProjects && data.allProjects.totalCount;
 
   return (
     <Layout>
@@ -111,7 +110,6 @@ const CategoryTemplate = (props) => {
           currentCategory={category}
           all={true}
           used={usedCategories}
-          total={totalCount}
         />
 
         {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}

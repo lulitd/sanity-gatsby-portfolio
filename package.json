@@ -2,23 +2,25 @@
   "private": true,
   "name": "sanity-gatsby-portfolio",
   "version": "0.0.0",
+  "volta": {
+  "node": "20.12.0"
+},
   "scripts": {
-    "build": "lerna run build --parallel",
-    "dev": "lerna run dev --parallel",
-    "format": "lerna run format",
-    "build-studio": "lerna bootstrap && (cd studio && npm run build)",
-    "build-web": "lerna bootstrap && (cd studio && SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy) && (cd web && npm run build)",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "graphql-deploy--force": "lerna run graphql-deploy--force",
-    "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "devDependencies": {
-    "lerna": "^6.4.1"
-  },
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "format": "pnpm -r run format",
+
+    "dev:web": "pnpm --filter ./web dev",
+    "dev:studio": "pnpm --filter ./studio dev",
+
+    "build:web": "pnpm --filter ./web build",
+    "build:studio": "pnpm --filter ./studio build",
+
+    "graphql-deploy": "pnpm --filter ./studio graphql-deploy"  },
   "dependencies": {
     "css-doodle": "^0.8.5",
     "smooth-scroll": "^16.1.3"
   }
+  
 }

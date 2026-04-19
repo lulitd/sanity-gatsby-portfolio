@@ -1,0 +1,268 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1250 1300">
+  <defs>
+    <linearGradient id="letter-gradient" x1="50%" x2="50%" y1="100%" y2="0%">
+      <stop offset="0"  stop-color="var(--theme-ui-colors-primary900)" stop-opacity="1"/>
+      <stop offset=".2" stop-color="var(--theme-ui-colors-primary700)" stop-opacity="1"/>
+      <stop offset=".5" stop-color="var(--theme-ui-colors-primary500)" stop-opacity="1"/>
+      <stop offset=".8" stop-color="var(--theme-ui-colors-primary300)" stop-opacity="1"/>
+      <stop offset="1"  stop-color="var(--theme-ui-colors-primary100)" stop-opacity="1"/>
+    </linearGradient>
+
+    <linearGradient id="sun-gradient-01" x1="854.3" x2="1291.2" y1="998.3" y2="998.3" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="var(--theme-ui-colors-primary500)" stop-opacity=".4"/>
+      <stop offset=".2" stop-color="var(--theme-ui-colors-primary500)" stop-opacity=".4"/>
+      <stop offset=".5" stop-color="var(--theme-ui-colors-primary700)" stop-opacity=".3"/>
+      <stop offset=".8" stop-color="var(--theme-ui-colors-primary700)" stop-opacity=".2"/>
+      <stop offset="1" stop-color="var(--theme-ui-colors-primary900)" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="sun-gradient-02" x1="761.4" x2="965.6" y1="1108.3" y2="1108.3" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="var(--theme-ui-colors-third300)" stop-opacity=".4"/>
+      <stop offset=".2" stop-color="var(--theme-ui-colors-third500)" stop-opacity=".4"/>
+      <stop offset=".4" stop-color="var(--theme-ui-colors-third500)" stop-opacity=".3"/>
+      <stop offset=".6" stop-color="var(--theme-ui-colors-third700)" stop-opacity=".2"/>
+      <stop offset=".8" stop-color="var(--theme-ui-colors-third700)" stop-opacity=".1"/>
+      <stop offset="1" stop-color="var(--theme-ui-colors-third900)" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="bg-gradient" x1="100%" x2="0%" y1="100%" y2="0%">
+      <stop offset="0"  stop-color="var(--theme-ui-colors-secondary900)" stop-opacity="0"/>
+      <stop offset=".2" stop-color="var(--theme-ui-colors-secondary700)" stop-opacity="0.1"/>
+      <stop offset=".5" stop-color="var(--theme-ui-colors-secondary500)" stop-opacity="0.2"/>
+      <stop offset=".8" stop-color="var(--theme-ui-colors-secondary300)" stop-opacity="0.5"/>
+      <stop offset="1"  stop-color="var(--theme-ui-colors-secondary100)" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <linearGradient id="x-axis-gradient" x1="100%" x2="0%" y1="50%" y2="50%" gradientUnits="userSpaceOnUse">
+      <stop offset="0"  stop-color="var(--theme-ui-colors-primary900)" stop-opacity="0.0"/>
+      <stop offset=".3" stop-color="var(--theme-ui-colors-primary700)" stop-opacity="0.5"/>
+      <stop offset=".5" stop-color="var(--theme-ui-colors-primary500)" stop-opacity="0.7"/>
+      <stop offset=".7" stop-color="var(--theme-ui-colors-primary700)" stop-opacity="0.5"/>
+      <stop offset="1"  stop-color="var(--theme-ui-colors-primary900)" stop-opacity="0.0"/>
+    </linearGradient>
+
+    <linearGradient id="y-axis-gradient" x1="50%" x2="50%" y1="100%" y2="0%" gradientUnits="userSpaceOnUse">
+      <stop offset="0"  stop-color="var(--theme-ui-colors-primary900)" stop-opacity="0.0"/>
+      <stop offset=".3" stop-color="var(--theme-ui-colors-primary700)" stop-opacity="0.5"/>
+      <stop offset=".5" stop-color="var(--theme-ui-colors-primary500)" stop-opacity="0.7"/>
+      <stop offset=".7" stop-color="var(--theme-ui-colors-primary700)" stop-opacity="0.5"/>
+      <stop offset="1"  stop-color="var(--theme-ui-colors-primary900)" stop-opacity="0.0"/>
+    </linearGradient>
+
+    <linearGradient id="board-frame-gradient" x1="0%" x2="0%" y1="0%" y2="100%"> 
+      <stop offset="0" stop-color="var(--theme-ui-colors-third500)" stop-opacity="1"/>
+      <stop offset=".75" stop-color="var(--theme-ui-colors-third700)" stop-opacity="1"/>
+      <stop offset="1" stop-color="var(--theme-ui-colors-third900)" stop-opacity="1"/>
+    </linearGradient>
+
+    <radialGradient id="frame-shading" cx="551.2" cy="929.2" r="419.5" fx="568.1" gradientTransform="matrix(1.06 -.02 0 .24 16.6 712.9)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="var(--theme-ui-colors-primary700)" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="var(--theme-ui-colors-primary900)" stop-opacity="0"/>
+    </radialGradient>
+
+
+    <linearGradient id="key-gradient-on" x1="50%" x2="50%" y1="0%" y2="100%">
+      <stop offset="0"  stop-color="var(--theme-ui-colors-primary700)" stop-opacity="0.5"/>
+      <stop offset=".3" stop-color="var(--theme-ui-colors-primary700)" stop-opacity="0.5"/>
+      <stop offset=".5" stop-color="var(--theme-ui-colors-primary500)" stop-opacity="0.5"/>
+      <stop offset=".7" stop-color="var(--theme-ui-colors-primary300)" stop-opacity="0.5"/>
+      <stop offset="1"  stop-color="var(--theme-ui-colors-primary100)" stop-opacity="0.5"/>
+    </linearGradient>
+ 
+    
+    <clipPath id="large-circle">
+      <circle cx="1072.7" cy="998.3" r="218.4" />
+     </clipPath>
+    <clipPath id="small-circle">
+       <circle cx="863.5" cy="1108.3" r="102.1" />
+     </clipPath>
+    <clipPath id="hex-clip">
+      <polygon points="1122.9646071760521,937.5 625,1225 127.03539282394786,937.5000000000002 127.03539282394769,362.50000000000017 624.9999999999999,75 1122.9646071760524,362.50000000000017" />
+     </clipPath>
+
+    <style>
+      .no-fill{fill:none}
+      .primary-stroke{stroke:var(--theme-ui-colors-primary100);}
+      .thin-stroke{stroke-width:5}
+      .thick-stroke{stroke-width:7}
+      .keystroke{
+        stroke:var(--theme-ui-colors-primary100);
+        stroke-opacity:0.5;
+        stroke-width:2}
+      .bg-fill{fill:var(--theme-ui-colors-background);}
+     </style>
+
+  </defs>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="background">
+      <g id="sun-large" clip-path="url(#large-circle)">
+        <circle id="fill" cx="1072.7" cy="998.3" r="218.4" fill="url(#sun-gradient-01)"/>
+        <g class="bg-fill" transform="rotate(23 1072 998)">
+          <path d="M789.5 811.4h571.2v16.8H789.5z" />
+          <path d="M778.3 837h571.2v16.8H778.3z"   />
+          <path d="M767 862.6h571.2v16.8H767z"     />
+          <path d="M755.8 888.3H1327v16.8H755.8z"  />
+          <path d="M744.6 914h571.2v16.8H744.6z"   />
+          <path d="M733.3 939.6h571.2v16.8H733.3z" />
+        </g>
+      </g>
+      <g id="Sun-Red" clip-path="url(#small-circle)">
+        <circle id="fill-2" cx="863.5" cy="1108.3" r="102.1" fill="url(#sun-gradient-02)" />
+        <g class="bg-fill" transform="rotate(150 863 1108)">
+          <path d="M722 1177.2h267v7.8H722z"/>
+          <path d="M715.6 1165.8h267v7.8h-267z"/>
+          <path d="M709.3 1154.3h267v7.8h-267z"/>
+          <path d="M702.9 1142.9h267v7.8h-267z"/>
+          <path d="M696.5 1131.5h267v7.8h-267z"/>
+          <path d="M690.2 1120h267v7.8h-267z"/>
+        </g>
+      </g>
+      <g id="hex">
+        <g id="hexGrid" clip-path="url(#hex-clip)">
+          <path fill="url(#bg-gradient)"  d="M0 20h1241.5v1241.5H0z"/>
+
+          <line x1="0" x2="100%" y1="17%" y2="17%" stroke="url(#x-axis-gradient)" class="thin-stroke" />
+          <line x1="0" x2="100%" y1="28%" y2="28%" stroke="url(#x-axis-gradient)" class="thin-stroke" />
+          <line x1="0" x2="100%" y1="39%" y2="39%" stroke="url(#x-axis-gradient)" class="thin-stroke" />
+          <line x1="0" x2="100%" y1="50%" y2="50%" stroke="url(#x-axis-gradient)" class="thin-stroke" />
+          <line x1="0" x2="100%" y1="61%" y2="61%" stroke="url(#x-axis-gradient)" class="thin-stroke" />
+          <line x1="0" x2="100%" y1="72%" y2="72%" stroke="url(#x-axis-gradient)" class="thin-stroke" />
+          <line x1="0" x2="100%" y1="83%" y2="83%" stroke="url(#x-axis-gradient)" class="thin-stroke" />
+         
+          <line y1="0" y2="100%" x1="17%" x2="17%" stroke="url(#y-axis-gradient)" class="thin-stroke" />
+          <line y1="0" y2="100%" x1="28%" x2="28%" stroke="url(#y-axis-gradient)" class="thin-stroke" />
+          <line y1="0" y2="100%" x1="39%" x2="39%" stroke="url(#y-axis-gradient)" class="thin-stroke" />
+          <line y1="0" y2="100%" x1="50%" x2="50%" stroke="url(#y-axis-gradient)" class="thin-stroke" />
+          <line y1="0" y2="100%" x1="61%" x2="61%" stroke="url(#y-axis-gradient)" class="thin-stroke" />
+          <line y1="0" y2="100%" x1="72%" x2="72%" stroke="url(#y-axis-gradient)" class="thin-stroke" />
+          <line y1="0" y2="100%" x1="83%" x2="83%" stroke="url(#y-axis-gradient)" class="thin-stroke" /> 
+        </g>
+        <polygon class="no-fill primary-stroke thick-stroke" points="1187.9165124598853,975 625,1300 62.083487540115016,975.0000000000002 62.08348754011479,325.00000000000017 624.9999999999999,0 1187.9165124598853,325.0000000000002" />
+        <polygon class="no-fill primary-stroke thin-stroke"  points="1122.9646071760521,937.5 625,1225 127.03539282394786,937.5000000000002 127.03539282394769,362.50000000000017 624.9999999999999,75 1122.9646071760524,362.50000000000017" />
+      </g>
+    </g>
+    <g id="keyboard">
+      <g id="frame">
+        <rect id="frame-shade" width="866" height="366.3" x="189.7" y="673.6" fill="url(#frame-shading)" rx="15"/>
+        <rect id="frame" width="866" height="366.3" x="189.7" y="558.9" fill="url(#board-frame-gradient)" class="primary-stroke" stroke-miterlimit="10" rx="15"/>
+      </g>
+      <g id="row-5">
+        <path id="rArrow" fill="url(#key-gradient-on)" class="keystroke" d="M993.5 866.3h40.8a3.3 3.3 0 013.3 3.3V882a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-12.6a3.3 3.3 0 013.3-3.3z"/>
+        <path id="dArrow" fill="url(#key-gradient-on)" class="keystroke" d="M940.1 866.3H981a3.3 3.3 0 013.3 3.3V882a13.6 13.6 0 01-13.5 13.6h-20.3a13.6 13.6 0 01-13.6-13.6v-12.6a3.3 3.3 0 013.3-3.3z"/>
+        <path id="lArrow" fill="url(#key-gradient-on)" class="keystroke" d="M886.8 866.3h40.8a3.3 3.3 0 013.3 3.3V882a13.6 13.6 0 01-13.6 13.6h-20.2a13.6 13.6 0 01-13.6-13.6v-12.6a3.3 3.3 0 013.3-3.3z"/>
+        <path id="uArrow" fill="url(#key-gradient-on)" class="keystroke" d="M940.1 832.6H981a3.3 3.3 0 013.3 3.3v12.6a13.6 13.6 0 01-13.5 13.6h-20.3a13.6 13.6 0 01-13.6-13.6V836a3.3 3.3 0 013.3-3.3z"/>
+        <path id="rCtrl" fill="url(#key-gradient-on)" class="keystroke" d="M809 832.6h62.7a3.3 3.3 0 013.3 3.3v19a13.6 13.6 0 01-13.5 13.6h-42.3a13.6 13.6 0 01-13.6-13.5v-19a3.3 3.3 0 013.3-3.4z"/>
+        <path id="rAlt" fill="url(#key-gradient-on)" class="keystroke" d="M754.7 832.6h40.8a3.3 3.3 0 013.3 3.3v19a13.6 13.6 0 01-13.5 13.6H765a13.6 13.6 0 01-13.6-13.5v-19a3.3 3.3 0 013.3-3.4z"/>
+        <rect id="space" width="262.4" height="35.9" x="482.2" y="832.6" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+        <path id="lAlt" fill="url(#key-gradient-on)" class="keystroke" d="M409.3 832.6h62.8a3.3 3.3 0 013.3 3.3v19a13.6 13.6 0 01-13.5 13.6h-42.3A13.6 13.6 0 01406 855v-19a3.3 3.3 0 013.3-3.4z"/>
+        <path id="win" fill="url(#key-gradient-on)" class="keystroke" d="M355.1 832.6H396a3.3 3.3 0 013.3 3.3v19a13.6 13.6 0 01-13.6 13.6h-20.3A13.6 13.6 0 01352 855v-19a3.3 3.3 0 013.3-3.4z"/>
+        <path id="fn" fill="url(#key-gradient-on)" class="keystroke" d="M301 832.6h40.8a3.3 3.3 0 013.3 3.3v19a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.5v-19a3.3 3.3 0 013.3-3.4z"/>
+        <path id="lCtrl" fill="url(#key-gradient-on)" class="keystroke" d="M211.2 832.6h76.4a3.3 3.3 0 013.3 3.3v19a13.6 13.6 0 01-13.6 13.6h-55.8a13.6 13.6 0 01-13.6-13.5v-19a3.3 3.3 0 013.3-3.4z"/>
+        </g>
+      <g id="row-4">
+        <path id="rShift"  fill="url(#key-gradient-on)" class="keystroke" d="M908.4 782.4h126.3a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6H918.7A13.6 13.6 0 01905 811v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="question"  fill="url(#key-gradient-on)" class="keystroke" d="M854.2 782.4H895a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6h-20.2a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="period"  fill="url(#key-gradient-on)" class="keystroke" d="M800 782.4h40.8a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6h-20.2a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="comma"  fill="url(#key-gradient-on)" class="keystroke" d="M745.8 782.4h40.9a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6H756a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="m" fill="url(#key-gradient-on)" class="keystroke" d="M691.7 782.4h40.8a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="n"  fill="url(#key-gradient-on)" class="keystroke" d="M637.5 782.4h40.8a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6h-20.2a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="b"  fill="url(#key-gradient-on)" class="keystroke" d="M583.3 782.4h40.8a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6h-20.2A13.6 13.6 0 01580 811v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="v"  fill="url(#key-gradient-on)" class="keystroke" d="M529.1 782.4H570a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.5 13.6h-20.3a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="c"  fill="url(#key-gradient-on)" class="keystroke" d="M475 782.4h40.8a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="x" fill="url(#key-gradient-on)" class="keystroke" d="M420.8 782.4h40.8a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6H431a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.4-3.3z"/>
+        <path id="z"  fill="url(#key-gradient-on)" class="keystroke" d="M366.6 782.4h40.8a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="lShift"  fill="url(#key-gradient-on)" class="keystroke" d="M210.8 782.4h142.4a3.3 3.3 0 013.3 3.3V811a13.6 13.6 0 01-13.6 13.6H221.1a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+      </g>
+      <g id="row-3">
+        <path id="enter" fill="url(#key-gradient-on)" class="keystroke" d="M925.3 732h109.4a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6h-88.8a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="apostraphe" fill="url(#key-gradient-on)" class="keystroke" d="M871.1 732H912a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="colon" fill="url(#key-gradient-on)" class="keystroke" d="M817 732h40.8a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="l" fill="url(#key-gradient-on)" class="keystroke" d="M762.8 732h40.8a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6H773a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="k" fill="url(#key-gradient-on)" class="keystroke" d="M708.6 732h40.8a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6H719a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="j" fill="url(#key-gradient-on)" class="keystroke" d="M654.4 732h40.8a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6h-20.2a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="h" fill="url(#key-gradient-on)" class="keystroke" d="M600.2 732H641a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6h-20.2a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="g" fill="url(#key-gradient-on)" class="keystroke" d="M546 732H587a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="f" fill="url(#key-gradient-on)" class="keystroke" d="M491.9 732h40.8a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="d" fill="url(#key-gradient-on)" class="keystroke" d="M437.7 732h40.8a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6H448a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="s" fill="url(#key-gradient-on)" class="keystroke" d="M383.5 732h40.8a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6h-20.2a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="a" fill="url(#key-gradient-on)" class="keystroke" d="M329.3 732h40.8a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.5 13.6h-20.3a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+        <path id="cap" fill="url(#key-gradient-on)" class="keystroke" d="M210.8 732H316a3.3 3.3 0 013.3 3.4v25.4a13.6 13.6 0 01-13.6 13.6h-84.6a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.2-3.3z"/>
+       </g>
+      <g id="row-2">
+         <path id="Slash" fill="url(#key-gradient-on)" class="keystroke" d="M947.3 681.8h87.4a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6h-66.8a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="RBracket" fill="url(#key-gradient-on)" class="keystroke" d="M893.1 681.8H934a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="LBracket" fill="url(#key-gradient-on)" class="keystroke" d="M839 681.8h40.8a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="p" fill="url(#key-gradient-on)" class="keystroke" d="M784.8 681.8h40.8a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6h-20.2a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="o" fill="url(#key-gradient-on)" class="keystroke" d="M730.6 681.8h40.8a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6H741a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="i" fill="url(#key-gradient-on)" class="keystroke" d="M676.4 681h40.8a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.5 13.6h-20.3a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="u" fill="url(#key-gradient-on)" class="keystroke" d="M622.2 681.8H663a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.5 13.6h-20.3a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="y" fill="url(#key-gradient-on)" class="keystroke" d="M568 681.8H609a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="t" fill="url(#key-gradient-on)" class="keystroke" d="M513.9 681.8h40.8a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6h-20.2a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="r" fill="url(#key-gradient-on)" class="keystroke" d="M459.7 681.8h40.8a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6H470a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="e" fill="url(#key-gradient-on)" class="keystroke" d="M405.5 681.8h40.8a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.5 13.6h-20.3a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="w" fill="url(#key-gradient-on)" class="keystroke" d="M351.3 681.8h40.8a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.5 13.6h-20.3a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="q" fill="url(#key-gradient-on)" class="keystroke" d="M297.2 681.8H338a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6h-20.3a13.6 13.6 0 01-13.5-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         <path id="Tab" fill="url(#key-gradient-on)" class="keystroke" d="M210.8 681.8h73a3.3 3.3 0 013.3 3.3v25.4a13.6 13.6 0 01-13.6 13.6h-52.4a13.6 13.6 0 01-13.6-13.6v-25.4a3.3 3.3 0 013.3-3.3z"/>
+         </g>
+      <g id="row-1">
+        <path id="backspace" fill="url(#key-gradient-on)" class="keystroke" d="M921 631.5h113.7a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-93a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z"/>
+        <path id="_" fill="url(#key-gradient-on)" class="keystroke" d="M861 631.5h40.8a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.2a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="="/>
+        <path id="_-"  fill="url(#key-gradient-on)" class="keystroke" d="M806.8 631.5h40.8a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.2a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="-"/>
+        <path id="_0" fill="url(#key-gradient-on)" class="keystroke" d="M752.6 631.5h40.8a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.5 13.5h-20.3a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="0"/>
+        <path id="_9" fill="url(#key-gradient-on)" class="keystroke" d="M698.4 631.5h40.9a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.3a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="9"/>
+        <path id="_8" fill="url(#key-gradient-on)" class="keystroke" d="M644.3 631.5H685a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.3a13.6 13.6 0 01-13.5-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="8"/>
+        <path id="_7" fill="url(#key-gradient-on)" class="keystroke" d="M590 631.5H631a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.3a13.6 13.6 0 01-13.5-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="7"/>
+        <path id="_6" fill="url(#key-gradient-on)" class="keystroke" d="M535.9 631.5h40.8a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.2a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="6"/>
+        <path id="_5" fill="url(#key-gradient-on)" class="keystroke" d="M481.7 631.5h40.8a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5H492a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="5"/>
+        <path id="_4" fill="url(#key-gradient-on)" class="keystroke" d="M427.5 631.5h40.8a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.5 13.5h-20.3a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="4"/>
+        <path id="_3" fill="url(#key-gradient-on)" class="keystroke" d="M373.4 631.5h40.8a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.3a13.6 13.6 0 01-13.5-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="3"/>
+        <path id="_2" fill="url(#key-gradient-on)" class="keystroke" d="M319.2 631.5H360a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.3a13.6 13.6 0 01-13.5-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="2"/>
+        <path id="_1" fill="url(#key-gradient-on)" class="keystroke" d="M265 631.5h40.8a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.2a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z" data-name="1"/>
+        <path id="til" fill="url(#key-gradient-on)" class="keystroke" d="M210.8 631.5h40.8a3.3 3.3 0 013.3 3.3v25.5a13.6 13.6 0 01-13.6 13.5h-20.2a13.6 13.6 0 01-13.6-13.5v-25.5a3.3 3.3 0 013.3-3.3z"/>
+       </g>
+      <g id="row-0">
+        <rect id="ESC" class="keystroke" width="54.2" height="30.3" x="207" y="589.2" fill="url(#key-gradient-on)" rx="3"/>
+        <g id="F1-F4">
+          <rect id="F1" width="44" height="30.3" x="273.8" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="F2" width="44" height="30.3" x="323.8" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="F3" width="44" height="30.3" x="373.7" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="F4" width="44" height="30.3" x="423.7" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+           </g>
+        <g id="F5-F8">
+          <rect id="F5" width="44" height="30.3" x="480.4" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="F6" width="44" height="30.3" x="530.4" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="F7" width="44" height="30.3" x="580.3" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="F8" width="44" height="30.3" x="630.3" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+         </g>
+        <g id="F9-F12">
+          <rect id="F9" width="44" height="30.3" x="687" y="589.2"    fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="F10" width="44" height="30.3" x="736.9" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="F11" width="44" height="30.3" x="786.9" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="F12" width="44" height="30.3" x="836.8" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+         </g>
+        <g id="HOME-DEL">
+          <rect id="HOME" width="44" height="30.3" x="893.5" y="589.2" fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="END" width="44" height="30.3" x="943.5" y="589.2"  fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+          <rect id="DEL" width="44" height="30.3" x="994.5" y="589.2"  fill="url(#key-gradient-on)" class="keystroke" rx="3"/>
+         </g>
+      </g>
+    </g>
+    <g id="Hello">
+      <g id="hello-H">
+        <path id="hello-H-3" fill="url(#letter-gradient)" d="M287.4 333.9c3.6 0 5.7 2 5.7 5.7v47.7c0 3.6 2.1 5.7 5.7 5.7h18.4c3.8 0 5.7-2 5.7-5.7v-47.7c0-3.6 2.1-5.7 5.7-5.7H350q5.7 0 5.7 5.7v122.2c0 3.6-1.9 5.7-5.7 5.7h-21.4c-3.6 0-5.7-2.1-5.7-5.7v-30.2q0-5.7-5.7-5.7h-18.3c-3.7 0-5.8 1.9-5.8 5.7v30.2c0 3.6-1.9 5.7-5.7 5.7H266c-3.6 0-5.7-2.1-5.7-5.7V339.6c0-3.8 1.9-5.7 5.7-5.7z" data-name="hello-H" transform="translate(57.5)"/>
+      </g>
+      <g id="hello-E">
+        <path id="hello-E-3" fill="url(#letter-gradient)" d="M479.8 333.9q5.7 0 5.7 5.7V361c0 3.6-1.9 5.7-5.7 5.7h-46.2c-3.6 0-5.7 2-5.7 5.8v6c0 3.7 2 5.8 5.7 5.8h29.6q5.7 0 5.7 5.7v21.4c0 3.6-1.9 5.7-5.7 5.7h-29.6c-3.6 0-5.7 2-5.7 5.8v6c0 3.7 2 5.8 5.7 5.8h46.2q5.7 0 5.7 5.7v21.4q0 5.7-5.7 5.7h-80.2c-3.6 0-5.7-2-5.7-5.7V339.6c0-3.8 2.1-5.7 5.7-5.7z" data-name="hello-E" transform="translate(57.5)"/>
+      </g>
+      <g id="hello-L-1">
+       <path id="hello-L-1-3" fill="url(#letter-gradient)" d="M546.4 333.9q5.8 0 5.8 5.7v89.3c0 3.7 2 5.8 5.7 5.8h42.6q5.7 0 5.7 5.7v21.4q0 5.7-5.7 5.7H525c-3.6 0-5.7-2.1-5.7-5.7V339.6c0-3.8 2.1-5.7 5.7-5.7z" data-name="hello-L-1" transform="translate(57.5)"/>
+      </g>
+      <g id="hello-L-2">
+       <path id="hello-L-2-3" fill="url(#letter-gradient)" d="M664.2 333.9q5.7 0 5.7 5.7v89.3c0 3.7 2.1 5.8 5.8 5.8h42.5q5.8 0 5.8 5.7v21.4q0 5.7-5.8 5.7h-75.4c-3.6 0-5.7-2.1-5.7-5.7V339.6c0-3.8 2.1-5.7 5.7-5.7z" data-name="hello-L-2" transform="translate(57.5)"/>
+      </g>
+      <g id="hello-O">
+         <path id="hello-O-light" fill="url(#letter-gradient)" d="M848.8 424.5c0 12.6-2.7 46.4-47.9 46.4S753 437.1 753 424.5v-47.7c0-12.6 2.7-46.4 48-46.4s47.8 33.8 47.8 46.4zM816 387c0-14.7-1-23.6-15-23.6s-15.2 9-15.2 23.6v27.5c0 14.7 1 23.7 15.1 23.7s15.1-9 15.1-23.7z" transform="translate(57.5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

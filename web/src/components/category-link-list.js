@@ -4,7 +4,7 @@ import ThemedLink from "./ThemedLink";
 import { Box } from "theme-ui";
 import { Themed } from "@theme-ui/mdx";
 
-function CategoryLinkList({ categories, currentCategory, all, used, total }) {
+function CategoryLinkList({ categories, currentCategory, all, used }) {
   if (!categories) return null;
 
   if (used) {
@@ -25,21 +25,11 @@ function CategoryLinkList({ categories, currentCategory, all, used, total }) {
   const currentCat = currentCategory ? currentCategory.title : "";
   let list = categories.map((cat) => {
     const isCurrent = currentCat === cat.title;
-
-    let totalCount = "";
-    if (used) {
-      const index = used.group.findIndex((x) => x.fieldValue === cat.title);
-
-      if (index > -1) {
-        totalCount = `(${used.group[index].totalCount})`;
-      }
-    }
-    const count = cat.title === "All" ? "" : totalCount;
     const path = `/projects${cat.title === "All" ? "" : "/category"}/${cat.slug.current}`;
     return (
       <Themed.li sx={{ display: "inline-block", pr: "2", lineHeight: [3] }} key={cat.id}>
         <ThemedLink to={path} variant="outlineBtn" duration={2} activeClassName="active">
-          {cat.title} {count}
+          {cat.title}
         </ThemedLink>
       </Themed.li>
     );

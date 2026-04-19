@@ -1,9 +1,9 @@
-import React from 'react';
- import KeyboardSVG from '../assets/hello-keyboard.svg'
-import cssAnim from '../assets/hello-keyboard-anim.css'
+import React from "react";
+import { ReactComponent as KeyboardSVG } from "../assets/hello-keyboard.svg";
+import cssAnim from "../assets/hello-keyboard-anim.css";
 
-const AnimHello =(props)=>{
-    return (<KeyboardSVG/>);
-}
+const AnimHello = (props) => {
+  return <KeyboardSVG />;
+};
 
-export default AnimHello; 
+export default AnimHello;

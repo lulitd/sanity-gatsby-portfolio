@@ -28,7 +28,16 @@ module.exports = {
         anonymize: true,
       },
     },
+    "gatsby-plugin-svgr",
     "gatsby-plugin-theme-ui",
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        jsxRuntime: "automatic",
+        jsxImportSource: "theme-ui",
+        extensions: [".mdx", ".md"],
+      },
+    },
     "gatsby-plugin-image",
     {
       resolve: `gatsby-omni-font-loader`,
@@ -69,14 +78,6 @@ module.exports = {
           quality: 90,
           fit: "max",
           auto: "format",
-        },
-      },
-    },
-    {
-      resolve: "gatsby-plugin-react-svg",
-      options: {
-        rule: {
-          include: /assets/, // Where the animated svgs are.
         },
       },
     },

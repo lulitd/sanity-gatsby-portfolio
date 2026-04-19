@@ -107,7 +107,6 @@ const ArchivePage = (props) => {
           categories={categoryNodes}
           currentCategory={{ title: "All" }}
           all={true}
-          total={totalCount}
           used={usedCategories}
         />
         {projectNodes && projectNodes.length > 0 && (
