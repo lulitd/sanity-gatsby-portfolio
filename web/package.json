@@ -27,6 +27,7 @@
     "date-fns": "^2.30.0",
     "deepmerge": "^4.3.1",
     "gatsby": "^5.16.1",
+    "gatsby-adapter-netlify": "^1.4.0",
     "gatsby-codemods": "^4.16.0",
     "gatsby-image": "^3.11.0",
     "gatsby-omni-font-loader": "^2.0.2",
