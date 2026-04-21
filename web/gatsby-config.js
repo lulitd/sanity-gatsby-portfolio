@@ -10,10 +10,6 @@ const isProd = process.env.NODE_ENV === "production";
 const adapter = require("gatsby-adapter-netlify").default;
 
 module.exports = {
-  adapter: adapter({
-    excludeDatastoreFromEngineFunction: false,
-    imageCDN: false,
-  }),
   siteMetadata: {
     title: `Lalaine Ulit-Destajo Portfolio`,
     description: `Portfolio website of Lalaine Ulit-Destajo. New Media Artist. Interactive Designer. Creative Coder.`,
@@ -101,4 +97,8 @@ module.exports = {
       },
     },
   ],
+  adapter: adapter({
+    excludeDatastoreFromEngineFunction: false,
+    imageCDN: false,
+  }),
 };
