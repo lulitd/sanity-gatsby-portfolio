@@ -47,6 +47,7 @@
     "react-obfuscate": "^3.7.0",
     "react-player": "^2.16.1",
     "rebass": "^4.0.7",
+    "sharp": "^0.34.5",
     "theme-ui": "^0.17.4"
   },
   "devDependencies": {
