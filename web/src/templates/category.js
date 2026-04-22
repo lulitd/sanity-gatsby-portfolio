@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../containers/layout";
 import { SEO } from "../components/seo";
 import { graphql } from "gatsby";
 import Container from "../components/container";
@@ -89,7 +88,7 @@ const CategoryTemplate = (props) => {
   const usedCategories = data && data.usedCategories;
 
   return (
-    <Layout>
+    <>
       {errors && <SEO title="GraphQL Error" />}
       {category && <SEO title={category.title || "Untitled"} />}
 
@@ -114,7 +113,7 @@ const CategoryTemplate = (props) => {
 
         {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>
-    </Layout>
+    </>
   );
 };
 

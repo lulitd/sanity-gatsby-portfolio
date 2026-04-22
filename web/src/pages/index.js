@@ -22,7 +22,6 @@ import { imageUrlFor } from "../lib/image-url";
 import { Themed } from "@theme-ui/mdx";
 import { lighten, alpha } from "@theme-ui/color";
 import SanityImage from "gatsby-plugin-sanity-image";
-import Layout from "../containers/layout";
 import { SEO } from "../components/seo";
 import Container from "../components/container";
 import SocialsFromBio from "../components/socials-from-bio";
@@ -138,11 +137,7 @@ const IndexPage = (props) => {
   const { data, errors } = props;
 
   if (errors) {
-    return (
-      <Layout>
-        <GraphQLErrorList errors={errors} />
-      </Layout>
-    );
+    return <GraphQLErrorList errors={errors} />;
   }
 
   const site = (data || {}).site;
@@ -162,14 +157,14 @@ const IndexPage = (props) => {
 
   if (!site) {
     throw new Error(
-      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
+      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
     );
   }
 
   const author = (site || {}).author;
   if (!author) {
     throw new Error(
-      'Missing author in "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
+      'Missing author in "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
     );
   }
 
@@ -178,7 +173,7 @@ const IndexPage = (props) => {
   const bg = createHeroBG(colors);
 
   return (
-    <Layout>
+    <>
       <Container
         sx={{
           position: "relative",
@@ -357,7 +352,7 @@ const IndexPage = (props) => {
           </Box>
         </Grid>
       </Container>
-    </Layout>
+    </>
   );
 };
 

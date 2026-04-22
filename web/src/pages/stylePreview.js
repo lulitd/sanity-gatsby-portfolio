@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../containers/layout";
+import Layout from "../containers/layoutContainer";
 import { SEO } from "../components/seo";
 import Container from "../components/container";
 import { Heading, Flex, Button, Box, Card, Grid } from "theme-ui";
@@ -18,7 +18,7 @@ const placeHolderProject = {
   bgURL: "../code_bg-med.jpg",
 };
 const StylePreviewPage = () => (
-  <Layout>
+  <>
     <Container>
       <Heading>Colors</Heading>
       <Grid columns={5} gap={1} rows="3">
@@ -140,7 +140,7 @@ const StylePreviewPage = () => (
         </Button>
       </Box>
     </Container>
-  </Layout>
+  </>
 );
 
 export default StylePreviewPage;

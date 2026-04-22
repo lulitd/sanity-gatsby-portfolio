@@ -20,8 +20,8 @@ const CleanLink = ({ to, children }) => {
         "&:hover,&:focus": {
           color: "third",
 
-          textDecoration: "underline"
-        }
+          textDecoration: "underline",
+        },
       }}
     >
       {children}
@@ -37,6 +37,7 @@ const Footer = ({ author, status }) => (
       flexDirection: ["column", "row", "row"],
       justifyContent: "space-between",
       position: "relative",
+
       "::before": {
         content: '""',
         display: "block",
@@ -45,15 +46,15 @@ const Footer = ({ author, status }) => (
         left: 0,
         width: "100%",
         height: "2px",
-        backgroundImage: t => `
-          linear-gradient(
-            to right,
-            ${alpha("primary", 1)(t)},
-            ${alpha("background", 1)(t)}
-          )
-        `,
-        borderRadius: "default"
-      }
+        backgroundImage: (t) => `
+                  linear-gradient(
+                    to right,
+                    ${alpha("primary", 1)(t)},
+                    ${alpha("background", 1)(t)}
+                  )
+                `,
+        borderRadius: "default",
+      },
     }}
   >
     <Box>

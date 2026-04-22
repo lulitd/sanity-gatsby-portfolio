@@ -4,7 +4,6 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import { SEO } from "../components/seo";
-import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { Styled, Heading, Text } from "theme-ui";
@@ -78,11 +77,7 @@ export const query = graphql`
 const ArchivePage = (props) => {
   const { data, errors } = props;
   if (errors) {
-    return (
-      <Layout>
-        <GraphQLErrorList errors={errors} />
-      </Layout>
-    );
+    return <GraphQLErrorList errors={errors} />;
   }
   const projectNodes =
     data && data.projects && mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
@@ -96,24 +91,22 @@ const ArchivePage = (props) => {
   const archiveOrder = data && data.archive.archive;
 
   return (
-    <Layout>
-      <Container
-        sx={{
-          textAlign: "center",
-        }}
-      >
-        <Heading as="h1">Projects</Heading>
-        <CategoryLinkList
-          categories={categoryNodes}
-          currentCategory={{ title: "All" }}
-          all={true}
-          used={usedCategories}
-        />
-        {projectNodes && projectNodes.length > 0 && (
-          <ProjectPreviewGrid nodes={projectNodes} order={archiveOrder} />
-        )}
-      </Container>
-    </Layout>
+    <Container
+      sx={{
+        textAlign: "center",
+      }}
+    >
+      <Heading as="h1">Projects</Heading>
+      <CategoryLinkList
+        categories={categoryNodes}
+        currentCategory={{ title: "All" }}
+        all={true}
+        used={usedCategories}
+      />
+      {projectNodes && projectNodes.length > 0 && (
+        <ProjectPreviewGrid nodes={projectNodes} order={archiveOrder} />
+      )}
+    </Container>
   );
 };
 

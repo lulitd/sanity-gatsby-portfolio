@@ -110,14 +110,14 @@ const ProjectTemplate = (props) => {
   });
 
   return (
-    <Layout>
+    <>
       {errors && (
         <Container>
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
       {project && <Project {...project} awards={awards} />}
-    </Layout>
+    </>
   );
 };
 

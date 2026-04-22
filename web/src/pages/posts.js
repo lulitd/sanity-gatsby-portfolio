@@ -4,7 +4,6 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import { SEO } from "../components/seo";
-import Layout from "../containers/layout";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { Themed } from "@theme-ui/mdx";
@@ -41,28 +40,22 @@ export const query = graphql`
 const ArchivePage = (props) => {
   const { data, errors } = props;
   if (errors) {
-    return (
-      <Layout>
-        <GraphQLErrorList errors={errors} />
-      </Layout>
-    );
+    return <GraphQLErrorList errors={errors} />;
   }
   const postNodes =
     data && data.posts && mapEdgesToNodes(data.posts).filter(filterOutDocsWithoutSlugs);
 
   return (
-    <Layout>
-      <Container>
-        {!postNodes ||
-          (postNodes.length <= 0 && (
-            <>
-              <Themed.h1 sx={{ py: 1 }}>Coming Soon</Themed.h1>
-            </>
-          ))}
-        {postNodes && postNodes.length > 0 && <Themed.h1 sx={{ py: 1 }}>All Posts</Themed.h1>}
-        {postNodes && postNodes.length > 0 && <PostPreviewGrid nodes={postNodes} columns={[1]} />}
-      </Container>
-    </Layout>
+    <Container>
+      {!postNodes ||
+        (postNodes.length <= 0 && (
+          <>
+            <Themed.h1 sx={{ py: 1 }}>Coming Soon</Themed.h1>
+          </>
+        ))}
+      {postNodes && postNodes.length > 0 && <Themed.h1 sx={{ py: 1 }}>All Posts</Themed.h1>}
+      {postNodes && postNodes.length > 0 && <PostPreviewGrid nodes={postNodes} columns={[1]} />}
+    </Container>
   );
 };
 
