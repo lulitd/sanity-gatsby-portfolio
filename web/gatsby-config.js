@@ -47,10 +47,6 @@ module.exports = {
         preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
         web: [
           {
-            name: `Source Code Pro`,
-            file: `https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap`,
-          },
-          {
             name: `Inter`,
             file: `https://fonts.googleapis.com/css2?family=Inter&display=swap`,
           },

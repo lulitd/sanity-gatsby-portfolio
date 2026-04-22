@@ -40,10 +40,10 @@ const theme = {
     third900: darken("third", 0.35),
   },
   fonts: {
-    body: '"Inter","Helvetica Neue", sans-serif',
+    body: '"Inter","Helvetica", sans-serif',
     heading: '"Space Mono","Inter","Helvetica Neue", sans-serif',
-    btn: '"Space Mono","Source Code Pro","Inter","Helvetica Neue",sans-serif',
-    nav: '"Space Mono","Source Code Pro","Inter","Helvetica Neue",sans-serif',
+    btn: '"Space Mono","Inter","Helvetica Neue",sans-serif',
+    nav: '"Space Mono","Inter","Helvetica Neue",sans-serif',
     monospace: '"Space Mono","monospace"',
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048],
