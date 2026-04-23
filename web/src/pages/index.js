@@ -1,37 +1,21 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
-import {
-  useThemeUI,
-  Image,
-  AspectRatio,
-  AspectImage,
-  Grid,
-  Button,
-  Heading,
-  Text,
-  Flex,
-  Box,
-} from "theme-ui";
+import { graphql } from "gatsby";
+import { useThemeUI, Grid, Heading, Text, Flex, Box } from "theme-ui";
+import { alpha } from "@theme-ui/color";
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture,
-  buildImageObj,
 } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
-import { Themed } from "@theme-ui/mdx";
-import { lighten, alpha } from "@theme-ui/color";
 import SanityImage from "gatsby-plugin-sanity-image";
 import { SEO } from "../components/seo";
 import Container from "../components/container";
-import SocialsFromBio from "../components/socials-from-bio";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import ThemedLink from "../components/ThemedLink";
 import PostPreviewGrid from "../components/post-preview-grid";
 import LogoScroller from "../components/logo-scroller";
 import Doodles from "../components/doodle";
-import Icon from "../components/icon";
 import CardRow from "../components/card-row";
 import StatusPill from "../components/status-pill";
 

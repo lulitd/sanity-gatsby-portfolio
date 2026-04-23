@@ -1,6 +1,5 @@
 import { format, distanceInWords, differenceInDays, parseISO } from "date-fns";
 import React from "react";
-import { Link } from "gatsby";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import BlockContent from "./block-content";
@@ -8,11 +7,9 @@ import Container from "./container";
 import RoleList from "./role-list";
 import SocialsFromBio from "./socials-from-bio";
 import ProjectPreviewGrid from "./project-preview-grid";
-import { AspectImage, Image, Grid, Card, Heading, Box, Text, Button, Flex } from "theme-ui";
-import { Themed } from "@theme-ui/mdx";
+import { Grid, Heading, Box, Text, Flex } from "theme-ui";
 import ThemedLink from "./ThemedLink";
-import { darken, alpha, lighten } from "@theme-ui/color";
-import { FaAutoprefixer } from "react-icons/fa";
+import { alpha, lighten } from "@theme-ui/color";
 
 function Project(props) {
   const {
@@ -64,7 +61,7 @@ function Project(props) {
         {categories.reduce((acm, cat) => {
           if (cat && cat.title && cat.slug) {
             const el = (
-              <Themed.li sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
+              <Box as="li" sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
                 <ThemedLink
                   block
                   to={`/projects/category/${cat.slug.current}`}
@@ -73,7 +70,7 @@ function Project(props) {
                 >
                   #{cat.title}
                 </ThemedLink>
-              </Themed.li>
+              </Box>
             );
             acm.push(el);
           }
@@ -90,14 +87,9 @@ function Project(props) {
         flex: 1,
       }}
     >
-      <Themed.h3
-        sx={{
-          color: lighten("secondary", 0.1),
-          fontSize: [4],
-        }}
-      >
+      <Heading as="h3" variant="contentSubHeading">
         Roles & Contributions
-      </Themed.h3>
+      </Heading>
       <Box
         as="ul"
         sx={{
@@ -143,14 +135,10 @@ function Project(props) {
         textAlign: "center",
       }}
     >
-      <Themed.h3
-        sx={{
-          color: lighten("secondary", 0.1),
-          fontSize: [4],
-        }}
-      >
+      <Heading as="h3" variant="contentSubHeading">
         Technologies
-      </Themed.h3>
+      </Heading>
+
       <Box
         as="ul"
         sx={{
@@ -292,20 +280,17 @@ function Project(props) {
               alignItems: "start",
             }}
           >
-            <Themed.h3
+            <Heading
+              as="h3"
+              variant="stickySubHeading"
               sx={{
-                color: "secondary",
                 textAlign: ["center", "center", "right"],
                 minWidth: "200px",
                 gridColumn: [1],
-                fontSize: [6],
-                position: ["initial", "initial", "sticky"],
-                top: "8rem",
-                marginTop: "1rem",
               }}
             >
               Project Description
-            </Themed.h3>
+            </Heading>
             <BlockContent
               style={{
                 mx: ["auto", "auto", 0],
@@ -328,20 +313,17 @@ function Project(props) {
               alignItems: "start",
             }}
           >
-            <Themed.h3
+            <Heading
+              as="h3"
+              variant="stickySubHeading"
               sx={{
-                color: "secondary",
                 textAlign: ["center", "center", "right"],
                 minWidth: "200px",
                 gridColumn: [1],
-                fontSize: [6],
-                position: ["initial", "initial", "sticky"],
-                top: "8rem",
-                marginTop: "1rem",
               }}
             >
               Project Breakdown
-            </Themed.h3>
+            </Heading>
             <BlockContent
               style={{
                 mx: ["auto", "auto", 0],
@@ -414,14 +396,9 @@ function Project(props) {
                   paddingLeft: [0, 0, 3],
                 }}
               >
-                <Themed.h3
-                  sx={{
-                    color: lighten("secondary", 0.1),
-                    fontSize: [6],
-                  }}
-                >
+                <Heading as="h3" variant="contentSubHeading">
                   Exhibitions
-                </Themed.h3>
+                </Heading>
                 <Box
                   as="ul"
                   sx={{
@@ -478,17 +455,19 @@ function Project(props) {
               borderTop: "1px solid",
               borderColor: "muted",
               mt: 4,
+              pt: 4,
               textAlign: "center",
             }}
           >
-            <Themed.h3
+            <Heading
+              as="h3"
               sx={{
                 color: "primary",
                 fontSize: [8],
               }}
             >
               Related Projects
-            </Themed.h3>
+            </Heading>
             {categories && categories.length > 0 && categoriesButtons}
             <ProjectPreviewGrid nodes={filteredProjects} />
           </Box>

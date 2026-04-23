@@ -2,9 +2,8 @@ import React from "react";
 import Header from "./header";
 import Footer from "./footer";
 import { motion, AnimatePresence } from "framer-motion";
-import { Flex, Box } from "theme-ui";
+import { Flex } from "theme-ui";
 import { useLocation } from "@reach/router";
-import { alpha } from "@theme-ui/color";
 import Container from "./container";
 
 if (typeof window !== "undefined") {

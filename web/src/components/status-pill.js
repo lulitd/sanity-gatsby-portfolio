@@ -1,14 +1,13 @@
 import React from "react";
 import Icon from "./icon";
-import { Button, Box, Text, Flex, Image, Heading } from "theme-ui";
-import { darken, alpha, lighten } from "@theme-ui/color";
+import { Box, Paragraph } from "theme-ui";
 import { keyframes } from "@emotion/react";
 import Obfuscate from "react-obfuscate";
 
 const blinker = keyframes({
   "0%": { transform: "scale(1)", opacity: "0.75" },
   "50%": { transform: "scale(1.1)", opacity: "1" },
-  "100%": { transform: "scale(1)", opacity: "0.75" }
+  "100%": { transform: "scale(1)", opacity: "0.75" },
 });
 
 function StatusPill({ message, currentStatus, contactInfo, ...rest }) {
@@ -17,14 +16,14 @@ function StatusPill({ message, currentStatus, contactInfo, ...rest }) {
     <Obfuscate
       email={contactInfo}
       headers={{
-        subject: "Hello"
+        subject: "Hello",
       }}
     />
   );
   return (
     <Box
       data-status={currentStatus ?? "available"}
-      sx={theme => ({
+      sx={(theme) => ({
         "--pill-status-color": "grey",
         position: "relative",
         display: "inline-block",
@@ -36,33 +35,33 @@ function StatusPill({ message, currentStatus, contactInfo, ...rest }) {
         py: "0.75rem",
         pl: `calc(${notifSize}*4)`,
         fontSize: 12,
-        fontFamily: "btn",
         textTransform: "uppercase",
         fontWeight: 300,
         textDecoration: "line-through",
         lineHeight: "initial",
         "& p": {
-          m: 0
+          fontFamily: "btn",
+          m: 0,
         },
         "& a": {
           color: "var(--pill-status-color,grey)",
           fontWeight: 900,
           textDecoration: "none",
-          textTransform: "none"
+          textTransform: "none",
         },
         "&[data-status='available']": {
           "--pill-status-color": theme.colors.go,
-          textDecoration: "none"
+          textDecoration: "none",
         },
         "&[data-status='unavailable']": {
-          "--pill-status-color": "grey"
+          "--pill-status-color": "grey",
         },
         "&[data-status='unavailable']::before": {
-          animationPlayState: "paused"
+          animationPlayState: "paused",
         },
         "&[data-status='chat']": {
           "--pill-status-color": theme.colors.primary,
-          textDecoration: "none"
+          textDecoration: "none",
         },
         "&::before": {
           content: '""',
@@ -74,11 +73,11 @@ function StatusPill({ message, currentStatus, contactInfo, ...rest }) {
           height: notifSize,
           borderRadius: "pill",
           filter: "blur(2px)",
-          animation: `${blinker} 1s infinite cubic-bezier(0, 0, 0.2, 1)`
-        }
+          animation: `${blinker} 1s infinite cubic-bezier(0, 0, 0.2, 1)`,
+        },
       })}
     >
-      <p>Status: {message ?? "Let's Work Together"}</p>
+      <Paragraph>Status: {message ?? "Let's Work Together"}</Paragraph>
       {contactLink}
     </Box>
   );

@@ -3,7 +3,6 @@ import ProjectPreview from "./project-preview";
 import { Grid, Box, Heading } from "theme-ui";
 import ThemedLink from "./ThemedLink";
 import { Flex } from "rebass";
-import { Themed } from "@theme-ui/mdx";
 import { alpha } from "@theme-ui/color";
 const { isFuture, parseISO } = require("date-fns");
 

@@ -6,9 +6,7 @@ import ProjectPreviewGrid from "../components/project-preview-grid";
 import { SEO } from "../components/seo";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { Styled, Heading, Text } from "theme-ui";
-import { FaCentercode } from "react-icons/fa";
-import { Themed } from "@theme-ui/mdx";
+import { Heading } from "theme-ui";
 
 export const query = graphql`
   query ArchivePageQuery($currentDate: Date) {

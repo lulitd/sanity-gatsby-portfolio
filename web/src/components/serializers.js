@@ -1,4 +1,4 @@
-import { Themed } from '@theme-ui/mdx';
+import { Themed } from "@theme-ui/mdx";
 import Figure from "./figure";
 import React from "react";
 import EmbedVideo from "./embed-video";

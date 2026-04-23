@@ -1,8 +1,6 @@
 import React from "react";
-import { Link } from "gatsby";
 import ThemedLink from "./ThemedLink";
 import { Box } from "theme-ui";
-import { Themed } from "@theme-ui/mdx";
 
 function CategoryLinkList({ categories, currentCategory, all, used }) {
   if (!categories) return null;
@@ -27,24 +25,26 @@ function CategoryLinkList({ categories, currentCategory, all, used }) {
     const isCurrent = currentCat === cat.title;
     const path = `/projects${cat.title === "All" ? "" : "/category"}/${cat.slug.current}`;
     return (
-      <Themed.li sx={{ display: "inline-block", pr: "2", lineHeight: [3] }} key={cat.id}>
+      <Box as="li" sx={{ display: "inline-block", pr: "2", lineHeight: [3] }} key={cat.id}>
         <ThemedLink to={path} variant="outlineBtn" duration={2} activeClassName="active">
           {cat.title}
         </ThemedLink>
-      </Themed.li>
+      </Box>
     );
   });
   return (
     <Box pb={[4]}>
-      <Themed.ul
+      <Box
+        as="ul"
         sx={{
           listStyle: "none",
           margin: 0,
           p: 0,
+          bg: "red",
         }}
       >
         {list}
-      </Themed.ul>
+      </Box>
     </Box>
   );
 }

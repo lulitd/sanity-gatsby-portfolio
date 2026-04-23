@@ -1,10 +1,8 @@
 import React from "react";
-import Icon from "./icon";
-import { Button, Box, Text, Flex, Image, Heading } from "theme-ui";
-import { darken, alpha, lighten } from "@theme-ui/color";
+import { Box, Text, Flex } from "theme-ui";
+import { alpha } from "@theme-ui/color";
 import SanityImage from "gatsby-plugin-sanity-image";
 import { keyframes } from "@emotion/react";
-// import { useColorMode } from "theme-ui";
 
 const slide = keyframes({
   from: { transform: "translateX(0)" },
@@ -56,7 +54,7 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
   const logolist = LogoList(logos, logoHeight, duration);
 
   return (
-    <>
+    <Box>
       {title && (
         <Text
           as={"p"}
@@ -124,7 +122,7 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
         {logolist}
         {logolist}
       </Box>
-    </>
+    </Box>
   );
 }
 

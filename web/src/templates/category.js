@@ -5,7 +5,7 @@ import Container from "../components/container";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import ProjectPreviewGrid from "../components/project-preview-grid";
-import { Styled, Heading } from "theme-ui";
+import { Heading } from "theme-ui";
 
 export const query = graphql`
   query CategoryTemplateQuery($id: String!, $currentDate: Date) {

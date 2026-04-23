@@ -1,15 +1,12 @@
 import React from "react";
-import ProjectPreview from "./project-preview";
-import { Grid, Box } from "theme-ui";
-import { Themed } from '@theme-ui/mdx';
+import { Grid, Box, Heading } from "theme-ui";
 import ThemedLink from "./ThemedLink";
 import PostPreview from "./post-preview";
-
 
 function PostPreviewGrid(props) {
   return (
     <Box>
-      {props.title && <Themed.h2>{props.title}</Themed.h2>}
+      {props.title && <Heading as="h2">{props.title}</Heading>}
       <Grid
         as="ul"
         gap={[3, 4]}
@@ -26,9 +23,9 @@ function PostPreviewGrid(props) {
       >
         {props.nodes &&
           props.nodes.map((node) => (
-            <Themed.li key={node._id} sx={{ height: "100%" }}>
+            <Box as="li" key={node._id} sx={{ height: "100%" }}>
               <PostPreview {...node} />
-            </Themed.li>
+            </Box>
           ))}
       </Grid>
       {props.browseMoreHref && (

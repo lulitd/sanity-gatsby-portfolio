@@ -15,7 +15,6 @@ export const SEO = ({ title, description, image, pathname, children }) => {
 
   let imgURL;
   if (sanityImg) imgURL = imageUrlFor(sanityImg);
-  console.log(sanityImg);
 
   const seo = {
     title: [title, defaultTitle].filter(Boolean).join(" — "),

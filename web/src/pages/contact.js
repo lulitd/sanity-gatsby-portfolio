@@ -4,9 +4,7 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import { SEO } from "../components/seo";
 import AnimHello from "../animIcons/animHello";
-import { Label, Input, Textarea, Button } from "theme-ui";
-import { Heading, Box, Flex, Grid } from "theme-ui";
-import { Themed } from "@theme-ui/mdx";
+import { Label, Input, Textarea, Button, Heading, Box, Grid, Paragraph } from "theme-ui";
 
 const ContactPage = (props) => {
   const { data, errors } = props;
@@ -37,10 +35,11 @@ const ContactPage = (props) => {
             method="POST"
             action="https://usebasin.com/f/aeb507374cd0"
             role="form"
+            pb={4}
           >
-            <Themed.p>
+            <Paragraph>
               Whether for a potential project or just to say hi, my inbox is always open.
-            </Themed.p>
+            </Paragraph>
             <Grid columns="1fr 1fr">
               <Box>
                 <Label htmlFor="form_name" variant="labelRequired">
@@ -77,7 +76,7 @@ const ContactPage = (props) => {
                 id="form_message"
                 name="message"
                 placeholder="Message for me"
-                rows="6"
+                rows={6}
                 required="required"
                 data-error="Please, leave a message."
               ></Textarea>
@@ -85,8 +84,8 @@ const ContactPage = (props) => {
             <Button type="submit" variant="outlineBtn">
               Get In Touch
             </Button>
-            <Themed.p>I'll try my best to answer your email!</Themed.p>
           </Box>
+          <Paragraph>I'll try my best to answer your email!</Paragraph>
         </Box>
         <Box
           as="aside"

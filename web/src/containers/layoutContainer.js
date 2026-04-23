@@ -33,10 +33,10 @@ function LayoutContainer(props) {
   return (
     <StaticQuery
       query={query}
-      render={data => {
+      render={(data) => {
         if (!data.site) {
           throw new Error(
-            'Missing "Site settings". Open the studio at http://localhost:3333 and add "Site settings" data'
+            'Missing "Site settings". Open the studio at http://localhost:3333 and add "Site settings" data',
           );
         }
         return (
@@ -48,7 +48,7 @@ function LayoutContainer(props) {
               authorStatus={{
                 statusAvailablity: data.site.statusAvailablity,
                 statusMessage: data.site.statusMessage,
-                contactEmail: data.site.contactEmail
+                contactEmail: data.site.contactEmail,
               }}
               siteTitle={data.site.title}
               onHideNav={handleHideNav}

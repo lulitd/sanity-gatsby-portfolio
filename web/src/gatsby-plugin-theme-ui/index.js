@@ -1,4 +1,5 @@
 import { getColor, shade, lightness, lighten, alpha, darken } from "@theme-ui/color";
+import { color } from "framer-motion";
 
 const theme = {
   sizes: {
@@ -46,7 +47,7 @@ const theme = {
     nav: '"Space Mono","Inter","Helvetica Neue",sans-serif',
     monospace: '"Space Mono","monospace"',
   },
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048],
+  space: [0, 4, 8, 12, 16, 24, 32, 48, 64],
   radii: {
     none: "0",
     small: "0.25rem",
@@ -75,14 +76,11 @@ const theme = {
     btn: 400,
   },
   lineHeights: {
-    body: "1.6rem",
-    heading: 1,
+    body: 1.4,
+    subheading: 1.2,
+    heading: 1.2,
   },
   text: {
-    color: "body",
-    fontFamily: "body",
-    fontWeight: "body",
-    lineHeight: "body",
     heading: {
       color: "heading",
       fontFamily: "heading",
@@ -90,8 +88,8 @@ const theme = {
       fontWeight: "heading",
       fontStyle: "normal",
       fontSize: [6, 7, 7],
-      marginTop: "0.75em",
-      marginBottom: "1em",
+      mt: 0,
+      mb: 4,
       textWrap: "balance",
     },
     title: {
@@ -101,9 +99,21 @@ const theme = {
     subheading: {
       variant: "text.body",
       color: "muted",
-      fontWeight: "body",
+      lineHeight: "subheading",
       fontSize: [3, 4, 4],
     },
+    contentSubHeading: {
+      variant: "styles.h3",
+      color: "secondary",
+      fontSize: [6],
+    },
+    stickySubHeading: {
+      variant: "text.contentSubHeading",
+      position: ["initial", "initial", "sticky"],
+      top: "8rem",
+      marginTop: "1rem",
+    },
+
     brackets: {
       variant: "text.subheading",
       "&:before": {
@@ -252,16 +262,19 @@ const theme = {
   },
   forms: {
     label: {
-      fontSize: 2,
-      fontWeight: "bold",
-      pb: 1,
-      color: "muted",
+      color: "secondary",
+      fontFamily: "nav",
+      fontWeight: "btn",
+      letterSpacing: [1],
+      fontSize: [3],
+      textDecoration: "none",
+      textTransform: "uppercase",
     },
     labelRequired: {
       variant: "forms.label",
       "&:after": {
         content: '"*"',
-        color: "secondary",
+        color: "third300",
       },
     },
     input: {
@@ -288,7 +301,8 @@ const theme = {
     },
     textarea: {
       variant: "forms.input",
-      resize: "none",
+      resize: "vertical",
+      fieldSizing: "fixed",
     },
   },
   styles: {
@@ -304,49 +318,39 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       textTransform: "uppercase",
+      textWrap: "balance",
       fontSize: [6, 7],
+      mt: 0,
+      mb: 4,
     },
     h2: {
-      color: "heading",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
+      variant: "styles.h1",
       fontSize: [5, 6],
+      mt: 0,
+      mb: 3,
     },
     h3: {
-      color: "heading",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: [9],
+      variant: "styles.h1",
+      fontSize: [4, 5],
+      mt: 0,
+      mb: 3,
     },
 
     h4: {
-      color: "heading",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
+      variant: "styles.h3",
       fontSize: [3, 4],
     },
     h5: {
-      color: "heading",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
+      variant: "styles.h3",
       fontSize: [2, 3],
     },
     h6: {
-      color: "heading",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
+      variant: "styles.h3",
       fontSize: [1, 2],
     },
     p: {
-      color: "body",
-      fontFamily: "body",
-      fontWeight: "body",
-      lineHeight: "body",
+      mt: 0,
+      mb: 3,
     },
     a: {
       color: "primary",
@@ -386,19 +390,17 @@ const theme = {
       maxWidth: "100%",
     },
     ol: {
-      fontFamily: "body",
-      fontWeight: "body",
-      lineHeight: "body",
+      mt: 0,
+      mb: 3,
+      pl: 3,
     },
     ul: {
-      fontFamily: "body",
-      fontWeight: "body",
-      lineHeight: "body",
+      mt: 0,
+      mb: 3,
+      pl: 3,
     },
     li: {
-      fontFamily: "body",
-      fontWeight: "body",
-      lineHeight: "body",
+      mb: 1,
     },
   },
 };

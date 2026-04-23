@@ -1,43 +1,84 @@
-#Hello g {
-  animation: text-wave 5s ease-in 0s infinite;
+/* =========================
+   Type
+   ========================= */
+#hello-keyboard_svg__h {
+  animation: fade-key-letter 5s linear infinite;
 }
 
-#h {
-  animation: fade-h 5s linear 0s infinite;
+#hello-keyboard_svg__e {
+  animation: fade-key-letter 5s linear infinite;
+  animation-delay: 0.65s;
 }
 
-#e {
-  animation: fade-e 5s linear 0s infinite;
+#hello-keyboard_svg__l {
+  animation: fade-key-letter-l 5s linear infinite;
+  animation-delay: 1.4s;
 }
 
-#l {
-  animation: fade-l-l 5s linear 0s infinite;
+#hello-keyboard_svg__o {
+  animation: fade-key-letter 5s linear infinite;
+  animation-delay: 2.9s;
+} 
+
+/* =========================
+   Sun Fade in out
+   ========================= */
+#hello-keyboard_svg__sun-large{  animation: fade 5s ease-in-out 0s infinite;}
+
+/* =========================
+   WAVE (bounce the letters)
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+#hello-keyboard_svg__hello-H {
+  animation: text-wave-fade 5s linear infinite;
+  animation-delay: 0.5s;
 }
 
-#o {
-  animation: fade-o 5s linear 0s infinite;
+#hello-keyboard_svg__hello-E {
+  animation: text-wave-fade 5s linear infinite;
+  animation-delay: 1.15s;
 }
 
-#sun-large{  animation: fade 5s ease-in-out 0s infinite;}
-
-#Hello g:nth-of-type(1) {
-  animation-delay: .5s
+#hello-keyboard_svg__hello-L-1 {
+   animation: text-wave-fade 5s linear infinite;
+   animation-delay: 1.9s;
 }
 
-#Hello g:nth-of-type(2) {
-  animation-delay: 1.15s
+#hello-keyboard_svg__hello-L-2{
+   animation: text-wave-fade 5s linear infinite;
+   animation-delay: 2.65s;
 }
 
-#Hello g:nth-of-type(3) {
-  animation-delay: 1.9s
+#hello-keyboard_svg__hello-O {
+   animation: text-wave-fade 5s linear infinite;
+   animation-delay: 3.4s;
 }
 
-#Hello g:nth-of-type(4) {
-  animation-delay: 2.65s
 }
 
-#Hello g:nth-of-type(5) {
-  animation-delay: 3.4s
+#hello-keyboard_svg__hello-H {
+  animation: text-wave-scale 5s linear infinite;
+  animation-delay: 0.5s;
+}
+
+#hello-keyboard_svg__hello-E {
+  animation: text-wave-scale 5s linear infinite;
+  animation-delay: 1.15s;
+}
+
+#hello-keyboard_svg__hello-L-1 {
+   animation: text-wave-scale 5s linear infinite;
+   animation-delay: 1.9s;
+}
+
+#hello-keyboard_svg__hello-L-2{
+   animation: text-wave-scale 5s linear infinite;
+   animation-delay: 2.65s;
+}
+
+#hello-keyboard_svg__hello-O {
+   animation: text-wave-scale 5s linear infinite;
+   animation-delay: 3.4s;
 }
 
 @keyframes fade{
@@ -51,115 +92,81 @@
 }
 }
 
-@keyframes text-wave {
+@keyframes text-wave-scale {
   0% {
-    transform: translateY(0px);
+    /* transform: translateY(0px); */
+    transform: scale(1.25);
     transform-box: fill-box;
-    transform-origin: bottom;
+    transform-origin: center;
   }
 
   100% {
-    transform: translateY(25px);
+    /* transform: translateY(60px); */
+    transform: scale(0.9);
     transform-box: fill-box;
-    transform-origin: bottom;
+    transform-origin: center;
   }
 }
 
-@keyframes fade-h {
+@keyframes text-wave-fade {
   0% {
-    filter: grayscale(0);
+     opacity: 1;
+  }
+
+  100% {
+   opacity: 0.3;
+  }
+}
+
+@keyframes fade-key-letter {
+  0% {
+     opacity: 1;
   }
 
   5% {
-    filter: grayscale(0);
+     opacity: 1;
   }
 
   10% {
-    filter: grayscale(1);
+     opacity: 0;
   }
 
   15% {
-    filter: grayscale(0);
+      opacity: 1;
   }
 
   100% {
-    filter: grayscale(0);
+      opacity: 1;
   }
 }
 
-@keyframes fade-e {
+@keyframes fade-key-letter-l {
   0% {
-    filter: grayscale(0);
+     opacity: 1;
   }
 
-  20% {
-    filter:grayscale(0);
+  5% {
+     opacity: 1;
   }
 
-  25% {
-    filter: grayscale(1);
+  10% {
+     opacity: 0;
   }
 
+  15% {
+      opacity: 1;
+  }
+ 20% {
+      opacity: 1;
+  }
+  25%{
+       opacity: 0;
+  }
   30% {
-    filter: grayscale(0);
-  }
-  100% {
-    filter: grayscale(0);
-  }
-}
-
-@keyframes fade-l-l {
-  0% {
-    filter: grayscale(0);
-  }
-
-  35% {
-    filter: grayscale(0);
-  }
-
-  40% {
-    filter: grayscale(1);
-  }
-
-  45% {
-    filter: grayscale(0);
-  }
-
-  50% {
-    filter: grayscale(0);
-  }
-
-  55% {
-    filter: grayscale(1);
-  }
-
-  60% {
-    filter: grayscale(0);
+      opacity: 1;
   }
 
   100% {
-    filter: grayscale(0);
-  }
-}
-
-@keyframes fade-o {
-  0% {
-    filter: grayscale(0);
-  }
-
-  65% {
-    filter: grayscale(0);
-  }
-
-  70% {
-    filter: grayscale(1);
-  }
-
-  75% {
-    filter: grayscale(0);
-  }
-
-  100% {
-    filter: grayscale(0);
+      opacity: 1;
   }
 }

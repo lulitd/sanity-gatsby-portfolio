@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../containers/layoutContainer";
 import { SEO } from "../components/seo";
 import Container from "../components/container";
-import { Heading, Flex, Button, Box, Card, Grid } from "theme-ui";
+import { Heading, Flex, Button, Box, Card, Grid, Paragraph } from "theme-ui";
 import { Themed } from "@theme-ui/mdx";
 import ThemedLink from "../components/ThemedLink";
 import Icon from "../components/icon";
@@ -74,10 +74,9 @@ const StylePreviewPage = () => (
 
     <Container>
       <Heading variant="title">Typeography: Title</Heading>
-      <Heading variant="heading">Default heading</Heading>
+      <Heading>Default heading</Heading>
       <Heading variant="subheading">Subheading</Heading>
       <Heading variant="brackets">Brackets variant</Heading>
-      <Heading variant="barcodes">Barcodes variant</Heading>
       <Themed.h1>H1 Heading</Themed.h1>
       <Themed.p>
         Hi, I'm Lalaine. Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am
@@ -85,6 +84,19 @@ const StylePreviewPage = () => (
         software that tells compelling stories <Themed.a>and spark curiosity</Themed.a> across many
         mediums and platforms.{" "}
       </Themed.p>
+
+      <Paragraph>
+        Hi, I'm Lalaine. Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am
+        a new media artist and software developer, but I am a storyteller at heart. I develop
+        software that tells compelling stories <Themed.a>and spark curiosity</Themed.a> across many
+        mediums and platforms.{" "}
+      </Paragraph>
+      <Paragraph>
+        Hi, I'm Lalaine. Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am
+        a new media artist and software developer, but I am a storyteller at heart. I develop
+        software that tells compelling stories <Themed.a>and spark curiosity</Themed.a> across many
+        mediums and platforms.{" "}
+      </Paragraph>
       <Themed.h2>H2 Heading</Themed.h2>
       <Themed.p>
         Hi, I'm Lalaine. Based in Toronto, Canada, I've been described as a jack-of-all-trades. I am

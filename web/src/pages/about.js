@@ -4,11 +4,9 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import { SEO } from "../components/seo";
 import BlockContent from "../components/block-content";
-import { buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
-import SocialsFromBio from "../components/socials-from-bio";
-import { Label, Box, Flex, Heading, Image, Grid } from "theme-ui";
-import { alpha } from "@theme-ui/color";
+// import { buildImageObj } from "../lib/helpers";
+// import { imageUrlFor } from "../lib/image-url";
+import { Box, Heading, Grid } from "theme-ui";
 import SanityImage from "gatsby-plugin-sanity-image";
 
 export const query = graphql`
@@ -40,7 +38,6 @@ const AboutPage = (props) => {
   }
 
   const site = (data || {}).site;
-
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',

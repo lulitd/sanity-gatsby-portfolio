@@ -2,12 +2,11 @@ import React from "react";
 import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
-import ProjectPreviewGrid from "../components/project-preview-grid";
 import { SEO } from "../components/seo";
-import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { Themed } from "@theme-ui/mdx";
 import PostPreviewGrid from "../components/post-preview-grid";
+import { Heading } from "theme-ui";
+
 export const query = graphql`
   query PostPageQuery {
     posts: allSanityPost(
@@ -37,7 +36,7 @@ export const query = graphql`
   }
 `;
 
-const ArchivePage = (props) => {
+const BlogPage = (props) => {
   const { data, errors } = props;
   if (errors) {
     return <GraphQLErrorList errors={errors} />;
@@ -50,15 +49,21 @@ const ArchivePage = (props) => {
       {!postNodes ||
         (postNodes.length <= 0 && (
           <>
-            <Themed.h1 sx={{ py: 1 }}>Coming Soon</Themed.h1>
+            <Heading as={"h2"} sx={{ py: 1 }}>
+              Coming Soon
+            </Heading>
           </>
         ))}
-      {postNodes && postNodes.length > 0 && <Themed.h1 sx={{ py: 1 }}>All Posts</Themed.h1>}
+      {postNodes && postNodes.length > 0 && (
+        <Heading as={"h2"} sx={{ py: 1 }}>
+          All Posts
+        </Heading>
+      )}
       {postNodes && postNodes.length > 0 && <PostPreviewGrid nodes={postNodes} columns={[1]} />}
     </Container>
   );
 };
 
-export default ArchivePage;
+export default BlogPage;
 
 export const Head = () => <SEO title="Blog" />;

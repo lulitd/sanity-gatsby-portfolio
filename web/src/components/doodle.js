@@ -1,9 +1,8 @@
-import { lighten, alpha } from "@theme-ui/color";
 import React, { useEffect } from "react";
 import { useExternalScript } from "../hooks/use-external-script";
 
 export default ({ colors }) => {
-  const doodleSrc = "https://unpkg.com/css-doodle@0.34.3/css-doodle.min.js";
+  const doodleSrc = "https://esm.sh/css-doodle/css-doodle.min.js?raw";
   const status = useExternalScript(doodleSrc);
 
   return (

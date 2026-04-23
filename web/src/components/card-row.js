@@ -1,10 +1,8 @@
 import React from "react";
 import Icon from "./icon";
-import { Button, Box, Text, Flex, Image, Heading, Card, Grid } from "theme-ui";
-import { darken, alpha, lighten, complement } from "@theme-ui/color";
-import SanityImage from "gatsby-plugin-sanity-image";
-import { keyframes } from "@emotion/react";
-import { useThemeUI } from "theme-ui";
+import { Box, Text, Heading, Card, Grid } from "theme-ui";
+import { alpha } from "@theme-ui/color";
+
 function CardRow({ headingLevel, infoList }) {
   headingLevel = headingLevel ?? "h4";
 

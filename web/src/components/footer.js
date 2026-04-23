@@ -4,14 +4,11 @@ import Container from "./container";
 import { alpha } from "@theme-ui/color";
 import ThemedLink from "./ThemedLink";
 import StatusPill from "./status-pill";
-import { useThemeUI, Flex, Text, Box } from "theme-ui";
+import { Text, Box } from "theme-ui";
 
 const CleanLink = ({ to, children }) => {
-  const context = useThemeUI();
-  const { colors } = context.theme;
   return (
     <ThemedLink
-      hex={colors.primary}
       to={to}
       sx={{
         color: "primary",
@@ -19,7 +16,6 @@ const CleanLink = ({ to, children }) => {
         fontWeight: "a",
         "&:hover,&:focus": {
           color: "third",
-
           textDecoration: "underline",
         },
       }}

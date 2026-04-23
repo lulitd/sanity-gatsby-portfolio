@@ -1,9 +1,8 @@
 import React from "react";
 import Icon from "./icon";
-import { Button,Box,Text} from "theme-ui";
+import { Button, Box, Text } from "theme-ui";
 
-
-function SocialsFromBio({ bio,withLabels,iconStyle, ...rest }) {
+function SocialsFromBio({ bio, withLabels, iconStyle, ...rest }) {
   let socials = [];
 
   //if (!bio) return null;
@@ -27,7 +26,7 @@ function SocialsFromBio({ bio,withLabels,iconStyle, ...rest }) {
         sx={iconStyle}
       >
         <Icon symbol={social.name} />
-        {withLabels?<Text>{social.name}</Text>:null}
+        {withLabels ? <Text>{social.name}</Text> : null}
       </Button>
     );
   });

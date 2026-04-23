@@ -1,21 +1,10 @@
-import { Link } from "gatsby";
 import React from "react";
-import { cn, buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
-import BlockText from "./block-text";
-import { Styled, Grid, Card, Box, Heading, Text, Flex } from "theme-ui";
-import { lighten, darken, alpha } from "@theme-ui/color";
+import { Grid, Box, Heading, Text, Flex, Paragraph } from "theme-ui";
 import ThemedLink from "./ThemedLink";
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { useThemeUI } from "theme-ui";
 import SanityImage from "gatsby-plugin-sanity-image";
-import { Themed } from "@theme-ui/mdx";
 
 function ProjectPreview(props) {
   const img = props.thumbImage ?? props.mainImage ?? null;
-
-  const context = useThemeUI();
-  const { colors } = context.theme;
 
   const cats =
     props.categories &&
@@ -35,7 +24,7 @@ function ProjectPreview(props) {
       <Flex
         sx={{
           flexDirection: "column",
-          justifyContent: "space-evenly",
+          justifyContent: "center",
           p: [2, 3, 3],
           mb: 3,
         }}
@@ -80,26 +69,19 @@ function ProjectPreview(props) {
         </Box>
         <Box
           sx={{
-            pb: "2",
+            textWrapStyle: "pretty",
+            my: 3,
           }}
         >
           {(props.excerpt || props.subtitle) && (
-            <Themed.p
-              sx={{
-                color: "body",
-                letterSpacing: "0",
-                lineHeight: "body",
-                fontFamily: "body",
-                opacity: 1,
-                textWrapStyle: "pretty",
-              }}
-              as="p"
-            >
-              {props.excerpt ? props.excerpt : props.subtitle}
-            </Themed.p>
+            <Paragraph>{props.excerpt ? props.excerpt : props.subtitle}</Paragraph>
           )}
         </Box>
-        <Box>
+        <Box
+          sx={{
+            my: 2,
+          }}
+        >
           <ThemedLink variant="outlineBtn" to={`/project/${props.slug.current}`}>
             Learn More
           </ThemedLink>

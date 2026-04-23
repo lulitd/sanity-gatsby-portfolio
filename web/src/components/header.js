@@ -1,22 +1,10 @@
 import React from "react";
 import Icon from "./icon";
-import { Button, Box, Flex, Grid } from "theme-ui";
+import { Button, Box, Flex } from "theme-ui";
 import Container from "./container";
 import ThemedLink from "./ThemedLink";
-import { lighten } from "@theme-ui/color";
 import { alpha } from "@theme-ui/color";
-import { Themed } from "@theme-ui/mdx";
-import { secondsToMilliseconds } from "date-fns";
-import { keyframes } from "@emotion/react";
 import StatusPill from "./status-pill";
-// import { useColorMode } from "theme-ui";
-
-const iconAnim = keyframes`
- 0%{transform: translateY(0px)},
- 25%{transform: translateY(-12px)},
- 50%{transform: translateY(0px)},
- 100%{transform: translateY(0px)}
-`;
 
 const Branding = (props) => (
   <Box flex="1">
