@@ -9,7 +9,7 @@ const slide = keyframes({
   to: { transform: "translateX(-100%)" },
 });
 
-function LogoList(logos, logoSize, duration) {
+function LogoList({ logos, logoSize, duration, prefix }) {
   return (
     <Box
       className="logoList"
@@ -31,7 +31,7 @@ function LogoList(logos, logoSize, duration) {
         {logos.map((logo, i) => {
           return (
             <SanityImage
-              _key={`logo-${i}`}
+              key={`${prefix}-${logo.asset._id}`}
               alt={logo.asset.altText}
               {...logo}
               sx={{
@@ -51,7 +51,6 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
   backgroundColor = backgroundColor ?? "third";
 
   if (!logos || logos.length == 0) return null;
-  const logolist = LogoList(logos, logoHeight, duration);
 
   return (
     <Box>
@@ -119,8 +118,8 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
           },
         }}
       >
-        {logolist}
-        {logolist}
+        <LogoList logos={logos} logoSize={logoHeight} duration={duration} prefix="first" />
+        <LogoList logos={logos} logoSize={logoHeight} duration={duration} prefix="second" />
       </Box>
     </Box>
   );

@@ -3,7 +3,7 @@ import { Grid, Box, Heading } from "theme-ui";
 import ThemedLink from "./ThemedLink";
 import PostPreview from "./post-preview";
 
-function PostPreviewGrid(props) {
+function PostPreviewGrid({ title = "", nodes: [], browseMoreHref = "", columns = [1, 2, null] }) {
   return (
     <Box>
       {props.title && <Heading as="h2">{props.title}</Heading>}
@@ -38,12 +38,5 @@ function PostPreviewGrid(props) {
     </Box>
   );
 }
-
-PostPreviewGrid.defaultProps = {
-  title: "",
-  nodes: [],
-  browseMoreHref: "",
-  columns: [1, 2, null],
-};
 
 export default PostPreviewGrid;

@@ -18,6 +18,7 @@ import LogoScroller from "../components/logo-scroller";
 import Doodles from "../components/doodle";
 import CardRow from "../components/card-row";
 import StatusPill from "../components/status-pill";
+import { da } from "date-fns/locale";
 
 export const query = graphql`
   query IndexPageQuery {
@@ -58,7 +59,7 @@ export const query = graphql`
       }
     }
     projects: allSanityProject(
-      limit: 6
+      limit: 4
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null }, featured: { eq: true } }
     ) {
       edges {
@@ -126,13 +127,16 @@ const IndexPage = (props) => {
 
   const site = (data || {}).site;
   const archiveOrder = (site || {}).archive;
+
   const projectNodes = (data || {}).projects
     ? mapEdgesToNodes(data.projects)
         .filter(filterOutDocsWithoutSlugs)
         .filter(filterOutDocsPublishedInTheFuture)
     : [];
+
   const profileImage = site.author.image;
   const featuredLogos = site.featuredLogos;
+
   const postNodes = (data || {}).posts
     ? mapEdgesToNodes(data.posts)
         .filter(filterOutDocsWithoutSlugs)

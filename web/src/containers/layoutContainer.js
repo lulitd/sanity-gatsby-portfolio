@@ -2,6 +2,8 @@ import { graphql, StaticQuery } from "gatsby";
 import React, { useState } from "react";
 import Layout from "../components/layout";
 import GlobalStyle from "../components/globalStyle";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 const query = graphql`
   query SiteTitleQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
@@ -30,35 +32,25 @@ function LayoutContainer(props) {
     setShowNav(false);
   }
 
+  const { title, statusAvailablity, statusMessage, contactEmail, author } = useSiteMetadata();
+
   return (
-    <StaticQuery
-      query={query}
-      render={(data) => {
-        if (!data.site) {
-          throw new Error(
-            'Missing "Site settings". Open the studio at http://localhost:3333 and add "Site settings" data',
-          );
-        }
-        return (
-          <>
-            <GlobalStyle />
-            <Layout
-              {...props}
-              showNav={showNav}
-              authorStatus={{
-                statusAvailablity: data.site.statusAvailablity,
-                statusMessage: data.site.statusMessage,
-                contactEmail: data.site.contactEmail,
-              }}
-              siteTitle={data.site.title}
-              onHideNav={handleHideNav}
-              onShowNav={handleShowNav}
-              author={data.site.author}
-            />
-          </>
-        );
-      }}
-    />
+    <>
+      <GlobalStyle />
+      <Layout
+        {...props}
+        showNav={showNav}
+        authorStatus={{
+          statusAvailablity: statusAvailablity,
+          statusMessage: statusMessage,
+          contactEmail: contactEmail,
+        }}
+        siteTitle={title}
+        onHideNav={handleHideNav}
+        onShowNav={handleShowNav}
+        author={author}
+      />
+    </>
   );
 }
 

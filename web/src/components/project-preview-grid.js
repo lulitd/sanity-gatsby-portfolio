@@ -13,7 +13,7 @@ function ShouldSpanFull(id, length) {
   return true;
 }
 
-function ProjectPreviewGrid({ nodes, title, order, columns, ...props }) {
+function ProjectPreviewGrid({ nodes = [], title = "", order, columns = [1, 1, 2], ...props }) {
   let filtered = nodes.filter((node) => !isFuture(parseISO(node.publishedAt)));
 
   if (order) {
@@ -106,12 +106,5 @@ function ProjectPreviewGrid({ nodes, title, order, columns, ...props }) {
     </Box>
   );
 }
-
-ProjectPreviewGrid.defaultProps = {
-  title: "",
-  nodes: [],
-  browseMoreHref: "",
-  columns: [1, 1, 2],
-};
 
 export default ProjectPreviewGrid;

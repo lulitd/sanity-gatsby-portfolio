@@ -16,7 +16,6 @@ export const query = graphql`
         title
       }
     }
-
     projects: allSanityProject(
       sort: { publishedAt: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null, lte: $currentDate } }
@@ -48,7 +47,6 @@ export const query = graphql`
         }
       }
     }
-
     usedCategories: allSanityProject(
       sort: { publishedAt: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null, lt: $currentDate } }

@@ -9,6 +9,12 @@ import { Heading } from "theme-ui";
 
 export const query = graphql`
   query CategoryTemplateQuery($id: String!, $currentDate: Date) {
+    archive: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+      archive {
+        _id
+        title
+      }
+    }
     category: sanityCategory(id: { eq: $id }) {
       id
       title
@@ -29,7 +35,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          id
+          _id
           publishedAt
           mainImage {
             ...ImageWithPreview
@@ -86,6 +92,7 @@ const CategoryTemplate = (props) => {
     data && data.projects && mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
 
   const usedCategories = data && data.usedCategories;
+  const archiveOrder = data && data.archive.archive;
 
   return (
     <>
@@ -111,7 +118,9 @@ const CategoryTemplate = (props) => {
           used={usedCategories}
         />
 
-        {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}
+        {projectNodes && projectNodes.length > 0 && (
+          <ProjectPreviewGrid nodes={projectNodes} order={archiveOrder} />
+        )}
       </Container>
     </>
   );

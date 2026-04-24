@@ -16,6 +16,16 @@ export const useSiteMetadata = () => {
         nodes {
           keywords
           title
+          statusAvailablity
+          statusMessage
+          contactEmail
+          author {
+            github
+            instagram
+            twitter
+            linkedin
+            name
+          }
           socialImage {
             ...ImageWithPreview
           }
@@ -35,7 +45,12 @@ export const useSiteMetadata = () => {
     siteUrl:siteMetadata.siteUrl,
     keywords: sanity.keywords,
     twitterUsername:  siteMetadata.twitterUsername,
+    statusAvailablity:sanity.statusAvailablity,
+    statusMessage:sanity.statusMessage,
+    contactEmail:sanity.contactEmail,
+    author: sanity.author
   };
     
   return siteSettings; 
 }
+
