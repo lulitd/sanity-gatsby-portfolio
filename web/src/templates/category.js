@@ -39,9 +39,15 @@ export const query = graphql`
           publishedAt
           mainImage {
             ...ImageWithPreview
+            asset {
+              altText
+            }
           }
           thumbImage {
             ...ImageWithPreview
+            asset {
+              altText
+            }
           }
           title
           subtitle
