@@ -35,6 +35,9 @@ export const query = graphql`
         publishedAt
         mainImage {
           ...ImageWithPreview
+          asset {
+            altText
+          }
         }
         _id
         slug {
@@ -43,9 +46,15 @@ export const query = graphql`
       }
       mainImage {
         ...ImageWithPreview
+        asset {
+          altText
+        }
       }
       thumbImage {
         ...ImageWithPreview
+        asset {
+          altText
+        }
       }
       title
       subtitle
@@ -75,9 +84,6 @@ export const query = graphql`
           linkedin
           github
           instagram
-          image {
-            ...ImageWithPreview
-          }
           name
         }
         roles

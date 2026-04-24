@@ -68,9 +68,15 @@ export const query = graphql`
           _id
           mainImage {
             ...ImageWithPreview
+            asset {
+              altText
+            }
           }
           thumbImage {
             ...ImageWithPreview
+            asset {
+              altText
+            }
           }
           title
           subtitle
@@ -107,6 +113,9 @@ export const query = graphql`
           }
           mainImage {
             ...ImageWithPreview
+            asset {
+              altText
+            }
           }
         }
       }

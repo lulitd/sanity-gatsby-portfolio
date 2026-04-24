@@ -26,7 +26,6 @@ const Layout = ({
 
   return (
     <Flex
-      {...rest}
       sx={{
         flexDirection: "column",
         minHeight: "100vh",

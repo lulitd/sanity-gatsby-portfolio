@@ -27,9 +27,15 @@ export const query = graphql`
           _id
           mainImage {
             ...ImageWithPreview
+            asset {
+              altText
+            }
           }
           thumbImage {
             ...ImageWithPreview
+            asset {
+              altText
+            }
           }
           title
           subtitle

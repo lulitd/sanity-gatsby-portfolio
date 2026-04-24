@@ -34,6 +34,7 @@ function LogoList({ logos, logoSize, duration, prefix }) {
               key={`${prefix}-${logo.asset._id}`}
               alt={logo.asset.altText}
               {...logo}
+              height={logoSize}
               sx={{
                 height: logoSize,
               }}
