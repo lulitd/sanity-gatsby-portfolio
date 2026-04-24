@@ -8,8 +8,6 @@ const { isFuture, parseISO, format } = require("date-fns");
 async function createProjectPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const todayDate = format(new Date(), "yyyy-MM-dd");
-  //const todayDate = "2024-07-07T01:05:00.000Z";
-  console.log(todayDate);
   const result = await graphql(`
     query IndexPageQuery {
       projects: allSanityProject(

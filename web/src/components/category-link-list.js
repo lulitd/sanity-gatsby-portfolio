@@ -40,7 +40,6 @@ function CategoryLinkList({ categories, currentCategory, all, used }) {
           listStyle: "none",
           margin: 0,
           p: 0,
-          bg: "red",
         }}
       >
         {list}
