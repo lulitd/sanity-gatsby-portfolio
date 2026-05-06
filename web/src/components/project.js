@@ -7,6 +7,7 @@ import Container from "./container";
 import RoleList from "./role-list";
 import SocialsFromBio from "./socials-from-bio";
 import ProjectPreviewGrid from "./project-preview-grid";
+import ParallaxHero from "./parallaxHero";
 import { Grid, Heading, Box, Text, Flex } from "theme-ui";
 import ThemedLink from "./ThemedLink";
 import { alpha, lighten } from "@theme-ui/color";
@@ -200,31 +201,7 @@ function Project(props) {
   return (
     <Container as="article" sx={{ p: [0, 0, 0] }}>
       {/* Title and Image */}
-      <Grid
-        sx={{
-          minHeight: "100px",
-          textAlign: "center",
-          height: ["75vh"],
-          gridTemplateColumns: ["1fr 6fr 1fr", "1fr 4fr 1fr", "1fr 2fr 1fr", "1fr 3fr 1fr"],
-          gridTemplateRows: ["1fr 2fr 1fr", "1fr 2fr 1fr", "1fr 2fr 1fr", "1fr 3fr 1fr"],
-          background: [
-            bgUrl
-              ? `url(${bgUrl})`
-              : (t) => `
-          linear-gradient(
-          to bottom,
-          ${alpha("background", 1)(t)},
-          ${alpha("background", 1)(t)},
-          ${alpha("primary", 0.5)(t)}
-        )`,
-          ],
-          backgroundSize: "cover",
-          backgroundAttachment: "fixed",
-          backgroundPositionY: `${(imageHotspot ? imageHotspot.y : 0.5) * 100}%`,
-          backgroundPositionX: `${(imageHotspot ? imageHotspot.x : 0.5) * 100}%`,
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+      <ParallaxHero mainImage={mainImage}>
         <Box
           sx={{
             gridArea: "2/2",
@@ -236,6 +213,7 @@ function Project(props) {
             borderColor: "primary",
             backgroundColor: alpha("background", 0.5),
             backdropFilter: "blur(2em)",
+            textAlign: "center",
           }}
         >
           <Heading
@@ -258,7 +236,7 @@ function Project(props) {
           </Heading>
           {socialIcons}
         </Box>
-      </Grid>
+      </ParallaxHero>
 
       <Container sx={{ mx: "auto", px: [3, 4] }}>
         <Flex sx={{ flexDirection: ["column", "column", "row"], mb: 5 }}>
