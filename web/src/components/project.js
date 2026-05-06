@@ -1,7 +1,7 @@
 import { format, distanceInWords, differenceInDays, parseISO } from "date-fns";
 import React from "react";
 import { buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
+// import { imageUrlFor } from "../lib/image-url";
 import BlockContent from "./block-content";
 import Container from "./container";
 import RoleList from "./role-list";
@@ -191,12 +191,12 @@ function Project(props) {
     />
   );
 
-  const bgUrl =
-    props.mainImage &&
-    mainImage.asset &&
-    imageUrlFor(buildImageObj(mainImage)).width(1024).blur(3).url();
+  // const bgUrl =
+  //   props.mainImage &&
+  //   mainImage.asset &&
+  //   imageUrlFor(buildImageObj(mainImage)).width(1024).blur(3).url();
 
-  const imageHotspot = props.mainImage && mainImage.hotspot;
+  // const imageHotspot = props.mainImage && mainImage.hotspot;
 
   return (
     <Container as="article" sx={{ p: [0, 0, 0] }}>

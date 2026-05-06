@@ -1,7 +1,7 @@
 import React from "react";
 import { buildImageObj } from "../lib/helpers";
 import { format, isThisYear, isAfter, isSameDay } from "date-fns";
-import { imageUrlFor } from "../lib/image-url";
+// import { imageUrlFor } from "../lib/image-url";
 import { Grid, Card, Image, Heading, Flex, Text } from "theme-ui";
 import { lighten, alpha } from "@theme-ui/color";
 
@@ -14,19 +14,19 @@ function getLatestUpdate(publishedAt, _updatedAt) {
   const prefix = isSameDay(_updatedAt, publishedAt)
     ? "Published on"
     : useUpdateDate
-      ? "Updated on"
-      : "Published on";
+    ? "Updated on"
+    : "Published on";
   const formatter = isThisYear(date) ? "MMMM Do" : "MMMM Do, YYYY";
   return `${prefix} ${format(date, formatter)}`;
 }
 
 function PostPreview(props) {
-  const hasBG = props.mainImage && props.mainImage.asset;
-  let bgURL;
+  // const hasBG = props.mainImage && props.mainImage.asset;
+  // let bgURL;
 
-  if (hasBG) {
-    bgURL = imageUrlFor(buildImageObj(props.mainImage)).width(250).height(250).fit("fill").url();
-  }
+  // if (hasBG) {
+  //   bgURL = imageUrlFor(buildImageObj(props.mainImage)).width(250).height(250).fit("fill").url();
+  // }
 
   return (
     <ThemedLink
@@ -80,7 +80,7 @@ function PostPreview(props) {
             flex: 1,
           }}
         >
-          <Image
+          {/* <Image
             src={bgURL}
             alt={props.mainImage.alt}
             sx={{
@@ -88,7 +88,7 @@ function PostPreview(props) {
               width: "100%",
               objectFit: "cover",
             }}
-          />
+          /> */}
 
           <Flex
             p={3}

@@ -1,7 +1,7 @@
 import { format, isThisYear, isAfter, isSameDay } from "date-fns";
 import React from "react";
 import { buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
+// import { imageUrlFor } from "../lib/image-url";
 import BlockContent from "./block-content";
 import Container from "./container";
 import { AspectImage, Heading, Box, Paragraph } from "theme-ui";
@@ -13,8 +13,8 @@ function getLatestUpdate(publishedAt, _updatedAt) {
   const prefix = isSameDay(_updatedAt, publishedAt)
     ? "Published on"
     : useUpdateDate
-      ? "Updated on"
-      : "Published on";
+    ? "Updated on"
+    : "Published on";
   const formatter = isThisYear(date) ? "MMMM Do" : "MMMM Do, YYYY";
   return `${prefix} ${format(date, formatter)}`;
 }
@@ -24,7 +24,7 @@ function Post(props) {
   return (
     <Container as="article">
       <Box pb={[1]}>
-        {props.mainImage && mainImage.asset && (
+        {/* {props.mainImage && mainImage.asset && (
           <Box pb={2}>
             <AspectImage
               ratio={16 / 4}
@@ -36,7 +36,7 @@ function Post(props) {
               alt={mainImage.alt}
             />
           </Box>
-        )}
+        )} */}
         <Heading a="h2" sx={{ p: 0, m: 0, textTransform: "capitalize " }}>
           {title}
         </Heading>

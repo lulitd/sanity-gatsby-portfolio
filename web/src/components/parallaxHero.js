@@ -1,25 +1,23 @@
 import React, { useRef } from "react";
 import { Box, Grid, Image } from "theme-ui";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import SanityImage from "./image";
 
-const MotionImage = motion(Image);
+const MotionBox = motion(Box);
 
 const ParallaxHero = ({ mainImage, children }) => {
   const heroRef = React.useRef(null);
-
-  // sanity Image
-  const bgUrl = mainImage?.asset && imageUrlFor(buildImageObj(mainImage)).width(2000).url();
-  const hotspot = mainImage?.hotspot || { x: 0.5, y: 0.5 };
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1.15]);
+  const yRaw = useTransform(scrollYProgress, [0, 1], [0, 125]);
+  const scaleRaw = useTransform(scrollYProgress, [0, 1], [1.2, 1.0]);
+
+  const y = useSpring(yRaw, { stiffness: 50, damping: 30 });
+  const scale = useSpring(scaleRaw, { stiffness: 50, damping: 30 });
 
   return (
     <Box
@@ -30,22 +28,27 @@ const ParallaxHero = ({ mainImage, children }) => {
         overflow: "hidden",
       }}
     >
-      <MotionImage
-        src={bgUrl}
-        alt=""
-        style={{ y, scale }}
-        sx={{
+      <MotionBox
+        style={{
+          y,
+          scale,
           position: "absolute",
-          top: 0,
-          left: 0,
+          inset: 0,
           width: "100%",
-          height: "120%",
-          objectFit: "cover",
-          objectPosition: `${hotspot.x * 100}% ${hotspot.y * 100}%`,
-          willChange: "transform",
-          pointerEvents: "none",
+          height: "130%", // prevents edge gaps
+          transform: "translateZ(0)", // GPU
         }}
-      />
+      >
+        <SanityImage
+          image={mainImage}
+          variant="hero"
+          sx={{
+            width: "100%",
+            height: "100%",
+          }}
+        />
+      </MotionBox>
+
       <Box sx={{ position: "absolute", inset: 0, bg: "rgba(0,0,0,0.25)" }} />
 
       <Grid

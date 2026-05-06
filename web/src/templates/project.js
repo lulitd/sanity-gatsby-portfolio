@@ -34,9 +34,14 @@ export const query = graphql`
         }
         publishedAt
         mainImage {
-          ...ImageWithPreview
           asset {
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+            title
             altText
+          }
+          hotspot {
+            x
+            y
           }
         }
         _id
@@ -45,15 +50,25 @@ export const query = graphql`
         }
       }
       mainImage {
-        ...ImageWithPreview
         asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+          title
           altText
+        }
+        hotspot {
+          x
+          y
         }
       }
       thumbImage {
-        ...ImageWithPreview
         asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 450)
+          title
           altText
+        }
+        hotspot {
+          x
+          y
         }
       }
       title
@@ -74,8 +89,8 @@ export const query = graphql`
       slug {
         current
       }
-      _rawProjectBreakdown
-      _rawProjectBrief
+      _rawProjectBreakdown(resolveReferences: { maxDepth: 10 })
+      _rawProjectBrief(resolveReferences: { maxDepth: 10 })
       members {
         _key
         person {

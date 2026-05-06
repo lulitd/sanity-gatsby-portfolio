@@ -27,7 +27,9 @@ export const useSiteMetadata = () => {
             name
           }
           socialImage {
-            ...ImageWithPreview
+             asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
           }
           description
         }

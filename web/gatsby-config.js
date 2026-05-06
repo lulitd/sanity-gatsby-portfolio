@@ -67,18 +67,6 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-sanity-image",
-      options: {
-        ...clientConfig.sanity,
-        customImageTypes: ["SanityFigure"],
-        defaultImageConfig: {
-          quality: 90,
-          fit: "max",
-          auto: "format",
-        },
-      },
-    },
-    {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: `Lalaine Portfolio`,

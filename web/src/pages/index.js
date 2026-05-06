@@ -1,13 +1,13 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { useThemeUI, Grid, Heading, Text, Flex, Box } from "theme-ui";
+import { useThemeUI, Grid, Heading, Text, Paragraph, Flex, Box } from "theme-ui";
 import { alpha } from "@theme-ui/color";
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture,
 } from "../lib/helpers";
-import SanityImage from "gatsby-plugin-sanity-image";
+// import SanityImage from "gatsby-plugin-sanity-image";
 import { SEO } from "../components/seo";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
@@ -18,7 +18,7 @@ import LogoScroller from "../components/logo-scroller";
 import Doodles from "../components/doodle";
 import CardRow from "../components/card-row";
 import StatusPill from "../components/status-pill";
-import { da } from "date-fns/locale";
+import SanityImage from "../components/image";
 
 export const query = graphql`
   query IndexPageQuery {
@@ -33,10 +33,14 @@ export const query = graphql`
       statusMessage
       contactEmail
       featuredLogos {
-        ...ImageWithPreview
         asset {
+          gatsbyImageData(fit: SCALE, placeholder: BLURRED, height: 50)
+          title
           altText
-          description
+        }
+        hotspot {
+          x
+          y
         }
       }
       archive {
@@ -50,10 +54,14 @@ export const query = graphql`
         linkedin
         name
         image {
-          ...ImageWithPreview
           asset {
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 450)
+            title
             altText
-            description
+          }
+          hotspot {
+            x
+            y
           }
         }
       }
@@ -67,15 +75,25 @@ export const query = graphql`
           publishedAt
           _id
           mainImage {
-            ...ImageWithPreview
             asset {
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 450)
+              title
               altText
+            }
+            hotspot {
+              x
+              y
             }
           }
           thumbImage {
-            ...ImageWithPreview
             asset {
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 450)
+              title
               altText
+            }
+            hotspot {
+              x
+              y
             }
           }
           title
@@ -112,9 +130,14 @@ export const query = graphql`
             title
           }
           mainImage {
-            ...ImageWithPreview
             asset {
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 450)
+              title
               altText
+            }
+            hotspot {
+              x
+              y
             }
           }
         }
@@ -154,14 +177,14 @@ const IndexPage = (props) => {
 
   if (!site) {
     throw new Error(
-      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
+      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     );
   }
 
   const author = (site || {}).author;
   if (!author) {
     throw new Error(
-      'Missing author in "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
+      'Missing author in "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     );
   }
 
@@ -284,10 +307,7 @@ const IndexPage = (props) => {
               }}
             >
               <SanityImage
-                {...profileImage}
-                width={250}
-                height={250}
-                alt={profileImage.asset.altText}
+                image={profileImage}
                 sx={{
                   backgroundColor: "transparent",
                   border: "solid currentColor",
@@ -310,25 +330,25 @@ const IndexPage = (props) => {
               Hi, I'm Lalaine!
             </Heading>
             <Box sx={{ maxWidth: "70ch", textWrap: "pretty" }}>
-              <p>
+              <Paragraph>
                 I’m a Toronto-based creative technologist that turns ambitious ideas into
                 interactive realities.
-              </p>
-              <p>
+              </Paragraph>
+              <Paragraph>
                 In practice, that means I bridge the space between design and development. I build
                 websites, apps, games, and real-time experiences, often stepping into multiple roles
                 along the way. I’m comfortable shaping the creative direction of a project and
                 architecting the technical framework behind it.
-              </p>
-              <p>
+              </Paragraph>
+              <Paragraph>
                 I’ve collaborated with independent artists, creative teams, startups, and global
                 brands, developing work that has been showcased in museums, galleries, festivals,
                 and international exhibitions.
-              </p>
-              <p>
+              </Paragraph>
+              <Paragraph>
                 I love designing systems with just enough structure to hold an idea and just enough
                 freedom to let it surprise us.
-              </p>
+              </Paragraph>
             </Box>
             <Box
               sx={{

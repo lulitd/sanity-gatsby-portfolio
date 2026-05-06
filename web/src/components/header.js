@@ -58,7 +58,6 @@ const NavLink = ({ to, children }) => (
       px: [2, 1, 1],
     }}
     activeClassName="active"
-    // partiallyActive={true}
   >
     {children}
   </ThemedLink>

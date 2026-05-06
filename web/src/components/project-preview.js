@@ -1,7 +1,8 @@
 import React from "react";
 import { Grid, Box, Heading, Text, Flex, Paragraph } from "theme-ui";
 import ThemedLink from "./ThemedLink";
-import SanityImage from "gatsby-plugin-sanity-image";
+
+import SanityImage from "../components/image";
 
 function ProjectPreview(props) {
   const img = props.thumbImage ?? props.mainImage ?? null;
@@ -94,18 +95,14 @@ function ProjectPreview(props) {
           gridRowStart: [1, "inherit", "inherit"],
         }}
       >
-        <Box>
-          <SanityImage
-            {...img}
-            width={800}
-            sx={{
-              color: "secondary900",
-              filter: "drop-shadow(-5px 10px 10px currentColor)",
-              maxWidth: "100%",
-            }}
-            alt={img ? img.asset.altText : ""}
-          />
-        </Box>
+        <SanityImage
+          image={img}
+          sx={{
+            color: "secondary900",
+            filter: "drop-shadow(-5px 10px 10px currentColor)",
+            maxWidth: "100%",
+          }}
+        />
       </Flex>
     </Grid>
   );

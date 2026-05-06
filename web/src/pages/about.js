@@ -4,10 +4,9 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import { SEO } from "../components/seo";
 import BlockContent from "../components/block-content";
-// import { buildImageObj } from "../lib/helpers";
-// import { imageUrlFor } from "../lib/image-url";
 import { Box, Heading, Grid } from "theme-ui";
-import SanityImage from "gatsby-plugin-sanity-image";
+
+import SanityImage from "../components/image";
 
 export const query = graphql`
   query AboutQuery {
@@ -18,10 +17,14 @@ export const query = graphql`
         twitter
         linkedin
         image {
-          ...ImageWithPreview
           asset {
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 450)
+            title
             altText
-            description
+          }
+          hotspot {
+            x
+            y
           }
         }
         _rawBio
@@ -40,14 +43,14 @@ const AboutPage = (props) => {
   const site = (data || {}).site;
   if (!site) {
     throw new Error(
-      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
+      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     );
   }
 
   const author = (site || {}).author;
   if (!author) {
     throw new Error(
-      'Missing author in "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
+      'Missing author in "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     );
   }
 
@@ -75,29 +78,20 @@ const AboutPage = (props) => {
           }}
         >
           {profileImage && profileImage.asset && (
-            <Box
+            <SanityImage
+              image={profileImage}
+              className="gmap-secondary-primary"
               sx={{
-                maxHeight: 450,
+                minHeight: 0,
+                maxHeight: "100%",
+                backgroundColor: "transparent",
+                border: "solid currentColor",
+                borderWidth: "1",
+                borderRadius: "default",
+                color: "muted",
+                maxWidth: "100%",
               }}
-            >
-              <SanityImage
-                {...profileImage}
-                width={450}
-                height={450}
-                className="gmap-secondary-primary"
-                sx={{
-                  minHeight: 0,
-                  maxHeight: "100%",
-                  backgroundColor: "transparent",
-                  border: "solid currentColor",
-                  borderWidth: "1",
-                  borderRadius: "default",
-                  color: "muted",
-                  maxWidth: "100%",
-                }}
-                alt={profileImage.asset.altText}
-              />
-            </Box>
+            />
           )}
         </Box>
       </Grid>

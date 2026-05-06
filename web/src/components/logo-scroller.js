@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Text, Flex } from "theme-ui";
 import { alpha } from "@theme-ui/color";
-import SanityImage from "gatsby-plugin-sanity-image";
+// import SanityImage from "gatsby-plugin-sanity-image";
 import { keyframes } from "@emotion/react";
+import SanityImage from "./image";
 
 const slide = keyframes({
   from: { transform: "translateX(0)" },
@@ -17,8 +18,8 @@ function LogoList({ logos, logoSize, duration, prefix }) {
         display: "inline-block",
         minWidth: "100%",
         animation: `${slide} ${duration}s infinite linear`,
+        pr: 3,
         "& img,svg": {
-          mx: 3,
           opacity: 0.5,
         },
       }}
@@ -26,14 +27,15 @@ function LogoList({ logos, logoSize, duration, prefix }) {
       <Flex
         sx={{
           justifyContent: "space-around",
+          gap: 3,
         }}
       >
         {logos.map((logo, i) => {
           return (
             <SanityImage
+              variant="logo"
               key={`${prefix}-${logo.asset._id}`}
-              alt={logo.asset.altText}
-              {...logo}
+              image={logo}
               height={logoSize}
               sx={{
                 height: logoSize,

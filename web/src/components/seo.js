@@ -1,6 +1,6 @@
 import React from "react";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
-import { imageUrlFor } from "../lib/image-url";
+// import { imageUrlFor } from "../lib/image-url";
 import LogoIcon from "./icon/logo";
 export const SEO = ({ title, description, image, pathname, children }) => {
   const {
@@ -14,7 +14,7 @@ export const SEO = ({ title, description, image, pathname, children }) => {
   } = useSiteMetadata();
 
   let imgURL;
-  if (sanityImg) imgURL = imageUrlFor(sanityImg);
+  // if (sanityImg) imgURL = imageUrlFor(sanityImg);
 
   const seo = {
     title: [title, defaultTitle].filter(Boolean).join(" — "),

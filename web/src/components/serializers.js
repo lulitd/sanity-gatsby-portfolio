@@ -4,7 +4,9 @@ import React from "react";
 import EmbedVideo from "./embed-video";
 const serializers = {
   types: {
-    figure: Figure,
+    figure: ({ node }) => {
+      return <Figure node={node} />;
+    },
     video: ({ node }) => {
       const { url } = node;
       return <EmbedVideo url={url} />;

@@ -18,7 +18,15 @@ export const query = graphql`
       publishedAt
       _updatedAt
       mainImage {
-        ...ImageWithPreview
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 450)
+          title
+          altText
+        }
+        hotspot {
+          x
+          y
+        }
       }
     }
   }
