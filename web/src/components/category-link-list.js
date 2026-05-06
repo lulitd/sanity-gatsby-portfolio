@@ -26,7 +26,7 @@ function CategoryLinkList({ categories, currentCategory, all, used }) {
     const path = `/projects${cat.title === "All" ? "" : "/category"}/${cat.slug.current}`;
     return (
       <Box as="li" sx={{ display: "inline-block", pr: "2", lineHeight: [3] }} key={cat.id}>
-        <ThemedLink to={path} variant="outlineBtn" duration={2} activeClassName="active">
+        <ThemedLink to={path} variant="outlineBtn" activeClassName="active">
           {cat.title}
         </ThemedLink>
       </Box>

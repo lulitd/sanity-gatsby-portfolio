@@ -62,12 +62,7 @@ function Project(props) {
           if (cat && cat.title && cat.slug) {
             const el = (
               <Box as="li" sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
-                <ThemedLink
-                  block
-                  to={`/projects/category/${cat.slug.current}`}
-                  variant="outlineBtn"
-                  key={cat._id}
-                >
+                <ThemedLink to={`/projects/category/${cat.slug.current}`} variant="outlineBtn">
                   #{cat.title}
                 </ThemedLink>
               </Box>

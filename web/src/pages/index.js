@@ -232,10 +232,10 @@ const IndexPage = (props) => {
               },
             }}
           >
-            <ThemedLink to="/contact" variant="fillBtn" fontSize={2}>
+            <ThemedLink to="/contact" variant="fillBtn">
               Let's Chat!
             </ThemedLink>
-            <ThemedLink to="/projects" variant="outlineBtn" fontSize={2}>
+            <ThemedLink to="/projects" variant="outlineBtn">
               View Projects
             </ThemedLink>
           </Box>
@@ -339,10 +339,10 @@ const IndexPage = (props) => {
                 },
               }}
             >
-              <ThemedLink to="/contact" variant="fillBtn" fontSize={1}>
+              <ThemedLink to="/contact" variant="fillBtn">
                 Let's chat
               </ThemedLink>
-              <ThemedLink to="/about" variant="outlineBtn" fontSize={1}>
+              <ThemedLink to="/about" variant="outlineBtn">
                 Get To Know Me
               </ThemedLink>
             </Box>

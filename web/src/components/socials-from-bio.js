@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "./icon";
 import { Button, Box, Text } from "theme-ui";
 
-function SocialsFromBio({ bio, withLabels, iconStyle, ...rest }) {
+function SocialsFromBio({ bio, withLabels, iconStyle }) {
   let socials = [];
 
   //if (!bio) return null;
@@ -13,6 +13,7 @@ function SocialsFromBio({ bio, withLabels, iconStyle, ...rest }) {
   if (bio.github) socials.push({ name: "github", link: bio.github });
   if (bio.website) socials.push({ name: "website", link: bio.website });
   if (bio.youtube) socials.push({ name: "youtube", link: bio.youtube });
+
   const socialIcons = socials.map((social) => {
     return (
       <Button
@@ -31,11 +32,7 @@ function SocialsFromBio({ bio, withLabels, iconStyle, ...rest }) {
     );
   });
 
-  return (
-    <Box {...rest} my={2}>
-      {socialIcons}
-    </Box>
-  );
+  return <Box my={2}>{socialIcons}</Box>;
 }
 
 export default SocialsFromBio;
