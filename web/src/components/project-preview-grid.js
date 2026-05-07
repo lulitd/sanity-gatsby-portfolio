@@ -39,6 +39,7 @@ function ProjectPreviewGrid({ nodes = [], title = "", order, columns = [1, 1, 2]
   return (
     <Box
       sx={{
+        textAlign: "left",
         backgroundImage: (t) => `
         linear-gradient(
           to bottom,

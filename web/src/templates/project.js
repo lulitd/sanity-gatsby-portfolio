@@ -89,8 +89,8 @@ export const query = graphql`
       slug {
         current
       }
-      _rawProjectBreakdown(resolveReferences: { maxDepth: 10 })
-      _rawProjectBrief(resolveReferences: { maxDepth: 10 })
+      _rawProjectBreakdown(resolveReferences: { maxDepth: 5 })
+      _rawProjectBrief(resolveReferences: { maxDepth: 5 })
       members {
         _key
         person {

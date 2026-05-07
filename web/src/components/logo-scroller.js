@@ -19,9 +19,6 @@ function LogoList({ logos, logoSize, duration, prefix }) {
         minWidth: "100%",
         animation: `${slide} ${duration}s infinite linear`,
         pr: 3,
-        "& img,svg": {
-          opacity: 0.5,
-        },
       }}
     >
       <Flex
@@ -39,6 +36,11 @@ function LogoList({ logos, logoSize, duration, prefix }) {
               height={logoSize}
               sx={{
                 height: logoSize,
+                opacity: 0.3,
+                transition: "opacity 0.2s ease-in-out",
+                "&:hover": {
+                  opacity: 1,
+                },
               }}
             />
           );

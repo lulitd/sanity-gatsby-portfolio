@@ -286,9 +286,9 @@ const IndexPage = (props) => {
           />
         </Container>
       )}
-      <Container sx={{ my: 4 }}>
+      {/* <Container sx={{ my: 4 }}>
         <CardRow />
-      </Container>
+      </Container> */}
       {postNodes && postNodes.length > 0 && (
         <Container mb={5}>
           <Heading as="h3" id="featured-posts" fontSize={[8]}>
@@ -320,7 +320,7 @@ const IndexPage = (props) => {
               />
             </Flex>
           )}
-          <Box mx="auto">
+          <Box mx="auto" p={5}>
             <StatusPill
               currentStatus={site.statusAvailablity}
               message={site.statusMessage}
@@ -329,7 +329,15 @@ const IndexPage = (props) => {
             <Heading as="h3" sx={{ my: 0, pt: 3 }}>
               Hi, I'm Lalaine!
             </Heading>
-            <Box sx={{ maxWidth: "70ch", textWrap: "pretty" }}>
+            <Flex
+              sx={{
+                maxWidth: "75ch",
+                textWrap: "pretty",
+                py: 5,
+                flexDirection: "column",
+                gap: "3",
+              }}
+            >
               <Paragraph>
                 I’m a Toronto-based creative technologist that turns ambitious ideas into
                 interactive realities.
@@ -349,7 +357,7 @@ const IndexPage = (props) => {
                 I love designing systems with just enough structure to hold an idea and just enough
                 freedom to let it surprise us.
               </Paragraph>
-            </Box>
+            </Flex>
             <Box
               sx={{
                 "& a": {

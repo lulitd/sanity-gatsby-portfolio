@@ -21,13 +21,14 @@ function ProjectPreview(props) {
     props.roles.flatMap((role) => Object.values(role).filter(Boolean)).join(" | ");
 
   return (
-    <Grid columns={[1, 2, 2]} gap={[1, 2, 3]} sx={{ minHeight: "50vh", minHeight: "50svh" }}>
+    <Grid columns={[1, 2, 2]} gap={[1, 2, 3]} sx={{ minHeight: "50vh", minHeight: "50svh", p: 2 }}>
       <Flex
         sx={{
           flexDirection: "column",
           justifyContent: "center",
           p: [2, 3, 3],
           mb: 3,
+          gap: 3,
         }}
       >
         <Box>

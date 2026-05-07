@@ -48,21 +48,19 @@ function Project(props) {
     return item && item.publishedAt;
   });
 
-  let stats = 0;
-  if (collaborators && collaborators.length > 0) stats++;
-  if (uniqueAccolades && uniqueAccolades.length > 0) stats++;
   const categoriesButtons = (
-    <Box pb={2} sx={{ flex: 1, textAlign: "center" }}>
-      <ul
+    <Box sx={{ flex: 1, textAlign: "center", textWrap: "balance" }}>
+      <Box
+        as="ul"
         sx={{
           listStyle: "none",
-          padding: 0,
+          p: 2,
         }}
       >
         {categories.reduce((acm, cat) => {
           if (cat && cat.title && cat.slug) {
             const el = (
-              <Box as="li" sx={{ display: "inline-block", pr: [2], py: [3] }} key={`li_${cat._id}`}>
+              <Box as="li" sx={{ display: "inline-block", mx: [2], my: [4] }} key={`li_${cat._id}`}>
                 <ThemedLink to={`/projects/category/${cat.slug.current}`} variant="outlineBtn">
                   #{cat.title}
                 </ThemedLink>
@@ -72,7 +70,7 @@ function Project(props) {
           }
           return acm;
         }, [])}
-      </ul>
+      </Box>
     </Box>
   );
 
@@ -80,7 +78,9 @@ function Project(props) {
     <Box
       sx={{
         textAlign: "center",
+        justifyItems: "center",
         flex: 1,
+        py: 4,
       }}
     >
       <Heading as="h3" variant="contentSubHeading">
@@ -92,6 +92,8 @@ function Project(props) {
           mx: 0,
           px: 0,
           listStyle: "none",
+          maxWidth: "50ch",
+          textWrap: "balance",
         }}
       >
         {roles.map((role) => {
@@ -101,7 +103,8 @@ function Project(props) {
                 sx={{
                   whiteSpace: "pre-wrap",
                   letterSpacing: "2px",
-                  fontWeight: "900",
+                  fontWeight: "800",
+                  fontFamily: "body",
                 }}
                 fontSize={[2, 1, 2]}
               >
@@ -113,6 +116,7 @@ function Project(props) {
                   color: lighten("primary", 0.1),
                   m: 0,
                   display: "block",
+                  fontFamily: "heading",
                 }}
               >
                 {role.fieldInfo}
@@ -129,6 +133,8 @@ function Project(props) {
       sx={{
         flex: 1,
         textAlign: "center",
+        justifyItems: "center",
+        py: 4,
       }}
     >
       <Heading as="h3" variant="contentSubHeading">
@@ -141,6 +147,8 @@ function Project(props) {
           mx: 0,
           px: 0,
           listStyle: "none",
+          maxWidth: "50ch",
+          textWrap: "balance",
         }}
       >
         {technologies.map((tech) => {
@@ -156,7 +164,8 @@ function Project(props) {
                 sx={{
                   whiteSpace: "pre-wrap",
                   letterSpacing: "2px",
-                  fontWeight: "900",
+                  fontWeight: "800",
+                  fontFamily: "body",
                 }}
                 fontSize={[2, 1, 2]}
               >
@@ -168,6 +177,7 @@ function Project(props) {
                   color: lighten("primary", 0.1),
                   m: 0,
                   display: "block",
+                  fontFamily: "heading",
                 }}
               >
                 {tech.fieldInfo}
@@ -191,13 +201,6 @@ function Project(props) {
     />
   );
 
-  // const bgUrl =
-  //   props.mainImage &&
-  //   mainImage.asset &&
-  //   imageUrlFor(buildImageObj(mainImage)).width(1024).blur(3).url();
-
-  // const imageHotspot = props.mainImage && mainImage.hotspot;
-
   return (
     <Container as="article" sx={{ p: [0, 0, 0] }}>
       {/* Title and Image */}
@@ -214,6 +217,7 @@ function Project(props) {
             backgroundColor: alpha("background", 0.5),
             backdropFilter: "blur(2em)",
             textAlign: "center",
+            textWrap: "pretty",
           }}
         >
           <Heading
@@ -228,8 +232,8 @@ function Project(props) {
           <Heading
             variant="subheading"
             sx={{
-              fontFamily: "body",
               fontSize: [3, 4],
+              fontWeight: "400",
             }}
           >
             {subtitle}
@@ -238,15 +242,32 @@ function Project(props) {
         </Box>
       </ParallaxHero>
 
-      <Container sx={{ mx: "auto", px: [3, 4] }}>
-        <Flex sx={{ flexDirection: ["column", "column", "row"], mb: 5 }}>
+      <Container
+        sx={{
+          mx: "auto",
+          px: [3, 4],
+          " > div": {
+            mb: 8,
+          },
+        }}
+      >
+        <Flex
+          sx={{
+            flexDirection: ["column", "column", "row"],
+            py: 5,
+            mb: 5,
+            borderBottom: "1px solid",
+            borderColor: alpha("primary", 0.4),
+          }}
+        >
           {categories && categories.length > 0 && categoriesButtons}
           {roles && roles.length > 0 && rolesSection}
           {technologies && technologies.length > 0 && techSection}
         </Flex>
+
         {_rawProjectBrief && (
           <Grid
-            columns={[1, 1, "2fr 3fr"]}
+            columns={[1, 1, "1fr 3fr"]}
             gap={[1, 2, 3]}
             sx={{
               mb: 5,
@@ -270,7 +291,7 @@ function Project(props) {
                 borderLeft: "1px solid red",
                 borderWidth: [0, 0, 1],
                 borderColor: "secondary",
-                paddingLeft: [0, 0, 3],
+                px: [0, 0, 5],
               }}
               blocks={_rawProjectBrief || []}
             />
@@ -279,7 +300,7 @@ function Project(props) {
 
         {_rawProjectBreakdown && (
           <Grid
-            columns={[1, 1, "2fr 3fr"]}
+            columns={[1, 1, "1fr 3fr"]}
             gap={[1, 2, 3]}
             sx={{
               my: 5,
@@ -303,132 +324,133 @@ function Project(props) {
                 borderLeft: "1px solid red",
                 borderWidth: [0, 0, 1],
                 borderColor: "secondary",
-                paddingLeft: [0, 0, 3],
+                px: [0, 0, 5],
               }}
               blocks={_rawProjectBreakdown || []}
             />
           </Grid>
         )}
-        {stats > 0 && (
-          <Grid
-            columns={[1, 1, "2fr 3fr"]}
-            gap={[1, 2, 3]}
+
+        {uniqueAccolades && uniqueAccolades.length > 0 && (
+          <Box
             sx={{
-              my: 5,
+              textAlign: ["left"],
+              justifyItems: "center",
+              width: "fit-content",
+              p: 6,
+              mx: "auto",
+              borderRadius: "default",
+              borderBottom: "1px solid",
+              borderTop: "1px solid",
+              borderColor: alpha("primary", 0.4),
             }}
           >
-            {collaborators && collaborators.length > 0 ? (
-              <RoleList
-                items={collaborators}
-                title="Team"
-                style={{
-                  position: "relative",
-                  isolation: "isolate",
-                  gridColumn: [1],
-                  minWidth: "200px",
-                  textAlign: ["center", "center", "right"],
-                  "&:before": {
-                    content: '""',
-                    position: "absolute",
-                    inset: 0,
-                    borderRight: "1px solid red",
-                    borderWidth: [0, 0, stats > 1 ? 0 : 1],
-                    borderColor: "secondary",
-                    right: "-1rem",
-                    zIndex: -1,
-                  },
-                }}
-              />
-            ) : (
-              <Box
-                sx={{
-                  gridColumn: [1, 1, 2],
-                  minWidth: "200px",
-                  isolation: "isolate",
-                  "&:before": {
-                    content: '""',
-                    position: "absolute",
-                    inset: 0,
-                    borderRight: "1px solid red",
-                    borderWidth: [0, 0, stats > 0 ? 0 : 1],
-                    borderColor: "secondary",
-                    right: "-1rem",
-                    zIndex: -1,
-                  },
-                }}
-              ></Box>
-            )}
-            {uniqueAccolades && uniqueAccolades.length > 0 && (
-              <Box
-                sx={{
-                  textAlign: ["center", "center", "left"],
-                  mx: ["auto", "auto", 0],
-                  borderLeft: "1px solid red",
-                  borderWidth: [0, 0, 1],
-                  borderColor: "secondary",
-                  paddingLeft: [0, 0, 3],
-                }}
-              >
-                <Heading as="h3" variant="contentSubHeading">
-                  Exhibitions
-                </Heading>
-                <Box
-                  as="ul"
-                  sx={{
-                    mx: 0,
-                    px: 0,
-                    listStylePosition: ["outside"],
-                    listStyle: ["none", "none", "unset"],
-                    ml: ["1rem"],
-                  }}
-                >
-                  {uniqueAccolades.map((accolade) => {
-                    let label = "";
-                    label += `${accolade.date.split("-")[0]}: `;
-                    label += accolade.title;
-                    label += accolade.event ? `,\n${accolade.event} ` : " ";
-                    return (
-                      <Box
-                        as="li"
-                        key={accolade._id}
-                        sx={{
-                          mb: [3],
-                        }}
-                      >
-                        <Text
-                          sx={{
-                            whiteSpace: "pre-wrap",
-                            letterSpacing: "2px",
-                            fontWeight: "900",
-                          }}
-                          fontSize={[2, 1, 2]}
-                        >{`${label}`}</Text>
-                        <Text
-                          fontSize={[2, 1, 2]}
-                          sx={{
-                            color: lighten("primary", 0.1),
-                            m: 0,
-                            display: "block",
-                          }}
-                        >
-                          {accolade.address}
-                        </Text>
-                      </Box>
-                    );
-                  })}
-                </Box>
-              </Box>
-            )}
-          </Grid>
+            <Heading as="h3" variant="contentSubHeading">
+              Exhibitions
+            </Heading>
+            <Box
+              as="ul"
+              sx={{
+                "--bullet--size": "18px",
+                m: 0,
+                p: 0,
+                ml: 2,
+                listStyle: "none",
+                position: "relative",
+                "::before": {
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  width: 2,
+                  backgroundImage: (t) => `
+                                   linear-gradient(
+                                     to bottom,
+                                     ${alpha("secondary", 0.75)(t)},
+                                     ${alpha("secondary", 0.1)(t)}
+                                   )
+                                 `,
+                },
+                "li:not(last-child)": {
+                  mb: 5,
+                },
+              }}
+            >
+              {uniqueAccolades.map((accolade) => {
+                let label = "";
+                label += `${accolade.date.split("-")[0]}: `;
+                label += accolade.title;
+                label += accolade.event ? `,\n${accolade.event} ` : " ";
+                return (
+                  <Box
+                    as="li"
+                    key={accolade._id}
+                    sx={{
+                      position: "relative",
+                      pl: 4,
+                      textWrap: "balance",
+                      maxWidth: "50ch",
+                      "::before": {
+                        content: '"\\25B2"',
+                        position: "absolute",
+                        left: `calc(var(--bullet--size,"12px")*-0.5)`,
+                        top: `calc(var(--bullet--size,"12px")*-0.5)`,
+                        fontSize: `var(--bullet--size,"12px")`,
+                        color: "secondary",
+                        zIndex: "1",
+                      },
+                    }}
+                  >
+                    <Text
+                      sx={{
+                        whiteSpace: "pre-wrap",
+                        letterSpacing: "2px",
+                        fontWeight: "800",
+                      }}
+                      fontSize={[2, 1, 2]}
+                    >{`${label}`}</Text>
+                    <Text
+                      fontSize={[2, 1, 2]}
+                      sx={{
+                        color: lighten("primary", 0.1),
+                        m: 0,
+                        display: "block",
+                        fontFamily: "heading",
+                      }}
+                    >
+                      {accolade.address}
+                    </Text>
+                  </Box>
+                );
+              })}
+            </Box>
+          </Box>
+        )}
+
+        {collaborators && collaborators.length > 0 && (
+          <RoleList
+            items={collaborators}
+            title="Team"
+            style={{
+              justifyItems: "center",
+              borderRadius: "default",
+              borderBottom: "1px solid",
+              borderTop: "1px solid",
+              borderColor: alpha("primary", 0.4),
+              width: "fit-content",
+              mx: "auto",
+              p: 6,
+            }}
+          />
         )}
 
         {filteredProjects && filteredProjects.length > 0 && (
           <Box
             sx={{
-              borderTop: "1px solid",
-              borderColor: "muted",
-              mt: 4,
-              pt: 4,
+              borderTop: "2px solid",
+              borderColor: alpha("primary", 0.4),
+              pt: 6,
               textAlign: "center",
             }}
           >

@@ -78,7 +78,7 @@ const theme = {
   lineHeights: {
     body: 1.4,
     subheading: 1.2,
-    heading: 1.2,
+    heading: 1,
   },
   text: {
     heading: {
@@ -87,6 +87,7 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       fontStyle: "normal",
+      textTransform: "uppercase",
       fontSize: [6, 7, 7],
       mt: 0,
       mb: 4,
