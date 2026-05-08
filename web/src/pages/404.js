@@ -2,7 +2,7 @@ import React from "react";
 import { SEO } from "../components/seo";
 import Container from "../components/container";
 import { Heading, Flex, Paragraph } from "theme-ui";
-import ThemedLink from "../components/ThemedLink";
+import ThemedLink from "../components/atoms/ThemedLink";
 
 const NotFoundPage = () => (
   <Container>

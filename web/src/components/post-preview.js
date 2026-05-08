@@ -5,7 +5,7 @@ import { format, isThisYear, isAfter, isSameDay } from "date-fns";
 import { Grid, Card, Image, Heading, Flex, Text } from "theme-ui";
 import { lighten, alpha } from "@theme-ui/color";
 
-import ThemedLink from "./ThemedLink";
+import ThemedLink from "./atoms/ThemedLink";
 
 function getLatestUpdate(publishedAt, _updatedAt) {
   // use the latest date

@@ -2,14 +2,14 @@ import { format, distanceInWords, differenceInDays, parseISO } from "date-fns";
 import React from "react";
 import { buildImageObj } from "../lib/helpers";
 // import { imageUrlFor } from "../lib/image-url";
-import BlockContent from "./block-content";
+import PortableTextRenderer from "./sanity/portable-text-renderer";
 import Container from "./container";
 import RoleList from "./role-list";
 import SocialsFromBio from "./socials-from-bio";
 import ProjectPreviewGrid from "./project-preview-grid";
 import ParallaxHero from "./parallaxHero";
 import { Grid, Heading, Box, Text, Flex } from "theme-ui";
-import ThemedLink from "./ThemedLink";
+import ThemedLink from "./atoms/ThemedLink";
 import { alpha, lighten } from "@theme-ui/color";
 
 function Project(props) {
@@ -285,7 +285,8 @@ function Project(props) {
             >
               Project Description
             </Heading>
-            <BlockContent
+            <PortableTextRenderer
+              value={_rawProjectBrief || []}
               style={{
                 mx: ["auto", "auto", 0],
                 borderLeft: "1px solid red",
@@ -293,7 +294,6 @@ function Project(props) {
                 borderColor: "secondary",
                 px: [0, 0, 5],
               }}
-              blocks={_rawProjectBrief || []}
             />
           </Grid>
         )}
@@ -318,7 +318,8 @@ function Project(props) {
             >
               Project Breakdown
             </Heading>
-            <BlockContent
+            <PortableTextRenderer
+              value={_rawProjectBreakdown || []}
               style={{
                 mx: ["auto", "auto", 0],
                 borderLeft: "1px solid red",
@@ -326,7 +327,6 @@ function Project(props) {
                 borderColor: "secondary",
                 px: [0, 0, 5],
               }}
-              blocks={_rawProjectBreakdown || []}
             />
           </Grid>
         )}

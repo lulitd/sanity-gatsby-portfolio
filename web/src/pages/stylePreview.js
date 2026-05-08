@@ -2,9 +2,9 @@ import React from "react";
 import Layout from "../containers/layoutContainer";
 import { SEO } from "../components/seo";
 import Container from "../components/container";
-import { Heading, Flex, Button, Box, Card, Grid, Paragraph } from "theme-ui";
+import { Heading, Flex, Button, Box, Card, Grid, Paragraph, Message } from "theme-ui";
 import { Themed } from "@theme-ui/mdx";
-import ThemedLink from "../components/ThemedLink";
+import ThemedLink from "../components/atoms/ThemedLink";
 import Icon from "../components/icon";
 import ProjectPreview from "../components/project-preview";
 
@@ -151,6 +151,14 @@ const StylePreviewPage = () => (
           <Icon symbol="github" />
         </Button>
       </Box>
+      <Message variant="quote" as={"blockquote"}>
+        With a background in both computational science and artistic practice, I move comfortably
+        between design conversations and technical implementation. I enjoy collaborating with
+        designers, strategists, and developers to build work that feels human, intentional, and
+        well-crafted. I’ve always been interested in how technology shapes the way we experience
+        stories, spaces, and each other. I’m just as interested in how something feels as I am in
+        how it works.
+      </Message>
     </Container>
   </>
 );

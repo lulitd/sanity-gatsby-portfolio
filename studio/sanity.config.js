@@ -1,6 +1,7 @@
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { visionTool } from "@sanity/vision";
+import { codeInput } from "@sanity/code-input";
 import schemas from "./schemas/schema";
 import deskStructure from "./deskStructure";
 import { media } from "sanity-plugin-media";
@@ -18,6 +19,7 @@ export default defineConfig({
     }),
     visionTool(),
     media(),
+    codeInput(),
     // dashboardTool({
     //   // widgets: [
     //   //   netlifyWidget({

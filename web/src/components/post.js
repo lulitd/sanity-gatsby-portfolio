@@ -2,7 +2,7 @@ import { format, isThisYear, isAfter, isSameDay } from "date-fns";
 import React from "react";
 import { buildImageObj } from "../lib/helpers";
 // import { imageUrlFor } from "../lib/image-url";
-import BlockContent from "./block-content";
+import PortableTextRenderer from "./sanity/portable-text-renderer";
 import Container from "./container";
 import { AspectImage, Heading, Box, Paragraph } from "theme-ui";
 
@@ -45,11 +45,7 @@ function Post(props) {
         </Paragraph>
       </Box>
       <Box>
-        {_rawContent && (
-          <Box pb={2}>
-            <BlockContent blocks={_rawContent || []} />
-          </Box>
-        )}
+        {_rawContent && <PortableTextRenderer value={_rawContent || []} style={{ pb: 2 }} />}
       </Box>
     </Container>
   );

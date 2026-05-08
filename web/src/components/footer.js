@@ -2,7 +2,7 @@ import React from "react";
 import SocialsFromBio from "./socials-from-bio";
 import Container from "./container";
 import { alpha } from "@theme-ui/color";
-import ThemedLink from "./ThemedLink";
+import ThemedLink from "./atoms/ThemedLink";
 import StatusPill from "./status-pill";
 import { Text, Box } from "theme-ui";
 

@@ -304,6 +304,31 @@ const theme = {
       fieldSizing: "fixed",
     },
   },
+  messages: {
+    quote: {
+      bg: alpha("secondary", 0.2),
+      border: "solid currentColor",
+      borderColor: "secondary",
+      borderWidth: [1],
+      borderLeftWidth: [3],
+      borderRadius: "regular",
+      borderTopRightRadius: "0",
+      borderBottomLeftRadius: "0",
+      maxWidth: "60ch",
+      m: 2,
+      position: "relative",
+
+      "::before": {
+        content: '"<<"',
+        fontSize: [6],
+        position: "absolute",
+        left: 10,
+        top: 0,
+        color: "secondary100",
+        zIndex: "1",
+      },
+    },
+  },
   styles: {
     root: {
       color: "body",

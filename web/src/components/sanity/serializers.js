@@ -1,7 +1,7 @@
 import { Themed } from "@theme-ui/mdx";
-import Figure from "./figure";
+import Figure from "../atoms/figure";
 import React from "react";
-import EmbedVideo from "./embed-video";
+import EmbedVideo from "../atoms/embed-video";
 const serializers = {
   types: {
     figure: ({ node }) => {

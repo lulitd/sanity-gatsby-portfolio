@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Box, Heading } from "theme-ui";
-import ThemedLink from "./ThemedLink";
+import ThemedLink from "./atoms/ThemedLink";
 import PostPreview from "./post-preview";
 
 function PostPreviewGrid({ title = "", nodes: [], browseMoreHref = "", columns = [1, 2, null] }) {

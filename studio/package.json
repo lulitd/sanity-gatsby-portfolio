@@ -17,6 +17,7 @@
   "dependencies": {
     "@babel/eslint-parser": "^7.28.6",
     "@sanity/cli": "^3.99.0",
+    "@sanity/code-input": "^7.1.0",
     "@sanity/components": "^2.14.0",
     "@sanity/dashboard": "^5.0.1",
     "@sanity/vision": "^5.21.0",

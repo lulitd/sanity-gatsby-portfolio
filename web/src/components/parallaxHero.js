@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Box, Grid, Image } from "theme-ui";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import SanityImage from "./image";
+import SanityImage from "./atoms/image";
 
 const MotionBox = motion(Box);
 

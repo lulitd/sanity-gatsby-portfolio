@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid, Box, Heading, Text, Flex, Paragraph } from "theme-ui";
-import ThemedLink from "./ThemedLink";
+import ThemedLink from "./atoms/ThemedLink";
 
-import SanityImage from "../components/image";
+import SanityImage from "./atoms/image";
 
 function ProjectPreview(props) {
   const img = props.thumbImage ?? props.mainImage ?? null;

@@ -12,13 +12,13 @@ import { SEO } from "../components/seo";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
-import ThemedLink from "../components/ThemedLink";
+import ThemedLink from "../components/atoms/ThemedLink";
 import PostPreviewGrid from "../components/post-preview-grid";
 import LogoScroller from "../components/logo-scroller";
 import Doodles from "../components/doodle";
 import CardRow from "../components/card-row";
 import StatusPill from "../components/status-pill";
-import SanityImage from "../components/image";
+import SanityImage from "../components/atoms/image";
 
 export const query = graphql`
   query IndexPageQuery {

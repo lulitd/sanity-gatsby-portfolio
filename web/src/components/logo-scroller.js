@@ -3,7 +3,7 @@ import { Box, Text, Flex } from "theme-ui";
 import { alpha } from "@theme-ui/color";
 // import SanityImage from "gatsby-plugin-sanity-image";
 import { keyframes } from "@emotion/react";
-import SanityImage from "./image";
+import SanityImage from "./atoms/image";
 
 const slide = keyframes({
   from: { transform: "translateX(0)" },

@@ -1,7 +1,7 @@
 import React from "react";
 import ProjectPreview from "./project-preview";
 import { Grid, Box, Heading } from "theme-ui";
-import ThemedLink from "./ThemedLink";
+import ThemedLink from "./atoms/ThemedLink";
 import { Flex } from "rebass";
 import { alpha } from "@theme-ui/color";
 const { isFuture, parseISO } = require("date-fns");

@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "./icon";
 import { Button, Box, Flex } from "theme-ui";
 import Container from "./container";
-import ThemedLink from "./ThemedLink";
+import ThemedLink from "./atoms/ThemedLink";
 import { alpha } from "@theme-ui/color";
 import StatusPill from "./status-pill";
 

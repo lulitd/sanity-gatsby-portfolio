@@ -3,10 +3,10 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import { SEO } from "../components/seo";
-import BlockContent from "../components/block-content";
+import PortableTextRenderer from "../components/sanity/portable-text-renderer";
 import { Box, Heading, Grid } from "theme-ui";
 
-import SanityImage from "../components/image";
+import SanityImage from "../components/atoms/image";
 
 export const query = graphql`
   query AboutQuery {
@@ -62,8 +62,8 @@ const AboutPage = (props) => {
         <Box mx={["auto", "auto", "0"]}>
           <Heading as="h3">About</Heading>
           {author._rawBio && (
-            <BlockContent
-              blocks={author._rawBio || []}
+            <PortableTextRenderer
+              value={author._rawBio}
               style={{
                 maxWidth: ["45ch", "50ch", "fit-content"],
               }}

@@ -1,5 +1,5 @@
 import React from "react";
-import ThemedLink from "./ThemedLink";
+import ThemedLink from "./atoms/ThemedLink";
 import { Box } from "theme-ui";
 
 function CategoryLinkList({ categories, currentCategory, all, used }) {
