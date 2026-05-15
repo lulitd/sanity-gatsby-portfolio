@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Text, Flex } from "theme-ui";
 import { alpha } from "@theme-ui/color";
-// import SanityImage from "gatsby-plugin-sanity-image";
 import { keyframes } from "@emotion/react";
 import SanityImage from "./atoms/image";
 
@@ -31,7 +30,7 @@ function LogoList({ logos, logoSize, duration, prefix }) {
           return (
             <SanityImage
               variant="logo"
-              key={`${prefix}-${logo.asset._id}`}
+              key={`${prefix}-${logo.asset.title}-{i}`}
               image={logo}
               height={logoSize}
               sx={{
@@ -96,6 +95,7 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
             inset: 0,
             right: "85%",
             zIndex: 5,
+            pointerEvents: "none",
             background: (t) => `
       linear-gradient(
         90deg,
@@ -110,6 +110,7 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
             inset: 0,
             left: "85%",
             zIndex: 5,
+            pointerEvents: "none",
             background: (t) => `
       linear-gradient(
         -90deg,

@@ -5,3 +5,9 @@
  */
 
 // You can delete this file if you're not using it
+import React from "react";
+import LayoutContainer from "./src/containers/layoutContainer";
+
+export const wrapPageElement = ({ element, props }) => {
+  return <LayoutContainer {...props}>{element}</LayoutContainer>;
+};
