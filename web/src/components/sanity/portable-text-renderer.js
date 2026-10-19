@@ -15,7 +15,11 @@ const components = {
     },
     video: ({ value }) => {
       const { url } = value;
-      return <EmbedVideo url={url} />;
+      return (
+        <Box my="5">
+          <EmbedVideo url={url} />
+        </Box>
+      );
     },
     code: ({ value }) => {
       return <CodeRenderer />;
@@ -53,7 +57,16 @@ const components = {
 
 export default function PortableTextRenderer({ value, style }) {
   return (
-    <Box sx={style}>
+    <Box
+      sx={{
+        textWrapStyle: "pretty",
+        "> :is(h1, h2, h3, h4, h5, h6):not(:first-child)": {
+          mt: 6,
+        },
+        ...style,
+      }}
+      className="portableText"
+    >
       <PortableText value={value} components={components} />
     </Box>
   );

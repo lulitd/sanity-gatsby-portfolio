@@ -36,6 +36,7 @@ function LogoList({ logos, logoSize, duration, prefix }) {
               sx={{
                 height: logoSize,
                 opacity: 0.3,
+                mx: 3,
                 transition: "opacity 0.2s ease-in-out",
                 "&:hover": {
                   opacity: 1,

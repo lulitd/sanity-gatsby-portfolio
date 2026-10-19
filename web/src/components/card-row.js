@@ -1,7 +1,17 @@
 import React from "react";
 import Icon from "./icon";
-import { Box, Text, Heading, Card, Grid } from "theme-ui";
-import { alpha } from "@theme-ui/color";
+import { Box, Text, Heading, Card, Grid, Paragraph } from "theme-ui";
+import { alpha, darken, lighten, getColor } from "@theme-ui/color";
+import { keyframes } from "@emotion/react";
+
+const travelPath = keyframes`
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+`;
 
 function CardRow({ headingLevel, infoList }) {
   headingLevel = headingLevel ?? "h4";
@@ -9,122 +19,134 @@ function CardRow({ headingLevel, infoList }) {
   infoList = [
     {
       icon: "ux",
-      decor: "UX",
-      title: "UX",
-      text: "Create enjoyable experiences for users and audiences that are easy to use, accessible to all, and leave a lasting impression.",
+      decor: "1",
+      title: "Interaction Design",
+      text: "Create enjoyable experiences for users and audiences that are easy to use and leave a lasting impression.",
       themeColor: "primary",
     },
     {
       icon: "tools",
-      decor: "R&D",
-      title: "R&D",
-      text: "Stay up-to-date on the latest technology trends and determine the appriopriate technology stack for the project's needs and budget.",
+      decor: "2",
+      title: "Creative Development",
+      text: "Building the technology behind interactive experiences across games, installations, and real-time media.",
       themeColor: "secondary",
     },
     {
       icon: "controller",
-      decor: "CREATE",
-      title: "Crafting Interactive Content",
-      text: "Design & develop captivating interactive experiences for various platforms including mobile, web, games, and live events.",
+      decor: "3",
+      title: "Technical R&D",
+      text: "Prototyping emerging technologies and figuring out the execution of an idea.",
+      themeColor: "primary",
+    },
+    {
+      icon: "controller",
+      decor: "4",
+      title: "Production",
+      text: "Taking projects from early concept and prototype to implementation & delivery.",
       themeColor: "primary",
     },
   ];
   if (!infoList) return null;
-
   return (
-    <Grid gap={(2, 2, 3)} columns={[1, 2, 3]}>
-      {infoList.map((info) => {
-        return (
-          <Card
-            key={`card-${info.title}`}
-            sx={{
-              placeSelf: "center",
-              width: "100%",
-              maxWidth: 300,
-              borderRadius: 10,
-              aspectRatio: "5 / 8",
-              position: "relative",
-              overflow: "hidden",
-              background: info.themeColor,
-              padding: 0,
-            }}
-          >
-            <Box
+    <>
+      <Text
+        as={"p"}
+        sx={{
+          color: "primary",
+          fontFamily: "nav",
+          pb: 3,
+          fontSize: [4, 4, 4],
+          lineHeight: "initial",
+          textTransform: "uppercase",
+          textAlign: "center",
+          textWrap: "balance",
+        }}
+      >
+        I work across the space between <br></br>
+        <span
+          sx={{
+            "&:before": {
+              content: "'<< '",
+            },
+            "&:after": {
+              content: "' >> '",
+            },
+          }}
+        >
+          design & development
+        </span>
+      </Text>
+
+      <Grid
+        gap={(3, 3, 5)}
+        columns={[1, 2]}
+        sx={{
+          "--rectInset": ["10%", "25%"],
+          position: "relative",
+          isolation: "isolate",
+          //dotted rect
+          "&:before": {
+            content: '""',
+            position: "absolute",
+            inset: "var(--rectInset,10%)",
+            border: (theme) => `2px dotted ${getColor(theme, "secondary")}`,
+            zIndex: "-1000",
+            pointerEvents: "none",
+          },
+          "&:after": {
+            "--circleSize": "10px",
+            content: '""',
+            position: "absolute",
+            width: "var(--circleSize,5px)",
+            height: "var(--circleSize,5px)",
+            borderRadius: "50%",
+            bg: "secondary",
+            boxShadow: (theme) => `0 0 12px ${getColor(theme, "secondary")}`,
+            offsetPath: ["inset(var(--rectInset,10%))"],
+            offsetDistance: "17%",
+            offsetRotate: "0deg",
+            animation: `${travelPath} 25s linear infinite`,
+            zIndex: -1,
+            filter: "blur(2px)",
+          },
+          "@media (prefers-reduced-motion: reduce)": {
+            "&::after": {
+              animation: "none",
+            },
+          },
+        }}
+      >
+        {infoList.map((info) => {
+          return (
+            <Card
+              variant="standard"
+              color="secondary"
               sx={{
-                zIndex: 1,
-                position: "absolute",
-                top: 50,
-                left: 0,
-                width: "100%",
-                height: "25%",
+                bg: alpha("background", 0.9),
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                borderWidth: 1,
+                borderRadius: 20,
+                borderTopLeftRadius: 0,
+                borderBottomRightRadius: 0,
+                boxShadow: (theme) => `0px 10px 0px ${darken("secondary", 0.3)(theme)}`,
+                px: 15,
+                py: 30,
+                textWrapStyle: "balance",
               }}
             >
-              <Text
-                sx={{
-                  fontSize: 150,
-                  fontFamily: "monospace",
-                  fontWeight: 900,
-                  textTransform: "uppercase",
-                  textAlign: "center",
-                  lineHeight: 0,
-                  letterSpacing: "0em",
-                  color: alpha("lightest", 0.25),
-                }}
-              >
-                {info.decor}
-              </Text>
-            </Box>
-            <Box
-              sx={{
-                position: "absolute",
-                width: "100%",
-                height: "75%",
-                maxHeight: "100%",
-                bottom: 0,
-                left: 0,
-                zIndex: 2,
-                padding: 3,
-              }}
-            >
-              <Heading
-                as={headingLevel}
-                sx={{
-                  fontSize: [3, 3, 3],
-                  whiteSpace: "pre-line",
-                  color: `${info.themeColor == "primary" ? "primary900" : "lightest"}`,
-                }}
-              >
+              <Heading as={headingLevel} sx={{ color: "secondary", fontSize: [3, 3, 3] }}>
                 {info.title}
               </Heading>
-              <Text
-                sx={{
-                  color: `${info.themeColor == "primary" ? "primary900" : "lightest"}`,
-                }}
-              >
+              <Text color="text" sx={{ width: "100%", maxWidth: "350px", textAlign: "center" }}>
                 {info.text}
               </Text>
-
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: "70px",
-                  height: "70px",
-                  borderRadius: 1000,
-                  bg: info.themeColor,
-                  color: `${info.themeColor == "primary" ? "primary900" : "secondary100"}`,
-                  top: "-1em",
-                  right: "20px",
-                  zIndex: 2,
-                  padding: "10px",
-                }}
-              >
-                <Icon symbol={info.icon} sx={{ height: 50, width: 50 }} />
-              </Box>
-            </Box>
-          </Card>
-        );
-      })}
-    </Grid>
+            </Card>
+          );
+        })}
+      </Grid>
+    </>
   );
 }
 

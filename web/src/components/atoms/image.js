@@ -2,7 +2,6 @@ import React from "react";
 import { Box } from "theme-ui";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getGatsbyImageData } from "gatsby-source-sanity";
-import { motion } from "framer-motion";
 import clientConfig from "../../../client-config";
 
 const variants = {
@@ -31,20 +30,20 @@ export default function SanityImage({ image, assetId, variant = "thumb", imgStyl
   const config = variants[variant];
 
   return (
-    <GatsbyImage
-      image={imageData}
-      alt={image?.asset.altText || ""}
-      layout={config.layout}
-      imgStyle={{
-        width: "100%",
-        height: "100%",
-        objectFit: config.imgStyle.objectFit,
-        objectPosition: image?.hotspot
-          ? `${image?.hotspot.x * 100}% ${image?.hotspot.y * 100}%`
-          : "50% 50%",
-        ...imgStyle,
-      }}
-      {...props}
-    />
+    <Box sx={{ width: "100%", minWidth: 0, ...sx }}>
+      <GatsbyImage
+        image={imageData}
+        alt={image?.asset.altText || ""}
+        layout={config.layout}
+        imgStyle={{
+          objectFit: config.imgStyle.objectFit,
+          objectPosition: image?.hotspot
+            ? `${image?.hotspot.x * 100}% ${image?.hotspot.y * 100}%`
+            : "50% 50%",
+          ...imgStyle,
+        }}
+        {...props}
+      />
+    </Box>
   );
 }

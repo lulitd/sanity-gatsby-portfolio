@@ -1,5 +1,4 @@
 import { getColor, shade, lightness, lighten, alpha, darken } from "@theme-ui/color";
-import { color } from "framer-motion";
 
 const theme = {
   sizes: {
@@ -66,7 +65,7 @@ const theme = {
     "0.75rem",
     "1rem",
   ],
-  fontSizes: [14, 16, 18, 20, 24, 28, 32, 48, 64, 96],
+  fontSizes: [12, 16, 18, 20, 24, 28, 32, 48, 64, 96],
   fontWeights: {
     body: 400,
     heading: 900,
@@ -236,6 +235,14 @@ const theme = {
     },
   },
   cards: {
+    standard: {
+      padding: 4,
+      border: "solid currentColor",
+      borderWidth: [1],
+      borderRadius: "default",
+      borderTopRightRadius: "0",
+      borderBottomLeftRadius: "0",
+    },
     primary: {
       padding: 4,
       border: "1px solid",

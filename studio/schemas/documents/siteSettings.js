@@ -134,5 +134,11 @@ export default {
       description: "The image that appears when link is shared on social.",
       type: "image",
     },
+    {
+      name: "jumboImage",
+      title: "jumboImage",
+      description: "The image that appears on the jumbo header",
+      type: "image",
+    },
   ],
 };

@@ -1,5 +1,5 @@
 import { graphql, StaticQuery } from "gatsby";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Layout from "../components/layout";
 import GlobalStyle from "../components/globalStyle";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
@@ -25,12 +25,12 @@ const query = graphql`
 function LayoutContainer(props) {
   const [showNav, setShowNav] = useState(false);
 
-  function handleShowNav() {
+  const handleShowNav = useCallback(() => {
     setShowNav(true);
-  }
-  function handleHideNav() {
+  }, []);
+  const handleHideNav = useCallback(() => {
     setShowNav(false);
-  }
+  }, []);
 
   const { title, statusAvailablity, statusMessage, contactEmail, author } = useSiteMetadata();
 

@@ -5,11 +5,10 @@ import { alpha } from "@theme-ui/color";
 import SanityImage from "./image";
 
 export default ({ value }) => {
-  console.log(value);
   return (
     <Box
       sx={{
-        marginBottom: "1rem",
+        my: 5,
         position: "relative",
       }}
       as="figure"

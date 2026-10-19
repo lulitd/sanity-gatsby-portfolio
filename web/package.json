@@ -7,7 +7,8 @@
     "build": "gatsby build",
     "clean-cache": "gatsby clean",
     "serve": "gatsby serve",
-    "dev": "npm run clean-cache && gatsby develop -H 0.0.0.0",
+    "dev": "gatsby develop",
+    "dev-clean": "npm run clean-cache && gatsby develop -H 0.0.0.0",
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""

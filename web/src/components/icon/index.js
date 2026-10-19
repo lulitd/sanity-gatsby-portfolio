@@ -7,9 +7,9 @@ import {
   AiOutlineTwitter,
   AiOutlineInstagram,
   AiFillGithub,
-  AiOutlineYoutube
+  AiOutlineYoutube,
 } from "react-icons/ai";
-import { CgMenuGridR } from "react-icons/cg";
+import { CgMenuGridR, CgClose } from "react-icons/cg";
 import { RiUserHeartLine } from "react-icons/ri";
 import { VscTools } from "react-icons/vsc";
 import { MdImportantDevices } from "react-icons/md";
@@ -19,6 +19,8 @@ function Icon(props) {
   switch (props.symbol) {
     case "hamburger":
       return <CgMenuGridR {...props} />;
+    case "close":
+      return <CgClose {...props} />;
     case "logo":
       return <LogoIcon {...props} />;
     case "facebook":

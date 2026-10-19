@@ -33,21 +33,25 @@ const ToggleButton = ({ showNav, onHideNav, onShowNav }) => (
     fontSize={4}
     m={0}
     p={2}
-    aria-label="Menu"
+    aria-label={showNav ? "Close menu" : "Open menu"}
+    aria-expanded={showNav}
+    aria-controls="mobile-navigation"
     sx={{
       display: ["block", "none"],
       border: "none",
       color: "inherit",
       background: "none",
+      zIndex: 101,
     }}
   >
-    <Icon symbol="hamburger" sx={{ height: 28, width: 28 }} />
+    <Icon symbol={showNav ? "close" : "hamburger"} sx={{ height: 28, width: 28 }} />
   </Button>
 );
 
-const NavLink = ({ to, children }) => (
+const NavLink = ({ to, children, onClick }) => (
   <ThemedLink
     to={to}
+    onClick={onClick}
     variant="nav"
     sx={{
       display: "block",
@@ -66,17 +70,18 @@ const NavLink = ({ to, children }) => (
 const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
   <Box
     as="nav"
-    color={["text"]}
+    id="mobile-navigation"
+    color="text"
     sx={{
       display: [showNav ? "flex" : "none", "flex"],
-      left: 0,
-      right: 0,
-      top: 0,
-      position: ["absolute", "inherit", "inherit"],
-      height: ["100dvh", "inherit", "inherit"],
+      position: ["fixed", "static"],
+      inset: [0, "auto"],
+      width: ["100%", "auto"],
+      height: ["100dvh", "auto"],
       pt: 2,
-      backgroundColor: ["background", "transparent"],
-      zIndex: [-5, "inherit", "inherit"],
+      backgroundColor: "background",
+      zIndex: [100, "auto"],
+      justifyContent: "center",
     }}
   >
     <Flex
@@ -84,7 +89,6 @@ const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
       sx={{
         listStyle: "none",
         justifyContent: "center",
-
         marginX: "auto",
         p: [2, 0],
         flexDirection: ["column", "row"],
@@ -92,21 +96,20 @@ const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
       }}
     >
       <li>
-        <NavLink to="/about/">About</NavLink>
+        <NavLink to="/about/" onClick={onHideNav}>
+          About
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/projects/">Projects</NavLink>
+        <NavLink to="/projects/" onClick={onHideNav}>
+          Projects
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/contact/">Contact</NavLink>
+        <NavLink to="/contact/" onClick={onHideNav}>
+          Contact
+        </NavLink>
       </li>
-      {/* <Box sx={{ display: "block", m: 0, ml: [0, "0.75rem", "0.75rem"], pt: "0.5rem" }}>
-        <StatusPill
-          currentStatus={status.statusAvailablity}
-          message={status.statusMessage}
-          contactInfo={status.contactEmail}
-        />
-      </Box> */}
     </Flex>
   </Box>
 );
