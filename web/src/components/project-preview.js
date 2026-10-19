@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
@@ -26,33 +26,22 @@ function ProjectPreview(props) {
       .slice(0, 2)
       .join(" | ");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
+
+    const element = containerRef.current;
+    if (!element) return;
 
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      const isMobile = window.matchMedia("(max-width: 639px)").matches;
-
-      const titleEl = containerRef.current.querySelector("[data-animate='title']");
-
-      const originalTitle = props.title || "";
-
-      gsap.set(titleEl, {
-        textContent: originalTitle.replace(/[^\s]/g, "#"),
-      });
-
-      const words = gsap.utils.toArray(
-        containerRef.current.querySelectorAll("[data-animate='word']"),
-      );
-
       mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const isMobile = window.matchMedia("(max-width: 639px)").matches;
+
+        const words = gsap.utils.toArray(element.querySelectorAll("[data-animate='word']"));
+
         const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-            once: true,
-          },
+          paused: true,
           defaults: {
             duration: 0.7,
             ease: "power2.out",
@@ -78,9 +67,10 @@ function ProjectPreview(props) {
               },
               ease: "none",
             },
-            0, // All words scramble simultaneously
+            0,
           );
         });
+
         tl.from(
           "[data-animate='role'], [data-animate='categories']",
           {
@@ -116,10 +106,24 @@ function ProjectPreview(props) {
             },
             isMobile ? 0 : 0.2,
           );
+
+        const trigger = ScrollTrigger.create({
+          trigger: element,
+          start: "top 80%",
+          once: true,
+          onEnter: () => {
+            tl.play();
+          },
+        });
+
+        return () => {
+          trigger.kill();
+          tl.kill();
+        };
       });
 
       return () => mm.revert();
-    }, containerRef);
+    }, element);
 
     return () => ctx.revert();
   }, []);

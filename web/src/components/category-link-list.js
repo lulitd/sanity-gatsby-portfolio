@@ -5,33 +5,24 @@ import { Box } from "theme-ui";
 function CategoryLinkList({ categories, currentCategory, all, used }) {
   if (!categories) return null;
 
-  if (used) {
-    const { group } = used;
-    const usedCategoryTitles = group.map(function (cat) {
-      return cat["fieldValue"];
-    });
+  let visibleCategories = [...categories];
 
-    categories = categories.filter(function (cat) {
-      return usedCategoryTitles.includes(cat.title);
-    });
+  if (used) {
+    const usedCategoryTitles = used.group.map((cat) => cat.fieldValue);
+
+    visibleCategories = visibleCategories.filter((cat) => usedCategoryTitles.includes(cat.title));
   }
 
   if (all) {
-    categories.unshift({ title: "All", slug: { current: "" }, id: "all" });
+    visibleCategories.unshift({
+      title: "All",
+      slug: { current: "" },
+      id: "all",
+    });
   }
 
-  const currentCat = currentCategory ? currentCategory.title : "";
-  let list = categories.map((cat) => {
-    const isCurrent = currentCat === cat.title;
-    const path = `/projects${cat.title === "All" ? "" : "/category"}/${cat.slug.current}`;
-    return (
-      <Box as="li" sx={{ display: "inline-block", pr: "2", lineHeight: [3] }} key={cat.id}>
-        <ThemedLink to={path} variant="outlineBtn" activeClassName="active">
-          {cat.title}
-        </ThemedLink>
-      </Box>
-    );
-  });
+  const currentCat = currentCategory?.title || "All";
+
   return (
     <Box pb={[4]}>
       <Box
@@ -42,7 +33,35 @@ function CategoryLinkList({ categories, currentCategory, all, used }) {
           p: 0,
         }}
       >
-        {list}
+        {visibleCategories.map((cat) => {
+          const isCurrent = currentCat === cat.title;
+
+          const path =
+            cat.title === "All"
+              ? "/projects/"
+              : `/projects/?category=${encodeURIComponent(cat.slug.current)}`;
+
+          return (
+            <Box
+              as="li"
+              key={cat.id}
+              sx={{
+                display: "inline-block",
+                pr: 2,
+                lineHeight: 3,
+              }}
+            >
+              <ThemedLink
+                to={path}
+                variant="outlineBtn"
+                className={isCurrent ? "active" : ""}
+                aria-current={isCurrent ? "page" : undefined}
+              >
+                {cat.title}
+              </ThemedLink>
+            </Box>
+          );
+        })}
       </Box>
     </Box>
   );

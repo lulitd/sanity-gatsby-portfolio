@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { useLocation } from "@reach/router";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
@@ -86,42 +87,59 @@ export const query = graphql`
   }
 `;
 
-const ArchivePage = (props) => {
-  const { data, errors } = props;
+const ArchivePage = ({ data, errors }) => {
+  const location = useLocation();
+
   if (errors) {
     return <GraphQLErrorList errors={errors} />;
   }
-  const projectNodes =
-    data && data.projects && mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
 
-  const totalCount = data && data.projects && data.projects.totalCount;
+  const projectNodes = mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
 
-  const categoryNodes = data && data.categories && mapEdgesToNodes(data.categories);
+  const categoryNodes = mapEdgesToNodes(data.categories);
+  const usedCategories = data.usedCategories;
+  const archiveOrder = data.archive?.archive;
 
-  const usedCategories = data && data.usedCategories;
+  // Read selected category from URL
+  const params = new URLSearchParams(location.search);
+  const categorySlug = params.get("category");
 
-  const archiveOrder = data && data.archive.archive;
+  // Find matching category
+  const currentCategory = categoryNodes.find((cat) => cat.slug.current === categorySlug) || {
+    title: "All",
+  };
+
+  // Filter projects without remounting the page
+  const visibleProjects =
+    currentCategory.title === "All"
+      ? projectNodes
+      : projectNodes.filter((project) =>
+          project.categories?.some((cat) => cat.title === currentCategory.title),
+        );
 
   return (
-    <Container
-      sx={{
-        textAlign: "center",
-      }}
-    >
-      <Heading as="h1">Projects</Heading>
+    <Container sx={{ textAlign: "center" }}>
+      <Heading as="h1">
+        Projects
+        {currentCategory.title !== "All" && ` // ${currentCategory.title}`}
+      </Heading>
+
       <CategoryLinkList
         categories={categoryNodes}
-        currentCategory={{ title: "All" }}
+        currentCategory={currentCategory}
         all={true}
         used={usedCategories}
       />
-      {projectNodes && projectNodes.length > 0 && (
-        <ProjectPreviewGrid nodes={projectNodes} order={archiveOrder} />
-      )}
+
+      <ProjectPreviewGrid nodes={visibleProjects} order={archiveOrder} />
     </Container>
   );
 };
 
 export default ArchivePage;
 
-export const Head = () => <SEO title="All Projects" />;
+export const Head = ({ location }) => {
+  const params = new URLSearchParams(location?.search || "");
+
+  return <SEO title={params.get("category") ? "Project Category" : "All Projects"} />;
+};
