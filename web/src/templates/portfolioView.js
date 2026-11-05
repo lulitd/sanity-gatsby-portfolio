@@ -112,6 +112,6 @@ export const query = graphql`
   }
 `;
 
-export const Head = ({ data }) => (
-  <SEO title={data?.sanityPortfolioView?.title || "Selected Work"} />
+export const Head = ({ data, location }) => (
+  <SEO title={data?.sanityPortfolioView?.title || "Selected Work"} pathname={location.pathname} />
 );

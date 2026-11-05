@@ -144,4 +144,6 @@ const CategoryTemplate = (props) => {
 
 export default CategoryTemplate;
 
-export const Head = ({ data }) => <SEO title={`Projects Tagged: ${data.category.title}`} />;
+export const Head = ({ data, location }) => (
+  <SEO title={`Projects Tagged: ${data.category.title}`} pathname={location.pathname} />
+);

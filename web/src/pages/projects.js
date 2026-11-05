@@ -168,5 +168,10 @@ export default ArchivePage;
 export const Head = ({ location }) => {
   const params = new URLSearchParams(location?.search || "");
 
-  return <SEO title={params.get("category") ? "Project Category" : "All Projects"} />;
+  return (
+    <SEO
+      title={params.get("category") ? "Project Category" : "All Projects"}
+      pathname={location.pathname}
+    />
+  );
 };

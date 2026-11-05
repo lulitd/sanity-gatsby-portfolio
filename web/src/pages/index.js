@@ -490,4 +490,4 @@ const IndexPage = (props) => {
 
 export default IndexPage;
 
-export const Head = () => <SEO />;
+export const Head = ({ location }) => <SEO pathname={location.pathname} />;

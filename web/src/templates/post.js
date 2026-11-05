@@ -50,4 +50,4 @@ const PostTemplate = (props) => {
 
 export default PostTemplate;
 
-export const Head = () => <SEO title="Post" />;
+export const Head = ({ location }) => <SEO title="Post" pathname={location.pathname} />;

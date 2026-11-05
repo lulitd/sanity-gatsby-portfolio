@@ -132,4 +132,4 @@ const AboutPage = (props) => {
 
 export default AboutPage;
 
-export const Head = () => <SEO title="About" />;
+export const Head = ({ location }) => <SEO title="About" pathname={location.pathname} />;

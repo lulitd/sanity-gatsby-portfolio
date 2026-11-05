@@ -102,4 +102,4 @@ const ContactPage = (props) => {
 
 export default ContactPage;
 
-export const Head = () => <SEO title="Contact" />;
+export const Head = ({ location }) => <SEO title="Contact" pathname={location.pathname} />;

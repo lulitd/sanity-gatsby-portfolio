@@ -41,7 +41,7 @@ export const useSiteMetadata = () => {
   
   const siteSettings={
     title: sanity.title ?? siteMetadata.title,
-    description: sanity.description ?? siteMetadata.title,
+    description: sanity.description?.trim() ?? siteMetadata.description,
     image: siteMetadata.image,
     sanityImg: sanity.socialImage,
     siteUrl:siteMetadata.siteUrl,

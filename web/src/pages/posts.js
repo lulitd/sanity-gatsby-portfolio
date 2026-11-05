@@ -74,4 +74,4 @@ const BlogPage = (props) => {
 
 export default BlogPage;
 
-export const Head = () => <SEO title="Blog" />;
+export const Head = ({ location }) => <SEO title="Blog" pathname={location.pathname} />;
