@@ -1,41 +1,41 @@
 import React from "react";
 import { Box, Flex, Grid, Heading, Text } from "theme-ui";
-import Container from "./container";
-import AnimWebBanner from "../animIcons/animWebBanner";
+import Container from "../container";
+import AnimWebBanner from "../../animIcons/animWebBanner";
 const process = [
   {
     title: "Explore",
-    description: "Prototype early. Test ideas. Find out what the technology can actually do.",
+    description:
+      "Prototype early. Test ideas. Ask questions, experiment, and find the right direction.",
   },
   {
     title: "Design",
-    description:
-      "Turn abstract ideas into interactions, systems, and experiences people can understand and engage with.",
+    description: "Translate ideas into visuals, stories, and interactive concepts.",
   },
   {
-    title: "Build",
-    description:
-      "Take the strongest ideas into production and build the systems that make them real.",
+    title: "Deliever",
+    description: "Refine, problem-solve, and bring the final experience to life.",
   },
 ];
 
 const areas = [
   {
-    title: "Interaction Design",
+    title: "Visual Storytelling",
     skills: "Interaction systems · UX · Prototyping · User flows · Experience design",
   },
   {
     title: "Creative Development",
-    skills: "JavaScript · React · WebGL · Unity · C# · Interactive media",
+    skills: "JavaScript · WebGL · Unity · C# · Interactive experiences",
+  },
+  {
+    title: "Motion & Video",
+    skills:
+      "Video editing · Motion graphics · Animations · Livestream production · Post-production",
   },
   {
     title: "Experiential Technology",
     skills:
-      "Motion tracking · Real-time graphics · Projection · Physical interfaces · Installation",
-  },
-  {
-    title: "Creative Production",
-    skills: "Motion graphics · VFX · Video · Livestreaming · Technical production",
+      "Motion tracking · Real-time graphics · Projection mapping · Physical interfaces · Installations",
   },
 ];
 
@@ -48,7 +48,7 @@ function WorkingApproach() {
             How I Work
           </Heading>
 
-          <Grid columns={[1, 3]} gap={[4, 3]}>
+          <Grid columns={[1, 3]} gap={[4, 5]}>
             {process.map((item, index) => (
               <Box
                 key={item.title}
@@ -107,12 +107,10 @@ function WorkingApproach() {
         <Box
           sx={{
             pt: 5,
-            borderTop: "1px solid",
-            borderColor: "muted",
           }}
         >
           <Heading as="h3" sx={{ mb: 4 }}>
-            Areas I Work Across
+            Skills & Disciplines
           </Heading>
 
           <Grid columns={[1, 2]} gap={[4, 5]}>
@@ -120,8 +118,6 @@ function WorkingApproach() {
               <Box
                 key={item.title}
                 sx={{
-                  borderTop: "1px solid",
-                  borderColor: "muted",
                   pt: 3,
                 }}
               >

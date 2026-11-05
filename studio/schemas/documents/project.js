@@ -1,166 +1,395 @@
-import { format, parseISO } from "date-fns";
-
 export default {
   name: "project",
   title: "Project",
   type: "document",
+
+  // Studio editing tabs
+  groups: [
+    {
+      name: "overview",
+      title: "Overview",
+      default: true,
+    },
+    {
+      name: "content",
+      title: "Case Study",
+    },
+    {
+      name: "media",
+      title: "Media & Layout",
+    },
+    {
+      name: "credits",
+      title: "Credits & Details",
+    },
+    {
+      name: "settings",
+      title: "Publishing & Links",
+    },
+  ],
+
+  // Collapsible fields within tabs
   fieldsets: [
     {
       name: "social",
-      title: "Social media handles",
-      options: { collapsible: true, collapsed: false },
+      title: "External Links & Social Media",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    },
+    {
+      name: "legacyCredits",
+      title: "Legacy Collaborators",
+      description:
+        "Original collaborator list. Used as a fallback when " +
+        "grouped credits are not provided.",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     },
   ],
+
   fields: [
+    // ==========================================
+    // 01. OVERVIEW
+    // ==========================================
+
     {
       name: "title",
-      title: "Title",
+      title: "Project Title",
       type: "string",
+      group: "overview",
+      validation: (Rule) => Rule.required(),
     },
+
     {
       name: "slug",
-      title: "Slug",
+      title: "URL Slug",
       type: "slug",
-      description: "Some frontend will require a slug to be set to be able to show the project",
+      group: "overview",
+      description: "Used to generate the project's URL. " + "Avoid changing after publishing.",
       options: {
         source: "title",
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required(),
     },
-    {
-      name: "publishedAt",
-      title: "Published at",
-      description: "You can use this field to schedule projects where you show them",
-      type: "datetime",
-    },
-    {
-      name: "featured",
-      title: "Featured Project",
-      description: "Use this to display project on featured section",
-      type: "boolean",
-    },
+
     {
       name: "subtitle",
-      title: "Subtitle",
+      title: "Project Tagline",
       type: "string",
+      group: "overview",
+      description:
+        "A short identifying tagline for the project. " +
+        "Also used as a fallback when the card excerpt is empty.",
     },
+
     {
       name: "excerpt",
-      title: "Excerpt",
+      title: "Project Card Description",
       type: "text",
+      group: "overview",
+      rows: 3,
+      description:
+        "A concise description used on the homepage, " +
+        "Projects page, and Related Projects cards. " +
+        "Aim for approximately 25–40 words.",
+      validation: (Rule) => Rule.max(300),
     },
-    {
-      name: "members",
-      title: "Collaborators",
-      type: "array",
-      of: [{ type: "projectMember" }],
-    },
-    {
-      name: "roles",
-      title: "Roles",
-      type: "array",
-      of: [{ type: "simpleInfo" }],
-    },
-    {
-      name: "technologies",
-      title: "Technologies",
-      type: "array",
-      of: [{ type: "simpleInfo" }],
-    },
-    {
-      name: "startedAt",
-      title: "Started at",
-      type: "datetime",
-    },
-    {
-      name: "endedAt",
-      title: "Ended at",
-      type: "datetime",
-    },
-    {
-      name: "thumbImage",
-      title: "Thumbnail image",
-      type: "figure",
-    },
-    {
-      name: "mainImage",
-      title: "Main image",
-      type: "figure",
-    },
+
     {
       name: "categories",
-      title: "Categories",
+      title: "Project Categories",
       type: "array",
-      of: [{ type: "reference", to: { type: "category" } }],
+      group: "overview",
+      description:
+        "Choose categories that describe the type of work. " +
+        "These may appear on project cards and filters.",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "category" }],
+        },
+      ],
     },
+
+    {
+      name: "featured",
+      title: "Featured on Homepage",
+      type: "boolean",
+      group: "overview",
+      description: "Display this project in the homepage's highlighted work.",
+      initialValue: false,
+    },
+
+    // ==========================================
+    // 02. CASE STUDY
+    // ==========================================
+
     {
       name: "projectBrief",
       title: "Project Brief",
       type: "projectPortableText",
+      group: "content",
+      description:
+        "Introduce the project, its purpose, audience, " + "context, and creative challenge.",
     },
+
     {
       name: "projectBreakdown",
-      title: "Breakdown",
+      title: "Project Breakdown",
       type: "projectPortableText",
+      group: "content",
+      description:
+        "Explain your process, contributions, creative " +
+        "decisions, technical challenges, and outcomes.",
     },
+
+    // ==========================================
+    // 03. MEDIA & LAYOUT
+    // ==========================================
+
+    {
+      name: "mainImage",
+      title: "Main Project Image",
+      type: "figure",
+      group: "media",
+      description:
+        "Primary image for the project page. " + "Also used as a fallback for project cards.",
+    },
+
+    {
+      name: "thumbImage",
+      title: "Project Thumbnail",
+      type: "figure",
+      group: "media",
+      description:
+        "Image used for project previews. " + "Choose a composition that works at smaller sizes.",
+    },
+
+    {
+      name: "heroLayout",
+      title: "Hero Layout",
+      type: "string",
+      group: "media",
+      description: "Choose how the project header is displayed.",
+      options: {
+        list: [
+          {
+            title: "Full Bleed (Parallax)",
+            value: "full",
+          },
+          {
+            title: "Split (Editorial + Image)",
+            value: "split",
+          },
+          {
+            title: "Editorial (Text Only)",
+            value: "editorial",
+          },
+        ],
+        layout: "radio",
+      },
+      initialValue: "full",
+    },
+
+    {
+      name: "heroImagePosition",
+      title: "Hero Image Position",
+      type: "string",
+      group: "media",
+      description: "Choose which side the image appears on " + "when using the split hero layout.",
+      options: {
+        list: [
+          { title: "Right", value: "right" },
+          { title: "Left", value: "left" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "right",
+      hidden: ({ document }) => document?.heroLayout !== "split",
+    },
+
+    // ==========================================
+    // 04. CREDITS & DETAILS
+    // ==========================================
+
+    {
+      name: "roles",
+      title: "My Roles & Contributions",
+      type: "array",
+      group: "credits",
+      description:
+        "Your responsibilities on this project. " +
+        "The first roles may also appear on project cards.",
+      of: [{ type: "simpleInfo" }],
+    },
+
+    {
+      name: "technologies",
+      title: "Tools & Technologies",
+      type: "array",
+      group: "credits",
+      description: "Technologies, software, frameworks, " + "and techniques used in this project.",
+      of: [{ type: "simpleInfo" }],
+    },
+
+    {
+      name: "creditGroups",
+      title: "Grouped Project Credits",
+      type: "array",
+      group: "credits",
+
+      description:
+        "Organize collaborators by department or team. " +
+        "Drag groups to change their display order.",
+
+      of: [
+        {
+          type: "creditGroup",
+        },
+      ],
+
+      options: {
+        sortable: true,
+        modal: {
+          type: "dialog",
+          width: 3,
+        },
+      },
+    },
+
+    {
+      name: "members",
+      title: "Original Collaborator List",
+      type: "array",
+      group: "credits",
+      fieldset: "legacyCredits",
+      description:
+        "Existing credits retained for older projects. " +
+        "Used when no grouped credits are provided.",
+      of: [{ type: "projectMember" }],
+    },
+
+    // ==========================================
+    // 05. PUBLISHING & LINKS
+    // ==========================================
+
+    {
+      name: "publishedAt",
+      title: "Publication Date",
+      type: "datetime",
+      group: "settings",
+      description:
+        "Controls the publication date used by your " + "frontend queries and scheduling logic.",
+    },
+
+    {
+      name: "startedAt",
+      title: "Project Start Date",
+      type: "datetime",
+      group: "settings",
+    },
+
+    {
+      name: "endedAt",
+      title: "Project End Date",
+      type: "datetime",
+      group: "settings",
+    },
+
     {
       name: "relatedProjects",
-      title: "Related projects",
+      title: "Related Projects",
       type: "array",
-      of: [{ type: "reference", to: { type: "project" } }],
+      group: "settings",
+      description: "Select projects to recommend at the end " + "of this case study.",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "project" }],
+        },
+      ],
     },
+
     {
       name: "accolades",
-      title: "Accolades",
+      title: "Awards & Recognition",
       type: "array",
-      of: [{ type: "reference", to: { type: "accolade" } }],
+      group: "settings",
+      description:
+        "Connect awards, exhibitions, or other " + "recognition associated with this project.",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "accolade" }],
+        },
+      ],
     },
+
     {
-      title: "Website",
       name: "website",
+      title: "Project Website",
       type: "string",
+      group: "settings",
       fieldset: "social",
     },
+
     {
-      title: "Twitter",
-      name: "twitter",
-      type: "string",
-      fieldset: "social",
-    },
-    {
-      title: "Instagram",
-      name: "instagram",
-      type: "string",
-      fieldset: "social",
-    },
-    {
-      title: "Youtube",
       name: "youtube",
+      title: "YouTube",
       type: "string",
+      group: "settings",
       fieldset: "social",
     },
+
     {
-      title: "Github",
-      name: "github",
+      name: "instagram",
+      title: "Instagram",
       type: "string",
+      group: "settings",
+      fieldset: "social",
+    },
+
+    {
+      name: "github",
+      title: "GitHub",
+      type: "string",
+      group: "settings",
+      fieldset: "social",
+    },
+
+    {
+      name: "twitter",
+      title: "Twitter / X",
+      type: "string",
+      group: "settings",
       fieldset: "social",
     },
   ],
-  // preview: {
-  //   select: {
-  //     title: 'title',
-  //     publishedAt: 'publishedAt',
-  //     slug: 'slug',
-  //     media: 'mainImage'
-  //   },
-  //   prepare ({title = 'No title', publishedAt, slug = {}, media}) {
-  //     const dateSegment = format(parseISO(publishedAt), 'YYYY/MM')
-  //     const path = `/${dateSegment}/${slug.current}/`
-  //     return {
-  //       title,
-  //       media,
-  //       subtitle: publishedAt ? path : 'Missing publishing date'
-  //     }
-  //   }
-  // }
+
+  // ==========================================
+  // DOCUMENT LIST PREVIEW
+  // ==========================================
+
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "subtitle",
+      featured: "featured",
+      media: "thumbImage",
+      fallbackMedia: "mainImage",
+    },
+
+    prepare({ title, subtitle, featured, media, fallbackMedia }) {
+      return {
+        title: title || "Untitled Project",
+        subtitle: [featured ? "★ Featured" : null, subtitle].filter(Boolean).join(" · "),
+        media: media || fallbackMedia,
+      };
+    },
+  },
 };

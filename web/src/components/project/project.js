@@ -1,17 +1,18 @@
 import { format, distanceInWords, differenceInDays, parseISO } from "date-fns";
 import React from "react";
-import { buildImageObj } from "../lib/helpers";
-// import { imageUrlFor } from "../lib/image-url";
-import PortableTextRenderer from "./sanity/portable-text-renderer";
-import Container from "./container";
+import { buildImageObj } from "../../lib/helpers";
+import PortableTextRenderer from "../sanity/portable-text-renderer";
+import Container from "../container";
 import RoleList from "./role-list";
-import SocialsFromBio from "./socials-from-bio";
+import SocialsFromBio from "../socials-from-bio";
 import ProjectPreviewGrid from "./project-preview-grid";
-import ParallaxHero from "./parallaxHero";
+import ParallaxHero from "../hero/parallaxHero";
 import { Grid, Heading, Box, Text, Flex } from "theme-ui";
-import ThemedLink from "./atoms/ThemedLink";
+import ThemedLink from "../atoms/ThemedLink";
 import { alpha, lighten } from "@theme-ui/color";
-
+import ProjectSection from "./projectSection";
+import ProjectHero from "../hero/project-hero";
+import ProjectCredits from "./project-credits";
 function Project(props) {
   const {
     _rawProjectBrief,
@@ -22,6 +23,7 @@ function Project(props) {
     roles,
     technologies,
     members,
+    creditGroups,
     accolades,
     mainImage,
     relatedProjects,
@@ -31,11 +33,13 @@ function Project(props) {
     instagram,
     github,
     twitter,
+    heroLayout,
+    heroImagePosition,
   } = props;
 
   const collaborators = members;
 
-  let merged = [...accolades, ...awards];
+  let merged = [...(accolades ?? []), ...(awards ?? [])];
 
   const allIds = merged.map((el) => el["_id"]);
   const uniqueAccolades = merged.filter((obj, index) => {
@@ -44,7 +48,7 @@ function Project(props) {
 
   uniqueAccolades.sort((a, b) => a.date - b.date).reverse();
 
-  const filteredProjects = relatedProjects.filter((item) => {
+  const filteredProjects = (relatedProjects ?? []).filter((item) => {
     return item && item.publishedAt;
   });
 
@@ -195,52 +199,30 @@ function Project(props) {
       iconStyle={{ m: [1] }}
       sx={{
         display: "flex",
-        placeContent: "center",
+        justifyContent: "flex-start",
         pt: 3,
       }}
     />
   );
 
+  const metadataCount = [
+    categories?.length > 0,
+    roles?.length > 0,
+    technologies?.length > 0,
+  ].filter(Boolean).length;
+
   return (
     <Container as="article" sx={{ p: [0, 0, 0] }}>
       {/* Title and Image */}
-      <ParallaxHero mainImage={mainImage}>
-        <Box
-          sx={{
-            gridArea: "2/2",
-            display: "grid",
-            placeContent: "center",
-            padding: [2, 3, 4],
-            borderWidth: [2, null, 3],
-            borderStyle: "solid",
-            borderColor: "primary",
-            backgroundColor: alpha("background", 0.5),
-            backdropFilter: "blur(2em)",
-            textAlign: "center",
-            textWrap: "pretty",
-          }}
-        >
-          <Heading
-            sx={{
-              color: "primary",
-              textTransform: "uppercase",
-              fontSize: [5, 6],
-            }}
-          >
-            {title}
-          </Heading>
-          <Heading
-            variant="subheading"
-            sx={{
-              fontSize: [3, 4],
-              fontWeight: "400",
-            }}
-          >
-            {subtitle}
-          </Heading>
-          {socialIcons}
-        </Box>
-      </ParallaxHero>
+      <ProjectHero
+        title={title}
+        subtitle={subtitle}
+        mainImage={mainImage}
+        categories={categories}
+        socialIcons={socialIcons}
+        heroLayout={heroLayout}
+        heroImagePosition={heroImagePosition}
+      />
 
       <Container
         sx={{
@@ -251,84 +233,33 @@ function Project(props) {
           },
         }}
       >
-        <Flex
-          sx={{
-            flexDirection: ["column", "column", "row"],
-            py: 5,
-            mb: 5,
-            borderBottom: "1px solid",
-            borderColor: alpha("primary", 0.4),
-          }}
-        >
-          {categories && categories.length > 0 && categoriesButtons}
-          {roles && roles.length > 0 && rolesSection}
-          {technologies && technologies.length > 0 && techSection}
-        </Flex>
-
-        {_rawProjectBrief && (
+        {metadataCount > 0 && (
           <Grid
-            columns={[1, 1, "1fr 3fr"]}
-            gap={[1, 2, 3]}
+            gap={[2, 3, 4]}
+            columns={[1, null, metadataCount]}
             sx={{
-              mb: 5,
               alignItems: "start",
+              py: [4, 5],
+              borderBottom: "1px solid",
+              borderColor: alpha("primary", 0.4),
             }}
           >
-            <Heading
-              as="h3"
-              variant="stickySubHeading"
-              sx={{
-                textAlign: ["center", "center", "right"],
-                minWidth: "200px",
-                gridColumn: [1],
-              }}
-            >
-              Project Description
-            </Heading>
-            <PortableTextRenderer
-              value={_rawProjectBrief || []}
-              style={{
-                mx: ["auto", "auto", 0],
-                borderLeft: "1px solid red",
-                borderWidth: [0, 0, 1],
-                borderColor: "secondary",
-                px: [0, 0, 5],
-              }}
-            />
+            {categories && categories.length > 0 && categoriesButtons}
+            {roles && roles.length > 0 && rolesSection}
+            {technologies && technologies.length > 0 && techSection}
           </Grid>
         )}
 
+        {_rawProjectBrief && (
+          <ProjectSection title="Project Description">
+            <PortableTextRenderer value={_rawProjectBrief || []} />
+          </ProjectSection>
+        )}
+
         {_rawProjectBreakdown && (
-          <Grid
-            columns={[1, 1, "1fr 3fr"]}
-            gap={[1, 2, 3]}
-            sx={{
-              my: 5,
-              alignItems: "start",
-            }}
-          >
-            <Heading
-              as="h3"
-              variant="stickySubHeading"
-              sx={{
-                textAlign: ["center", "center", "right"],
-                minWidth: "200px",
-                gridColumn: [1],
-              }}
-            >
-              Project Breakdown
-            </Heading>
-            <PortableTextRenderer
-              value={_rawProjectBreakdown || []}
-              style={{
-                mx: ["auto", "auto", 0],
-                borderLeft: "1px solid red",
-                borderWidth: [0, 0, 1],
-                borderColor: "secondary",
-                px: [0, 0, 5],
-              }}
-            />
-          </Grid>
+          <ProjectSection title="Project Breakdown">
+            <PortableTextRenderer value={_rawProjectBreakdown || []} />
+          </ProjectSection>
         )}
 
         {uniqueAccolades && uniqueAccolades.length > 0 && (
@@ -390,7 +321,7 @@ function Project(props) {
                       position: "relative",
                       pl: 4,
                       textWrap: "balance",
-                      maxWidth: "50ch",
+                      maxWidth: "60ch",
                       "::before": {
                         content: '"\\25B2"',
                         position: "absolute",
@@ -405,8 +336,8 @@ function Project(props) {
                     <Text
                       sx={{
                         whiteSpace: "pre-wrap",
-                        letterSpacing: "2px",
-                        fontWeight: "800",
+                        fontWeight: "400",
+                        fontFamily: "heading",
                       }}
                       fontSize={[2, 1, 2]}
                     >{`${label}`}</Text>
@@ -416,7 +347,7 @@ function Project(props) {
                         color: lighten("primary", 0.1),
                         m: 0,
                         display: "block",
-                        fontFamily: "heading",
+                        fontFamily: "body",
                       }}
                     >
                       {accolade.address}
@@ -428,29 +359,13 @@ function Project(props) {
           </Box>
         )}
 
-        {collaborators && collaborators.length > 0 && (
-          <RoleList
-            items={collaborators}
-            title="Team"
-            style={{
-              justifyItems: "center",
-              borderRadius: "default",
-              borderBottom: "1px solid",
-              borderTop: "1px solid",
-              borderColor: alpha("primary", 0.4),
-              width: "fit-content",
-              mx: "auto",
-              p: 6,
-            }}
-          />
-        )}
+        <ProjectCredits creditGroups={creditGroups || []} members={collaborators || []} />
 
         {filteredProjects && filteredProjects.length > 0 && (
           <Box
             sx={{
-              borderTop: "2px solid",
-              borderColor: alpha("primary", 0.4),
-              pt: 6,
+              mt: [4, 6, 8],
+              pt: [6],
               textAlign: "center",
             }}
           >
@@ -463,8 +378,8 @@ function Project(props) {
             >
               Related Projects
             </Heading>
-            {categories && categories.length > 0 && categoriesButtons}
-            <ProjectPreviewGrid nodes={filteredProjects} />
+            {categories && categories.length > 0 && <Box pb={4}>{categoriesButtons}</Box>}
+            <ProjectPreviewGrid nodes={filteredProjects} variant="related" />
           </Box>
         )}
       </Container>

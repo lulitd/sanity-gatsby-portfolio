@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import Container from "../components/container";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import ProjectPreviewGrid from "../components/project-preview-grid";
+import ProjectPreviewGrid from "../components/project/project-preview-grid";
 import { Heading } from "theme-ui";
 
 export const query = graphql`

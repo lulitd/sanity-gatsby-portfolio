@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Text, Flex } from "theme-ui";
 import { alpha } from "@theme-ui/color";
 import { keyframes } from "@emotion/react";
-import SanityImage from "./atoms/image";
+import SanityImage from "../atoms/image";
 
 const slide = keyframes({
   from: { transform: "translateX(0)" },
@@ -80,7 +80,7 @@ function LogoScroller({ title, logos, logoHeight, duration, backgroundColor, ...
       <Box
         {...rest}
         sx={{
-          py: 2,
+          py: [0, 1, 2],
           position: "relative",
           isolation: "isolate",
           background: alpha(backgroundColor, 0.1),

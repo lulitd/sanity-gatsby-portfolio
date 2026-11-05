@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Icon from "./icon";
 import { Button, Box, Flex } from "theme-ui";
 import Container from "./container";
@@ -78,6 +78,8 @@ const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
       inset: [0, "auto"],
       width: ["100%", "auto"],
       height: ["100dvh", "auto"],
+      overflowY: ["auto", "visible"],
+      overscrollBehavior: ["contain", "auto"],
       pt: 2,
       backgroundColor: "background",
       zIndex: [100, "auto"],
@@ -90,6 +92,7 @@ const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
         listStyle: "none",
         justifyContent: "center",
         marginX: "auto",
+        flexShrink: 0,
         p: [2, 0],
         flexDirection: ["column", "row"],
         alignItems: ["center", "inherit"],
@@ -115,6 +118,31 @@ const Nav = ({ showNav, onHideNav, onShowNav, status }) => (
 );
 
 const Header = ({ onHideNav, onShowNav, showNav, siteTitle, status }) => {
+  useEffect(() => {
+    if (!showNav) return;
+
+    const html = document.documentElement;
+    const body = document.body;
+
+    html.classList.add("nav-open");
+    body.classList.add("nav-open");
+
+    // Close the navigation with Escape
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onHideNav();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      html.classList.remove("nav-open");
+      body.classList.remove("nav-open");
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showNav, onHideNav]);
+
   return (
     <Flex
       sx={{

@@ -3,30 +3,52 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { Grid, Box, Heading, Text, Flex, Paragraph } from "theme-ui";
-import ThemedLink from "./atoms/ThemedLink";
-import SanityImage from "./atoms/image";
+import ThemedLink from "../atoms/ThemedLink";
+import SanityImage from "../atoms/image";
 
-function ProjectPreview(props) {
+function ProjectPreview({
+  title,
+  slug,
+  subtitle,
+  excerpt,
+  thumbImage,
+  mainImage,
+  categories = [],
+  roles = [],
+  cardRole,
+  variant = "featured",
+}) {
   const containerRef = useRef(null);
-  const img = props.thumbImage ?? props.mainImage ?? null;
 
-  const cats =
-    props.categories &&
-    props.categories.length > 0 &&
-    props.categories
-      .slice(0, 3)
-      .map((cat) => cat.title)
-      .join(" • ");
+  const img = thumbImage ?? mainImage ?? null;
 
-  const roles =
-    props.roles &&
-    props.roles.length > 0 &&
-    props.roles
-      .flatMap((role) => Object.values(role).filter(Boolean))
+  const isFeatured = variant === "featured";
+  const isRelated = variant === "related";
+
+  const showDescription = isFeatured || isRelated;
+
+  // Project categories
+  const categoryText = categories
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((cat) => cat.title)
+    .filter(Boolean)
+    .join(" · ");
+
+  // Prefer a curated card role when available
+  const roleText =
+    cardRole ||
+    roles
+      .map((role) => role.fieldTitle)
+      .filter(Boolean)
       .slice(0, 2)
-      .join(" | ");
+      .join(" · ");
+
+  const description = excerpt || subtitle;
 
   useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+
     gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
     const element = containerRef.current;
@@ -53,9 +75,7 @@ function ProjectPreview(props) {
 
           tl.fromTo(
             word,
-            {
-              textContent: "#".repeat(text.length),
-            },
+            { textContent: "#".repeat(text.length) },
             {
               duration: 1.2,
               scrambleText: {
@@ -72,7 +92,16 @@ function ProjectPreview(props) {
         });
 
         tl.from(
-          "[data-animate='role'], [data-animate='categories']",
+          "[data-animate='categories']",
+          {
+            autoAlpha: 0,
+            y: 10,
+            stagger: 0.1,
+          },
+          0,
+        );
+        tl.from(
+          "[data-animate='roles']",
           {
             autoAlpha: 0,
             y: 10,
@@ -100,7 +129,7 @@ function ProjectPreview(props) {
             "[data-animate='image']",
             {
               autoAlpha: 0,
-              x: isMobile ? 0 : 30,
+              x: isMobile ? 0 : 10,
               y: isMobile ? 20 : 0,
               duration: 1,
             },
@@ -111,9 +140,7 @@ function ProjectPreview(props) {
           trigger: element,
           start: "top 80%",
           once: true,
-          onEnter: () => {
-            tl.play();
-          },
+          onEnter: () => tl.play(),
         });
 
         return () => {
@@ -131,111 +158,123 @@ function ProjectPreview(props) {
   return (
     <Grid
       ref={containerRef}
-      columns={[1, 2, 2]}
-      gap={[1, 2, 3]}
-      sx={{ minHeight: "50vh", minHeight: "50svh", p: 2 }}
+      columns={[1, 2, "5fr 4fr"]}
+      gap={[2, 3, 4]}
+      sx={{
+        minHeight: isFeatured ? ["auto", "40svh", "45svh"] : "auto",
+        py: isFeatured ? [4, 5] : [3, 4],
+        px: [2, 3],
+        alignItems: "center",
+      }}
     >
       <Flex
         sx={{
           flexDirection: "column",
           justifyContent: "center",
-          p: [2, 3, 3],
-          mb: 3,
+          p: [2, 3],
           gap: 3,
         }}
       >
         <Box>
-          {/* <Heading
-            data-animate="title"
-            sx={{
-           
-            }}
-            as="h3"
-          >
-            {props.title}
-          </Heading> */}
+          {categoryText && (
+            <Text
+              as="p"
+              data-animate="categories"
+              sx={{
+                fontFamily: "nav",
+                textTransform: "uppercase",
+                color: "muted",
+                mb: 2,
+                fontSize: 1,
+                letterSpacing: "0.05em",
+              }}
+            >
+              {categoryText}
+            </Text>
+          )}
 
           <Heading
             as="h3"
-            sx={{ color: "primary500", letterSpacing: "0.125rem", fontSize: [5, 6, 7], mb: 1 }}
+            sx={{
+              color: "primary500",
+              letterSpacing: "0.125rem",
+              fontSize: isRelated ? [4, 5] : [5, 6, 7],
+              mb: 2,
+            }}
           >
-            {props.title.split(" ").map((word, i) => (
+            {(title || "").split(" ").map((word, i) => (
               <React.Fragment key={i}>
                 {i > 0 && " "}
                 <span data-animate="word">{word}</span>
               </React.Fragment>
             ))}
           </Heading>
-          {roles && (
+
+          {roleText && (
             <Text
-              data-animate="role"
               as="p"
+              data-animate="roles"
               sx={{
                 fontFamily: "nav",
                 textTransform: "uppercase",
                 color: "secondary",
-                textWrapStyle: "pretty",
-                "&:before": {
-                  content: "'ROLE ❯❯ '",
-                },
+                fontSize: 1,
               }}
             >
-              {roles}
+              {roleText}
             </Text>
           )}
-          {cats && (
-            <Text
-              data-animate="categories"
+        </Box>
+
+        {showDescription && description && (
+          <Box data-animate="description">
+            <Paragraph
               sx={{
-                fontFamily: "nav",
-                textTransform: "uppercase",
                 textWrapStyle: "pretty",
-                opacity: 0.7,
+                maxWidth: "50ch",
               }}
             >
-              {cats}
-            </Text>
-          )}
-        </Box>
-        <Box
-          data-animate="description"
-          sx={{
-            textWrapStyle: "pretty",
-            my: 3,
-          }}
-        >
-          {(props.excerpt || props.subtitle) && (
-            <Paragraph>{props.excerpt ? props.excerpt : props.subtitle}</Paragraph>
-          )}
-        </Box>
-        <Box
-          data-animate="button"
-          sx={{
-            my: 2,
-          }}
-        >
-          <ThemedLink variant="outlineBtn" to={`/project/${props.slug.current}`}>
-            Learn More
+              {description}
+            </Paragraph>
+          </Box>
+        )}
+
+        <Box data-animate="button" py={4}>
+          <ThemedLink variant="outlineBtn" to={`/project/${slug?.current}`}>
+            Explore Project
           </ThemedLink>
         </Box>
       </Flex>
-      <Flex
-        data-animate="image"
-        sx={{
-          flexDirection: "column",
-          justifyContent: "space-around",
-          gridRowStart: [1, "inherit", "inherit"],
-        }}
-      >
-        <SanityImage
-          image={img}
+
+      {img && (
+        <Flex
+          data-animate="image"
           sx={{
-            color: "secondary900",
-            filter: "drop-shadow(-5px 10px 10px currentColor)",
-            maxWidth: "100%",
+            width: "100%",
+            minWidth: 0,
+            alignItems: "center",
+            justifyContent: "center",
+            gridRowStart: [1, "auto"],
           }}
-        />
-      </Flex>
+        >
+          <Box
+            sx={{
+              width: "100%",
+              maxWidth: isRelated ? "65%" : "100%",
+              mx: "auto",
+            }}
+          >
+            <SanityImage
+              image={img}
+              sx={{
+                width: "100%",
+                color: "secondary900",
+                filter: "drop-shadow(-5px 10px 10px currentColor)",
+              }}
+            />
+          </Box>
+        </Flex>
+      )}
     </Grid>
   );
 }

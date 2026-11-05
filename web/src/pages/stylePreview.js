@@ -6,7 +6,7 @@ import { Heading, Flex, Button, Box, Card, Grid, Paragraph, Message } from "them
 import { Themed } from "@theme-ui/mdx";
 import ThemedLink from "../components/atoms/ThemedLink";
 import Icon from "../components/icon";
-import ProjectPreview from "../components/project-preview";
+import ProjectPreview from "../components/project/project-preview";
 
 const placeHolderProject = {
   slug: {

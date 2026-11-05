@@ -1,34 +1,42 @@
 export default {
-  type: 'object',
-  name: 'projectMember',
-  title: 'Project Member',
+  name: "projectMember",
+  title: "Project Collaborator",
+  type: "object",
+
   fields: [
     {
-      title: 'Person',
-      name: 'person',
-      type: 'reference',
-      to: {type: 'person'}
+      name: "person",
+      title: "Collaborator",
+      type: "reference",
+      to: [{ type: "person" }],
+      description: "Select an existing collaborator or create a new person.",
+      validation: (Rule) => Rule.required(),
     },
+
     {
-      title: 'Roles',
-      name: 'roles',
-      type: 'array',
-      of: [{type: 'string'}],
-      validation: Rule => Rule.unique()
-    }
+      name: "roles",
+      title: "Role(s) on This Project",
+      type: "array",
+      of: [{ type: "string" }],
+      description:
+        "Describe this person's contributions. " + "Example: Motion Designer, Developer, Producer.",
+      options: {
+        sortable: true,
+      },
+    },
   ],
+
   preview: {
     select: {
-      personName: 'person.name',
-      roles: 'roles',
-      media: 'person.image'
+      name: "person.name",
+      roles: "roles",
     },
-    prepare (data) {
+
+    prepare({ name, roles = [] }) {
       return {
-        ...data,
-        title: data.personName,
-        subtitle: data.roles && data.roles.join('/')
-      }
-    }
-  }
-}
+        title: name || "Select a collaborator",
+        subtitle: roles.length ? roles.join(" · ") : "No role specified",
+      };
+    },
+  },
+};

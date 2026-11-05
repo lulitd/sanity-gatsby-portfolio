@@ -7,6 +7,7 @@ import PortableTextRenderer from "../components/sanity/portable-text-renderer";
 import { Box, Heading, Grid } from "theme-ui";
 
 import SanityImage from "../components/atoms/image";
+import AboutTimeline from "../components/aboutTimeline";
 
 export const query = graphql`
   query AboutQuery {
@@ -30,6 +31,34 @@ export const query = graphql`
         _rawBio
       }
     }
+    allSanityMilestone(filter: { featured: { eq: true } }, sort: [{ year: ASC }, { order: ASC }]) {
+      nodes {
+        _id
+        title
+        year
+        category
+        description
+        order
+        link
+        image {
+          asset {
+            gatsbyImageData(width: 600, placeholder: BLURRED)
+            altText
+          }
+          hotspot {
+            x
+            y
+          }
+        }
+        projects {
+          _id
+          title
+          slug {
+            current
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -43,18 +72,19 @@ const AboutPage = (props) => {
   const site = (data || {}).site;
   if (!site) {
     throw new Error(
-      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
+      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
     );
   }
 
   const author = (site || {}).author;
   if (!author) {
     throw new Error(
-      'Missing author in "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
+      'Missing author in "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
     );
   }
 
   const profileImage = author.image;
+  const milestones = data?.allSanityMilestone?.nodes ?? [];
 
   return (
     <Container>
@@ -95,6 +125,7 @@ const AboutPage = (props) => {
           )}
         </Box>
       </Grid>
+      <AboutTimeline milestones={milestones} />
     </Container>
   );
 };

@@ -46,7 +46,7 @@ module.exports = {
         web: [
           {
             name: `Inter`,
-            file: `https://fonts.googleapis.com/css2?family=Inter&display=swap`,
+            file: `https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap`,
           },
           {
             name: `Space Mono`,

@@ -24,7 +24,7 @@ function CategoryLinkList({ categories, currentCategory, all, used }) {
   const currentCat = currentCategory?.title || "All";
 
   return (
-    <Box pb={[4]}>
+    <Box>
       <Box
         as="ul"
         sx={{

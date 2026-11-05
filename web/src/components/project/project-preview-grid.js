@@ -1,14 +1,21 @@
 import React from "react";
 import ProjectPreview from "./project-preview";
 import { Grid, Box, Heading, Flex } from "theme-ui";
-import ThemedLink from "./atoms/ThemedLink";
+import ThemedLink from "../atoms/ThemedLink";
 import { alpha } from "@theme-ui/color";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const { isFuture, parseISO } = require("date-fns");
 
-function ProjectPreviewGrid({ nodes = [], title = "", order, columns = [1, 1, 2], ...props }) {
+function ProjectPreviewGrid({
+  nodes = [],
+  title = "",
+  order,
+  columns = [1, 1, 2],
+  variant,
+  ...props
+}) {
   const reduceMotion = useReducedMotion();
 
   let filtered = nodes.filter((node) => !isFuture(parseISO(node.publishedAt)));
@@ -118,15 +125,20 @@ function ProjectPreviewGrid({ nodes = [], title = "", order, columns = [1, 1, 2]
                 },
               }}
             >
-              <ProjectPreview {...node} />
+              <ProjectPreview {...node} variant={variant} />
             </motion.div>
           ))}
         </AnimatePresence>
       </Grid>
 
       {props.browseMoreHref && (
-        <Flex sx={{ justifyContent: "space-around" }}>
-          <ThemedLink variant="outlineBtn" to={props.browseMoreHref}>
+        <Flex
+          sx={{
+            justifyContent: "space-around",
+            py: 2,
+          }}
+        >
+          <ThemedLink variant="fillBtn" to={props.browseMoreHref}>
             Browse More
           </ThemedLink>
         </Flex>

@@ -17,28 +17,48 @@ function imageDataFromAssetId(assetId) {
   return imageData;
 }
 
-export default function SanityImage({ image, assetId, variant = "thumb", imgStyle, sx, ...props }) {
+export default function SanityImage({
+  image,
+  assetId,
+  variant = "thumb",
+  imgStyle,
+  sx,
+  fill = false,
+  ...props
+}) {
   if (!image?.asset && !assetId) return null;
 
-  // if (!image.asset.gatsbyImageData) {
-  //   console.warn("Missing gatsbyImageData for image:", image);
-  //   return null; // or fallback <img>
-  // }
+  const imageData = image ? image.asset.gatsbyImageData : imageDataFromAssetId(assetId);
 
-  let imageData = image ? image.asset.gatsbyImageData : imageDataFromAssetId(assetId);
+  if (!imageData) return null;
 
   const config = variants[variant];
 
   return (
-    <Box sx={{ width: "100%", minWidth: 0, ...sx }}>
+    <Box
+      sx={{
+        width: "100%",
+        minWidth: 0,
+        ...(fill && {
+          height: "100%",
+          minHeight: 0,
+        }),
+        ...sx,
+      }}
+    >
       <GatsbyImage
         image={imageData}
-        alt={image?.asset.altText || ""}
-        layout={config.layout}
+        alt={image?.asset?.altText || ""}
+        style={{
+          ...(fill && {
+            width: "100%",
+            height: "100%",
+          }),
+        }}
         imgStyle={{
           objectFit: config.imgStyle.objectFit,
           objectPosition: image?.hotspot
-            ? `${image?.hotspot.x * 100}% ${image?.hotspot.y * 100}%`
+            ? `${image.hotspot.x * 100}% ${image.hotspot.y * 100}%`
             : "50% 50%",
           ...imgStyle,
         }}

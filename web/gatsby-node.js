@@ -95,8 +95,56 @@ async function createProjectPages(graphql, actions, reporter) {
   });
 }
 
+async function createPortfolioViewPages(graphql, actions, reporter) {
+  const { createPage } = actions;
+
+  const result = await graphql(`
+    query PortfolioViewPagesQuery {
+      portfolioViews: allSanityPortfolioView(filter: { slug: { current: { ne: null } } }) {
+        nodes {
+          id
+          title
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    reporter.panicOnBuild("Error loading curated portfolio views", result.errors);
+    return;
+  }
+
+  const portfolioViews = result.data?.portfolioViews?.nodes ?? [];
+
+  portfolioViews.forEach((view) => {
+    const { id, slug, title } = view;
+
+    if (!slug?.current) return;
+
+    const path = `/for/${slug.current}/`;
+
+    reporter.info(`Creating portfolio view: ${path}`);
+
+    createPage({
+      path,
+      component: require.resolve("./src/templates/portfolioView.js"),
+      context: {
+        id,
+      },
+    });
+  });
+
+  reporter.info(`Created ${portfolioViews.length} curated portfolio pages`);
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  await createProjectPages(graphql, actions, reporter);
+  await Promise.all([
+    createProjectPages(graphql, actions, reporter),
+    createPortfolioViewPages(graphql, actions, reporter),
+  ]);
 };
 
 exports.onCreateWebpackConfig = ({ actions }) => {

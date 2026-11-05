@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
-import Project from "../components/project";
+import Project from "../components/project/project";
 import { SEO } from "../components/seo";
 
 export const query = graphql`
@@ -26,13 +26,40 @@ export const query = graphql`
         linkTo
         address
       }
+
       relatedProjects {
+        _id
         title
         subtitle
+        excerpt
+        publishedAt
+
+        slug {
+          current
+        }
+
         categories {
+          _id
           title
         }
-        publishedAt
+
+        roles {
+          fieldTitle
+          fieldInfo
+        }
+
+        thumbImage {
+          asset {
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 450)
+            title
+            altText
+          }
+          hotspot {
+            x
+            y
+          }
+        }
+
         mainImage {
           asset {
             gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
@@ -43,10 +70,6 @@ export const query = graphql`
             x
             y
           }
-        }
-        _id
-        slug {
-          current
         }
       }
       mainImage {
@@ -86,6 +109,8 @@ export const query = graphql`
       twitter
       youtube
       website
+      heroLayout
+      heroImagePosition
       slug {
         current
       }
@@ -102,6 +127,22 @@ export const query = graphql`
           name
         }
         roles
+      }
+      creditGroups {
+        _key
+        title
+        members {
+          _key
+          roles
+          person {
+            name
+            website
+            linkedin
+            github
+            instagram
+            twitter
+          }
+        }
       }
     }
     awards: allSanityAccolade(filter: { projects: { elemMatch: { id: { eq: $id } } } }) {

@@ -11,6 +11,8 @@ import project from "./documents/project";
 import siteSettings from "./documents/siteSettings";
 import accolade from "./documents/accolade";
 import post from "./documents/post";
+import milestone from "./documents/milestone";
+import portfolioView from "./documents/portfolioView";
 // Object types
 import bioPortableText from "./objects/bioPortableText";
 import figure from "./objects/figure";
@@ -19,6 +21,7 @@ import simpleInfo from "./objects/simpleInfo";
 import projectPortableText from "./objects/projectPortableText";
 import simplePortableText from "./objects/simplePortableText";
 import video from "./objects/video";
+import creditGroup from "./objects/creditGroup";
 
 // // Then we give our schema to the builder and provide the result to Sanity
 // export default createSchema({
@@ -63,6 +66,7 @@ export default [
   simplePortableText,
   accolade,
   video,
+  creditGroup,
   // The following are document types which will appear
   // in the studio.
   category,
@@ -70,6 +74,8 @@ export default [
   project,
   siteSettings,
   post,
+  milestone,
+  portfolioView,
   //   ])
   // })
 ];

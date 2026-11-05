@@ -3,12 +3,13 @@ import { graphql } from "gatsby";
 import { useLocation } from "@reach/router";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
-import ProjectPreviewGrid from "../components/project-preview-grid";
+import ProjectPreviewGrid from "../components/project/project-preview-grid";
 import { SEO } from "../components/seo";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { Heading } from "theme-ui";
-
+import { Heading, Box } from "theme-ui";
+import MobileCategoryMenu from "../components/mobile-category-menu";
+import { alpha } from "@theme-ui/color";
 export const query = graphql`
   query ArchivePageQuery($currentDate: Date) {
     archive: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
@@ -124,10 +125,36 @@ const ArchivePage = ({ data, errors }) => {
         {currentCategory.title !== "All" && ` // ${currentCategory.title}`}
       </Heading>
 
-      <CategoryLinkList
+      {/* Desktop: Sticky category navigation */}
+      <Box
+        sx={{
+          display: ["none", "block"],
+          position: "sticky",
+          top: ["4rem", "5rem"],
+          zIndex: 100,
+          p: 3,
+          mb: 4,
+
+          bg: "background",
+          border: "2px solid",
+          borderColor: "primary",
+          borderRadius: "1rem",
+          borderColor: alpha("primary", 0.4),
+          boxShadow: "0 8px 30px rgba(0,0,0,0.35)",
+        }}
+      >
+        <CategoryLinkList
+          categories={categoryNodes}
+          currentCategory={currentCategory}
+          all={true}
+          used={usedCategories}
+        />
+      </Box>
+
+      {/* Mobile: Floating category selector */}
+      <MobileCategoryMenu
         categories={categoryNodes}
         currentCategory={currentCategory}
-        all={true}
         used={usedCategories}
       />
 

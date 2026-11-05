@@ -4,6 +4,16 @@ import { Global } from "@emotion/react";
 export default (props) => (
   <Global
     styles={(theme) => ({
+      html: {
+        scrollbarGutter: "stable",
+      },
+
+      "@media (max-width: 639px)": {
+        "html.nav-open, body.nav-open": {
+          overflow: "hidden",
+        },
+      },
+
       "*": {
         scrollbarWidth: "thin",
         scrollbarColor: "#F29E1F #003450",

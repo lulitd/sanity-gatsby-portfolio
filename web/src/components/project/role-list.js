@@ -1,8 +1,8 @@
 import React from "react";
-import { ucfirst } from "../lib/string-utils";
+import { ucfirst } from "../../lib/string-utils";
 import { Box, Grid, Text, Link, Heading, Paragraph } from "theme-ui";
 import { darken, lighten, alpha, desaturate } from "@theme-ui/color";
-import Icon from "./icon";
+import Icon from "../icon";
 
 const ConditionalWrapper = ({ condition, wrapper, children }) =>
   condition ? wrapper(children) : children;
@@ -64,14 +64,6 @@ export default function RoleList(props) {
                 "&:hover,&:focus": {
                   color: link ? "third" : desaturate("third", 1),
                 },
-                // fontFamily: "heading",
-                // textDecoration: "none",
-                // color: "body",
-                // bg: alpha("darkest", 0.25),
-                // "& > a": {
-                //   color: "body",
-                //   fontWeight: 400,
-                // },
               }}
             >
               <ConditionalWrapper
@@ -96,9 +88,9 @@ export default function RoleList(props) {
                 <Box>
                   <Paragraph
                     sx={{
-                      fontSize: 2,
-                      fontFamily: "body",
-                      fontWeight: "800",
+                      fontSize: 1,
+                      fontFamily: "heading",
+                      fontWeight: "600",
                       letterSpacing: "2px",
                     }}
                   >
@@ -112,10 +104,9 @@ export default function RoleList(props) {
                   {item.roles && (
                     <Paragraph
                       sx={{
-                        fontFamily: "heading",
+                        fontFamily: "body",
                         fontWeight: "400",
-                        fontSize: 1,
-                        // color: lighten("primary", 0.1),
+                        fontSize: 0,
                       }}
                     >
                       {item.roles.join(" + ")}

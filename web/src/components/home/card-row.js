@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "./icon";
+import Icon from "../icon";
 import { Box, Text, Heading, Card, Grid, Paragraph } from "theme-ui";
 import { alpha, darken, lighten, getColor } from "@theme-ui/color";
 import { keyframes } from "@emotion/react";
@@ -20,29 +20,29 @@ function CardRow({ headingLevel, infoList }) {
     {
       icon: "ux",
       decor: "1",
-      title: "Interaction Design",
-      text: "Create enjoyable experiences for users and audiences that are easy to use and leave a lasting impression.",
+      title: "Visual Storytelling",
+      text: "Shaping captivating stories through video, motion & interactive media.",
       themeColor: "primary",
     },
     {
       icon: "tools",
       decor: "2",
       title: "Creative Development",
-      text: "Building the technology behind interactive experiences across games, installations, and real-time media.",
+      text: "Building interactive experiences across websites, installations & real-time media.",
       themeColor: "secondary",
     },
     {
       icon: "controller",
       decor: "3",
       title: "Technical R&D",
-      text: "Prototyping emerging technologies and figuring out the execution of an idea.",
+      text: "Exploring emerging technologies, prototyping ideas, and finding creative solutions.",
       themeColor: "primary",
     },
     {
       icon: "controller",
       decor: "4",
-      title: "Production",
-      text: "Taking projects from early concept and prototype to implementation & delivery.",
+      title: "Creative Production",
+      text: "Taking projects from early concepts production and final delivery.",
       themeColor: "primary",
     },
   ];
@@ -73,7 +73,7 @@ function CardRow({ headingLevel, infoList }) {
             },
           }}
         >
-          design & development
+          creativity & technology
         </span>
       </Text>
 
@@ -121,6 +121,7 @@ function CardRow({ headingLevel, infoList }) {
             <Card
               variant="standard"
               color="secondary"
+              key={`card-${info.title}`}
               sx={{
                 bg: alpha("background", 0.9),
                 display: "flex",

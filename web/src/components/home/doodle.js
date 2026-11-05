@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useExternalScript } from "../hooks/use-external-script";
+import { useExternalScript } from "../../hooks/use-external-script";
 
 export default ({ colors }) => {
   const doodleSrc = "https://esm.sh/css-doodle/css-doodle.min.js?raw";
