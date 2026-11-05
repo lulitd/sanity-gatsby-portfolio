@@ -3,7 +3,7 @@
   "name": "sanity-gatsby-portfolio",
   "version": "0.0.0",
   "volta": {
-    "node": "20.12.0"
+    "node": "24.15.0"
   },
   "scripts": {
     "dev": "pnpm -r --parallel run dev",
