@@ -69,7 +69,7 @@ export const query = graphql`
       }
       jumboImage {
         asset {
-          gatsbyImageData(fit: FILLMAX, placeholder: NONE, width: 900)
+          gatsbyImageData(fit: FILLMAX, placeholder: NONE, width: 600)
           title
           altText
         }
@@ -89,7 +89,7 @@ export const query = graphql`
           _id
           mainImage {
             asset {
-              gatsbyImageData(fit: MIN, placeholder: BLURRED, width: 600)
+              gatsbyImageData(fit: MIN, placeholder: BLURRED, width: 500)
               title
               altText
             }
@@ -100,7 +100,7 @@ export const query = graphql`
           }
           thumbImage {
             asset {
-              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 450)
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 500)
               title
               altText
             }

@@ -180,13 +180,6 @@ export default function PortableTextRenderer({ value = [], style = {} }) {
           overflowX: "auto",
         },
 
-        // Blockquotes
-        "& blockquote": {
-          my: 4,
-          px: 4,
-          py: 3,
-        },
-
         ...style,
       }}
     >
