@@ -6,6 +6,13 @@ import { media } from "sanity-plugin-media";
 import schemas from "./schemas/schema";
 import deskStructure from "./deskStructure";
 
+// ----------------------------------------
+// SINGLETON CONFIGURATION
+// ----------------------------------------
+const singletonTypes = new Set(["siteSettings", "aboutPage"]);
+
+const restrictedActions = ["unpublish", "delete", "duplicate"];
+
 export default defineConfig({
   name: "default",
   title: "Sanity Gatsby Portfolio",
@@ -25,17 +32,21 @@ export default defineConfig({
   },
 
   document: {
-    newDocumentOptions: (prev, { creationContext }) => {
-      if (creationContext.type === "global") {
-        return prev.filter((item) => item.templateId !== "siteSettings");
-      }
-      return prev;
+    // ----------------------------------------
+    // PREVENT CREATING EXTRA SINGLETONS
+    // ----------------------------------------
+    newDocumentOptions: (prev) => {
+      return prev.filter((item) => !singletonTypes.has(item.templateId));
     },
 
+    // ----------------------------------------
+    // RESTRICT SINGLETON ACTIONS
+    // ----------------------------------------
     actions: (prev, { schemaType }) => {
-      if (schemaType === "siteSettings") {
-        return prev.filter(({ action }) => !["unpublish", "delete", "duplicate"].includes(action));
+      if (singletonTypes.has(schemaType)) {
+        return prev.filter(({ action }) => !restrictedActions.includes(action));
       }
+
       return prev;
     },
   },

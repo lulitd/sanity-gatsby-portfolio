@@ -2,6 +2,7 @@ import { Themed } from "@theme-ui/mdx";
 import Figure from "../atoms/figure";
 import React from "react";
 import EmbedVideo from "../atoms/embed-video";
+import SanityMediaCarousel from "../atoms/sanity-media-carousel";
 const serializers = {
   types: {
     figure: ({ node }) => {
@@ -11,6 +12,9 @@ const serializers = {
       const { url } = node;
       return <EmbedVideo url={url} />;
     },
+    mediaCarousel: ({ node }) => (
+      <SanityMediaCarousel value={node} height={["300px", "450px", "560px"]} />
+    ),
     block(props) {
       switch (props.node.style) {
         case "h1":

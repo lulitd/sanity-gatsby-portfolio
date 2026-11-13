@@ -2,143 +2,203 @@ export default {
   name: "siteSettings",
   type: "document",
   title: "Site Settings",
-  // __experimental_actions: [
-  //   // 'create',
-  //   'update',
-  //   // 'delete',
-  //   'publish'
-  // ],
-  fieldsets: [
+  // ----------------------------------------
+  // FIELD GROUPS
+  // ----------------------------------------
+  groups: [
     {
-      name: "jumbotron",
-      title: "Jumbotron Settings",
-      options: { collapsible: true, collapsed: false },
+      name: "general",
+      title: "General",
+      default: true,
+    },
+    {
+      name: "homepage",
+      title: "Homepage",
+    },
+    {
+      name: "projects",
+      title: "Projects",
     },
     {
       name: "contact",
-      title: "Contact Settings",
-      options: { collapsible: true, collapsed: false },
+      title: "Contact",
+    },
+    {
+      name: "seo",
+      title: "SEO & Social",
     },
   ],
+
   fields: [
+    // ----------------------------------------
+    // GENERAL
+    // ----------------------------------------
     {
       name: "title",
       type: "string",
-      title: "Title",
+      title: "Site Title",
+      group: "general",
     },
     {
       name: "logo",
       type: "image",
-      title: "Logo",
+      title: "Site Logo",
+      group: "general",
     },
     {
       name: "author",
       type: "reference",
-      description: "Publish an author and set a reference to them here.",
-      title: "Author",
+      title: "Site Author",
+      description: "Reference to your primary author profile.",
       to: [{ type: "person" }],
+      group: "general",
     },
-    {
-      name: "description",
-      type: "string",
-      title: "Description",
-      description: "Describe your portfolio for search engines and social media.",
-    },
-    {
-      name: "jumboDescription",
-      type: "string",
-      title: "Jumbotron Description",
-      description: "This is the description that appears in the header of the index page.",
-      fieldset: "jumbotron",
-    },
+
+    // ----------------------------------------
+    // HOMEPAGE
+    // ----------------------------------------
     {
       name: "jumboName",
       type: "string",
-      title: "Jumbotron Name",
-      description: "This is the name that appears in the jumbotron of index page.",
-      fieldset: "jumbotron",
+      title: "Hero Name",
+      description: "Name displayed in the homepage hero.",
+      group: "homepage",
     },
     {
       name: "jumboTag",
       type: "string",
-      title: "Jumbotron Tag",
-      description: "This is the tag that appears in the jumbotron of index page.",
-      fieldset: "jumbotron",
+      title: "Hero Tagline",
+      description: "Short tagline displayed in the homepage hero.",
+      group: "homepage",
     },
+    {
+      name: "jumboDescription",
+      type: "string",
+      title: "Hero Description",
+      description: "Description displayed in the homepage hero.",
+      group: "homepage",
+    },
+    {
+      name: "jumboImage",
+      type: "image",
+      title: "Hero Image",
+      description: "Main visual displayed in the homepage hero.",
+      group: "homepage",
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: "featuredLogos",
+      type: "array",
+      title: "Featured Logos",
+      description: "Logos displayed on the homepage.",
+      group: "homepage",
+      of: [
+        {
+          type: "image",
+          fields: [
+            {
+              name: "alt",
+              type: "string",
+              title: "Alternative Text",
+              description: "Describe the logo for accessibility.",
+            },
+          ],
+        },
+      ],
+    },
+
+    // ----------------------------------------
+    // PROJECTS
+    // ----------------------------------------
+    {
+      name: "archive",
+      type: "array",
+      title: "Project Archive Order",
+      description: "Drag and drop projects to control their order.",
+      group: "projects",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "project" }],
+        },
+      ],
+    },
+
+    // ----------------------------------------
+    // CONTACT & AVAILABILITY
+    // ----------------------------------------
     {
       name: "contactEmail",
       type: "string",
-      title: "email",
-      description: "This is the email that people can contact you at",
-      rows: "1",
+      title: "Contact Email",
+      description: "Public email address for inquiries.",
+      group: "contact",
       validation: (Rule) => Rule.email(),
-      fieldset: "contact",
     },
     {
-      name: "statusMessage",
-      type: "string",
-      title: "Current Status Message",
-      description: "This is the text that appears in the status",
-      rows: "1",
-      initalValue: "Available",
-      validation: (Rule) => Rule.min(4).max(25),
-      fieldset: "contact",
-    },
-    {
-      title: "Availibility",
+      // Original field name retained for data compatibility.
       name: "statusAvailablity",
       type: "string",
-      fieldset: "contact",
+      title: "Availability",
+      description: "Your current availability status.",
+      group: "contact",
       options: {
         list: [
           { title: "Available", value: "available" },
           { title: "Unavailable", value: "unavailable" },
-          { title: "Lets Chat", value: "chat" },
-        ], // <-- predefined values
+          { title: "Let's Chat", value: "chat" },
+        ],
+        layout: "radio",
       },
+      initialValue: "available",
+    },
+    {
+      name: "statusMessage",
+      type: "string",
+      title: "Status Message",
+      description: "Short message displayed alongside your status.",
+      group: "contact",
+      initialValue: "Available",
+      validation: (Rule) => Rule.min(4).max(25),
     },
     {
       name: "contactor",
       type: "reference",
-      title: "contactor",
+      title: "Contact Profile",
+      description: "Person profile containing your social links.",
       to: [{ type: "person" }],
-      description: "This is will display the social icons of the contactor",
-      fieldset: "contact",
+      group: "contact",
+    },
+
+    // ----------------------------------------
+    // SEO & SOCIAL
+    // ----------------------------------------
+    {
+      name: "description",
+      type: "string",
+      title: "Meta Description",
+      description: "Default description for search engines and social media.",
+      group: "seo",
     },
     {
       name: "keywords",
       type: "array",
-      title: "Keywords",
-      description: "Add keywords that describes your portfolio.",
+      title: "SEO Keywords",
+      description: "Keywords describing your portfolio.",
+      group: "seo",
       of: [{ type: "string" }],
       options: {
         layout: "tags",
       },
     },
     {
-      name: "archive",
-      type: "array",
-      description: "Defines order of projects",
-      title: "Archive",
-      of: [{ type: "reference", to: { type: "project" } }],
-    },
-    {
-      name: "featuredLogos",
-      type: "array",
-      description: "This sets the logos that appear in the homepage",
-      of: [{ type: "image" }],
-    },
-    {
       name: "socialImage",
-      title: "Social Image",
-      description: "The image that appears when link is shared on social.",
       type: "image",
-    },
-    {
-      name: "jumboImage",
-      title: "jumboImage",
-      description: "The image that appears on the jumbo header",
-      type: "image",
+      title: "Default Social Share Image",
+      description: "Fallback image displayed when your site is shared.",
+      group: "seo",
     },
   ],
 };

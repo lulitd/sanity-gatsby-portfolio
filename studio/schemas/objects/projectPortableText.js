@@ -59,6 +59,7 @@ export default {
     {
       type: "video",
     },
+    { type: "mediaCarousel" },
     {
       type: "code",
     },

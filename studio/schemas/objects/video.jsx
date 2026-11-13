@@ -20,12 +20,28 @@ export default {
   type: 'object',
   title: 'Video Embed',
   fields: [
-    {
-      name: 'url',
-      type: 'url',
-      title: 'video URL'
-    }
-  ],
+  {
+    name: "url",
+    type: "url",
+    title: "Video URL",
+    validation: Rule => Rule.required(),
+  },
+  {
+    name: "caption",
+    type: "string",
+    title: "Caption",
+  },
+  {
+    name: "title",
+    type: "string",
+    title: "Accessible Video Title",
+  },
+  {
+    name: "poster",
+    type: "image",
+    title: "Preview Image",
+    options: { hotspot: true },
+  }],
   preview: {
     select: {
       url: 'url'

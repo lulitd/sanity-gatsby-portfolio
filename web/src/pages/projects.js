@@ -7,7 +7,7 @@ import ProjectPreviewGrid from "../components/project/project-preview-grid";
 import { SEO } from "../components/seo";
 import CategoryLinkList from "../components/category-link-list";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import { Heading, Box } from "theme-ui";
+import { Heading, Box, Text } from "theme-ui";
 import MobileCategoryMenu from "../components/mobile-category-menu";
 import { alpha } from "@theme-ui/color";
 export const query = graphql`
@@ -125,6 +125,10 @@ const ArchivePage = ({ data, errors }) => {
         {currentCategory.title !== "All" && ` // ${currentCategory.title}`}
       </Heading>
 
+      <Text>
+        Selected work across creative technology, interactive experiences, games, and visual
+        storytelling.
+      </Text>
       {/* Desktop: Sticky category navigation */}
       <Box
         sx={{
@@ -133,14 +137,7 @@ const ArchivePage = ({ data, errors }) => {
           top: ["4rem", "5rem"],
           zIndex: 100,
           p: 3,
-          mb: 4,
-
-          bg: "background",
-          border: "2px solid",
-          borderColor: "primary",
-          borderRadius: "1rem",
-          borderColor: alpha("primary", 0.4),
-          boxShadow: "0 8px 30px rgba(0,0,0,0.35)",
+          my: 2,
         }}
       >
         <CategoryLinkList

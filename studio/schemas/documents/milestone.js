@@ -1,8 +1,9 @@
+import { MdViewTimeline } from "react-icons/md";
 export default {
   name: "milestone",
   type: "document",
   title: "Career Milestone",
-
+  icon: MdViewTimeline,
   fields: [
     {
       name: "title",
@@ -16,6 +17,12 @@ export default {
       type: "number",
       description: "The year this milestone occurred.",
       validation: (Rule) => Rule.required().integer().min(1900).max(2100),
+    },
+    {
+      name: "dateTitle",
+      title: "Date Title",
+      type: "string",
+      description: "Optional. Will use option instead of the year label.",
     },
     {
       name: "category",

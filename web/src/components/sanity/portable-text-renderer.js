@@ -6,6 +6,7 @@ import { Box, Message } from "theme-ui";
 import Figure from "../atoms/figure";
 import EmbedVideo from "../atoms/embed-video";
 import CodeRenderer from "../atoms/codeRenderer";
+import SanityMediaCarousel from "../atoms/sanityMediaCarousel";
 
 const components = {
   types: {
@@ -21,6 +22,9 @@ const components = {
       <Box className="project-code">
         <CodeRenderer value={value} />
       </Box>
+    ),
+    mediaCarousel: ({ value }) => (
+      <SanityMediaCarousel value={value} height={["300px", "450px", "560px"]} />
     ),
   },
 
@@ -155,10 +159,18 @@ export default function PortableTextRenderer({ value = [], style = {} }) {
           height: "auto",
         },
 
-        "& figure": {
+        "& > figure:not(.project-carousel)": {
           maxWidth: "60%",
           my: 6,
           mx: "3",
+        },
+        "& .project-carousel": {
+          width: "100%",
+          maxWidth: "100%",
+          my: 6,
+          mx: 0,
+
+          "& img": { objectFit: "contain", height: "100%" },
         },
 
         // Embedded videos

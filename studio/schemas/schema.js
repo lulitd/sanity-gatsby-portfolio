@@ -9,6 +9,7 @@ import category from "./documents/category";
 import person from "./documents/person";
 import project from "./documents/project";
 import siteSettings from "./documents/siteSettings";
+import aboutPage from "./documents/aboutPage";
 import accolade from "./documents/accolade";
 import post from "./documents/post";
 import milestone from "./documents/milestone";
@@ -21,6 +22,7 @@ import simpleInfo from "./objects/simpleInfo";
 import projectPortableText from "./objects/projectPortableText";
 import simplePortableText from "./objects/simplePortableText";
 import video from "./objects/video";
+import mediaCarousel from "./objects/mediaCarousel.js";
 import creditGroup from "./objects/creditGroup";
 
 // // Then we give our schema to the builder and provide the result to Sanity
@@ -66,6 +68,7 @@ export default [
   simplePortableText,
   accolade,
   video,
+  mediaCarousel,
   creditGroup,
   // The following are document types which will appear
   // in the studio.
@@ -73,6 +76,7 @@ export default [
   person,
   project,
   siteSettings,
+  aboutPage,
   post,
   milestone,
   portfolioView,

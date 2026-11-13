@@ -11,43 +11,9 @@ const AboutTimeline = ({ milestones = [] }) => {
       as="section"
       aria-labelledby="timeline-heading"
       sx={{
-        py: [5, 6, 7],
-        borderTop: "1px solid",
-        borderColor: alpha("primary", 0.4),
+        py: [3, 4, 5],
       }}
     >
-      {/* Section heading */}
-      <Box sx={{ mb: [5, 6] }}>
-        <Text
-          sx={{
-            display: "block",
-            color: "secondary",
-            fontSize: 1,
-            fontFamily: "monospace",
-            letterSpacing: "0.12em",
-            mb: 2,
-          }}
-        >
-          02 / THE JOURNEY
-        </Text>
-
-        <Heading
-          as="h2"
-          id="timeline-heading"
-          sx={{
-            fontSize: [5, 6, 7],
-            color: "primary",
-            mb: 2,
-          }}
-        >
-          The Road So Far
-        </Heading>
-
-        <Text sx={{ color: "subtitle", maxWidth: "55ch" }}>
-          A few moments that shaped how I think, work, and create.
-        </Text>
-      </Box>
-
       {/* Timeline */}
       <Box
         as="ol"
@@ -59,9 +25,13 @@ const AboutTimeline = ({ milestones = [] }) => {
         }}
       >
         {milestones.map((milestone, index) => {
-          const year = milestone.year ?? "—";
+          const year = milestone.year;
+          const dateTitle = milestone.dateTitle?.trim();
+
           const previousYear = milestones[index - 1]?.year;
           const showYear = index === 0 || year !== previousYear;
+
+          const dateLabel = dateTitle || (showYear ? String(year ?? "—") : null);
           const isLast = index === milestones.length - 1;
 
           return (
@@ -71,28 +41,35 @@ const AboutTimeline = ({ milestones = [] }) => {
               sx={{
                 display: "grid",
                 gridTemplateColumns: [
-                  "55px 18px minmax(0, 1fr)",
-                  "85px 20px minmax(0, 1fr)",
-                  "75px 24px minmax(0, 1fr)",
+                  "75px 18px minmax(0, 1fr)",
+                  "105px 20px minmax(0, 1fr)",
+                  "120px 24px minmax(0, 1fr)",
                 ],
                 columnGap: [2, 3, 4],
                 alignItems: "stretch",
               }}
             >
               {/* Year */}
-              <Text
-                as="time"
-                dateTime={String(year)}
+              <Box
                 sx={{
                   pt: 1,
                   color: "primary",
                   fontFamily: "monospace",
                   fontSize: [2, 3, 4],
                   fontWeight: "bold",
+                  lineHeight: 1.2,
+                  overflowWrap: "break-word",
+                  textAlign: "right",
                 }}
               >
-                {showYear ? year : null}
-              </Text>
+                {dateTitle ? (
+                  <Text as="span">{dateTitle}</Text>
+                ) : showYear ? (
+                  <Text as="time" dateTime={String(year)}>
+                    {year}
+                  </Text>
+                ) : null}
+              </Box>
 
               {/* Timeline track */}
               <Flex

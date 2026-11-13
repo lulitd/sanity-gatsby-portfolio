@@ -1,8 +1,9 @@
+import { MdOutlineDocumentScanner } from "react-icons/md";
 export default {
   name: "portfolioView",
   type: "document",
   title: "Curated Portfolio",
-
+  icon: MdOutlineDocumentScanner,
   fields: [
     {
       name: "title",
@@ -43,6 +44,11 @@ export default {
         },
       ],
       validation: (Rule) => Rule.unique(),
+    },
+    {
+      name: "gallery",
+      title: "Gallery",
+      type: "mediaCarousel",
     },
     {
       name: "closingMessage",

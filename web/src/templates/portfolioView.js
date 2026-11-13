@@ -5,6 +5,7 @@ import { Box, Heading, Text } from "theme-ui";
 import Container from "../components/container";
 import ProjectPreviewGrid from "../components/project/project-preview-grid";
 import ThemedLink from "../components/atoms/ThemedLink";
+import SanityMediaCarousel from "../components/atoms/sanityMediaCarousel";
 import GraphQLErrorList from "../components/graphql-error-list";
 import { SEO } from "../components/seo";
 
@@ -59,6 +60,7 @@ const PortfolioViewPage = ({ data, errors }) => {
         </Box>
       )}
 
+      <SanityMediaCarousel value={view._rawGallery} height={["320px", "480px", "650px"]} />
       {/* Closing CTA */}
       <Box
         sx={{
@@ -92,6 +94,7 @@ export const query = graphql`
       headline
       description
       closingMessage
+      _rawGallery(resolveReferences: { maxDepth: 5 })
 
       projects {
         _id
