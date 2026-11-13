@@ -160,9 +160,10 @@ export default function PortableTextRenderer({ value = [], style = {} }) {
         },
 
         "& > figure:not(.project-carousel)": {
-          maxWidth: "60%",
+          maxWidth: "65%",
           my: 6,
           mx: "3",
+          justifySelf: ["normal", "center", "center"],
         },
         "& .project-carousel": {
           width: "100%",
@@ -177,7 +178,8 @@ export default function PortableTextRenderer({ value = [], style = {} }) {
         "& .project-media": {
           my: 6,
           mx: "3",
-          width: "60%",
+          width: "65%",
+          justifySelf: ["normal", "center", "center"],
           minWidth: 0,
         },
 

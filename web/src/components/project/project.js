@@ -1,4 +1,4 @@
-import { format, distanceInWords, differenceInDays, parseISO } from "date-fns";
+const { isFuture, parseISO } = require("date-fns");
 import React from "react";
 import { buildImageObj } from "../../lib/helpers";
 import PortableTextRenderer from "../sanity/portable-text-renderer";
@@ -49,7 +49,7 @@ function Project(props) {
   uniqueAccolades.sort((a, b) => a.date - b.date).reverse();
 
   const filteredProjects = (relatedProjects ?? []).filter((item) => {
-    return item && item.publishedAt;
+    return item && item.publishedAt && !isFuture(parseISO(item.publishedAt));
   });
 
   const categoriesButtons = (
@@ -65,7 +65,7 @@ function Project(props) {
           if (cat && cat.title && cat.slug) {
             const el = (
               <Box as="li" sx={{ display: "inline-block", mx: [2], my: [4] }} key={`li_${cat._id}`}>
-                <ThemedLink to={`/projects/category/${cat.slug.current}`} variant="outlineBtn">
+                <ThemedLink to={`/projects/?category=${cat.slug.current}`} variant="outlineBtn">
                   #{cat.title}
                 </ThemedLink>
               </Box>
@@ -249,19 +249,16 @@ function Project(props) {
             {technologies && technologies.length > 0 && techSection}
           </Grid>
         )}
-
         {_rawProjectBrief && (
           <ProjectSection title="Project Description">
             <PortableTextRenderer value={_rawProjectBrief || []} />
           </ProjectSection>
         )}
-
         {_rawProjectBreakdown && (
           <ProjectSection title="Project Breakdown">
             <PortableTextRenderer value={_rawProjectBreakdown || []} />
           </ProjectSection>
         )}
-
         {uniqueAccolades && uniqueAccolades.length > 0 && (
           <Box
             sx={{
@@ -358,7 +355,6 @@ function Project(props) {
             </Box>
           </Box>
         )}
-
         <ProjectCredits creditGroups={creditGroups || []} members={collaborators || []} />
 
         {filteredProjects && filteredProjects.length > 0 && (

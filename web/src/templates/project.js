@@ -33,7 +33,6 @@ export const query = graphql`
         subtitle
         excerpt
         publishedAt
-
         slug {
           current
         }

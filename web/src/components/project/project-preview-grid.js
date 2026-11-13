@@ -20,6 +20,9 @@ function ProjectPreviewGrid({
 
   let filtered = nodes.filter((node) => !isFuture(parseISO(node.publishedAt)));
 
+  if (filtered.length <= 0) {
+    return null;
+  }
   if (order) {
     const idOrder = order.map((o) => o._id);
 
