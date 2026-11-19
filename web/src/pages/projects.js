@@ -134,10 +134,11 @@ const ArchivePage = ({ data, errors }) => {
         sx={{
           display: ["none", "block"],
           position: "sticky",
-          top: ["4rem", "5rem"],
+          top: ["4rem", "4.25rem"],
           zIndex: 100,
           p: 3,
           my: 2,
+          bg: alpha("background", 0.6),
         }}
       >
         <CategoryLinkList

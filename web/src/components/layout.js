@@ -81,7 +81,7 @@ const Layout = ({
         flexDirection: "column",
         minHeight: "100svh",
         justifyContent: "space-between",
-        overflowX: "hidden",
+        overflowX: "clip",
       }}
     >
       <Header

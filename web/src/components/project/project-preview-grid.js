@@ -58,6 +58,7 @@ function ProjectPreviewGrid({
         borderBottom: "2px dotted",
         borderColor: "primary",
         px: [2, 2, 4],
+        my: [3, 2, 2],
       }}
     >
       {title && (
