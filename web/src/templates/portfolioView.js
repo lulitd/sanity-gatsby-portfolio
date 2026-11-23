@@ -60,7 +60,11 @@ const PortfolioViewPage = ({ data, errors }) => {
         </Box>
       )}
 
-      <SanityMediaCarousel value={view._rawGallery} height={["320px", "480px", "650px"]} />
+      <SanityMediaCarousel
+        variant="thumbnails"
+        value={view._rawGallery}
+        height={["320px", "480px", "650px"]}
+      />
       {/* Closing CTA */}
       <Box
         sx={{
@@ -100,11 +104,12 @@ export const query = graphql`
         _id
         title
         subtitle
+        excerpt
         publishedAt
         slug {
           current
         }
-        mainImage {
+        thumbImage {
           asset {
             gatsbyImageData(width: 900, placeholder: BLURRED)
             altText

@@ -1,19 +1,39 @@
 import React from "react";
 import { Box, Heading, Text } from "theme-ui";
 import MediaCarousel from "../MediaCarousel";
+import { imageUrlFor } from "../../lib/image-url";
+import { buildImageObj } from "../../lib/helpers";
+
+const IMAGE_SIZES = {
+  thumbnail: 160,
+  standard: 800,
+  fullscreen: 2048,
+};
+
+const getImageUrl = (image, width, quality = 80) => {
+  return imageUrlFor(image).width(width).fit("max").quality(quality).auto("format").url();
+};
 
 // Convert Sanity media objects into carousel items
 const normalizeSlides = (slides = []) => {
   return slides
     .map((slide) => {
       if (slide._type === "figure") {
-        const src = slide.asset?.url;
+        if (!slide.asset?._ref && !slide.asset?._id) {
+          return null;
+        }
 
-        if (!src) return null;
+        const image = buildImageObj(slide);
 
         return {
           type: "image",
-          src,
+
+          src: getImageUrl(image, IMAGE_SIZES.standard),
+
+          thumbnailSrc: getImageUrl(image, IMAGE_SIZES.thumbnail, 75),
+
+          fullSrc: getImageUrl(image, IMAGE_SIZES.fullscreen, 85),
+
           alt: slide.alt || "",
           caption: slide.caption,
         };
@@ -45,8 +65,18 @@ const SanityMediaCarousel = ({
   if (!value) return null;
 
   const items = normalizeSlides(value.slides);
-
+  console.log("Normalized carousel items:", items);
   if (!items.length) return null;
+
+  const {
+    heading,
+    caption,
+    ariaLabel,
+    carouselLayout = "default",
+    autoCycle = false,
+    autoCycleInterval = 5000,
+    transitionLength = 1000,
+  } = value;
 
   return (
     <Box
@@ -57,9 +87,9 @@ const SanityMediaCarousel = ({
         my: 6,
       }}
     >
-      {value.heading && (
+      {heading && (
         <Heading as="h3" sx={{ mb: 3 }}>
-          {value.heading}
+          {heading}
         </Heading>
       )}
 
@@ -67,11 +97,15 @@ const SanityMediaCarousel = ({
         items={items}
         height={height}
         background={background}
-        ariaLabel={value.ariaLabel || value.heading || "Project media gallery"}
+        ariaLabel={ariaLabel || heading || "Project media gallery"}
+        autoCycle={autoCycle}
+        autoCycleInterval={autoCycleInterval}
+        transitionLength={transitionLength}
+        variant={carouselLayout}
         {...props}
       />
 
-      {value.caption && (
+      {caption && (
         <Text
           as="p"
           sx={{
@@ -81,7 +115,7 @@ const SanityMediaCarousel = ({
             color: "textMuted",
           }}
         >
-          {value.caption}
+          {caption}
         </Text>
       )}
     </Box>

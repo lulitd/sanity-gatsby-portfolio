@@ -1,53 +1,82 @@
-import { Box, Button } from "theme-ui";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Box, Button } from "theme-ui";
+import { alpha } from "@theme-ui/color";
 import { createPortal } from "react-dom";
 import ReactPlayer from "react-player";
 
 const clampIndex = (index, length) => ((index % length) + length) % length;
 const isVideo = (item) => ["video", "youtube", "vimeo"].includes(item.type);
 
-function Media({ item, active, onImageClick }) {
+function youtubeThumbnail(url) {
+  if (typeof url !== "string") return null;
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.toLowerCase().replace(/^www\./, "");
+    let id = null;
+    if (host === "youtu.be") id = parsed.pathname.split("/")[1];
+    else if (["youtube.com", "m.youtube.com", "youtube-nocookie.com"].includes(host)) {
+      if (parsed.pathname === "/watch") id = parsed.searchParams.get("v");
+      else id = parsed.pathname.match(/^\/(?:embed|shorts|live|v)\/([^/]+)/)?.[1];
+    }
+    return id && /^[\w-]{11}$/.test(id) ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+  } catch {
+    return null;
+  }
+}
+
+function thumbnailFor(item) {
+  // Explicit thumbnail wins; older poster fields continue to work.
+  if (item.thumbnail) return item.thumbnail;
+  if (item.type === "image") return item.thumbnailSrc || item.src;
+  if (item.poster) return item.poster;
+  return youtubeThumbnail(item.src);
+}
+
+function Media({ item, active, fullscreen = false, onImageClick, onVideoPlay, onVideoPause }) {
   const commonSx = { width: "100%", height: "100%", objectFit: "contain", display: "block" };
+
   if (item.type === "image") {
+    const image = (
+      <Box
+        as="img"
+        src={fullscreen ? item.fullSrc || item.src : item.src}
+        alt={item.alt || ""}
+        loading={active ? "eager" : "lazy"}
+        sx={commonSx}
+      />
+    );
+    if (!onImageClick) return image;
     return (
       <Box
         as="button"
         type="button"
         onClick={onImageClick}
-        aria-label={
-          onImageClick
-            ? `Enlarge image: ${item.alt || item.caption || "carousel image"}`
-            : undefined
-        }
+        aria-label={`Enlarge image: ${item.alt || item.caption || "carousel image"}`}
+        tabIndex={active ? 0 : -1}
         sx={{
           border: 0,
           bg: "transparent",
           p: 0,
           width: "100%",
           height: "100%",
-          cursor: onImageClick ? "zoom-in" : "default",
+          cursor: "zoom-in",
           display: "block",
           "&:focus-visible": { outline: "3px solid", outlineColor: "primary", outlineOffset: -4 },
         }}
       >
-        <Box
-          as="img"
-          src={item.src}
-          alt={item.alt || ""}
-          loading={active ? "eager" : "lazy"}
-          sx={commonSx}
-        />
+        {image}
       </Box>
     );
   }
+
   if (isVideo(item)) {
-    // Only mount the active player. Unmounting stops local files and provider embeds.
+    // Only mount the active player; changing slides unmounts it and stops playback.
     if (!active) return null;
     const sources = item.sources?.length ? item.sources : null;
     const source = item.src || (sources ? sources.map(({ src, type }) => ({ src, type })) : null);
     if (!source)
       return (
-        <Box role="status" sx={{ color: "text", p: 3 }}>
+        <Box role="status" sx={{ p: 3 }}>
           Video URL missing.
         </Box>
       );
@@ -72,6 +101,9 @@ function Media({ item, active, onImageClick }) {
         <ReactPlayer
           url={source}
           playing={false}
+          onPlay={onVideoPlay}
+          onPause={onVideoPause}
+          onEnded={onVideoPause}
           controls
           playsInline
           light={item.poster || (["youtube", "vimeo"].includes(item.type) ? true : false)}
@@ -82,20 +114,29 @@ function Media({ item, active, onImageClick }) {
       </Box>
     );
   }
+
   return (
-    <Box role="status" sx={{ color: "text", p: 3 }}>
+    <Box role="status" sx={{ p: 3 }}>
       Unsupported media item.
     </Box>
   );
 }
 
 /**
- * items: {type:'image',src,alt?,caption?} |
- *        {type:'video',src?,sources?:[{src,type}],poster?,caption?} |
- *        {type:'youtube'|'vimeo',src, title?,caption?} |
- *        {type:'video',src,poster?,title?,caption?} // YouTube/Vimeo URLs also work
- * height: optional Theme UI responsive height, e.g. ["260px", "400px", "540px"].
- *         When set, takes precedence over aspectRatio for the inline carousel.
+ * items:
+ *   { type: 'image', src, alt?, caption?, thumbnail? }
+ *   { type: 'video', src?, sources?: [{src,type}], poster?, title?, caption?, thumbnail? }
+ *   { type: 'youtube'|'vimeo', src, poster?, title?, caption?, thumbnail? }
+ *
+ * variant: 'default' (existing counter/progress/arrows) | 'thumbnails'
+ * autoCycle: opt-in slide advancement; videos never automatically start playing.
+ * autoCycleInterval: time per slide in milliseconds (default 5000, minimum 1000).
+ * While a video is actively playing, advancement pauses until playback pauses or ends.
+ * thumbnailWidth: pixel width of each thumbnail (defaults to 104)
+ * thumbnailAspectRatio: CSS aspect ratio for thumbnails (defaults to '4 / 3')
+ * height: optional Theme UI responsive height; overrides aspectRatio inline.
+ * YouTube thumbnails are inferred from standard URLs. For Vimeo or local videos
+ * without poster artwork, provide item.poster or item.thumbnail for an image.
  */
 export default function MediaCarousel({
   items = [],
@@ -105,25 +146,89 @@ export default function MediaCarousel({
   showCaptions = true,
   height,
   initialIndex = 0,
+  variant = "default",
+  thumbnailWidth = 104,
+  thumbnailAspectRatio = "4 / 3",
+  autoCycle = false,
+  autoCycleInterval = 5000,
+  transitionLength = 1000,
 }) {
   const [index, setIndex] = useState(() =>
     items.length ? clampIndex(initialIndex, items.length) : 0,
   );
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [cyclePlaying, setCyclePlaying] = useState(Boolean(autoCycle));
+  const [videoPlaying, setVideoPlaying] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
   const [portalReady, setPortalReady] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const dialogRef = useRef(null);
   const closeRef = useRef(null);
   const launchRef = useRef(null);
   const touchStart = useRef(null);
+  const thumbnailRefs = useRef([]);
   const current = items[index];
   const total = items.length;
+  const thumbnailsEnabled = variant === "thumbnails";
+  const validInterval = Number.isFinite(autoCycleInterval)
+    ? Math.max(1000, autoCycleInterval)
+    : 5000;
+
+  // The prop controls feature availability; users can pause/resume independently.
+  useEffect(() => {
+    setCyclePlaying(Boolean(autoCycle));
+  }, [autoCycle]);
+
+  useEffect(() => {
+    const onVisibilityChange = () => setPageVisible(!document.hidden);
+    onVisibilityChange();
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+  }, []);
+
+  // Avoid cutting off a user-initiated video. Reset when the selected media changes.
+  useEffect(() => {
+    setVideoPlaying(false);
+  }, [index, lightboxOpen]);
+
+  // A new timer is scheduled on each slide, rather than accumulating intervals.
+  // The timer does not play videos; it only changes the active slide.
+  useEffect(() => {
+    if (!autoCycle || !cyclePlaying || videoPlaying || !pageVisible || total < 2) return;
+    const timer = window.setTimeout(() => {
+      setIndex((previous) => clampIndex(previous + 1, total));
+    }, validInterval);
+    return () => window.clearTimeout(timer);
+  }, [autoCycle, cyclePlaying, videoPlaying, pageVisible, total, index, validInterval]);
+
+  const toggleCycle = () => setCyclePlaying((playing) => !playing);
+
+  function cycleControl() {
+    if (!autoCycle) return null;
+    const playing = cyclePlaying;
+    return (
+      <Button
+        type="button"
+        variant="nav"
+        onClick={toggleCycle}
+        aria-label={
+          playing ? "Pause automatic slide advancement" : "Play automatic slide advancement"
+        }
+        aria-pressed={playing}
+        title={playing ? "Pause slideshow" : "Play slideshow"}
+        sx={{ minWidth: "36px", fontSize: 16 }}
+      >
+        {playing ? "Ⅱ" : "▶"}
+      </Button>
+    );
+  }
 
   useEffect(() => {
     setPortalReady(true);
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setReduceMotion(mq.matches);
     update();
+    if (mq.matches) setCyclePlaying(false);
     mq.addEventListener?.("change", update);
     return () => mq.removeEventListener?.("change", update);
   }, []);
@@ -131,6 +236,27 @@ export default function MediaCarousel({
   useEffect(() => {
     if (total && index >= total) setIndex(total - 1);
   }, [index, total]);
+
+  useEffect(() => {
+    if (!thumbnailsEnabled || lightboxOpen) return;
+    // Only scroll the strip, not the whole document.
+    const thumb = thumbnailRefs.current[index];
+    const strip = thumb?.parentElement;
+    if (!thumb || !strip) return;
+    const thumbRect = thumb.getBoundingClientRect();
+    const stripRect = strip.getBoundingClientRect();
+    if (thumbRect.left < stripRect.left) {
+      strip.scrollTo({
+        left: strip.scrollLeft + thumbRect.left - stripRect.left,
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+    } else if (thumbRect.right > stripRect.right) {
+      strip.scrollTo({
+        left: strip.scrollLeft + thumbRect.right - stripRect.right,
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+    }
+  }, [index, lightboxOpen, reduceMotion, thumbnailsEnabled]);
 
   const navigate = useCallback(
     (delta) => {
@@ -144,9 +270,9 @@ export default function MediaCarousel({
     launchRef.current = document.activeElement;
     setLightboxOpen(true);
   }, []);
+
   const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
-    // Restore focus once dialog is removed from the tree.
     requestAnimationFrame(() => launchRef.current?.focus?.());
   }, []);
 
@@ -155,39 +281,42 @@ export default function MediaCarousel({
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
-    function handleModalKey(e) {
-      if (e.key === "Escape") {
-        e.preventDefault();
+    function handleModalKey(event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
         closeLightbox();
+        return;
       }
-      // Let embedded players and their native controls handle their own arrow keys.
-      const insidePlayer = e.target.closest?.("iframe, video, .react-player__preview");
-      if (!insidePlayer && e.key === "ArrowRight") {
-        e.preventDefault();
+      const insidePlayer = event.target.closest?.("iframe, video, .react-player__preview");
+      if (!insidePlayer && event.key === "ArrowRight") {
+        event.preventDefault();
         navigate(1);
       }
-      if (!insidePlayer && e.key === "ArrowLeft") {
-        e.preventDefault();
+      if (!insidePlayer && event.key === "ArrowLeft") {
+        event.preventDefault();
         navigate(-1);
       }
-      if (e.key === "Tab") {
+      if (event.key === "Tab" && dialogRef.current) {
         const focusables = [
           ...dialogRef.current.querySelectorAll(
             'button:not([disabled]), video[controls], iframe, a[href], [tabindex]:not([tabindex="-1"])',
           ),
         ].filter((el) => el.getClientRects().length);
         if (!focusables.length) {
-          e.preventDefault();
+          event.preventDefault();
           dialogRef.current.focus();
           return;
         }
-        const first = focusables[0],
-          last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (!dialogRef.current.contains(document.activeElement)) {
+          event.preventDefault();
+          (event.shiftKey ? last : first).focus();
+        } else if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
           last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
           first.focus();
         }
       }
@@ -203,6 +332,7 @@ export default function MediaCarousel({
     const t = event.touches[0];
     touchStart.current = { x: t.clientX, y: t.clientY };
   }
+
   function handleTouchEnd(event) {
     if (!touchStart.current || !event.changedTouches.length) return;
     const t = event.changedTouches[0];
@@ -211,9 +341,12 @@ export default function MediaCarousel({
     touchStart.current = null;
     if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) navigate(dx < 0 ? 1 : -1);
   }
+
   function handleInlineKey(event) {
     if (lightboxOpen || event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.target.closest?.("iframe, video, .react-player__preview")) return;
+    // On thumbnail buttons, allow native button behavior and don't steal their arrow keys.
+    if (event.target.closest?.('[data-carousel-thumbnail="true"]')) return;
     if (event.key === "ArrowRight") {
       event.preventDefault();
       navigate(1);
@@ -227,6 +360,7 @@ export default function MediaCarousel({
   if (!total) return null;
 
   function stage(mode) {
+    const inline = mode === "inline";
     return (
       <Box
         onTouchStart={handleTouchStart}
@@ -234,20 +368,20 @@ export default function MediaCarousel({
         sx={{
           position: "relative",
           width: "100%",
-          aspectRatio: mode === "lightbox" || height != null ? "auto" : aspectRatio,
-          height: mode === "lightbox" ? "min(75vh, 850px)" : (height ?? "auto"),
+          aspectRatio: !inline || height != null ? "auto" : aspectRatio,
+          height: inline ? (height ?? "auto") : "min(75vh, 850px)",
           bg: background,
           overflow: "hidden",
-          borderRadius: mode === "lightbox" ? 0 : 2,
+          borderRadius: inline ? 2 : 0,
         }}
       >
         {items.map((item, i) => {
           const active = index === i;
-          // While fullscreen, don't keep a second copy of the player alive behind the dialog.
-          if (mode === "inline" && lightboxOpen && isVideo(item)) return null;
+          // Only the current video should be mounted, even with a lightbox open.
+          if (inline && lightboxOpen && isVideo(item)) return null;
           return (
             <Box
-              key={item.id || `${item.src || item.title}-${i}`}
+              key={item.id || `${item.src || item.title || item.type}-${i}`}
               aria-hidden={!active}
               sx={{
                 position: "absolute",
@@ -258,8 +392,8 @@ export default function MediaCarousel({
                 transition: reduceMotion
                   ? "none"
                   : active
-                    ? "opacity 280ms ease, visibility 0s"
-                    : "opacity 280ms ease, visibility 0s linear 280ms",
+                    ? `opacity ${transitionLength}ms ease, visibility 0s`
+                    : `opacity ${transitionLength}ms ease, visibility 0s linear ${transitionLength}ms`,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -267,12 +401,40 @@ export default function MediaCarousel({
             >
               <Media
                 item={item}
-                active={active && (mode === "lightbox" || !lightboxOpen)}
-                onImageClick={mode === "inline" ? openLightbox : undefined}
+                active={active && (!inline || !lightboxOpen)}
+                fullscreen={!inline}
+                onImageClick={inline ? openLightbox : undefined}
+                onVideoPlay={() => setVideoPlaying(true)}
+                onVideoPause={() => setVideoPlaying(false)}
               />
             </Box>
           );
         })}
+        {inline && thumbnailsEnabled && (
+          <Button
+            type="button"
+            variant="nav"
+            onClick={openLightbox}
+            aria-label="Open fullscreen media"
+            title="Open fullscreen"
+            sx={{
+              position: "absolute",
+              top: 2,
+              right: 2,
+              zIndex: 2,
+              bg: alpha("background", 0.5),
+              color: "#fff",
+              borderRadius: 1,
+              fontSize: 18,
+              lineHeight: 1,
+              p: 2,
+              "&:hover": { bg: "rgba(0, 0, 0, 0.9)" },
+              "&:focus-visible": { outline: "3px solid", outlineColor: "primary" },
+            }}
+          >
+            ⛶
+          </Button>
+        )}
       </Box>
     );
   }
@@ -305,10 +467,11 @@ export default function MediaCarousel({
               height: "100%",
               bg: "primary",
               width: `${((index + 1) / total) * 100}%`,
-              transition: reduceMotion ? "none" : "width 280ms ease",
+              transition: reduceMotion ? "none" : `width ${transitionLength}ms ease`,
             }}
           />
         </Box>
+        {cycleControl()}
         {!inModal && (
           <Button
             type="button"
@@ -335,6 +498,114 @@ export default function MediaCarousel({
       </Box>
     );
   }
+
+  function thumbnails() {
+    return (
+      <Box
+        as="div"
+        role="group"
+        aria-label="Choose media"
+        sx={{
+          display: "flex",
+          gap: 2,
+          width: "100%",
+          minWidth: 0,
+          overflowX: "auto",
+          overflowY: "hidden",
+          pt: 3,
+          pb: 2,
+          scrollbarWidth: "thin",
+          WebkitOverflowScrolling: "touch",
+        }}
+      >
+        {items.map((item, i) => {
+          const selected = i === index;
+          const thumbnail = thumbnailFor(item);
+          const label =
+            item.title || item.alt || item.caption || (isVideo(item) ? "Video" : "Image");
+          return (
+            <Box
+              as="button"
+              type="button"
+              key={item.id || `${item.src || item.title || item.type}-thumb-${i}`}
+              ref={(element) => {
+                thumbnailRefs.current[i] = element;
+              }}
+              data-carousel-thumbnail="true"
+              onClick={() => setIndex(i)}
+              aria-label={`Show media ${i + 1} of ${total}: ${label}`}
+              aria-current={selected ? "true" : undefined}
+              sx={{
+                position: "relative",
+                flex: "0 0 auto",
+                width: thumbnailWidth,
+                aspectRatio: thumbnailAspectRatio,
+                bg: background,
+                p: 0,
+                cursor: "pointer",
+                border: "2px solid",
+                borderColor: selected ? "primary" : "transparent",
+                borderRadius: 1,
+                overflow: "hidden",
+                opacity: selected ? 1 : 0.7,
+                transition: reduceMotion ? "none" : "opacity 180ms ease, border-color 180ms ease",
+                "&:hover": { opacity: 1 },
+                "&:focus-visible": {
+                  outline: "3px solid",
+                  outlineColor: "primary",
+                  outlineOffset: 2,
+                  opacity: 1,
+                },
+              }}
+            >
+              {thumbnail ? (
+                <Box
+                  as="img"
+                  src={thumbnail}
+                  alt=""
+                  loading="lazy"
+                  sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              ) : (
+                <Box
+                  aria-hidden="true"
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#fff",
+                    fontSize: 1,
+                  }}
+                >
+                  {isVideo(item) ? "Video" : "Image"}
+                </Box>
+              )}
+              {isVideo(item) && (
+                <Box
+                  aria-hidden="true"
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#fff",
+                    textShadow: "0 1px 4px #000",
+                    fontSize: 26,
+                  }}
+                >
+                  ▶
+                </Box>
+              )}
+            </Box>
+          );
+        })}
+      </Box>
+    );
+  }
+
   function caption() {
     return showCaptions && current?.caption ? (
       <Box as="p" sx={{ p: 2, mt: 2, mb: 0, fontSize: 1, color: "text", lineHeight: "body" }}>
@@ -351,7 +622,16 @@ export default function MediaCarousel({
       sx={{ width: "100%", minWidth: 0 }}
     >
       {stage("inline")}
-      {controls()}
+      {thumbnailsEnabled ? (
+        <>
+          {thumbnails()}
+          {autoCycle && (
+            <Box sx={{ display: "flex", justifyContent: "flex-end", pt: 1 }}>{cycleControl()}</Box>
+          )}
+        </>
+      ) : (
+        controls()
+      )}
       {caption()}
       {portalReady &&
         lightboxOpen &&
@@ -365,7 +645,7 @@ export default function MediaCarousel({
             sx={{
               position: "fixed",
               inset: 0,
-              zIndex: 9999,
+              zIndex: 99999,
               bg: "background",
               color: "text",
               overflowY: "auto",
