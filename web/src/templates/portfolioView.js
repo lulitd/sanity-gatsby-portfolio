@@ -8,6 +8,8 @@ import ThemedLink from "../components/atoms/ThemedLink";
 import SanityMediaCarousel from "../components/atoms/sanityMediaCarousel";
 import GraphQLErrorList from "../components/graphql-error-list";
 import { SEO } from "../components/seo";
+import ProjectSection from "../components/project/projectSection";
+import PortableTextRenderer from "../components/sanity/portable-text-renderer";
 
 const PortfolioViewPage = ({ data, errors }) => {
   if (errors) {
@@ -19,6 +21,8 @@ const PortfolioViewPage = ({ data, errors }) => {
   if (!view) return null;
 
   const projects = (view.projects ?? []).filter(Boolean);
+  const gallery = view._rawGallery;
+  const hasGallery = (gallery?.slides?.length ?? 0) > 0;
 
   return (
     <Container as="main">
@@ -40,46 +44,102 @@ const PortfolioViewPage = ({ data, errors }) => {
           {view.headline || view.title}
         </Heading>
 
-        {view.description && (
-          <Text
-            as="p"
-            sx={{
-              maxWidth: "65ch",
-              lineHeight: 1.65,
-            }}
-          >
-            {view.description}
-          </Text>
+        {view._rawDescription && (
+          <Box>
+            <PortableTextRenderer
+              value={view._rawDescription || []}
+              style={{ "& p": { maxWidth: ["55ch", "60ch", "70ch"], textWrap: "pretty", mb: 3 } }}
+            />
+          </Box>
         )}
       </Box>
+
+      {(view.skills?.length > 0 || view.tools?.length > 0) && (
+        <Box
+          as="section"
+          sx={{
+            py: [5, 6],
+            borderTop: "1px solid",
+            borderColor: "primary",
+          }}
+        >
+          <Heading as="h2" sx={{ mb: 4 }}>
+            Skills & Tools
+          </Heading>
+
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: ["1fr", "1fr 1fr"],
+              gap: [4, 5],
+            }}
+          >
+            {view.skills?.length > 0 && (
+              <Box>
+                <Heading as="h4" sx={{ color: "secondary", mb: 3, fontSize: [3, 3, 3] }}>
+                  Capabilities
+                </Heading>
+                {view.skills.map((skill) => (
+                  <Text key={skill} sx={{ display: "block", mb: 2 }}>
+                    {skill}
+                  </Text>
+                ))}
+              </Box>
+            )}
+
+            {view.tools?.length > 0 && (
+              <Box>
+                <Heading as="h4" sx={{ color: "secondary", mb: 3, fontSize: [3, 3, 3] }}>
+                  Tools & Software
+                </Heading>
+                {view.tools.map((tool) => (
+                  <Text key={tool} sx={{ display: "block", mb: 2 }}>
+                    {tool}
+                  </Text>
+                ))}
+              </Box>
+            )}
+          </Box>
+        </Box>
+      )}
 
       {/* Ordered projects */}
       {projects.length > 0 && (
         <Box sx={{ mb: [5, 6] }}>
-          <ProjectPreviewGrid nodes={projects} />
+          <ProjectPreviewGrid nodes={projects} title="Highlighted Projects" />
         </Box>
       )}
 
-      <SanityMediaCarousel
-        variant="thumbnails"
-        value={view._rawGallery}
-        height={["320px", "480px", "650px"]}
-      />
+      {hasGallery && (
+        <Box sx={{ mb: [5, 6] }}>
+          <SanityMediaCarousel
+            variant="thumbnails"
+            value={view._rawGallery}
+            height={["320px", "400px", "400px"]}
+          />
+        </Box>
+      )}
       {/* Closing CTA */}
       <Box
+        as="section"
         sx={{
           py: [5, 6],
-          textAlign: "center",
           borderTop: "1px solid",
           borderColor: "primary",
         }}
       >
-        {view.closingMessage && (
-          <Text as="p" sx={{ maxWidth: "60ch", mx: "auto", mb: 4 }}>
-            {view.closingMessage}
-          </Text>
-        )}
+        <Heading as="h2" sx={{ mb: 4 }}>
+          Let's Build Something Together
+        </Heading>
 
+        {view._rawClosingMessage && (
+          <Box sx={{ mb: 6 }}>
+            <PortableTextRenderer
+              value={view._rawClosingMessage}
+              style={{ "& p": { maxWidth: ["55ch", "60ch", "100%"], textWrap: "pretty", mb: 3 } }}
+            />
+          </Box>
+        )}
         <ThemedLink to="/contact" variant="fillBtn">
           Get in Touch
         </ThemedLink>
@@ -96,10 +156,11 @@ export const query = graphql`
       id
       title
       headline
-      description
-      closingMessage
+      _rawDescription(resolveReferences: { maxDepth: 5 })
+      _rawClosingMessage(resolveReferences: { maxDepth: 5 })
       _rawGallery(resolveReferences: { maxDepth: 5 })
-
+      skills
+      tools
       projects {
         _id
         title

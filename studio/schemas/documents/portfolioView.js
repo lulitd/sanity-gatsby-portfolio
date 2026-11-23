@@ -29,8 +29,7 @@ export default {
     {
       name: "description",
       title: "Introduction",
-      type: "text",
-      rows: 3,
+      type: "projectPortableText",
     },
     {
       name: "projects",
@@ -46,6 +45,26 @@ export default {
       validation: (Rule) => Rule.unique(),
     },
     {
+      name: "skills",
+      title: "Capabilities & Skills",
+      description: "Role-specific skills. Drag to reorder.",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        layout: "tags",
+      },
+    },
+    {
+      name: "tools",
+      title: "Tools & Software",
+      description: "Relevant software, frameworks, and technologies.",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        layout: "tags",
+      },
+    },
+    {
       name: "gallery",
       title: "Gallery",
       type: "mediaCarousel",
@@ -53,8 +72,7 @@ export default {
     {
       name: "closingMessage",
       title: "Closing Message",
-      type: "text",
-      rows: 3,
+      type: "projectPortableText",
     },
   ],
 

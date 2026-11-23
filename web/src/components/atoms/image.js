@@ -5,34 +5,56 @@ import { getGatsbyImageData } from "gatsby-source-sanity";
 import clientConfig from "../../../client-config";
 
 const variants = {
-  hero: { layout: "full", imgStyle: { objectFit: "cover" } },
-  thumb: { layout: "constrained", imgStyle: { objectFit: "cover" } },
-  cover: { layout: "fixed", imgStyle: { objectFit: "cover" } },
-  logo: { layout: "fixed", imgStyle: { objectFit: "contain" } },
+  hero: { layout: "full", width: 2000, imgStyle: { objectFit: "cover" } },
+  thumb: { layout: "constrained", width: 800, imgStyle: { objectFit: "cover" } },
+  cover: { layout: "constrained", width: 1200, imgStyle: { objectFit: "cover" } },
+  logo: { layout: "fixed", width: 250, imgStyle: { objectFit: "contain" } },
 };
 
-function imageDataFromAssetId(assetId) {
-  const imageData = getGatsbyImageData(assetId, { maxWidth: 600 }, { ...clientConfig.sanity });
+function imageDataFromAssetId(assetId, config, width) {
+  if (!assetId) return null;
 
-  return imageData;
+  const options =
+    config.layout === "fullWidth"
+      ? {
+          layout: "fullWidth",
+          breakpoints: [400, 800, 1200, 1600, width],
+        }
+      : {
+          layout: config.layout,
+          width,
+        };
+
+  return getGatsbyImageData(assetId, options, clientConfig.sanity);
 }
 
 export default function SanityImage({
   image,
   assetId,
   variant = "thumb",
+  width,
+  regenerate = false,
   imgStyle,
   sx,
   fill = false,
   ...props
 }) {
-  if (!image?.asset && !assetId) return null;
+  const config = variants[variant];
 
-  const imageData = image ? image.asset.gatsbyImageData : imageDataFromAssetId(assetId);
+  const resolvedAssetId = assetId || image?.asset?._id || image?.asset?._ref;
+
+  const existingImageData = image?.asset?.gatsbyImageData;
+
+  // Use existing GraphQL data unless regeneration is requested
+  // or the data is not available.
+  const shouldGenerate =
+    Boolean(resolvedAssetId) && (regenerate || width != null || !existingImageData);
+
+  const imageData = shouldGenerate
+    ? imageDataFromAssetId(resolvedAssetId, config, width || config.width)
+    : existingImageData;
 
   if (!imageData) return null;
-
-  const config = variants[variant];
 
   return (
     <Box
@@ -49,6 +71,7 @@ export default function SanityImage({
       <GatsbyImage
         image={imageData}
         alt={image?.asset?.altText || ""}
+        loading="lazy"
         style={{
           ...(fill && {
             width: "100%",
@@ -56,7 +79,7 @@ export default function SanityImage({
           }),
         }}
         imgStyle={{
-          objectFit: config.imgStyle.objectFit,
+          ...config.imgStyle,
           objectPosition: image?.hotspot
             ? `${image.hotspot.x * 100}% ${image.hotspot.y * 100}%`
             : "50% 50%",

@@ -36,7 +36,6 @@ export default {
       type: "array",
       group: "content",
       of: [{ type: "figure" }, { type: "video" }],
-      validation: (Rule) => Rule.required().min(1),
     },
     {
       name: "caption",
