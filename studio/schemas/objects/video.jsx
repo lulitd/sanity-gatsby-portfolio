@@ -1,19 +1,6 @@
 import React from 'react'
-import ReactPlayer from 'react-player'
-
-const Preview = (props) => {
-  const {url, renderDefault} = props; 
-
-  if (!url){
-    return <div> Missing Video URL </div>
-  }
-  return (
-  <div>
-    {renderDefault({...props, title:"Video Embed"})}
-    <ReactPlayer url={url} />
-  </div>
-  )
-}
+import VideoBlockPreview from "../../components/VideoBlockPreview"
+import VideoListPreview from "../../components/VideoListPreview";
 
 export default {
   name: 'video',
@@ -48,6 +35,7 @@ export default {
     },
   },
   components: {
-    preview: Preview
+    block: VideoBlockPreview,
+    preview: VideoListPreview,
   },
 }

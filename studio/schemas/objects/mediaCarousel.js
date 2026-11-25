@@ -35,7 +35,7 @@ export default {
       title: "Slides",
       type: "array",
       group: "content",
-      of: [{ type: "figure" }, { type: "video" }],
+      of: [{ type: "figure" }, { type: "video" }, { type: "motionClip" }],
     },
     {
       name: "caption",

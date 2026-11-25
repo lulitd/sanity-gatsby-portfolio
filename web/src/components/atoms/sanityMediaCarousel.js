@@ -22,9 +22,7 @@ const normalizeSlides = (slides = []) => {
         if (!slide.asset?._ref && !slide.asset?._id) {
           return null;
         }
-
         const image = buildImageObj(slide);
-
         return {
           type: "image",
 
@@ -51,6 +49,31 @@ const normalizeSlides = (slides = []) => {
         };
       }
 
+      if (slide._type === "motionClip") {
+        const src = slide.clip?.asset?.url;
+
+        if (!src) return null;
+
+        const poster = slide.poster?.asset ? buildImageObj(slide.poster) : null;
+
+        return {
+          type: "motionClip",
+          src,
+
+          poster: poster ? getImageUrl(poster, IMAGE_SIZES.standard) : null,
+
+          thumbnailSrc: poster ? getImageUrl(poster, IMAGE_SIZES.thumbnail, 75) : null,
+
+          caption: slide.caption,
+          description: slide.description,
+
+          playbackMode: slide.playbackMode || "autoplay",
+          loop: slide.loop ?? false,
+          resetOnLeave: slide.resetOnLeave ?? true,
+          aspectRatio: slide.aspectRatio || "auto",
+        };
+      }
+
       return null;
     })
     .filter(Boolean);
@@ -65,7 +88,6 @@ const SanityMediaCarousel = ({
   if (!value) return null;
 
   const items = normalizeSlides(value.slides);
-  console.log("Normalized carousel items:", items);
   if (!items.length) return null;
 
   const {

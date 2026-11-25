@@ -397,32 +397,6 @@ const IndexPage = (props) => {
                   }}
                 />
               </Box>
-
-              {/* Image annotation */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  bottom: -2,
-                  left: 2,
-                  px: 2,
-                  py: 2,
-                  bg: "darkest",
-                  border: "1px solid",
-                  borderColor: "primary",
-                }}
-              >
-                <Text
-                  sx={{
-                    fontSize: 0,
-                    color: "primary",
-                    fontFamily: "monospace",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  {"<"}The human behind the code{"/>"}
-                </Text>
-              </Box>
             </Box>
           )}
 

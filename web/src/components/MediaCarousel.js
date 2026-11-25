@@ -3,9 +3,12 @@ import { Box, Button } from "theme-ui";
 import { alpha } from "@theme-ui/color";
 import { createPortal } from "react-dom";
 import ReactPlayer from "react-player";
+import MotionClip from "./atoms/motionClip";
 
 const clampIndex = (index, length) => ((index % length) + length) % length;
 const isVideo = (item) => ["video", "youtube", "vimeo"].includes(item.type);
+const isMotionClip = (item) => item.type === "motionClip";
+const isPlayableMedia = (item) => isVideo(item) || isMotionClip(item);
 
 function youtubeThumbnail(url) {
   if (typeof url !== "string") return null;
@@ -28,8 +31,102 @@ function thumbnailFor(item) {
   // Explicit thumbnail wins; older poster fields continue to work.
   if (item.thumbnail) return item.thumbnail;
   if (item.type === "image") return item.thumbnailSrc || item.src;
+  if (isMotionClip(item)) return item.thumbnailSrc || item.poster;
   if (item.poster) return item.poster;
   return youtubeThumbnail(item.src);
+}
+
+function PreviewVideo({ source, poster, onVideoPlay, onVideoPause }) {
+  const [activated, setActivated] = useState(false);
+
+  return (
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        bg: "#111",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+      }}
+    >
+      {!activated ? (
+        <Box
+          as="button"
+          type="button"
+          onClick={() => setActivated(true)}
+          aria-label="Play video"
+          sx={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            border: 0,
+            p: 0,
+            bg: "transparent",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+
+            "&:focus-visible": {
+              outline: "3px solid",
+              outlineColor: "primary",
+              outlineOffset: -3,
+            },
+          }}
+        >
+          {poster && (
+            <Box
+              as="img"
+              src={poster}
+              alt=""
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                display: "block",
+              }}
+            />
+          )}
+
+          <Box
+            as="span"
+            aria-hidden="true"
+            sx={{
+              position: "absolute",
+              width: "64px",
+              height: "44px",
+              borderRadius: "12px",
+              bg: "#ff0033",
+              color: "#fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "24px",
+            }}
+          >
+            ▶
+          </Box>
+        </Box>
+      ) : (
+        <ReactPlayer
+          url={source}
+          playing={true}
+          controls
+          playsinline
+          onPlay={onVideoPlay}
+          onPause={onVideoPause}
+          onEnded={onVideoPause}
+          light={false}
+          width="100%"
+          height="100%"
+        />
+      )}
+    </Box>
+  );
 }
 
 function Media({ item, active, fullscreen = false, onImageClick, onVideoPlay, onVideoPause }) {
@@ -69,11 +166,58 @@ function Media({ item, active, fullscreen = false, onImageClick, onVideoPlay, on
     );
   }
 
+  if (isMotionClip(item)) {
+    // Like embedded videos, only mount the active clip.
+    if (!active) return null;
+
+    const interactive = item.playbackMode !== "autoplay";
+
+    return (
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          minWidth: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+        }}
+      >
+        <MotionClip
+          src={item.src}
+          poster={item.poster}
+          playbackMode={item.playbackMode}
+          loop={item.loop}
+          resetOnLeave={item.resetOnLeave}
+          aspectRatio={item.aspectRatio}
+          description={item.description}
+          active={active}
+          inGallery
+          onPlaybackChange={(playing) => {
+            // Only user-initiated clips pause slide cycling.
+            // Autoplay loops should not hold the carousel.
+            if (!interactive) return;
+
+            if (playing) {
+              onVideoPlay?.();
+            } else {
+              onVideoPause?.();
+            }
+          }}
+        />
+      </Box>
+    );
+  }
+
   if (isVideo(item)) {
     // Only mount the active player; changing slides unmounts it and stops playback.
     if (!active) return null;
     const sources = item.sources?.length ? item.sources : null;
     const source = item.src || (sources ? sources.map(({ src, type }) => ({ src, type })) : null);
+
+    const previewUrl = thumbnailFor(item);
+
     if (!source)
       return (
         <Box role="status" sx={{ p: 3 }}>
@@ -92,24 +236,16 @@ function Media({ item, active, fullscreen = false, onImageClick, onVideoPlay, on
           "& .react-player__preview": {
             width: "100%",
             height: "100%",
-            backgroundSize: "contain !important",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
           },
         }}
       >
-        <ReactPlayer
-          url={source}
-          playing={false}
-          onPlay={onVideoPlay}
-          onPause={onVideoPause}
-          onEnded={onVideoPause}
-          controls
-          playsInline
-          light={item.poster || (["youtube", "vimeo"].includes(item.type) ? true : false)}
-          width="100%"
-          height="100%"
-          style={{ maxWidth: "100%", maxHeight: "100%" }}
+        <PreviewVideo
+          source={source}
+          poster={thumbnailFor(item)}
+          onVideoPlay={onVideoPlay}
+          onVideoPause={onVideoPause}
         />
       </Box>
     );
@@ -378,7 +514,7 @@ export default function MediaCarousel({
         {items.map((item, i) => {
           const active = index === i;
           // Only the current video should be mounted, even with a lightbox open.
-          if (inline && lightboxOpen && isVideo(item)) return null;
+          if (inline && lightboxOpen && isPlayableMedia(item)) return null;
           return (
             <Box
               key={item.id || `${item.src || item.title || item.type}-${i}`}
@@ -522,7 +658,7 @@ export default function MediaCarousel({
           const selected = i === index;
           const thumbnail = thumbnailFor(item);
           const label =
-            item.title || item.alt || item.caption || (isVideo(item) ? "Video" : "Image");
+            item.title || item.alt || item.caption || (isPlayableMedia(item) ? "Video" : "Image");
           return (
             <Box
               as="button"
@@ -579,10 +715,10 @@ export default function MediaCarousel({
                     fontSize: 1,
                   }}
                 >
-                  {isVideo(item) ? "Video" : "Image"}
+                  {isPlayableMedia(item) ? "Video" : "Image"}
                 </Box>
               )}
-              {isVideo(item) && (
+              {isPlayableMedia(item) && (
                 <Box
                   aria-hidden="true"
                   sx={{

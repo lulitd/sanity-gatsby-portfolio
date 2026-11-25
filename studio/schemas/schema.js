@@ -22,34 +22,9 @@ import simpleInfo from "./objects/simpleInfo";
 import projectPortableText from "./objects/projectPortableText";
 import simplePortableText from "./objects/simplePortableText";
 import video from "./objects/video";
+import motionClip from "./objects/motionClip";
 import mediaCarousel from "./objects/mediaCarousel.js";
 import creditGroup from "./objects/creditGroup";
-
-// // Then we give our schema to the builder and provide the result to Sanity
-// export default createSchema({
-//   // We name our schema
-//   // name: 'portfolio',
-//   // Then proceed to concatenate our our document type
-//   // to the ones provided by any plugins that are installed
-//   types: schemaTypes.concat([
-//     // When added to this list, object types can be used as
-//     // { type: 'typename' } in other document schemas
-//     bioPortableText,
-//     figure,
-//     projectMember,
-//     projectPortableText,
-//     simplePortableText,
-//     accolade,
-//     video,
-//     // The following are document types which will appear
-//     // in the studio.
-//     category,
-//     person,
-//     project,
-//     siteSettings,
-//     post
-//   ])
-// })
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -68,6 +43,7 @@ export default [
   simplePortableText,
   accolade,
   video,
+  motionClip,
   mediaCarousel,
   creditGroup,
   // The following are document types which will appear

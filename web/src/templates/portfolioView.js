@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Box, Heading, Text } from "theme-ui";
+import { Box, Heading, Text, Flex } from "theme-ui";
 
 import Container from "../components/container";
 import ProjectPreviewGrid from "../components/project/project-preview-grid";
@@ -10,13 +10,14 @@ import GraphQLErrorList from "../components/graphql-error-list";
 import { SEO } from "../components/seo";
 import ProjectSection from "../components/project/projectSection";
 import PortableTextRenderer from "../components/sanity/portable-text-renderer";
-
+import SanityImage from "../components/atoms/image";
+import AnimWebBanner from "../animIcons/animWebBanner";
 const PortfolioViewPage = ({ data, errors }) => {
   if (errors) {
     return <GraphQLErrorList errors={errors} />;
   }
 
-  const view = data?.sanityPortfolioView;
+  const view = data?.view;
 
   if (!view) return null;
 
@@ -24,10 +25,12 @@ const PortfolioViewPage = ({ data, errors }) => {
   const gallery = view._rawGallery;
   const hasGallery = (gallery?.slides?.length ?? 0) > 0;
 
+  const jumboImage = data?.site?.jumboImage;
+
   return (
     <Container as="main">
       {/* Curated introduction */}
-      <Box as="header" sx={{ py: [5, 6, 7] }}>
+      <Container as="header" sx={{ py: [5, 6, 7], position: "relative" }}>
         <Text
           sx={{
             display: "block",
@@ -39,6 +42,19 @@ const PortfolioViewPage = ({ data, errors }) => {
         >
           Selected Work / {view.title}
         </Text>
+        <Text
+          sx={{
+            display: "block",
+            color: "text",
+            fontWeight: "bold",
+            fontSize: 2,
+            mb: 2,
+            letterSpacing: "0.04em",
+            textTransform: "uppercase",
+          }}
+        >
+          Lalaine Ulit-Destajo
+        </Text>
 
         <Heading as="h1" sx={{ mb: 4 }}>
           {view.headline || view.title}
@@ -48,11 +64,53 @@ const PortfolioViewPage = ({ data, errors }) => {
           <Box>
             <PortableTextRenderer
               value={view._rawDescription || []}
-              style={{ "& p": { maxWidth: ["55ch", "60ch", "70ch"], textWrap: "pretty", mb: 3 } }}
+              style={{ "& p": { maxWidth: ["50ch", "50ch", "60ch"], textWrap: "pretty", mb: 3 } }}
             />
           </Box>
         )}
-      </Box>
+
+        {/* Glitch portrait */}
+        {jumboImage?.asset && (
+          <Box
+            aria-hidden="true"
+            sx={{
+              position: "absolute",
+              zIndex: -1000,
+
+              display: ["none", "none", "block"],
+              // Gradually increase image size
+              width: [0, 0, "min(50%, 450px)"],
+
+              // Anchor the image to the right
+              right: ["-3%", "0%", "-5%"],
+
+              // Position relative to the center of the hero
+              top: ["30%", "60%", "55%"],
+              transform: ["none", "translateY(-50%)", "translateY(-50%)"],
+
+              // Maintain a subtle background treatment
+              opacity: [0.3, 0.3, 0.3],
+
+              pointerEvents: "none",
+
+              maskImage:
+                "linear-gradient(to right, transparent 0%, black 50%, black 85%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 50%, black 85%, transparent 100%)",
+            }}
+          >
+            <SanityImage
+              image={jumboImage}
+              variant="hero"
+              imgStyle={{
+                objectFit: "contain",
+                transform: "scaleX(-1)",
+              }}
+              sx={{ width: "100%" }}
+            />
+          </Box>
+        )}
+      </Container>
 
       {(view.skills?.length > 0 || view.tools?.length > 0) && (
         <Box
@@ -119,6 +177,24 @@ const PortfolioViewPage = ({ data, errors }) => {
           />
         </Box>
       )}
+
+      <Flex
+        my={8}
+        mx={["-24px", "auto"]}
+        sx={{
+          width: ["100vw", "auto"],
+          overflow: "hidden",
+          justifyContent: "center",
+          "& svg": {
+            width: ["900px", "100%"],
+            maxWidth: "none",
+            height: "auto",
+            flexShrink: 0,
+          },
+        }}
+      >
+        <AnimWebBanner />
+      </Flex>
       {/* Closing CTA */}
       <Box
         as="section"
@@ -152,7 +228,20 @@ export default PortfolioViewPage;
 
 export const query = graphql`
   query PortfolioViewById($id: String!) {
-    sanityPortfolioView(id: { eq: $id }) {
+    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+      jumboImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: NONE, width: 600)
+          title
+          altText
+        }
+        hotspot {
+          x
+          y
+        }
+      }
+    }
+    view: sanityPortfolioView(id: { eq: $id }) {
       id
       title
       headline

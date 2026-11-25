@@ -7,6 +7,7 @@ import Figure from "../atoms/figure";
 import EmbedVideo from "../atoms/embed-video";
 import CodeRenderer from "../atoms/codeRenderer";
 import SanityMediaCarousel from "../atoms/sanityMediaCarousel";
+import MotionClip from "../atoms/motionClip";
 
 const components = {
   types: {
@@ -25,6 +26,18 @@ const components = {
     ),
     mediaCarousel: ({ value }) => (
       <SanityMediaCarousel value={value} height={["300px", "450px", "560px"]} />
+    ),
+    motionClip: ({ value }) => (
+      <MotionClip
+        src={value.clip?.asset?.url}
+        poster={value.poster?.asset?.url}
+        playbackMode={value.playbackMode || "autoplay"}
+        loop={value.loop ?? false}
+        resetOnLeave={value.resetOnLeave ?? true}
+        caption={value.caption}
+        description={value.description}
+        aspectRatio={value.aspectRatio || "auto"}
+      />
     ),
   },
 
@@ -159,11 +172,17 @@ export default function PortableTextRenderer({ value = [], style = {} }) {
           height: "auto",
         },
 
-        "& > figure:not(.project-carousel)": {
+        "& > figure:not(.project-carousel):not(.motion-clip)": {
           maxWidth: "65%",
           my: 6,
           mx: "3",
           justifySelf: ["normal", "center", "center"],
+        },
+        "& > .motion-clip": {
+          width: "100%",
+          maxWidth: "500px",
+          my: 6,
+          mx: "auto",
         },
         "& .project-carousel": {
           width: "100%",
