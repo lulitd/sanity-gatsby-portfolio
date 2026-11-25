@@ -449,9 +449,6 @@ const IndexPage = (props) => {
               <ThemedLink to="/about" variant="outlineBtn">
                 More about me
               </ThemedLink>
-              <ThemedLink to="/" variant="fillBtn">
-                View resume
-              </ThemedLink>
             </Flex>
           </Box>
         </Grid>

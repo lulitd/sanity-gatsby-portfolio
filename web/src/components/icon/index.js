@@ -1,17 +1,22 @@
 import React from "react";
 import HamburgerIcon from "./hamburger";
 import LogoIcon from "./logo";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaPlay, FaPause } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
+import { PiFilmStripBold } from "react-icons/pi";
 import {
   AiOutlineTwitter,
   AiOutlineInstagram,
   AiFillGithub,
   AiOutlineYoutube,
+  AiFillStepForward,
+  AiFillStepBackward,
+  AiOutlineFullscreen,
+  AiOutlinePicture,
 } from "react-icons/ai";
 import { CgMenuGridR, CgClose } from "react-icons/cg";
 import { RiUserHeartLine } from "react-icons/ri";
-import { VscTools } from "react-icons/vsc";
+import { VscTools, VscCloseCompact } from "react-icons/vsc";
 import { MdImportantDevices } from "react-icons/md";
 import { IoGameControllerOutline } from "react-icons/io5";
 
@@ -43,6 +48,20 @@ function Icon(props) {
       return <MdImportantDevices {...props} />;
     case "controller":
       return <IoGameControllerOutline {...props} />;
+    case "play":
+      return <FaPlay {...props} />;
+    case "pause":
+      return <FaPause {...props} />;
+    case "forward":
+      return <AiFillStepForward {...props} />;
+    case "backward":
+      return <AiFillStepBackward {...props} />;
+    case "fullscreen":
+      return <AiOutlineFullscreen {...props} />;
+    case "video":
+      return <PiFilmStripBold {...props} />;
+    case "picture":
+      return <AiOutlinePicture {...props} />;
     default:
       return <FiExternalLink {...props} />;
   }

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Text } from "theme-ui";
+import Icon from "../icon";
 
 const MotionClip = ({
   src,
@@ -246,7 +247,7 @@ const MotionClip = ({
               py: 1,
             }}
           >
-            {isPlaying ? "Pause" : "Play"}
+            <Icon symbol={isPlaying ? "pause" : "play"} />
           </Box>
         </Box>
       </Box>

@@ -4,6 +4,7 @@ import { alpha } from "@theme-ui/color";
 import { createPortal } from "react-dom";
 import ReactPlayer from "react-player";
 import MotionClip from "./atoms/motionClip";
+import Icon from "./icon";
 
 const clampIndex = (index, length) => ((index % length) + length) % length;
 const isVideo = (item) => ["video", "youtube", "vimeo"].includes(item.type);
@@ -354,7 +355,7 @@ export default function MediaCarousel({
         title={playing ? "Pause slideshow" : "Play slideshow"}
         sx={{ minWidth: "36px", fontSize: 16 }}
       >
-        {playing ? "Ⅱ" : "▶"}
+        <Icon symbol={playing ? "pause" : "play"} />
       </Button>
     );
   }
@@ -546,31 +547,6 @@ export default function MediaCarousel({
             </Box>
           );
         })}
-        {inline && thumbnailsEnabled && (
-          <Button
-            type="button"
-            variant="nav"
-            onClick={openLightbox}
-            aria-label="Open fullscreen media"
-            title="Open fullscreen"
-            sx={{
-              position: "absolute",
-              top: 2,
-              right: 2,
-              zIndex: 2,
-              bg: alpha("background", 0.5),
-              color: "#fff",
-              borderRadius: 1,
-              fontSize: 18,
-              lineHeight: 1,
-              p: 2,
-              "&:hover": { bg: "rgba(0, 0, 0, 0.9)" },
-              "&:focus-visible": { outline: "3px solid", outlineColor: "primary" },
-            }}
-          >
-            ⛶
-          </Button>
-        )}
       </Box>
     );
   }
@@ -617,7 +593,7 @@ export default function MediaCarousel({
             sx={{ fontSize: 17 }}
             title="Open fullscreen"
           >
-            ⛶
+            <Icon symbol="fullscreen" />
           </Button>
         )}
         <Button
@@ -626,10 +602,10 @@ export default function MediaCarousel({
           onClick={() => navigate(-1)}
           aria-label="Previous slide"
         >
-          ‹
+          <Icon symbol="backward" />
         </Button>
         <Button type="button" variant="nav" onClick={() => navigate(1)} aria-label="Next slide">
-          ›
+          <Icon symbol="forward" />
         </Button>
       </Box>
     );
@@ -648,7 +624,7 @@ export default function MediaCarousel({
           minWidth: 0,
           overflowX: "auto",
           overflowY: "hidden",
-          pt: 3,
+          pt: 2,
           pb: 2,
           scrollbarWidth: "thin",
           WebkitOverflowScrolling: "touch",
@@ -711,11 +687,11 @@ export default function MediaCarousel({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "#fff",
-                    fontSize: 1,
+                    color: "primary900",
+                    fontSize: 70,
                   }}
                 >
-                  {isPlayableMedia(item) ? "Video" : "Image"}
+                  <Icon symbol={isPlayableMedia(item) ? "video" : "picture"} />
                 </Box>
               )}
               {isPlayableMedia(item) && (
@@ -732,7 +708,7 @@ export default function MediaCarousel({
                     fontSize: 26,
                   }}
                 >
-                  ▶
+                  <Icon symbol="play" />
                 </Box>
               )}
             </Box>
@@ -758,16 +734,8 @@ export default function MediaCarousel({
       sx={{ width: "100%", minWidth: 0 }}
     >
       {stage("inline")}
-      {thumbnailsEnabled ? (
-        <>
-          {thumbnails()}
-          {autoCycle && (
-            <Box sx={{ display: "flex", justifyContent: "flex-end", pt: 1 }}>{cycleControl()}</Box>
-          )}
-        </>
-      ) : (
-        controls()
-      )}
+      {controls()}
+      {thumbnailsEnabled && thumbnails()}
       {caption()}
       {portalReady &&
         lightboxOpen &&
@@ -800,7 +768,7 @@ export default function MediaCarousel({
                   onClick={closeLightbox}
                   aria-label="Close fullscreen"
                 >
-                  ×
+                  <Icon symbol="close" />
                 </Button>
               </Box>
               {stage("lightbox")}
