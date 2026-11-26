@@ -1,7 +1,14 @@
 import React from "react";
 import HamburgerIcon from "./hamburger";
 import LogoIcon from "./logo";
-import { FaFacebookF, FaLinkedinIn, FaPlay, FaPause } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaPlay,
+  FaPause,
+  FaVolumeMute,
+  FaVolumeUp,
+} from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
 import { PiFilmStripBold } from "react-icons/pi";
 import {
@@ -62,6 +69,11 @@ function Icon(props) {
       return <PiFilmStripBold {...props} />;
     case "picture":
       return <AiOutlinePicture {...props} />;
+    case "volume-on":
+      return <FaVolumeUp {...props} />;
+
+    case "volume-off":
+      return <FaVolumeMute {...props} />;
     default:
       return <FiExternalLink {...props} />;
   }

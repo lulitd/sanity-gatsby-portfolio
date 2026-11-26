@@ -2,6 +2,32 @@ import React, { useEffect, useRef, useState } from "react";
 import { Box, Text } from "theme-ui";
 import Icon from "../icon";
 
+const controlButtonStyles = {
+  width: "40px",
+  height: "40px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexShrink: 0,
+  cursor: "pointer",
+  border: 0,
+  color: "#fff",
+  bg: "rgba(0, 0, 0, 0.65)",
+  borderRadius: "4px",
+  p: 0,
+  fontSize: 1,
+
+  "&:hover": {
+    bg: "rgba(0, 0, 0, 0.85)",
+  },
+
+  "&:focus-visible": {
+    outline: "2px solid",
+    outlineColor: "primary",
+    outlineOffset: "-2px",
+  },
+};
+
 const MotionClip = ({
   src,
   poster,
@@ -13,6 +39,8 @@ const MotionClip = ({
   aspectRatio = "auto",
   active = true,
   inGallery = false,
+  audio = false,
+  volume = 0.1,
   onPlaybackChange,
 }) => {
   const containerRef = useRef(null);
@@ -25,6 +53,7 @@ const MotionClip = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(true);
   const [autoOverride, setAutoOverride] = useState(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   const isAutoplay = playbackMode === "autoplay";
   const isHover = playbackMode === "hover";
@@ -93,6 +122,22 @@ const MotionClip = ({
     }
   }, [shouldPlay, hasSource]);
 
+  useEffect(() => {
+    if (!active || !inView || !audio) {
+      if (videoRef.current) {
+        videoRef.current.muted = true;
+      }
+
+      setIsMuted(true);
+    }
+  }, [active, inView, audio]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.volume = Math.max(0, Math.min(1, volume));
+    }
+  }, [volume]);
+
   const startPlayback = () => {
     setHasSource(true);
     setRequestedPlay(true);
@@ -119,6 +164,18 @@ const MotionClip = ({
     } else {
       startPlayback();
     }
+  };
+
+  const toggleAudio = (event) => {
+    event.stopPropagation();
+
+    const video = videoRef.current;
+    if (!video || !audio) return;
+
+    const nextMuted = !video.muted;
+
+    video.muted = nextMuted;
+    setIsMuted(nextMuted);
   };
 
   if (!src) return null;
@@ -163,7 +220,7 @@ const MotionClip = ({
           ref={videoRef}
           src={hasSource ? src : undefined}
           poster={poster}
-          muted
+          muted={!audio || isMuted}
           playsInline
           preload="none"
           loop={shouldLoop}
@@ -194,62 +251,85 @@ const MotionClip = ({
           }}
         />
 
-        <Box
-          as="button"
-          type="button"
-          aria-label={isPlaying ? `Pause ${label}` : `Play ${label}`}
-          onClick={togglePlayback}
-          onFocus={() => {
-            if (isHover) startPlayback();
-          }}
-          onBlur={() => {
-            if (isHover) stopPlayback();
-          }}
-          sx={{
-            position: "absolute",
-            cursor: "pointer",
-            border: 0,
-            color: "#fff",
-            bg: "rgba(0, 0, 0, 0.65)",
-            borderRadius: "4px",
-            p: 2,
-            fontSize: 1,
-
-            ...(isAutoplay
-              ? {
-                  right: 2,
-                  bottom: 2,
-                }
-              : {
-                  inset: 0,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  bg: "transparent",
-                  "&:hover span, &:focus-visible span": {
-                    bg: "rgba(0, 0, 0, 0.85)",
-                  },
-                }),
-
-            "&:focus-visible": {
-              outline: "2px solid",
-              outlineColor: "primary",
-              outlineOffset: "-2px",
-            },
-          }}
-        >
+        {/* Full-video playback overlay for non-autoplay clips */}
+        {!isAutoplay && (
           <Box
-            as="span"
+            as="button"
+            type="button"
+            aria-label={isPlaying ? `Pause ${label}` : `Play ${label}`}
+            onClick={togglePlayback}
+            onFocus={() => {
+              if (isHover) startPlayback();
+            }}
+            onBlur={() => {
+              if (isHover) stopPlayback();
+            }}
             sx={{
-              bg: isAutoplay ? "transparent" : "rgba(0, 0, 0, 0.65)",
-              borderRadius: "4px",
-              px: 2,
-              py: 1,
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              border: 0,
+              bg: "transparent",
+              p: 0,
+
+              "&:hover span, &:focus-visible span": {
+                bg: "rgba(0, 0, 0, 0.85)",
+              },
+
+              "&:focus-visible": {
+                outline: "2px solid",
+                outlineColor: "primary",
+                outlineOffset: "-2px",
+              },
             }}
           >
-            <Icon symbol={isPlaying ? "pause" : "play"} />
+            <Box as="span" sx={controlButtonStyles}>
+              <Icon symbol={isPlaying ? "pause" : "play"} />
+            </Box>
           </Box>
-        </Box>
+        )}
+
+        {/* Bottom-right controls */}
+        {(audio || isAutoplay) && (
+          <Box
+            sx={{
+              position: "absolute",
+              right: 2,
+              bottom: 2,
+              zIndex: 2,
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+            }}
+          >
+            {audio && (
+              <Box
+                as="button"
+                type="button"
+                aria-label={isMuted ? `Unmute ${label}` : `Mute ${label}`}
+                onClick={toggleAudio}
+                sx={controlButtonStyles}
+              >
+                <Icon symbol={isMuted ? "volume-off" : "volume-on"} />
+              </Box>
+            )}
+
+            {isAutoplay && (
+              <Box
+                as="button"
+                type="button"
+                aria-label={isPlaying ? `Pause ${label}` : `Play ${label}`}
+                onClick={togglePlayback}
+                sx={controlButtonStyles}
+              >
+                <Icon symbol={isPlaying ? "pause" : "play"} />
+              </Box>
+            )}
+          </Box>
+        )}
       </Box>
 
       {caption && (

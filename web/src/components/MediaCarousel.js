@@ -193,6 +193,8 @@ function Media({ item, active, fullscreen = false, onImageClick, onVideoPlay, on
           resetOnLeave={item.resetOnLeave}
           aspectRatio={item.aspectRatio}
           description={item.description}
+          audio={item.audio ?? false}
+          volume={item.volume ?? 0.1}
           active={active}
           inGallery
           onPlaybackChange={(playing) => {

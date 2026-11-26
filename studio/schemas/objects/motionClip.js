@@ -84,6 +84,31 @@ export default {
       rows: 2,
       description: "Describe what the animation demonstrates.",
     },
+    {
+      name: "audio",
+      title: "Enable audio controls",
+      type: "boolean",
+      description: "Allow visitors to unmute this clip. Playback starts muted.",
+      initialValue: false,
+    },
+    {
+      name: "volume",
+      title: "Playback volume",
+      type: "number",
+      description: "Default volume when unmuted.",
+      initialValue: 0.1,
+      hidden: ({ parent }) => !parent?.audio,
+      validation: (Rule) => Rule.min(0).max(1),
+      options: {
+        list: [
+          { title: "10% — Very quiet", value: 0.1 },
+          { title: "25% — Quiet", value: 0.25 },
+          { title: "50% — Moderate", value: 0.5 },
+          { title: "75% — Loud", value: 0.75 },
+          { title: "100% — Original", value: 1 },
+        ],
+      },
+    },
   ],
 
   preview: {

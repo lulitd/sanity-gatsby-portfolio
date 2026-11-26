@@ -36,7 +36,9 @@ const components = {
         resetOnLeave={value.resetOnLeave ?? true}
         caption={value.caption}
         description={value.description}
+        audio={value.audio ?? false}
         aspectRatio={value.aspectRatio || "auto"}
+        volume={value.volume ?? 0.1}
       />
     ),
   },
