@@ -15,3 +15,6 @@ overrides:
 
   # Explicit exception for pinned dependency
   "@vercel/frameworks@3.29.0>js-yaml": "3.15.2"
+
+  # Follow-redirects security patch
+  "follow-redirects@^1.2.4": "1.16.2"
