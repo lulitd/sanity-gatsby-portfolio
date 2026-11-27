@@ -31,7 +31,6 @@
     "framer-motion": "^12.38.0",
     "gatsby": "^5.16.1",
     "gatsby-adapter-netlify": "^1.4.0",
-    "gatsby-codemods": "^4.16.0",
     "gatsby-omni-font-loader": "^2.0.2",
     "gatsby-plugin-gtag": "^1.0.13",
     "gatsby-plugin-image": "^3.16.0",
@@ -64,7 +63,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.6.0",
     "eslint-plugin-react": "^7.37.5",
-    "prettier-eslint-cli": "^7.1.0",
-    "rimraf": "^4.4.1"
+    "prettier-eslint-cli": "^7.1.0"
   }
 }
