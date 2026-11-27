@@ -139,8 +139,8 @@ importers:
         specifier: ^7.9.2
         version: 7.9.2(bare-buffer@3.7.3)(gatsby-plugin-image@3.16.0(@babel/core@7.29.13)(bare-buffer@3.7.3)(gatsby-plugin-sharp@5.16.0(bare-buffer@3.7.3)(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(bare-buffer@3.7.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))(graphql@16.13.2))(gatsby-source-filesystem@5.16.0(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(bare-buffer@3.7.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3)))(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(bare-buffer@3.7.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))(graphql@16.13.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(bare-buffer@3.7.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))(graphql@16.13.2)
       gsap:
-        specifier: ^3.15.0
-        version: 3.15.0
+        specifier: ^3.15.1
+        version: 3.15.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -6752,8 +6752,8 @@ packages:
     resolution: {integrity: sha512-omyg6t6oUcqfuitJiYBQ77N5ZyPACKIfweAnnpbHOLuTqgFIF6kSdI4UDLE41jMOms+3gkemFgSYrjkqZb1pYQ==}
     engines: {node: '>=22.12'}
 
-  gsap@3.15.0:
-    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
+  gsap@3.15.1:
+    resolution: {integrity: sha512-63yjWRFWj3QRP1UOuD8kcidCcy3nxb1mMRpwHr/xJRvPfm9GtWOXFAYUiL0ro1fgPq2nY53LR+98pAgy9BumBg==}
 
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
@@ -16432,7 +16432,7 @@ snapshots:
 
   '@types/yoga-layout@1.9.2': {}
 
-  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)':
+  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@6.0.3)
@@ -18502,7 +18502,7 @@ snapshots:
 
   eslint-config-react-app@6.0.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@7.32.0)(typescript@6.0.3))(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(babel-eslint@10.1.0(eslint@8.57.1))(eslint-plugin-flowtype@5.10.0(eslint@7.32.0))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1))(eslint-plugin-jsx-a11y@6.10.2(eslint@7.32.0))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.1))(eslint-plugin-react@7.37.5(eslint@8.57.1))(eslint@7.32.0)(typescript@6.0.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@6.0.3)
       babel-eslint: 10.1.0(eslint@8.57.1)
       confusing-browser-globals: 1.0.11
@@ -19732,7 +19732,7 @@ snapshots:
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.17(react-refresh@0.14.2)(type-fest@4.41.0)(webpack@5.98.0)
       '@sigmacomputing/babel-plugin-lodash': 3.3.5
       '@types/http-proxy': 1.17.17
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@6.0.3)
       '@vercel/webpack-asset-relocator-loader': 1.7.3
       acorn-loose: 8.5.2
@@ -20130,7 +20130,7 @@ snapshots:
 
   groq@6.25.0: {}
 
-  gsap@3.15.0: {}
+  gsap@3.15.1: {}
 
   gunzip-maybe@1.4.2:
     dependencies:
