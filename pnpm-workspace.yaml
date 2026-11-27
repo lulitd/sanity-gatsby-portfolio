@@ -30,3 +30,7 @@ overrides:
 
     # Multer security patch
   "gatsby@5.16.1>multer": "2.5.0"
+
+    # Engine.IO security patch
+  "socket.io@4.8.3>engine.io": "6.6.10"
+  
