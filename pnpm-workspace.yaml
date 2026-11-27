@@ -27,3 +27,6 @@ overrides:
 
   # Form-data security patch for legacy Axios
   "axios@0.34.0>form-data": "4.0.6"
+
+    # Multer security patch
+  "gatsby@5.16.1>multer": "2.5.0"
