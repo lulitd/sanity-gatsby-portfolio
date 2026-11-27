@@ -8,14 +8,12 @@ import {
   filterOutDocsPublishedInTheFuture,
 } from "../lib/helpers";
 import { motion, useReducedMotion } from "framer-motion";
-// import SanityImage from "gatsby-plugin-sanity-image";
 import { SEO } from "../components/seo";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project/project-preview-grid";
 import ThemedLink from "../components/atoms/ThemedLink";
 import LogoScroller from "../components/home/logo-scroller";
-import Doodles from "../components/home/doodle";
 import CardRow from "../components/home/card-row";
 import StatusPill from "../components/status-pill";
 import SanityImage from "../components/atoms/image";
@@ -126,10 +124,6 @@ export const query = graphql`
     }
   }
 `;
-
-const createHeroBG = (colors) => {
-  return <Doodles colors={colors} />;
-};
 
 const IndexPage = (props) => {
   const { data, errors } = props;

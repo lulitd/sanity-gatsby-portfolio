@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      css-doodle:
-        specifier: ^0.8.5
-        version: 0.8.5
       smooth-scroll:
         specifier: ^16.1.3
         version: 16.1.3
@@ -5687,9 +5684,6 @@ packages:
     engines: {node: ^10 || ^12 || >=14}
     peerDependencies:
       postcss: ^8.0.9
-
-  css-doodle@0.8.5:
-    resolution: {integrity: sha512-o98zIqciZRlIBE+fWZdH5eMZguHMpgoX1MRtPoSTmA5itETpHKNMJIQRRDV+Exvj++GvGZh/wC0FEBo81fozuw==}
 
   css-loader@5.2.7:
     resolution: {integrity: sha512-Q7mOvpBNBG7YrVGMxRxcBJZFL75o+cH2abNASdibkj/fffYD8qWbInZrD0S9ccI6vZclF3DsHE7njGlLtaHbhg==}
@@ -19489,8 +19483,6 @@ snapshots:
   css-declaration-sorter@6.4.1(postcss@8.5.10):
     dependencies:
       postcss: 8.5.10
-
-  css-doodle@0.8.5: {}
 
   css-loader@5.2.7(webpack@5.98.0):
     dependencies:
