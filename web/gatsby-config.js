@@ -32,23 +32,6 @@ module.exports = {
     "gatsby-plugin-theme-ui",
     "gatsby-plugin-image",
     {
-      resolve: `gatsby-omni-font-loader`,
-      options: {
-        enableListener: true,
-        preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
-        web: [
-          {
-            name: `Inter`,
-            file: `https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap`,
-          },
-          {
-            name: `Space Mono`,
-            file: `https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap`,
-          },
-        ],
-      },
-    },
-    {
       resolve: "gatsby-source-sanity",
       options: {
         ...clientConfig.sanity,
