@@ -10,3 +10,6 @@ audit-report.json
 
 # Sanity generated runtime and cache
 /studio/.sanity/
+
+# Dependency security audit reports
+/audit/
