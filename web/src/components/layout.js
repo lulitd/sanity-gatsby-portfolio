@@ -5,10 +5,6 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Flex } from "theme-ui";
 import { useLocation } from "@reach/router";
 
-if (typeof window !== "undefined") {
-  require("smooth-scroll")('a[href*="#"]');
-}
-
 // Match the project archive and category pages.
 // Adjust "category" if your Gatsby routes use a different path.
 const isProjectArchive = (pathname) => {

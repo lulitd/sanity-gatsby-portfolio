@@ -17,8 +17,5 @@
     "build:studio": "pnpm --filter ./studio build",
     "graphql-deploy": "pnpm --filter ./studio graphql-deploy",
     "postinstall": "pnpm rebuild sharp"
-  },
-  "dependencies": {
-    "smooth-scroll": "^16.1.3"
   }
 }
