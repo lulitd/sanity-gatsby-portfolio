@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Text } from "@sanity/ui";
 import { useClient } from "sanity";
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 
 function getYouTubeThumbnail(url) {
   if (!url) return null;
@@ -47,9 +47,13 @@ export default function VideoThumbnail({ url, poster }) {
   const [remoteThumbnail, setRemoteThumbnail] = useState(null);
   const [imageFailed, setImageFailed] = useState(false);
 
-  const posterUrl = poster?.asset
-    ? imageUrlBuilder(client).image(poster).width(640).fit("max").url()
-    : null;
+const posterUrl = poster?.asset
+  ? createImageUrlBuilder(client)
+      .image(poster)
+      .width(640)
+      .fit("max")
+      .url()
+  : null;
 
   const youtubeUrl = getYouTubeThumbnail(url);
 
