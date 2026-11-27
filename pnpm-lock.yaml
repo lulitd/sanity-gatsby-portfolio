@@ -103,9 +103,6 @@ importers:
       '@rebass/forms':
         specifier: ^4.0.6
         version: 4.0.6(react@18.3.1)
-      '@sanity/block-content-to-react':
-        specifier: ^3.0.0
-        version: 3.0.0(react@18.3.1)
       '@sanity/image-url':
         specifier: ^1.2.0
         version: 1.2.0
@@ -3614,14 +3611,6 @@ packages:
     resolution: {integrity: sha512-+PiJK89Tw7qdTYvoDaDT8y+Btr5AwXFg8PvuYZAoI0LT2q5W7CWnd6K84Xyrznikfjoh3vuhdx0vCarFeu6TBA==}
     engines: {node: '>=22.12'}
 
-  '@sanity/block-content-to-hyperscript@3.0.1':
-    resolution: {integrity: sha512-g61ogB8s94T5ellKMtnoN1wW9mCqy1foS9jw5QaRAQZUk7ANIwT2YNFqfAj6xF9YiMXcoaKTqDa/JzKeGMpJHA==}
-
-  '@sanity/block-content-to-react@3.0.0':
-    resolution: {integrity: sha512-oHPLlIsulsnL3ITs93RIvUPBI6nAeoSFOUf16vX4T7z4wWywxP39N1DF9mAx2tV6Kjr1fJAx5GF7zfiMXYLaqA==}
-    peerDependencies:
-      react: '>=15.0.0'
-
   '@sanity/blueprints-parser@0.5.0':
     resolution: {integrity: sha512-wlfpO5gbYLPU5K6i7gaRBuZHGOnyEsuPOe8XMfEklLi1pE0PhRl9WgdLRwwt+M+aGguAuOpISjEcFSf2I5N3lA==}
     engines: {node: '>=22.12'}
@@ -3764,9 +3753,6 @@ packages:
     engines: {node: '>=22.12'}
     hasBin: true
 
-  '@sanity/generate-help-url@0.140.0':
-    resolution: {integrity: sha512-H/G/WA9S22TXcXST52CIiTsHx3S2hH0gvK7LnI5w76vfKS0obnDPh8jrPg4xeNRYGPuV9MHYRlyERGpRGoo4Qw==}
-
   '@sanity/generate-help-url@4.0.0':
     resolution: {integrity: sha512-Ooa4xkLT3TLaX+mw/13fq3IeGdnAkx4rbpVASvRVixzBBvvcL6jPqj50fjlCd+EhgB5GRXBCNNAy/hWXwjZEUA==}
 
@@ -3783,10 +3769,6 @@ packages:
   '@sanity/id-utils@1.1.0':
     resolution: {integrity: sha512-A+DujVHCO3/+0DuzinmfCRQacIWVIherK0AHqFDoDOSgxx+Bur1kLhzX8fn7PdB2uZilxu2zWOr+UaGcj5zGbA==}
     engines: {node: '>=18'}
-
-  '@sanity/image-url@0.140.22':
-    resolution: {integrity: sha512-CAmQZnj+KM7FSEYiWlIGDit072syicYuAw0w7R2ctMzHiZ4p9mE/g6dBnYqrqFUrw2J+GpJgPt+RVspKP8vdqA==}
-    engines: {node: '>=10.0.0'}
 
   '@sanity/image-url@1.2.0':
     resolution: {integrity: sha512-pYRhti+lDi22it+npWXkEGuYyzbXJLF+d0TYLiyWbKu46JHhYhTDKkp6zmGu4YKF5cXUjT6pnUjFsaf2vlB9nQ==}
@@ -5181,9 +5163,6 @@ packages:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
 
-  browser-split@0.0.0:
-    resolution: {integrity: sha512-CNXO3AXAS1H/kOGQkPjucm1161/XoF3aVkMfujqwk85XN/D/MkQMvoB81lXyX/2rerZS+hPAYYRR3mAW05awjQ==}
-
   browserify-zlib@0.1.4:
     resolution: {integrity: sha512-19OEpq7vWgsH6WkvkBJQDFvJS1uPcbFOQ4v9CU839dO+ZZXUZO6XpE6hNCqvlIIj+4fZvRiJ6DsAQ382GwiyTQ==}
 
@@ -5381,9 +5360,6 @@ packages:
 
   cjs-module-lexer@2.3.0:
     resolution: {integrity: sha512-lmNyBzi6iYiqyrExTctfmjd8tInx+dHu9PBomTfH5RXS53c27JMFJgzNv5TyAnm3PgGf+MLy0+Ws41/HlVxdKQ==}
-
-  class-list@0.1.1:
-    resolution: {integrity: sha512-zqR0uW+VsLtyQhixBhkdQ+z6B8+Y8HTh28kdSVjJ4zTTKM7Xz2asAQSya9VI6m/34F6N6Ktm0mrchKB+E5a8Xw==}
 
   class-utils@0.3.6:
     resolution: {integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==}
@@ -7402,10 +7378,6 @@ packages:
   hotscript@1.0.13:
     resolution: {integrity: sha512-C++tTF1GqkGYecL+2S1wJTfoH6APGAsbb7PAWQ3iVIwgG/EFseAfEVOKFgAFq4yK3+6j1EjUD4UQ9dRJHX/sSQ==}
 
-  html-element@2.3.1:
-    resolution: {integrity: sha512-xnFt2ZkbFcjc+JoAtg3Hl89VeEZDjododu4VCPkRvFmBTHHA9U1Nt6hLUWfW2O+6Sl/rT1hHK/PivleX3PdBJQ==}
-    engines: {node: '>=4.2'}
-
   html-encoding-sniffer@6.0.0:
     resolution: {integrity: sha512-CV9TW3Y3f8/wT0BRFc1/KAVQ3TUHiXmaAb6VW9vtiMFf7SLoMd1PdAc4W3KFOFETBJUb90KatHqlsZMWV+R9Gg==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
@@ -7460,9 +7432,6 @@ packages:
 
   humanize-list@1.0.1:
     resolution: {integrity: sha512-4+p3fCRF21oUqxhK0yZ6yaSP/H5/wZumc7q1fH99RkW7Q13aAxDeP78BKjoR+6y+kaHqKF/JWuQhsNuuI2NKtA==}
-
-  hyperscript@2.0.2:
-    resolution: {integrity: sha512-uggBAYfHFC5WyZQXlJ61BNZbPmJbschcvfYNhYdZWCp+0J8KYb5Du8nQuk8Ru+ThoCNb01B0tPtnTRqnrFBkVg==}
 
   i18next@26.4.7:
     resolution: {integrity: sha512-p/3hqy6EcuqRs6wNwBYwGGC1fzBJSMxV9zMuN814ab/7QjdZbXfjXwuPZdQbngX6KDOTxM01uUiZyqmMB8ghZg==}
@@ -7533,9 +7502,6 @@ packages:
   indent-string@5.0.0:
     resolution: {integrity: sha512-m6FAo/spmsW2Ab2fU35JTYwtOKa2yAwXSwgjSv1TJzh4Mh7mC3lzAOVLBprb72XsTrgkEIsl7YrFNAiDiRhIGg==}
     engines: {node: '>=12'}
-
-  indexof@0.0.1:
-    resolution: {integrity: sha512-i0G7hLJ1z0DE8dsqJa2rycj9dBmNKgXBvotXtZYXakU9oivfB9Uj2ZBC27qqef2U58/ZLwalxa1X/RDCdkHtVg==}
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
@@ -16496,19 +16462,6 @@ snapshots:
       nanoid: 6.0.2
       rxjs: 7.8.2
 
-  '@sanity/block-content-to-hyperscript@3.0.1':
-    dependencies:
-      '@sanity/generate-help-url': 0.140.0
-      '@sanity/image-url': 0.140.22
-      hyperscript: 2.0.2
-      object-assign: 4.1.1
-
-  '@sanity/block-content-to-react@3.0.0(react@18.3.1)':
-    dependencies:
-      '@sanity/block-content-to-hyperscript': 3.0.1
-      prop-types: 15.8.1
-      react: 18.3.1
-
   '@sanity/blueprints-parser@0.5.0': {}
 
   '@sanity/blueprints@0.28.0(jiti@2.7.0)(vite@8.3.6(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.46.1)(tsx@4.23.15)(yaml@2.9.1))':
@@ -16866,8 +16819,6 @@ snapshots:
     transitivePeerDependencies:
       - vitest
 
-  '@sanity/generate-help-url@0.140.0': {}
-
   '@sanity/generate-help-url@4.0.0': {}
 
   '@sanity/groq-condition-describe@0.5.2':
@@ -16884,8 +16835,6 @@ snapshots:
     dependencies:
       '@sanity/uuid': 3.0.3
       ts-brand: 0.2.0
-
-  '@sanity/image-url@0.140.22': {}
 
   '@sanity/image-url@1.2.0': {}
 
@@ -18890,8 +18839,6 @@ snapshots:
     dependencies:
       fill-range: 7.1.1
 
-  browser-split@0.0.0: {}
-
   browserify-zlib@0.1.4:
     dependencies:
       pako: 0.2.9
@@ -19154,10 +19101,6 @@ snapshots:
   ci-info@2.0.0: {}
 
   cjs-module-lexer@2.3.0: {}
-
-  class-list@0.1.1:
-    dependencies:
-      indexof: 0.0.1
 
   class-utils@0.3.6:
     dependencies:
@@ -22134,10 +22077,6 @@ snapshots:
 
   hotscript@1.0.13: {}
 
-  html-element@2.3.1:
-    dependencies:
-      class-list: 0.1.1
-
   html-encoding-sniffer@6.0.0(@noble/hashes@2.2.0):
     dependencies:
       '@exodus/bytes': 1.16.0(@noble/hashes@2.2.0)
@@ -22199,12 +22138,6 @@ snapshots:
 
   humanize-list@1.0.1: {}
 
-  hyperscript@2.0.2:
-    dependencies:
-      browser-split: 0.0.0
-      class-list: 0.1.1
-      html-element: 2.3.1
-
   i18next@26.4.7(typescript@6.0.3):
     optionalDependencies:
       typescript: 6.0.3
@@ -22251,8 +22184,6 @@ snapshots:
   indent-string@4.0.0: {}
 
   indent-string@5.0.0: {}
-
-  indexof@0.0.1: {}
 
   inflight@1.0.6:
     dependencies:

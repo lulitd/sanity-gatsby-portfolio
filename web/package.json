@@ -19,7 +19,6 @@
     "@mdx-js/react": "^3.1.1",
     "@portabletext/react": "^6.2.0",
     "@rebass/forms": "^4.0.6",
-    "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.2.0",
     "@theme-ui/color": "^0.17.4",
     "@theme-ui/core": "^0.17.4",
