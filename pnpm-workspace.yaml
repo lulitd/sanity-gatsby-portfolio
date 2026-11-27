@@ -37,3 +37,9 @@ overrides:
   # WebSocket security remediation through parent upgrades
   "socket.io-client@4.8.3>engine.io-client": "6.6.8"
   "socket.io@4.8.3>socket.io-adapter": "2.5.9"
+
+    # SVGO 2.x security patch — CSS optimization
+  "postcss-svgo@5.1.0>svgo": "2.8.4"
+
+  # SVGO 3.x security patch — SVG component compilation
+  "@svgr/plugin-svgo@8.1.0>svgo": "3.3.5"
