@@ -60,24 +60,6 @@ async function createProjectPages(graphql, actions, reporter) {
       });
     });
 
-  // const postEdges = (result.data.posts || {}).edges || [];
-
-  // postEdges
-  //   .filter((edge) => !isFuture(parseISO(edge.node.publishedAt)))
-  //   .forEach((edge) => {
-  //     const id = edge.node.id;
-  //     const slug = edge.node.slug.current;
-  //     const path = `/post/${slug}/`;
-
-  //     reporter.info(`Creating posts: ${path}`);
-
-  //     createPage({
-  //       path,
-  //       component: require.resolve("./src/templates/post.js"),
-  //       context: { id, currentDate: todayDate },
-  //     });
-  //   });
-
   const categoriesEdges = (result.data.categories || {}).edges || [];
 
   categoriesEdges.forEach((edge) => {

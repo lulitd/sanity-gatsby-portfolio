@@ -2,7 +2,7 @@ import { MdPerson, MdSettingsSuggest } from "react-icons/md";
 
 const singletonTypes = ["siteSettings", "aboutPage"];
 
-const listedDocTypes = ["project", "post", "person", "category", "accolade"];
+const listedDocTypes = ["project", "person", "category", "accolade"];
 
 const hiddenDocTypes = (listItem) =>
   ![...singletonTypes, ...listedDocTypes].includes(listItem.getId());
@@ -35,11 +35,6 @@ export default (S) =>
         .title("Projects")
         .schemaType("project")
         .child(S.documentTypeList("project").title("Projects")),
-
-      S.listItem()
-        .title("Posts")
-        .schemaType("post")
-        .child(S.documentTypeList("post").title("Posts")),
 
       S.listItem()
         .title("People")

@@ -11,7 +11,6 @@ import project from "./documents/project";
 import siteSettings from "./documents/siteSettings";
 import aboutPage from "./documents/aboutPage";
 import accolade from "./documents/accolade";
-import post from "./documents/post";
 import milestone from "./documents/milestone";
 import portfolioView from "./documents/portfolioView";
 // Object types
@@ -53,7 +52,6 @@ export default [
   project,
   siteSettings,
   aboutPage,
-  post,
   milestone,
   portfolioView,
   //   ])

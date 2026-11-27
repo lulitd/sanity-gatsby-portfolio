@@ -14,7 +14,6 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project/project-preview-grid";
 import ThemedLink from "../components/atoms/ThemedLink";
-import PostPreviewGrid from "../components/post-preview-grid";
 import LogoScroller from "../components/home/logo-scroller";
 import Doodles from "../components/home/doodle";
 import CardRow from "../components/home/card-row";
