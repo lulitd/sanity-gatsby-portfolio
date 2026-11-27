@@ -23,9 +23,6 @@ importers:
       '@sanity/code-input':
         specifier: ^7.3.14
         version: 7.3.14(37514cc70efe17d58afd03704d760c67)
-      '@sanity/components':
-        specifier: ^2.14.0
-        version: 2.14.0
       date-fns:
         specifier: ^2.30.0
         version: 2.30.0
@@ -3452,9 +3449,6 @@ packages:
   '@sanity/comlink@4.0.3':
     resolution: {integrity: sha512-gCnltbeB8BmXVLSr/6XHAA3tQmhJDMKXufOVRXYxAhIEv+5n9CtnxupjY5IzmdI+7v+G67TZV/8zCQhvaFlVww==}
     engines: {node: '>=20.19 <22 || >=22.12'}
-
-  '@sanity/components@2.14.0':
-    resolution: {integrity: sha512-D8t7l+exvw1cg80m8yDZDRboAI6L827FeCacGjTOdElvgrR2shtsbepYui7ODfRgx9ynAceNDsQ1VSNnUgIHug==}
 
   '@sanity/descriptors@1.3.0':
     resolution: {integrity: sha512-S2KYYGRUVZy+FDjPp3meoyczbCjobSQvZcgNayo3oYlYS9Qz0E+6RezGxi/KOb6iF52Oir3LEXp9SVfIgEwNjg==}
@@ -15481,8 +15475,6 @@ snapshots:
       uuid: 14.0.3
       xstate: 5.33.3
 
-  '@sanity/components@2.14.0': {}
-
   '@sanity/descriptors@1.3.0':
     dependencies:
       sha256-uint8array: 0.10.7
@@ -19703,7 +19695,7 @@ snapshots:
       bluebird: 3.7.2
       debug: 4.4.3(supports-color@8.1.1)
       filenamify: 4.3.0
-      fs-extra: 11.3.4
+      fs-extra: 11.4.1
       gatsby: 5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3)
       gatsby-core-utils: 4.16.0
       gatsby-plugin-utils: 4.16.0(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))(graphql@16.13.2)
