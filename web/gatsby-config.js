@@ -31,12 +31,6 @@ module.exports = {
     },
     "gatsby-plugin-svgr",
     "gatsby-plugin-theme-ui",
-    // {
-    //   resolve: "gatsby-plugin-mdx",
-    //   options: {
-    //     extensions: [".mdx", ".md"],
-    //   },
-    // },
     "gatsby-plugin-image",
     {
       resolve: `gatsby-omni-font-loader`,
