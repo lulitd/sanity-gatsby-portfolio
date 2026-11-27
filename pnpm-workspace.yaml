@@ -64,3 +64,7 @@ overrides:
   "postcss-minify-gradients@5.1.1>colord": "2.14.1"
 
   "joi@^17.0.0": "17.13.9"
+
+  "gatsby@5.16.1>body-parser": "2.4.0"
+  "express@4.22.1>body-parser": "1.20.9"
+  "qs@^6.0.0": "6.16.2"
