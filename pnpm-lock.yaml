@@ -154,9 +154,6 @@ importers:
       gatsby-plugin-sharp:
         specifier: ^5.16.0
         version: 5.16.0(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))(graphql@16.13.2)
-      gatsby-plugin-svgr:
-        specifier: 3.0.0-beta.0
-        version: 3.0.0-beta.0(@svgr/webpack@8.1.0(typescript@6.0.3))(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))
       gatsby-plugin-theme-ui:
         specifier: ^0.17.4
         version: 0.17.4(@emotion/react@11.14.0(react@18.3.1))(@mdx-js/react@2.3.0(react@18.3.1))(@theme-ui/css@0.17.4(@emotion/react@11.14.0(react@18.3.1)))(@theme-ui/mdx@0.17.4(@emotion/react@11.14.0(react@18.3.1))(@types/mdx@2.0.13)(react@18.3.1))(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))(react@18.3.1)(theme-ui@0.17.4(@emotion/react@11.14.0(react@18.3.1))(react@18.3.1))
@@ -6737,12 +6734,6 @@ packages:
     engines: {node: '>=18.0.0 <26'}
     peerDependencies:
       gatsby: ^5.0.0-next
-
-  gatsby-plugin-svgr@3.0.0-beta.0:
-    resolution: {integrity: sha512-oALTh6VwO6l3khgC/vGr706aqt38EkXwdr6iXVei/auOKGxpCLEuDCQVal1a4SpYXdjHjRsEyab6bxaHL2lzsA==}
-    peerDependencies:
-      '@svgr/webpack': '>=2.0.0'
-      gatsby: '>=3.0.0'
 
   gatsby-plugin-theme-ui@0.17.4:
     resolution: {integrity: sha512-RVK4TVHU9d1ouS4Sz+p68r3q1Moz/jX7UkOcGfETzfOkQWUFUcQipDC9hZ6Xd74MVk/psTxpsciChG+uScHRaA==}
@@ -20276,11 +20267,6 @@ snapshots:
       - graphql
       - react-native-b4a
       - supports-color
-
-  gatsby-plugin-svgr@3.0.0-beta.0(@svgr/webpack@8.1.0(typescript@6.0.3))(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3)):
-    dependencies:
-      '@svgr/webpack': 8.1.0(typescript@6.0.3)
-      gatsby: 5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3)
 
   gatsby-plugin-theme-ui@0.17.4(@emotion/react@11.14.0(react@18.3.1))(@mdx-js/react@2.3.0(react@18.3.1))(@theme-ui/css@0.17.4(@emotion/react@11.14.0(react@18.3.1)))(@theme-ui/mdx@0.17.4(@emotion/react@11.14.0(react@18.3.1))(@types/mdx@2.0.13)(react@18.3.1))(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))(react@18.3.1)(theme-ui@0.17.4(@emotion/react@11.14.0(react@18.3.1))(react@18.3.1)):
     dependencies:

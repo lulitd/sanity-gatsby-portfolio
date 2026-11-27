@@ -36,7 +36,6 @@
     "gatsby-plugin-image": "^3.16.0",
     "gatsby-plugin-manifest": "^5.16.0",
     "gatsby-plugin-sharp": "^5.16.0",
-    "gatsby-plugin-svgr": "3.0.0-beta.0",
     "gatsby-plugin-theme-ui": "^0.17.4",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-sanity": "^7.9.2",

@@ -29,7 +29,6 @@ module.exports = {
         anonymize: true,
       },
     },
-    "gatsby-plugin-svgr",
     "gatsby-plugin-theme-ui",
     "gatsby-plugin-image",
     {

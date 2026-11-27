@@ -129,23 +129,57 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   ]);
 };
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    module: {
-      rules: [
-        {
-          test: /\.svg$/,
-          oneOf: [
-            {
-              issuer: /\.[jt]sx?$/,
-              use: ["@svgr/webpack"],
-            },
-            {
-              type: "asset/",
-            },
-          ],
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  const config = getConfig();
+  const componentQuery = /[?&]component(?:&|$)/;
+
+  const excludeSvgComponents = (rules = []) => {
+    rules.forEach((rule) => {
+      if (!rule || typeof rule !== "object") return;
+
+      if (rule.test instanceof RegExp && rule.test.test("image.svg")) {
+        rule.resourceQuery = rule.resourceQuery
+          ? {
+              and: [rule.resourceQuery, { not: [componentQuery] }],
+            }
+          : { not: [componentQuery] };
+      }
+
+      if (rule.oneOf) excludeSvgComponents(rule.oneOf);
+      if (rule.rules) excludeSvgComponents(rule.rules);
+    });
+  };
+
+  excludeSvgComponents(config.module.rules);
+
+  config.module.rules.push({
+    test: /\.svg$/i,
+    issuer: /\.[jt]sx?$/,
+    resourceQuery: componentQuery,
+    type: "javascript/auto",
+    use: [
+      {
+        loader: require.resolve("@svgr/webpack"),
+        options: {
+          exportType: "named",
+          namedExport: "ReactComponent",
+          svgo: true,
+          svgoConfig: {
+            plugins: [
+              {
+                name: "prefixIds",
+                params: {
+                  delim: "__",
+                  prefixIds: true,
+                  prefixClassNames: true,
+                },
+              },
+            ],
+          },
         },
-      ],
-    },
+      },
+    ],
   });
+
+  actions.replaceWebpackConfig(config);
 };

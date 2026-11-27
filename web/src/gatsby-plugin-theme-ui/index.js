@@ -262,9 +262,6 @@ const theme = {
       height: 48,
       borderRadius: 99999,
     },
-    duotone: {
-      filter: "url(/duo-tone.svg#duotone_peachypink)",
-    },
   },
   forms: {
     label: {
