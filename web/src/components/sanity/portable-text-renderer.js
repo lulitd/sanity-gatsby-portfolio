@@ -5,7 +5,6 @@ import { Box, Message } from "theme-ui";
 
 import Figure from "../atoms/figure";
 import EmbedVideo from "../atoms/embed-video";
-import CodeRenderer from "../atoms/codeRenderer";
 import SanityMediaCarousel from "../atoms/sanityMediaCarousel";
 import MotionClip from "../atoms/motionClip";
 
@@ -16,12 +15,6 @@ const components = {
     video: ({ value }) => (
       <Box className="project-media">
         <EmbedVideo url={value.url} />
-      </Box>
-    ),
-
-    code: ({ value }) => (
-      <Box className="project-code">
-        <CodeRenderer value={value} />
       </Box>
     ),
     mediaCarousel: ({ value }) => (
@@ -207,14 +200,6 @@ export default function PortableTextRenderer({ value = [], style = {} }) {
         "& .project-media iframe": {
           maxWidth: "100%",
         },
-
-        // Code blocks
-        "& .project-code": {
-          my: 4,
-          maxWidth: "100%",
-          overflowX: "auto",
-        },
-
         ...style,
       }}
     >

@@ -1,6 +1,5 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import { codeInput } from "@sanity/code-input";
 import { media } from "sanity-plugin-media";
 
 import schemas from "./schemas/schema";
@@ -24,7 +23,6 @@ export default defineConfig({
       structure: deskStructure,
     }),
     media(),
-    codeInput(),
   ],
 
   schema: {
