@@ -26,6 +26,10 @@ overrides:
   gatsby@5.16.1>postcss: 8.5.33
   css-loader@5.2.7>postcss: 8.5.33
   css-minimizer-webpack-plugin@2.0.0>postcss: 8.5.33
+  postcss-selector-parser@^6.0.4: 6.1.6
+  postcss-selector-parser@^7.0.0: 7.1.8
+  postcss-colormin@5.3.1>colord: 2.14.1
+  postcss-minify-gradients@5.1.1>colord: 2.14.1
 
 importers:
 
@@ -5136,9 +5140,6 @@ packages:
   colord@2.14.1:
     resolution: {integrity: sha512-oAnRdUZtIoONz9y5JZEM/Ogg4m/eYIvpCvzFZIFOPfraLqVYTmevf61yeIhcLq/9EXztGOwF4O36pCu143BqGw==}
 
-  colord@2.9.3:
-    resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
-
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
@@ -5370,11 +5371,6 @@ packages:
 
   css.escape@1.5.1:
     resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
-
-  cssesc@3.0.0:
-    resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
-    engines: {node: '>=4'}
-    hasBin: true
 
   cssnano-preset-default@5.2.14:
     resolution: {integrity: sha512-t0SFesj/ZV2OTylqQVOrFgEh5uanxbO6ZAdeCrNsUQ6fVuXwYTxJPNAGvGTxHbD68ldIJNec7PyYZDBrfDQ+6A==}
@@ -8713,12 +8709,12 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
 
-  postcss-selector-parser@6.1.2:
-    resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
+  postcss-selector-parser@6.1.6:
+    resolution: {integrity: sha512-BK87/Qgti3DIcgS2PaCVoteFIkjIFvCJBizZDIVSjdlFNg4Jv+SRqbN2JONb/qQUH4ZFqfXYF+izg15W2HVRvA==}
     engines: {node: '>=4'}
 
-  postcss-selector-parser@7.1.1:
-    resolution: {integrity: sha512-orRsuYpJVw8LdAwqqLykBj9ecS5/cRHlI5+nvTo8LcCKmzDmqVORXtOIYEEQuL9D4BxtA1lm5isAqzQZCoQ6Eg==}
+  postcss-selector-parser@7.1.8:
+    resolution: {integrity: sha512-4CrD1SdKVx3bWOXG6Mh5YI9s/NTEgMq4T+O0T4wj2JqGhxbi8BAPc8BJYDVrVOqXBbWGX7YMO3f3ldOSscdCew==}
     engines: {node: '>=4'}
 
   postcss-svgo@5.1.0:
@@ -16409,7 +16405,7 @@ snapshots:
 
   '@types/yoga-layout@1.9.2': {}
 
-  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)':
+  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@6.0.3)
@@ -17634,8 +17630,6 @@ snapshots:
 
   colord@2.14.1: {}
 
-  colord@2.9.3: {}
-
   colorette@2.0.20: {}
 
   combined-stream@1.0.8:
@@ -17902,8 +17896,6 @@ snapshots:
   css-what@6.2.2: {}
 
   css.escape@1.5.1: {}
-
-  cssesc@3.0.0: {}
 
   cssnano-preset-default@5.2.14(postcss@8.5.33):
     dependencies:
@@ -18480,7 +18472,7 @@ snapshots:
 
   eslint-config-react-app@6.0.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@7.32.0)(typescript@6.0.3))(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(babel-eslint@10.1.0(eslint@8.57.1))(eslint-plugin-flowtype@5.10.0(eslint@7.32.0))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1))(eslint-plugin-jsx-a11y@6.10.2(eslint@7.32.0))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.1))(eslint-plugin-react@7.37.5(eslint@8.57.1))(eslint@7.32.0)(typescript@6.0.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@6.0.3)
       babel-eslint: 10.1.0(eslint@8.57.1)
       confusing-browser-globals: 1.0.11
@@ -19702,7 +19694,7 @@ snapshots:
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.17(react-refresh@0.14.2)(type-fest@4.41.0)(webpack@5.98.0)
       '@sigmacomputing/babel-plugin-lodash': 3.3.5
       '@types/http-proxy': 1.17.17
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@6.0.3)
       '@vercel/webpack-asset-relocator-loader': 1.7.3
       acorn-loose: 8.5.2
@@ -21725,14 +21717,14 @@ snapshots:
   postcss-calc@8.2.4(postcss@8.5.33):
     dependencies:
       postcss: 8.5.33
-      postcss-selector-parser: 6.1.2
+      postcss-selector-parser: 6.1.6
       postcss-value-parser: 4.2.0
 
   postcss-colormin@5.3.1(postcss@8.5.33):
     dependencies:
       browserslist: 4.28.2
       caniuse-api: 3.0.0
-      colord: 2.9.3
+      colord: 2.14.1
       postcss: 8.5.33
       postcss-value-parser: 4.2.0
 
@@ -21782,7 +21774,7 @@ snapshots:
       caniuse-api: 3.0.0
       cssnano-utils: 3.1.0(postcss@8.5.33)
       postcss: 8.5.33
-      postcss-selector-parser: 6.1.2
+      postcss-selector-parser: 6.1.6
 
   postcss-minify-font-values@5.1.0(postcss@8.5.33):
     dependencies:
@@ -21791,7 +21783,7 @@ snapshots:
 
   postcss-minify-gradients@5.1.1(postcss@8.5.33):
     dependencies:
-      colord: 2.9.3
+      colord: 2.14.1
       cssnano-utils: 3.1.0(postcss@8.5.33)
       postcss: 8.5.33
       postcss-value-parser: 4.2.0
@@ -21806,7 +21798,7 @@ snapshots:
   postcss-minify-selectors@5.2.1(postcss@8.5.33):
     dependencies:
       postcss: 8.5.33
-      postcss-selector-parser: 6.1.2
+      postcss-selector-parser: 6.1.6
 
   postcss-modules-extract-imports@3.1.0(postcss@8.5.33):
     dependencies:
@@ -21816,13 +21808,13 @@ snapshots:
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.33)
       postcss: 8.5.33
-      postcss-selector-parser: 7.1.1
+      postcss-selector-parser: 7.1.8
       postcss-value-parser: 4.2.0
 
   postcss-modules-scope@3.2.1(postcss@8.5.33):
     dependencies:
       postcss: 8.5.33
-      postcss-selector-parser: 7.1.1
+      postcss-selector-parser: 7.1.8
 
   postcss-modules-values@4.0.0(postcss@8.5.33):
     dependencies:
@@ -21892,14 +21884,12 @@ snapshots:
       postcss: 8.5.33
       postcss-value-parser: 4.2.0
 
-  postcss-selector-parser@6.1.2:
+  postcss-selector-parser@6.1.6:
     dependencies:
-      cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-selector-parser@7.1.1:
+  postcss-selector-parser@7.1.8:
     dependencies:
-      cssesc: 3.0.0
       util-deprecate: 1.0.2
 
   postcss-svgo@5.1.0(postcss@8.5.33):
@@ -21911,7 +21901,7 @@ snapshots:
   postcss-unique-selectors@5.1.1(postcss@8.5.33):
     dependencies:
       postcss: 8.5.33
-      postcss-selector-parser: 6.1.2
+      postcss-selector-parser: 6.1.6
 
   postcss-value-parser@4.2.0: {}
 
@@ -23402,7 +23392,7 @@ snapshots:
     dependencies:
       browserslist: 4.28.2
       postcss: 8.5.33
-      postcss-selector-parser: 6.1.2
+      postcss-selector-parser: 6.1.6
 
   stylis@4.2.0: {}
 
