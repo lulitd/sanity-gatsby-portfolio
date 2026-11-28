@@ -83,3 +83,5 @@ overrides:
   "gatsby@5.16.1>webpack": "5.104.1"
 
   "gatsby@5.16.1>moment": "2.31.0"
+  "gatsby@5.16.1>cookie": "0.7.2"
+  "gatsby-adapter-netlify@1.4.0>cookie": "0.7.2"
