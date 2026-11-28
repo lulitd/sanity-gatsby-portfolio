@@ -1,0 +1,13 @@
+diff --git a/create-file-node-from-buffer.js b/create-file-node-from-buffer.js
+--- a/create-file-node-from-buffer.js
++++ b/create-file-node-from-buffer.js
+@@ -4,3 +4,2 @@
+ const path = require(`path`);
+-const fileType = require(`file-type`);
+ const {
+@@ -76,3 +75,4 @@
+     if (typeof ext === `undefined`) {
+-      const filetype = await fileType.fromBuffer(buffer);
++      const { fileTypeFromBuffer } = await import("file-type");
++      const filetype = await fileTypeFromBuffer(buffer);
+       ext = filetype ? `.${filetype.ext}` : `.bin`;

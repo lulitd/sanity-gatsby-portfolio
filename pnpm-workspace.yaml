@@ -95,3 +95,9 @@ overrides:
   "@sanity/uuid@3.0.3>uuid": "11.1.1"
   "gatsby@5.16.1>uuid": "11.1.1"
   "gatsby@5.16.1>webpack-dev-middleware": "7.4.6"
+  "gatsby-core-utils@4.16.0>file-type": "22.3.0"
+  "gatsby-source-filesystem@5.16.0>file-type": "22.3.0"
+
+patchedDependencies:
+  gatsby-core-utils@4.16.0: patches/gatsby-core-utils@4.16.0.patch
+  gatsby-source-filesystem@5.16.0: patches/gatsby-source-filesystem@5.16.0.patch
