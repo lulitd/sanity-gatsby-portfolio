@@ -92,3 +92,5 @@ overrides:
   "css-minimizer-webpack-plugin@2.0.0>serialize-javascript": "7.1.4"
   "gatsby@5.16.1>query-string": "10.0.0"
   "@oclif/core@4.14.0>minimatch": "11.0.1"
+  "@sanity/uuid@3.0.3>uuid": "11.1.1"
+  "gatsby@5.16.1>uuid": "11.1.1"
