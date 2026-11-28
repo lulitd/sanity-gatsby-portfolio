@@ -95,6 +95,10 @@ overrides:
 
   "gatsby-parcel-config@1.16.0>@parcel/reporter-dev-server": "-"
 
+  "gatsby-sharp@1.16.0>sharp": "0.35.5"
+  "gatsby-plugin-sharp@5.16.0>sharp": "0.35.5"
+  "gatsby-plugin-manifest@5.16.0>sharp": "0.35.5"
+
 patchedDependencies:
   "@graphql-tools/utils@8.13.1": patches/@graphql-tools__utils@8.13.1.patch
   "@graphql-tools/utils@9.2.1": patches/@graphql-tools__utils@9.2.1.patch
