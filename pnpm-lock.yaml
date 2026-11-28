@@ -50,6 +50,7 @@ overrides:
   gatsby@5.16.1>tmp: 0.2.7
   gatsby-core-utils@4.16.0>tmp: 0.2.7
   external-editor@3.1.0>tmp: 0.2.7
+  css-minimizer-webpack-plugin@2.0.0>serialize-javascript: 7.1.4
 
 importers:
 
@@ -8859,9 +8860,6 @@ packages:
   raf@3.4.1:
     resolution: {integrity: sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==}
 
-  randombytes@2.1.0:
-    resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
-
   range-parser@1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
@@ -9418,8 +9416,9 @@ packages:
   sentence-case@3.0.4:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
 
-  serialize-javascript@5.0.1:
-    resolution: {integrity: sha512-SaaNal9imEO737H2c05Og0/8LUXG7EnsZyMa8MzkmuHoELfT6txuj0cMqRj6zfPKnmQ1yasR4PCJc8x+M4JSPA==}
+  serialize-javascript@7.1.4:
+    resolution: {integrity: sha512-FqlEuoTq/zRmA4Lg6aOqyH3lCHbUtCB0bmHCeFniX2GBdDqMJM3FwdvEhlE5Pim1dlt2FfBdVPmUNNiGhhKqpw==}
+    engines: {node: '>=20.0.0'}
 
   serve-static@1.16.3:
     resolution: {integrity: sha512-x0RTqQel6g5SY7Lg6ZreMmsOzncHFU7nhnRWkKgWuMTu5NN0DR5oruckMqRvacAN9d5w6ARnRBXl9xhDCgfMeA==}
@@ -16961,7 +16960,7 @@ snapshots:
       p-limit: 3.1.0
       postcss: 8.5.33
       schema-utils: 3.3.0
-      serialize-javascript: 5.0.1
+      serialize-javascript: 7.1.4
       source-map: 0.6.1
       webpack: 5.104.1
 
@@ -21201,10 +21200,6 @@ snapshots:
     dependencies:
       performance-now: 2.1.0
 
-  randombytes@2.1.0:
-    dependencies:
-      safe-buffer: 5.2.1
-
   range-parser@1.2.1: {}
 
   raw-body@2.5.3:
@@ -22048,9 +22043,7 @@ snapshots:
       tslib: 2.9.1
       upper-case-first: 2.0.2
 
-  serialize-javascript@5.0.1:
-    dependencies:
-      randombytes: 2.1.0
+  serialize-javascript@7.1.4: {}
 
   serve-static@1.16.3:
     dependencies:
