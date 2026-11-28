@@ -58,6 +58,7 @@ overrides:
   socket.io-parser@~4.2.4: 4.2.7
   socket.io@4.8.3>engine.io: 6.6.10
   socket.io@4.8.3>socket.io-adapter: 2.5.9
+  gatsby-parcel-config@1.16.0>@parcel/reporter-dev-server: '-'
 
 patchedDependencies:
   '@graphql-tools/utils@8.13.1':
@@ -69,6 +70,9 @@ patchedDependencies:
   gatsby-core-utils@4.16.0:
     hash: 953fca15384a6a5031d6dd3d607a6b1e0b2d520cc35115520cf8e996f7a99a18
     path: patches/gatsby-core-utils@4.16.0.patch
+  gatsby-parcel-config@1.16.0:
+    hash: 820aeb439c9e3ee6fdb298c96125c562c170427fe062362874e54ae60c2e2a27
+    path: patches/gatsby-parcel-config@1.16.0.patch
   gatsby-source-filesystem@5.16.0:
     hash: 5b92fc97646e6ff501bc0484c88c02023f0961065b075c6f6578b04da60c260e
     path: patches/gatsby-source-filesystem@5.16.0.patch
@@ -3101,10 +3105,6 @@ packages:
   '@parcel/plugin@2.8.3':
     resolution: {integrity: sha512-jZ6mnsS4D9X9GaNnvrixDQwlUQJCohDX2hGyM0U0bY2NWU8Km97SjtoCpWjq+XBCx/gpC4g58+fk9VQeZq2vlw==}
     engines: {node: '>= 12.0.0'}
-
-  '@parcel/reporter-dev-server@2.8.3':
-    resolution: {integrity: sha512-Y8C8hzgzTd13IoWTj+COYXEyCkXfmVJs3//GDBsH22pbtSFMuzAZd+8J9qsCo0EWpiDow7V9f1LischvEh3FbQ==}
-    engines: {node: '>= 12.0.0', parcel: ^2.8.3}
 
   '@parcel/resolver-default@2.8.3':
     resolution: {integrity: sha512-k0B5M/PJ+3rFbNj4xZSBr6d6HVIe6DH/P3dClLcgBYSXAvElNDfXgtIimbjCyItFkW9/BfcgOVKEEIZOeySH/A==}
@@ -14189,13 +14189,6 @@ snapshots:
     transitivePeerDependencies:
       - '@parcel/core'
 
-  '@parcel/reporter-dev-server@2.8.3(@parcel/core@2.8.3)':
-    dependencies:
-      '@parcel/plugin': 2.8.3(@parcel/core@2.8.3)
-      '@parcel/utils': 2.8.3
-    transitivePeerDependencies:
-      - '@parcel/core'
-
   '@parcel/resolver-default@2.8.3(@parcel/core@2.8.3)':
     dependencies:
       '@parcel/node-resolver-core': 2.8.3
@@ -15874,7 +15867,7 @@ snapshots:
 
   '@types/yoga-layout@1.9.2': {}
 
-  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)':
+  '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@6.0.3)
@@ -17851,7 +17844,7 @@ snapshots:
 
   eslint-config-react-app@6.0.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@7.32.0)(typescript@6.0.3))(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(babel-eslint@10.1.0(eslint@8.57.1))(eslint-plugin-flowtype@5.10.0(eslint@7.32.0))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1))(eslint-plugin-jsx-a11y@6.10.2(eslint@7.32.0))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.1))(eslint-plugin-react@7.37.5(eslint@8.57.1))(eslint@7.32.0)(typescript@6.0.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@6.0.3)
       babel-eslint: 10.1.0(eslint@8.57.1)
       confusing-browser-globals: 1.0.11
@@ -18832,7 +18825,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  gatsby-parcel-config@1.16.0(@parcel/core@2.8.3):
+  gatsby-parcel-config@1.16.0(patch_hash=820aeb439c9e3ee6fdb298c96125c562c170427fe062362874e54ae60c2e2a27)(@parcel/core@2.8.3):
     dependencies:
       '@gatsbyjs/parcel-namer-relative-to-cwd': 2.16.0(@parcel/core@2.8.3)
       '@parcel/bundler-default': 2.8.3(@parcel/core@2.8.3)
@@ -18842,7 +18835,6 @@ snapshots:
       '@parcel/optimizer-terser': 2.8.3(@parcel/core@2.8.3)
       '@parcel/packager-js': 2.8.3(@parcel/core@2.8.3)
       '@parcel/packager-raw': 2.8.3(@parcel/core@2.8.3)
-      '@parcel/reporter-dev-server': 2.8.3(@parcel/core@2.8.3)
       '@parcel/resolver-default': 2.8.3(@parcel/core@2.8.3)
       '@parcel/runtime-js': 2.8.3(@parcel/core@2.8.3)
       '@parcel/transformer-js': 2.8.3(@parcel/core@2.8.3)
@@ -19088,7 +19080,7 @@ snapshots:
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.17(react-refresh@0.14.2)(type-fest@4.41.0)(webpack@5.104.1)
       '@sigmacomputing/babel-plugin-lodash': 3.3.5
       '@types/http-proxy': 1.17.17
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@6.0.3)
       '@vercel/webpack-asset-relocator-loader': 1.7.3
       acorn-loose: 8.5.2
@@ -19149,7 +19141,7 @@ snapshots:
       gatsby-legacy-polyfills: 3.16.0
       gatsby-link: 5.16.0(@gatsbyjs/reach-router@2.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       gatsby-page-utils: 3.16.0
-      gatsby-parcel-config: 1.16.0(@parcel/core@2.8.3)
+      gatsby-parcel-config: 1.16.0(patch_hash=820aeb439c9e3ee6fdb298c96125c562c170427fe062362874e54ae60c2e2a27)(@parcel/core@2.8.3)
       gatsby-plugin-page-creator: 5.16.0(bare-buffer@3.7.3)(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(bare-buffer@3.7.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))(graphql@16.13.2)
       gatsby-plugin-typescript: 5.16.0(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(bare-buffer@3.7.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))
       gatsby-plugin-utils: 4.16.0(bare-buffer@3.7.3)(gatsby@5.16.1(babel-eslint@10.1.0(eslint@8.57.1))(bare-buffer@3.7.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@4.41.0)(typescript@6.0.3))(graphql@16.13.2)
