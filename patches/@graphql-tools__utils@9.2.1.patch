@@ -1,0 +1,38 @@
+diff --git a/cjs/mergeDeep.js b/cjs/mergeDeep.js
+index c38d63e2277e74bee062b02be64c9fb431f8d42f..cc70bd78a91201f7eb00d1189c7d011722d73fd3 100644
+--- a/cjs/mergeDeep.js
++++ b/cjs/mergeDeep.js
+@@ -22,9 +22,12 @@ function mergeDeep(sources, respectPrototype = false) {
+                     }
+                 }
+             }
+-            for (const key in source) {
++            for (const key of Object.keys(source)) {
++                if (key === "__proto__" || key === "constructor" || key === "prototype") {
++                    continue;
++                }
+                 if (isObject(source[key])) {
+-                    if (!(key in output)) {
++                    if (!Object.hasOwn(output, key)) {
+                         Object.assign(output, { [key]: source[key] });
+                     }
+                     else {
+diff --git a/esm/mergeDeep.js b/esm/mergeDeep.js
+index 5bc666e058173baf741a8d27421e947d4a7139d3..a11f72871559daa73d1e56f271ef5aff048f998d 100644
+--- a/esm/mergeDeep.js
++++ b/esm/mergeDeep.js
+@@ -19,9 +19,12 @@ export function mergeDeep(sources, respectPrototype = false) {
+                     }
+                 }
+             }
+-            for (const key in source) {
++            for (const key of Object.keys(source)) {
++                if (key === "__proto__" || key === "constructor" || key === "prototype") {
++                    continue;
++                }
+                 if (isObject(source[key])) {
+-                    if (!(key in output)) {
++                    if (!Object.hasOwn(output, key)) {
+                         Object.assign(output, { [key]: source[key] });
+                     }
+                     else {

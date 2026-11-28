@@ -99,5 +99,7 @@ overrides:
   "gatsby-source-filesystem@5.16.0>file-type": "22.3.0"
 
 patchedDependencies:
+  '@graphql-tools/utils@8.13.1': patches/@graphql-tools__utils@8.13.1.patch
+  '@graphql-tools/utils@9.2.1': patches/@graphql-tools__utils@9.2.1.patch
   gatsby-core-utils@4.16.0: patches/gatsby-core-utils@4.16.0.patch
   gatsby-source-filesystem@5.16.0: patches/gatsby-source-filesystem@5.16.0.patch
